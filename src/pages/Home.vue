@@ -84,14 +84,20 @@
     </div>
 
   </div>
+  <br>
+  <div class="container">
+    <Map />
+  </div>
 </template>
 
 <script>
 import {reactive} from "vue";
 import axios from "axios";
+import Map from "@/components/Map.vue"
 
 export default {
   name: "Home",
+  components:{Map},
   setup() {
     const state = reactive({
       items: []

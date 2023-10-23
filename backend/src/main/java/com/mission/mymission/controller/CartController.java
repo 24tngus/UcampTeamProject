@@ -57,7 +57,6 @@ public class CartController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     @DeleteMapping("/cart/menu/{menuSeq}")
     public ResponseEntity removeCartMenu(
             @PathVariable("menuSeq") int menuSeq,

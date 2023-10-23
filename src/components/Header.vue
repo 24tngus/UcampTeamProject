@@ -7,8 +7,7 @@
         <div class="col-sm-4 py-4">
           <ul class="list-unstyled">
             <li>
-
-              <router-link to="/store">식당</router-link> &nbsp;
+              <router-link to="/shop">식당</router-link> &nbsp;
               <router-link to="/mypage">마이페이지</router-link> &nbsp;
             </li>
           </ul>

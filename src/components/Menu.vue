@@ -60,7 +60,6 @@ export default {
     };
 
     return {state, lib, addToCart};
-    // return {state, lib};
   }
 }
 </script>

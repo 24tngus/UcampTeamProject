@@ -32,13 +32,13 @@ export default {
     };
 
     const remove = (menuSeq) => {
-      axios.delete(`/api/cart/menu/{menuSeq}`).then(() => {
+      axios.delete(`/api/cart/menu/${menuSeq}`).then(() => {
         load();
-        console.log(menuSeq);
       })
     }
 
     load();
+    console.log(state);
 
     return {state, lib, remove}
   }

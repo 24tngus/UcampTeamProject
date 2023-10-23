@@ -6,16 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/config/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/CartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cart.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Mypage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Reserve.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Reserve.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Store.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Shop.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +82,7 @@
       <workItem from="1698033671511" duration="7673000" />
       <workItem from="1698042693619" duration="3027000" />
       <workItem from="1698047959769" duration="14120000" />
-      <workItem from="1698066805119" duration="801000" />
+      <workItem from="1698066805119" duration="2424000" />
     </task>
     <servers />
   </component>

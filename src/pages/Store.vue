@@ -4,8 +4,26 @@
       <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col" v-for="(item, idx) in state.items" :key="idx">
-            <Card :item="item"/>
+          <div class="col" v-for="(menu, idx) in state.menus" :key="idx">
+            <div class="card shadow-sm">
+              <!--      <span class="img" style="{backgroundImage: url('${item.imagePath}')}" />-->
+              <img :src="menu.image"/>
+              <div class="card-body">
+                <p class="card-text">
+                  <span> {{menu.menu}} </span> &nbsp;
+                  <span class="discount badge bg-danger">{{menu.sale}}%</span>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn btn-primary">예약하기</button>
+                  <small class="price text-muted">
+                    {{menu.price}}원
+                  </small>
+                  <small class="real text-danger">
+                    {{menu.price - (menu.price * menu.sale / 100)}}원
+                  </small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -18,17 +36,15 @@
 <script>
 import axios from "axios";
 import {reactive} from "vue";
-import Card from "@/components/Card.vue";
 
 export default {
   name: "Store",
-  components: {Card},
   setup() {
     const state = reactive({
-      items: []
+      menus: []
     })
-    axios.get("/api/items").then(({data}) => {
-      state.items = data;
+    axios.get("/api/menu").then(({data}) => {
+      state.menus = data;
     })
     return {state};
   },

@@ -1,25 +1,27 @@
 <template>
-    <div class="card shadow-sm">
-<!--      <span class="img" style="{backgroundImage: url('${item.imagePath}')}" />-->
-      <img :src="item.imgPath"/>
-      <div class="card-body">
-        <p class="card-text">
-          <span> {{item.name}} </span> &nbsp;
+  <div class="card shadow-sm">
+    <!--      <span class="img" style="{backgroundImage: url('${item.imagePath}')}" />-->
+    <!--      <img :src="menu.image" alt="menu image"/>-->
+    <img v-if="menu && menu.image" :src="menu.image" />
+    <h1></h1>
+    <div class="card-body">
+      <p class="card-text">
+        <span> {{menu.menu}} </span>
         <span class="discount badge bg-danger">
-            {{item.discountPer}}%
+            {{menu.discountPer}}%
           </span>
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
-          <button class="btn btn-primary">예약하기</button>
-          <small class="price text-muted">
-            {{lib.getNumberFormatted(item.price)}}원
-          </small>
-          <small class="real text-danger">
-            {{item.price - (item.price * item.discountPer / 100)}}원
-          </small>
-        </div>
+      </p>
+      <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-primary">예약하기</button>
+        <small class="price text-muted">
+          {{lib.getNumberFormatted(menu.price)}}원
+        </small>
+        <small class="real text-danger">
+          {{menu.price - (menu.price * menu.discountPer / 100)}}원
+        </small>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +30,7 @@ import lib from "@/scripts/lib";
 export default {
   name: "Card",
   props: {
-    item: Object
+    menu: Object
   },
   setup() {
     return {lib}

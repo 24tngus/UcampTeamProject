@@ -100,7 +100,7 @@ export default {
     const state = reactive({
       items: []
     })
-    axios.get("/api/items").then(({data}) => {
+    axios.get("/api/menu").then(({data}) => {
       state.items = data;
     })
     return {state};

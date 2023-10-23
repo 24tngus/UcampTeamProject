@@ -7,27 +7,23 @@
       language="kor"
   >
     <MarkerCluster>
-      <Marker v-for="(location, i) in locations" :options="{ position: location }" :key="i">
-        <InfoWindow>
+      <Marker v-for="(location, i) in locations" :options="{ position: location }" :key="i"
+              @click="showPlaceInfo()">
+        <InfoWindow>  <!-- Marker 클릭하면 나오는 부분 -->
           <div id="contet">
             <div id="siteNotice"></div>
-            <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+            <h1 id="firstHeading" class="firstHeading" v-if="detailPlaceInfo">{{ this.detailPlaceInfo.name }}</h1> <!-- 가게 이름 -->
             <div id="bodyContent">
-              <p>
-                <b>Uluru도완</b>, also referred to as <b>Ayers Rock</b>, is a large sandstone rock formation in the southern
-                part of the Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) south west of the
-                nearest large town, Alice Springs; 450&#160;km (280&#160;mi) by road. Kata Tjuta and Uluru are the two
-                major features of the Uluru - Kata Tjuta National Park. Uluru is sacred to the Pitjantjatjara and
-                Yankunytjatjara, the Aboriginal people of the area. It has many springs, waterholes, rock caves and
-                ancient paintings. Uluru is listed as a World Heritage Site.
+              <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
+                {{ this.detailPlaceInfo.formatted_address }}
               </p>
-              <p>
-                Attribution: Uluru,
-                <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">
-                  https://en.wikipedia.org/w/index.php?title=Uluru</a
-                >
-                (last visited June 22, 2009).
+              <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
+                {{ this.detailPlaceInfo.rating }}
               </p>
+<!--              <div>-->
+<!--                <img src="../../public/img/bread.jpg" style="width: 100px">-->
+<!--              </div>-->
+
             </div>
           </div>
         </InfoWindow>
@@ -37,41 +33,85 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-import { GoogleMap, Marker, MarkerCluster, InfoWindow } from 'vue3-google-map'
+import {defineComponent} from 'vue'
+import {GoogleMap, Marker, MarkerCluster, InfoWindow} from 'vue3-google-map'
+// import {error} from "@babel/eslint-parser/lib/convert";
 
 export default defineComponent({
-  components: { GoogleMap, Marker, MarkerCluster, InfoWindow },
+  components: {GoogleMap, Marker, MarkerCluster, InfoWindow},
   setup() {
-    const center = { lat: 37.561736, lng: 126.835419 }
+    const mapCenter = {lat: 37.5593773, lng: 126.832661}
 
     const locations = [
-      { lat: -31.56391, lng: 147.154312 },
-      { lat: -33.718234, lng: 150.363181 },
-      { lat: -33.727111, lng: 150.371124 },
-      { lat: -33.848588, lng: 151.209834 },
-      { lat: -33.851702, lng: 151.216968 },
-      { lat: -34.671264, lng: 150.863657 },
-      { lat: -35.304724, lng: 148.662905 },
-      { lat: -36.817685, lng: 175.699196 },
-      { lat: -36.828611, lng: 175.790222 },
-      { lat: -37.75, lng: 145.116667 },
-      { lat: -37.759859, lng: 145.128708 },
-      { lat: -37.765015, lng: 145.133858 },
-      { lat: -37.770104, lng: 145.143299 },
-      { lat: -37.7737, lng: 145.145187 },
-      { lat: -37.774785, lng: 145.137978 },
-      { lat: -37.819616, lng: 144.968119 },
-      { lat: -38.330766, lng: 144.695692 },
-      { lat: -39.927193, lng: 175.053218 },
-      { lat: -41.330162, lng: 174.865694 },
-      { lat: -42.734358, lng: 147.439506 },
-      { lat: -42.734358, lng: 147.501315 },
-      { lat: -42.735258, lng: 147.438 },
-      { lat: -43.999792, lng: 170.463352 },
+      {lat: 37.5593773, lng: 126.832661},
+      {lat: 37.55795, lng: 126.8397055},
     ]
 
-    return { center, locations }
-  },
+    return {mapCenter, locations}
+  },  // setup()
+  data() {
+    return {
+      center : null,
+      jsonData : null,
+      detailPlaceInfo : null,
+    };
+  },  // data()
+  async mounted() {
+    let parseJsonData;
+
+    try {
+      this.center = await this.getUserLocation();
+
+    } catch (error) {
+      console.log("Error User Location : " + error);
+    }
+
+    fetch('https://proxy.cors.sh/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.561736,%20126.835419&rankby=distance&name=%EC%82%BC%EA%B2%B9%EC%82%B4&key=AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk', {
+      headers: {
+        'x-cors-api-key': 'temp_924d232f48d59dabc25af9778ab72f25'
+      }
+    })
+        .then(res => res.json())
+        .then(res => {
+          parseJsonData = res;
+          this.jsonData = parseJsonData.results;
+          console.log(this.jsonData);
+          console.log(this.jsonData[1].name);
+        });
+  },  // mounted()
+  methods: {
+    showPlaceInfo: function () {  // place_id로 googleMap JSON Data를 Parsing
+      fetch('https://proxy.cors.sh/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJP1CJmGGcfDUR7ffziy-8NZA&key=AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk', {
+        headers: {
+          'x-cors-api-key': 'temp_924d232f48d59dabc25af9778ab72f25'
+        }
+      })
+          .then(res => res.json())
+          .then(res => {
+            this.detailPlaceInfo = res.result;
+            console.log(this.detailPlaceInfo.name);
+            console.log(this.detailPlaceInfo.place_id);
+            console.log(this.detailPlaceInfo.geometry.location.lat);
+            console.log(this.detailPlaceInfo.geometry.location.lng);
+          })
+    },  // showPlaceInfo
+    getUserLocation: function () {  // User의 현재 위치 가져오기
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const location = {
+                enableHighAccuracy: true, // 정확도 향상
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              resolve(location);
+            },
+            (error) => {
+              reject(error);
+            }
+        )
+      })
+    } // getUserLocation
+  },  // method()
 })
 </script>

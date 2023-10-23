@@ -27,6 +27,7 @@
 import {reactive} from "vue";
 import axios from "axios";
 import store from "@/scripts/store";
+import router from "@/scripts/router";
 
 export default {
   setup() {
@@ -41,6 +42,7 @@ export default {
         store.commit("setAccount", res.data); // store 저장
         console.log(res.data);
         window.alert("로그인 하였습니다");
+        router.push({path: "/"});
       })
     }
     return {state, submit}

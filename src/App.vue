@@ -7,14 +7,33 @@
 </template>
 
 <script>
+
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import store from "@/scripts/store";
+import {watch} from "vue";
+import axios from "axios";
+import {useRoute} from "vue-router";
 export default {
   name: 'App',
   components: {
     // Home,
     Header,
     Footer,
+  },
+  setup() {
+    const check = () => {
+      axios.get("/api/account/check").then(({data}) => {
+        console.log(data);
+        store.commit("setAccount", data || 0); // data가 있을 경우 data 전달, 아닐 경우 null 전달
+      })
+    };
+
+    const route = useRoute();
+
+    watch(route, () => { // watch가 경로가 바뀔 때마다 김시
+      check();
+    })
   }
 }
 </script>
@@ -77,14 +96,11 @@ export default {
         --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
         --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
         --bs-btn-bg: var(--bd-violet-bg);
         --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
         --bs-btn-hover-bg: #6528e0;
         --bs-btn-hover-border-color: #6528e0;
         --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
         --bs-btn-active-bg: #5a23c8;
         --bs-btn-active-border-color: #5a23c8;
       }

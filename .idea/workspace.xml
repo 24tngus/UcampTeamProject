@@ -7,19 +7,18 @@
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AcoountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/1d183dda.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/1d183dda.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/MenuRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/MenuRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Card.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Map.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Reserve.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Reserve.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mypage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Store.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Store.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +76,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,7 +89,9 @@
       <option name="presentableId" value="Default" />
       <updated>1697257879810</updated>
       <workItem from="1697955110704" duration="15771000" />
-      <workItem from="1698033671511" duration="6183000" />
+      <workItem from="1698033671511" duration="7673000" />
+      <workItem from="1698042693619" duration="3027000" />
+      <workItem from="1698047959769" duration="9286000" />
     </task>
     <servers />
   </component>

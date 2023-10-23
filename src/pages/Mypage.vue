@@ -11,8 +11,10 @@
 
         <div class="item">
           <div>
-            <div class="green number">1</div>
-            <div class="text">장바구니</div>
+              <div class="green number">1</div>
+            <router-link to="/cart">
+              <div class="text">장바구니</div>
+            </router-link>
           </div>
           <div class="icon"> > </div>
         </div>

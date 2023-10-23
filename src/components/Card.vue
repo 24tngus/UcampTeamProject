@@ -1,23 +1,22 @@
 <template>
   <div class="card shadow-sm">
-    <!--      <span class="img" style="{backgroundImage: url('${item.imagePath}')}" />-->
-    <!--      <img :src="menu.image" alt="menu image"/>-->
-    <img v-if="menu && menu.image" :src="menu.image" />
-    <h1></h1>
+    <span class="img" :style="{backgroundImage: `url(${item.imgPath})`}"/>
     <div class="card-body">
       <p class="card-text">
-        <span> {{menu.menu}} </span>
+        <span>{{ item.name }} &nbsp;</span>
         <span class="discount badge bg-danger">
-            {{menu.discountPer}}%
-          </span>
+          {{ item.discountPer }}%
+        </span>
       </p>
       <div class="d-flex justify-content-between align-items-center">
-        <button class="btn btn-primary">예약하기</button>
+        <button class="btn btn-primary" @click="addToCart(item.id)">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </button>
         <small class="price text-muted">
-          {{lib.getNumberFormatted(menu.price)}}원
+          {{ lib.getNumberFormatted(item.price) }}원
         </small>
         <small class="real text-danger">
-          {{menu.price - (menu.price * menu.discountPer / 100)}}원
+          {{ lib.getNumberFormatted(item.price - (item.price * item.discountPer / 100)) }}%
         </small>
       </div>
     </div>
@@ -26,24 +25,30 @@
 
 <script>
 import lib from "@/scripts/lib";
+import axios from "axios";
 
 export default {
   name: "Card",
   props: {
-    menu: Object
+    item: Object
   },
   setup() {
-    return {lib}
+    const addToCart = (itemId) => {
+      axios.post(`/api/cart/items/${itemId}`).then(() => {
+        console.log('success')
+      })
+    };
+
+    return {lib, addToCart}
   }
 }
 </script>
 
 <style scoped>
-
-.card .img{
+.card .img {
   display: inline-block;
   width: 100%;
-  hieght: 250px;
+  height: 250px;
   background-size: cover;
   background-position: center;
 }

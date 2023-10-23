@@ -5,24 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/MenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AcoountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AcoountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ItemController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Item.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Member.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/MenuRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/MemberRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AcoountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/MenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/1d183dda.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/1d183dda.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Card.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Card.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Reserve.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Reserve.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Store.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Store.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,9 +39,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2WjtaLgjqqUyLMstsamQnJ3x1PY" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -59,8 +56,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "/Users/soohykim/Desktop/veganloadmap",
+    "git-widget-placeholder": "soohyun",
+    "last_opened_file_path": "/Users/soohykim/Desktop/veganloadmap/src/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,6 +73,11 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -84,7 +86,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697257879810</updated>
-      <workItem from="1697955110704" duration="12785000" />
+      <workItem from="1697955110704" duration="15771000" />
+      <workItem from="1698033671511" duration="6183000" />
     </task>
     <servers />
   </component>

@@ -12,7 +12,6 @@
                placeholder="Password" v-model="state.form.password">
         <label for="floatingPassword">Password</label>
       </div>
-
       <div class="form-check text-start my-3">
         <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
@@ -27,6 +26,7 @@
 <script>
 import {reactive} from "vue";
 import axios from "axios";
+import store from "@/scripts/store";
 
 export default {
   setup() {
@@ -38,7 +38,8 @@ export default {
     })
     const submit = () => {
       axios.post("/api/account/login", state.form).then((res)=> {
-        console.log(res);
+        store.commit("setAccount", res.data); // store 저장
+        console.log(res.data);
         window.alert("로그인 하였습니다");
       })
     }

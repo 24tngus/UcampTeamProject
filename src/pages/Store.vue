@@ -14,7 +14,7 @@
                   <span class="discount badge bg-danger">{{menu.sale}}%</span>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <button class="btn btn-primary">예약하기</button>
+                  <button class="btn btn-primary" @click="$router.push('/reserve')">예약하기</button>
                   <small class="price text-muted">
                     {{menu.price}}원
                   </small>
@@ -36,7 +36,6 @@
 <script>
 import axios from "axios";
 import {reactive} from "vue";
-
 export default {
   name: "Store",
   setup() {

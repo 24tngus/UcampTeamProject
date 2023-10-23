@@ -2,7 +2,7 @@
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your Shop</span>
+          <span class="text-primary">가게정보</span>
           <span class="badge bg-primary rounded-pill">3</span>
         </h4>
         <ul class="list-group mb-3">
@@ -170,7 +170,7 @@ export default {
     const state = reactive({
       items: []
     })
-    axios.get("/api/items").then(({data}) => {
+    axios.get("/api/menu").then(({data}) => {
       state.items = data;
     })
     return {state};

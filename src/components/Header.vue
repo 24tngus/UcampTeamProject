@@ -59,9 +59,11 @@
           <ul class="list-unstyled">
             <li>
               <router-link to="/">메인 화면</router-link> &nbsp;
-              <router-link to="/login">로그인</router-link> &nbsp;
+              <router-link to="/login" v-if="!$store.state.account.id">로그인</router-link> &nbsp;
+              <a to="/login" @click="logout()" v-else>로그아웃</a>&nbsp;
               <router-link to="/store">식당</router-link> &nbsp;
               <router-link to="/reserve">예약</router-link> &nbsp;
+              <router-link to="/mypage">마이페이지</router-link> &nbsp;
             </li>
           </ul>
         </div>
@@ -83,10 +85,17 @@
 </template>
 
 <script>
+import router from "@/scripts/router";
+import store from "@/scripts/store";
+
 export default {
   name: 'Header',
-  props: {
-   
+  setup() {
+    const logout = () => {
+        store.commit('setAccount', 0);
+        router.push({path: "/"});
+    }
+    return {logout}
   }
 }
 </script>

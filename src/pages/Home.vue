@@ -83,6 +83,31 @@
       </div>
     </div>
 
+    <hr class="featurette-divider">
+
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <h3>지역 카테고리</h3>
+          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            <button
+                v-for="(region, index) in regions"
+                :key="index"
+                type="button"
+                class="btn btn-outline-success"
+                @click="displayAddress(region)"
+            >{{ region }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="addressDisplay">
+      <a :href="getGoogleMapsLink(selectedAddress)" target="_blank">{{ selectedAddress }}</a>
+    </div>
+
+    <hr class="featurette-divider">
+
   </div>
   <br>
   <div class="container">
@@ -91,23 +116,40 @@
 </template>
 
 <script>
-import {reactive} from "vue";
+import { ref } from "vue";
 import axios from "axios";
-import Map from "@/components/Map.vue"
+import Map from "@/components/Map.vue";
 
 export default {
   name: "Home",
-  components:{Map},
+  components: { Map },
   setup() {
-    const state = reactive({
-      items: []
-    })
-    axios.get("/api/items").then(({data}) => {
-      state.items = data;
-    })
-    return {state};
-  }
-}
+    const items = ref([]);
+    const selectedAddress = ref('');
+    const regions = [
+      '강남구', '강동구', '강북구', '강서구', '관악구', '광진구',
+      '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구',
+      '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구',
+      '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'
+    ];
+
+    axios.get("/api/menu").then(({ data }) => {
+      items.value = data;
+    });
+
+    const displayAddress = (region) => {
+      selectedAddress.value = region;
+    };
+
+    const getGoogleMapsLink = (address) => {
+      const encodedAddress = encodeURIComponent(address + " 서울특별시");
+      return `https://www.google.co.kr/maps/place/${encodedAddress}`;
+    };
+
+    return { items, selectedAddress, regions, displayAddress, getGoogleMapsLink };
+  },
+};
+
 </script>
 
 <style scoped>

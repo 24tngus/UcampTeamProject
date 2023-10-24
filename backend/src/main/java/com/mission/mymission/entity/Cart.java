@@ -19,5 +19,5 @@ public class Cart {
     private int userSeq;
 
     @Column(nullable = false)
-    private int menuSeq;
+    private int shopSeq;
 }

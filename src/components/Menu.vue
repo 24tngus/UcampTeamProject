@@ -20,9 +20,6 @@
                   <small class="real text-danger">
                     {{lib.getNumberFormatted(menu.price - (menu.price * menu.sale / 100)) }}원
                   </small>
-                  <button class="btn btn-primary" @click="addToCart(menu.seq)">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  </button>
                   <button class="btn btn-primary" @click="$router.push('/reserve')">
                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                   </button>
@@ -53,13 +50,7 @@ export default {
       state.menus = data;
     })
 
-    const addToCart = (menuSeq) => {
-      axios.post(`/api/cart/menu/${menuSeq}`).then(() => {
-        console.log('success')
-      })
-    };
-
-    return {state, lib, addToCart};
+    return {state, lib};
   }
 }
 </script>

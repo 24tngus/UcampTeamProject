@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
     List<Cart> findByUserSeq(int userSeq);
-    Cart findByUserSeqAndMenuSeq(int userSeq, int menuSeq);
+    Cart findByUserSeqAndShopSeq(int userSeq, int shopSeq);
 }

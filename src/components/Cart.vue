@@ -2,11 +2,12 @@
   <div class="cart">
     <div class="container">
       <ul>
-        <li v-for="(menu, idx) in state.items" :key="idx">
-          <img :src="menu.image"/>
-          <span class="name">{{ menu.menu }}</span>
-          <span class="price">{{ lib.getNumberFormatted(menu.price - menu.price * menu.sale / 100) }}원</span>
-          <i class="fa fa-trash" @click="remove(menu.seq)"></i>
+        <li v-for="(shop, idx) in state.items" :key="idx">
+          <img :src="shop.fileupload"/>
+          <span class="name">{{ shop.storename }}</span>
+          <span class="category">{{shop.category}}</span>
+          <span class="category">예약금{{ lib.getNumberFormatted(10000) }}원</span>
+          <i class="fa fa-trash" @click="remove(shop.seq)"></i>
         </li>
       </ul>
       <router-link to="/reserve" class="btn btn-primary">예약하기</router-link>
@@ -26,19 +27,18 @@ export default {
     })
 
     const load = () => {
-      axios.get("/api/cart/menu").then(({data}) => {
+      axios.get("/api/cart/shop").then(({data}) => {
         state.items = data;
       })
     };
 
-    const remove = (menuSeq) => {
-      axios.delete(`/api/cart/menu/${menuSeq}`).then(() => {
+    const remove = (shopSeq) => {
+      axios.delete(`/api/cart/shop/${shopSeq}`).then(() => {
         load();
       })
     }
 
     load();
-    console.log(state);
 
     return {state, lib, remove}
   }
@@ -67,7 +67,7 @@ export default {
   margin-left: 25px;
 }
 
-.cart ul li .price {
+.cart ul li .category {
   margin-left: 25px;
 }
 

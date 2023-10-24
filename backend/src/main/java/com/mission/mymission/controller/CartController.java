@@ -1,9 +1,9 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.Cart;
-import com.mission.mymission.entity.Menu;
+import com.mission.mymission.entity.Shop;
 import com.mission.mymission.repository.CartRepository;
-import com.mission.mymission.repository.MenuRepository;
+import com.mission.mymission.repository.ShopRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,10 +19,10 @@ import java.util.List;
 public class CartController {
     private final JwtService jwtService;
     private final CartRepository cartRepository;
-    private final MenuRepository menuRepository;
+    private final ShopRepository shopRepository;
 
-    @GetMapping("/cart/menu")
-    public ResponseEntity getCartMenu(@CookieValue(value = "token", required = false) String token) {
+    @GetMapping("/cart/shop")
+    public ResponseEntity getCartShop(@CookieValue(value = "token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
@@ -30,15 +30,15 @@ public class CartController {
 
         int userSeq = jwtService.getSeq(token);
         List<Cart> carts = cartRepository.findByUserSeq(userSeq);
-        List<Integer> menuIds = carts.stream().map(Cart::getMenuSeq).toList();
-        List<Menu> menus = menuRepository.findBySeqIn(menuIds);
+        List<Integer> shopIds = carts.stream().map(Cart::getShopSeq).toList();
+        List<Shop> shops = shopRepository.findBySeqIn(shopIds);
 
-        return new ResponseEntity<>(menus, HttpStatus.OK);
+        return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
-    @PostMapping("/cart/menu/{menuSeq}")
-    public ResponseEntity pushCartMenu(
-            @PathVariable("menuSeq") int menuSeq,
+    @PostMapping("/cart/shop/{shopSeq}")
+    public ResponseEntity pushCartShop(
+            @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value="token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
@@ -46,20 +46,19 @@ public class CartController {
         }
 
         int userSeq = jwtService.getSeq(token);
-        Cart cart = cartRepository.findByUserSeqAndMenuSeq(userSeq, menuSeq);
+        Cart cart = cartRepository.findByUserSeqAndShopSeq(userSeq, shopSeq);
 
         if (cart == null) {
             Cart newCart = new Cart();
             newCart.setUserSeq(userSeq);
-            newCart.setMenuSeq(menuSeq);
+            newCart.setShopSeq(shopSeq);
             cartRepository.save(newCart);
         }
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/cart/menu/{menuSeq}")
-    public ResponseEntity removeCartMenu(
-            @PathVariable("menuSeq") int menuSeq,
+    @DeleteMapping("/cart/shop/{shopSeq}")
+    public ResponseEntity removeCartShop(
+            @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value = "token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
@@ -67,7 +66,7 @@ public class CartController {
         }
 
         int userSeq = jwtService.getSeq(token);
-        Cart cart = cartRepository.findByUserSeqAndMenuSeq(userSeq, menuSeq);
+        Cart cart = cartRepository.findByUserSeqAndShopSeq(userSeq, shopSeq);
 
         cartRepository.delete(cart);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -13,14 +13,11 @@
                   <span> {{shop.storename}} </span> &nbsp;
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-<!--                  <small class="price text-muted">-->
-<!--                    {{lib.getNumberFormatted(menu.price)}}원-->
-<!--                  </small>-->
-<!--                  <small class="real text-danger">-->
-<!--                    {{lib.getNumberFormatted(menu.price - (menu.price * menu.sale / 100)) }}원-->
-<!--                  </small>-->
                   <button class="btn btn-primary" @click="$router.push('/menu')">
                     <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-primary" @click="addToCart(shop.seq)">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   </button>
                   <button class="btn btn-primary" @click="$router.push('/reserve')">
                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
@@ -51,7 +48,13 @@ export default {
       state.items = data;
     })
 
-    return {state};
+    const addToCart = (shopSeq) => {
+      axios.post(`/api/cart/shop/${shopSeq}`).then(() => {
+        console.log('success')
+      })
+    };
+
+    return {state, addToCart};
   }
 }
 </script>

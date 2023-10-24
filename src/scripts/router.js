@@ -7,6 +7,9 @@ import Mypage from "@/components/Mypage.vue";
 import Cart from "@/components/Cart.vue";
 import Menu from "@/components/Menu.vue";
 import Map from "@/components/Map.vue";
+import Faq from "@/components/Faq.vue";
+import Vegan from "@/components/Vegan.vue";
+import Vegan2 from "@/components/Vegan2.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -17,6 +20,9 @@ const routes = [
     {path: '/cart', component: Cart},
     {path: '/menu', component: Menu},
     {path: '/map', component: Map},
+    {path: '/faq', component: Faq},
+    {path: '/vegan', component: Vegan},
+    {path: '/vegan2', component: Vegan2}
 ]
 
 const router = createRouter({

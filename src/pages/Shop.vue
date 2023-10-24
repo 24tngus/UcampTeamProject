@@ -7,7 +7,7 @@
           <div class="col" v-for="(shop, idx) in state.items" :key="idx">
             <div class="card shadow-sm">
               <!--      <span class="img" style="{backgroundImage: url('${item.imagePath}')}" />-->
-              <img :src="shop.fileupload"/>
+              <img :src="shop.image"/>
               <div class="card-body">
                 <p class="card-text">
                   <span> {{shop.storename}} </span> &nbsp;

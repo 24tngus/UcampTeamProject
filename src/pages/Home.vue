@@ -63,13 +63,13 @@
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Chinese</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">중식 예약 &raquo;</a></p>
+        <h2 class="fw-normal">Western</h2>
+        <p><a class="btn btn-secondary" href="#" id="btndetail">양식 예약 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Western</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">양식 예약 &raquo;</a></p>
+        <h2 class="fw-normal">Fusion</h2>
+        <p><a class="btn btn-secondary" href="#" id="btndetail">퓨전 예약 &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <!--      <div class="col-lg-4">-->
       <!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"/></svg>-->

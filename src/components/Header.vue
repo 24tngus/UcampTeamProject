@@ -19,31 +19,7 @@
   <header data-bs-theme="dark">
 
 
-    <!--
-      <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 py-4">
-              <ul class="list-unstyled">
-                <li class="nav-item">
-                  <router-link to="/" class="menu">식당</router-link> &nbsp;
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">예약</router-link>
-                  <div class="btnbanner"></div>
-                  <template>
-                    <div><router-link to="/" class="menu"></router-link> </div>
-                  </template>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">커뮤니티</router-link>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">로그인</router-link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
+
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
@@ -71,13 +47,13 @@
 
     <ul class="nav justify-content-center" id="abc">
       <li class="nav-item">
-        <router-link to="/" class="menu">Vegan</router-link>
+        <router-link to="/vegan" class="menu">Vegan</router-link>
         <div class="btnbanner"></div>
         <router-link to="/shop" class="menu">Restaurant</router-link>
         <div class="btnbanner"></div>
         <router-link to="/reserve" class="menu">Reservation</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/" class="menu">FAQ</router-link>
+        <router-link to="/faq" class="menu">FAQ</router-link>
       </li>
     </ul>
 
@@ -118,7 +94,7 @@ export default {
 }
 .menu{
   color : aliceblue;
-  text-decoration-color: white;
+  text-decoration-color: darkolivegreen;
 }
 .btnbanner{
   width: 4px;

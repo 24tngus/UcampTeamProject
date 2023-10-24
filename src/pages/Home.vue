@@ -7,32 +7,35 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>우수 비건 식당</h1>
-<!--            <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>-->
-<!--            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
+            <h1>Excellent Vegan Restaurant</h1>
+            <p class="opacity-75">VeganRoadMap이 선정한 우수 비건 식당을 만나보세요!</p>
+            <br>
+            <!--            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>샐러드 맛집</h1>
-<!--            <p>Some representative placeholder content for the second slide of the carousel.</p>-->
-<!--            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>-->
+            <h1>vegan & non-vegan</h1>
+            <p>비건인들과 논비건인들이 함께할 수 있는 식사</p>
+            <br>
+            <!--            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>-->
           </div>
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>비건 식단 시작하기</h1>
-<!--            <p>Some representative placeholder content for the third slide of this carousel.</p>-->
-<!--            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>-->
+            <h1>비건 식당 예약하기</h1>
+            <p>비건 식당을 예약하고 대기 없이 간편하게 이용해보세요.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Reservation</a></p>
+            <br>
           </div>
         </div>
       </div>
@@ -47,44 +50,74 @@
     </button>
   </div>
 
+
+  <br><br><br>
   <div class="container marketing">
+    <h1 class="category">Categories</h1><br><br>
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <h2 class="fw-normal">Korean</h2>
+        <p><a class="btn btn-secondary" href="#" id="btndetail">한식 예약 &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <h2 class="fw-normal">Chinese</h2>
+        <p><a class="btn btn-secondary" href="#" id="btndetail">중식 예약 &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <h2 class="fw-normal">Western</h2>
+        <p><a class="btn btn-secondary" href="#" id="btndetail">양식 예약 &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <!--      <div class="col-lg-4">-->
+      <!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"/></svg>-->
+      <!--        <h2 class="fw-normal">디저트</h2>-->
+      <!--        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
+      <!--      </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;-->
+    </div><!-- /.row -->
+    <hr>
     <br>
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">샌드위치</h2>
-        <p class="lead">주소/메뉴/가격</p>
+    <!--  <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1">샌드위치</h2>
+          <p class="lead">주소/메뉴/가격</p>
+        </div>
+        <div class="col-md-5">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+        </div>
       </div>
-      <div class="col-md-5" v-for="(shop, idx) in state.items" :key="idx">
-        <img :src="shop.fileupload"/>
-      </div>
-    </div>
 
-    <hr class="featurette-divider">
+      <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading fw-normal lh-1">해독주스</h2>
-        <p class="lead">주소/메뉴/가격</p>
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading fw-normal lh-1">해독주스</h2>
+          <p class="lead">주소/메뉴/가격</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+        </div>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
 
-    <hr class="featurette-divider">
+      <hr class="featurette-divider">
 
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1">채식 식당</h2>
-        <p class="lead">주소/메뉴/가격</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1">채식 식당</h2>
+          <p class="lead">주소/메뉴/가격</p>
+        </div>
+        <div class="col-md-5">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+        </div>
+      </div> -->
   </div>
+  <br>
   <div class="container">
-    <Map />
+    <br>
+    <h1 class="map">View on the map</h1><br><br>
+    <Map/>
   </div>
 </template>
 
@@ -108,9 +141,11 @@ export default {
 }
 </script>
 
-
-
 <style scoped>
+
+.row {
+  text-align: center;
+}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

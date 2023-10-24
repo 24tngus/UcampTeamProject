@@ -18,8 +18,8 @@
           Remember me
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" @click="submit()">Sign in</button>
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+      <button class="btn" @click="submit()">로그인</button> &nbsp;
+      <button class="btn" @click="$router.push('/join')">회원가입</button>
   </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
         router.push({path: "/"});
       })
     }
+
     return {state, submit}
   }
 }
@@ -54,6 +55,11 @@ export default {
 .form-signin {
   max-width: 330px;
   padding: 1rem;
+}
+
+.btn {
+  background-color: #24855b;
+  color: #ffffff;
 }
 
 .form-signin .form-floating:focus-within {

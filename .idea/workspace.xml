@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Map.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Map.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Mypage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Mypage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Reserve.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Reserve.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +54,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "soohyun",
-    "last_opened_file_path": "/Users/soohykim/Desktop/veganloadmap",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/soohykim/Desktop/backup",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -66,9 +73,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/pages" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
@@ -85,23 +94,26 @@
       <workItem from="1698042693619" duration="3027000" />
       <workItem from="1698047959769" duration="14120000" />
       <workItem from="1698066805119" duration="6082000" />
+      <workItem from="1698124585064" duration="7578000" />
+      <workItem from="1698133170313" duration="6728000" />
+      <workItem from="1698140015524" duration="906000" />
+      <workItem from="1698142228517" duration="4565000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Menu.vue</url>
-          <line>22</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

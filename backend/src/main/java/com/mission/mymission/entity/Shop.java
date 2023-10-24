@@ -16,10 +16,10 @@ public class Shop {
     private String storename;
 
     @Column(length = 400, nullable = false)
-    private String title;
+    private String placeid;
 
     @Column(length = 4000)
-    private String detail;
+    private String detailinfo;
 
     @Column(length = 100)
     private String category;
@@ -27,6 +27,33 @@ public class Shop {
     @Column(length = 4000)
     private String location;
 
+    @Column(length = 100)
+    private String rating;
+
+    @Column(length = 100)
+    private String phonenumber;
+
+    @Column(length = 100)
+    private String lat;
+
+    @Column(length = 100)
+    private String lng;
+
     @Column(length = 400)
-    private String fileupload;
+    private String image;
+
+    @Column(length = 400)
+    private String image1;
+
+    @Column(length = 400)
+    private String image2;
+
+    @Column(length = 400)
+    private String image3;
+
+    @Column(length = 400)
+    private String image4;
+
+    @Column(length = 400)
+    private String image5;
 }

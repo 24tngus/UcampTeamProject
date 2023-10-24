@@ -1,7 +1,9 @@
 <template>
   <div class="wrap">
     <div class="greenContainer">
-      <div class="name">이름</div>
+      <li v-for="(user, idx) in state.items" :key="idx">
+        <div class="name">{{user.name}}님 My Page</div>
+      </li>
     </div>
     <div class="shippingStatusContainer">
       <div class="title">
@@ -53,11 +55,11 @@
         <div class="text">이용후기</div>
         <div class="right"> > </div>
       </a>
-      <a href="#" class="item">
+      <router-link to="/mypageinfo" class="item">
         <div class="icon">3.</div>
         <div class="text">정보수정</div>
         <div class="right"> > </div>
-      </a>
+      </router-link>
     </div>
     <div class="infoContainer">
       <a href="#" class="item">자주묻는질문</a>
@@ -78,9 +80,14 @@ export default {
     const state = reactive({
       items: []
     })
-    axios.get("/api/menu").then(({data}) => {
-      state.items = data;
-    })
+
+    const load = () => {
+      axios.get("/api/mypage").then(({data}) => {
+        state.items = data;
+      })
+    };
+
+    load();
     return {state};
   }
 }
@@ -228,24 +235,6 @@ div{
 .listContainer .right{
   margin-left: auto;
 }
-
-
-/*=================== 내지갑의 보유 적립금 들어가는 부분 ================*/
-.listContainer .smallLight{
-  font-size: 14px;
-  color: #c2c2c2;
-}
-.listContainer .smallLight > span{
-  margin-left: 10px;
-}
-
-.listContainer .right .blct{
-  font-size: 14px;
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-
 
 /* 공지사항 이용안내 고객센터 */
 .infoContainer{

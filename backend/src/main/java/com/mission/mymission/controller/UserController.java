@@ -1,5 +1,7 @@
 package com.mission.mymission.controller;
 
+import com.mission.mymission.entity.Cart;
+import com.mission.mymission.entity.Shop;
 import com.mission.mymission.entity.User;
 import com.mission.mymission.exception.BusinessException;
 import com.mission.mymission.repository.UserRepository;
@@ -14,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -24,9 +27,9 @@ import java.util.Optional;
 @Transactional
 @RequestMapping("/api")
 public class UserController {
+    private final JwtService jwtService;
     private final UserRepository userRepository;
 
-    private final JwtService jwtService;
 
     @PostMapping("/account/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
@@ -72,10 +75,44 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/mypage/{id}")
-    public User getUser(@PathVariable int id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        User user = optionalUser.orElseThrow(() -> new BusinessException("User Not Found", HttpStatus.NOT_FOUND));
-        return user;
+    @PostMapping("/join")
+    public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
+
+        User newUser = new User();
+        newUser.setId(params.get("id"));
+        newUser.setPassword(params.get("password"));
+        newUser.setName(params.get("name"));
+        newUser.setNickname(params.get("nickname"));
+        newUser.setEmail(params.get("email"));
+        newUser.setTel(params.get("tel"));
+
+        userRepository.save(newUser);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/mypage")
+    public ResponseEntity getLoginUser(@CookieValue(value = "token", required = false) String token) {
+
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        int seq = jwtService.getSeq(token);
+        List<User> users = userRepository.findBySeq(seq);
+
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/mypage/{seq}")
+    public ResponseEntity getUserMypage(@CookieValue(value = "token", required = false) String token) {
+
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+//        List<User> users = userRepository.findBySeq(seq);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -15,35 +15,7 @@
     </symbol>
   </svg>
 
-
   <header data-bs-theme="dark">
-
-
-    <!--
-      <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 py-4">
-              <ul class="list-unstyled">
-                <li class="nav-item">
-                  <router-link to="/" class="menu">식당</router-link> &nbsp;
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">예약</router-link>
-                  <div class="btnbanner"></div>
-                  <template>
-                    <div><router-link to="/" class="menu"></router-link> </div>
-                  </template>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">커뮤니티</router-link>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">로그인</router-link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
@@ -63,10 +35,11 @@
         </a>
         &nbsp;
         <!-- 카트 아이콘-->
-        <router-link to="/cart" class="cart btn" v-if="$store.state.account.id">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        <router-link to="/mypage" class="cart btn" v-if="$store.state.account.id">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         </router-link>
       </div>
+
     </div>
 
     <ul class="nav justify-content-center" id="abc">

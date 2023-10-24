@@ -7,6 +7,9 @@ import Mypage from "@/components/Mypage.vue";
 import Cart from "@/components/Cart.vue";
 import Menu from "@/components/Menu.vue";
 import Map from "@/components/Map.vue";
+import ReserveUpdate from "@/pages/ReserveUpdate.vue";
+import ReserveInsert from "@/pages/ReserveInsert.vue";
+import ReserveUser from "@/pages/ReserveUser.vue"
 
 const routes = [
     {path:'/', component: Home},
@@ -17,6 +20,10 @@ const routes = [
     {path: '/cart', component: Cart},
     {path: '/menu', component: Menu},
     {path: '/map', component: Map},
+    {path: '/reservetest', component: ReserveUpdate},
+    {path: '/reservetest/update', component: ReserveUpdate},
+    {path: '/reservetest/insert', component: ReserveInsert},
+    {path: '/reserveuser/insert', component: ReserveUser}
 ]
 
 const router = createRouter({

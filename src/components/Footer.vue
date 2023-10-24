@@ -1,12 +1,19 @@
 <template>
     <footer class="text-body-secondary py-5">
-    <div class="container">
-      <p class="float-end mb-1">
-        <a href="#">Back to top</a>
-      </p>
-      <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
-    </div>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#"
+                                class="nav-link px-2 text-body-secondary">Home</a></li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link px-2 text-body-secondary">Features</a></li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link px-2 text-body-secondary">Pricing</a></li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link px-2 text-body-secondary">FAQs</a></li>
+        <li class="nav-item"><a href="#"
+                                class="nav-link px-2 text-body-secondary">About</a></li>
+      </ul>
+      <p class="text-center text-body-secondary">&copy; 2023 Company,
+        Inc</p>
   </footer>
 </template>
 

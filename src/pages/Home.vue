@@ -92,7 +92,7 @@
 
 <script>
 import {reactive} from "vue";
-import axios from "axios";
+// import axios from "axios";
 import Map from "@/components/Map.vue"
 
 export default {
@@ -102,9 +102,9 @@ export default {
     const state = reactive({
       items: []
     })
-    axios.get("/api/items").then(({data}) => {
-      state.items = data;
-    })
+    // axios.get("/api/menu").then(({data}) => {
+    //   state.items = data;
+    // })
     return {state};
   }
 }

@@ -10,6 +10,9 @@ import Map from "@/components/Map.vue";
 import Faq from "@/components/Faq.vue";
 import Vegan from "@/components/Vegan.vue";
 import Vegan2 from "@/components/Vegan2.vue";
+import Korean from "@/components/foodCategory/Korean.vue";
+import Western from "@/components/foodCategory/Western.vue";
+import Fusion from "@/components/foodCategory/Fusion.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -22,7 +25,10 @@ const routes = [
     {path: '/map', component: Map},
     {path: '/faq', component: Faq},
     {path: '/vegan', component: Vegan},
-    {path: '/vegan2', component: Vegan2}
+    {path: '/vegan2', component: Vegan2},
+    {path: '/foodCategory/Korean', component: Korean},
+    {path: '/foodCategory/Western', component: Western},
+    {path: '/foodCategory/Fusion', component: Fusion}
 ]
 
 const router = createRouter({

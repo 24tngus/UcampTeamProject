@@ -1,29 +1,45 @@
 <template>
   <div class="card shadow-sm">
-<!--    <span class="img" :style="{backgroundImage: `url(${item.imgPath})`}"/>-->
-    <div class="card-body">
-<!--      <p class="card-text">-->
-<!--        <span>{{ item.name }} &nbsp;</span>-->
-<!--        <span class="discount badge bg-danger">-->
-<!--          {{ item.discountPer }}%-->
-<!--        </span>-->
-<!--      </p>-->
-<!--      <div class="d-flex justify-content-between align-items-center">-->
-<!--        <button class="btn btn-primary" @click="addToCart(item.id)">-->
-<!--          <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
-<!--        </button>-->
-<!--        <small class="price text-muted">-->
-<!--          {{ lib.getNumberFormatted(item.price) }}원-->
-<!--        </small>-->
-<!--        <small class="real text-danger">-->
-<!--          {{ lib.getNumberFormatted(item.price - (item.price * item.discountPer / 100)) }}%-->
-<!--        </small>-->
-<!--      </div>-->
+     <div class="card-body">
+       <div class="list-group">
+         <div v-for="(korean, idx) in state.items" :key="idx">
+         <a href="#" class="list-group-item list-group-item-action">
+           <div class="card shadow-sm">
+<!--           <img :src="korean.image"/>-->
+           <div class="card-body">
+             <p class="card-text">
+               <span> {{korean.storename}} </span>
+
+             </p>
+           </div>
+         </div>
+         </a>
+        </div> <!-- v-for-->
+       </div>
+
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
+import { reactive, onMounted } from "vue";
+import axios from "axios";
+
+export default {
+  setup() {
+    const state = reactive({
+      items: [],
+    });
+
+    onMounted(() => {
+      axios.get("/api/shop/categ").then((response) => {
+        state.items = response.data;
+      });
+    });
+
+    return { state };
+  },
+};
 
 </script>
 

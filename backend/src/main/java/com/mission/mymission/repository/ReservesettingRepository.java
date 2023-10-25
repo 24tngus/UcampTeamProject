@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.sql.Date;
 import java.util.List;
 
-public interface ReservesettingRepository extends JpaRepository<com.mission.mymission.entity.Reservesetting, Integer> {
+public interface ReservesettingRepository extends JpaRepository<Reservesetting, Integer> {
     @Transactional
     @Modifying
     @Query("update Reservesetting r set r.team = :team, r.people = :people, r.date = :date, r.time0810 = :time0810, r.time1012 = :time1012, r.time1214 = :time1214, r.time1416 = :time1416, r.time1618 = :time1618, r.time1820 = :time1820, r.time2022 = :time2022 where r.seq = :seq")

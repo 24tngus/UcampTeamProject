@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <br><br><br>
   <div class="wiv">
     <div>
@@ -45,8 +46,10 @@
 </template>
 
 <script>
+import Header from "@/components/header/Header.vue";
 export default {
-  name: "Vegan"
+  name: "Vegan",
+  components: {Header},
 }
 </script>
 

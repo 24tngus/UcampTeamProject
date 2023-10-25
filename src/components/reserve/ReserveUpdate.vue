@@ -1,4 +1,5 @@
 <template>
+  <Header2/>
   <div>
     <ul>
       <li v-for="reserve in reserves" :key="reserve.seq">
@@ -22,8 +23,10 @@
 
 <script>
 import axios from "axios";
+import Header2 from "@/components/header/Header2.vue";
 
 export default {
+  components: {Header2},
   data() {
     return {
       reserves: [],

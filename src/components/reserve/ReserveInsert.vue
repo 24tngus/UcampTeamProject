@@ -1,4 +1,5 @@
 <template>
+  <Header2 />
   <div>
     <ul>
       max 테이블 개수 <input type="number" v-model="team">{{team}}<br>
@@ -18,8 +19,10 @@
 
 <script>
 import axios from "axios";
+import Header2 from "@/components/header/Header2.vue";
 
 export default {
+  components: {Header2},
   data() {
     return {
       team: 0,

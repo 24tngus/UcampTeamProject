@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <div class="card shadow-sm">
 <!--    <span class="img" :style="{backgroundImage: `url(${item.imgPath})`}"/>-->
     <div class="card-body">
@@ -23,8 +24,11 @@
   </div>
 </template>
 
-<script setup>
-
+<script>
+import Header from "@/components/header/Header.vue";
+export default {
+  components: {Header},
+}
 </script>
 
 <style scoped>

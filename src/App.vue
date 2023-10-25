@@ -1,6 +1,5 @@
 <template>
-
-  <Header/>
+<!--  <Header/>-->
 <!--  <Header2/>-->
   <RouterView/>
   <Footer/>
@@ -8,9 +7,9 @@
 
 <script>
 
-import Header from "@/components/Header.vue";
+// import Header from "@/components/Header.vue";
 // import Header2 from "@/components/Header2.vue";
-import Footer from "@/components/Footer.vue";
+import Footer from "@/components/header/Footer.vue";
 import store from "@/scripts/store";
 import {watch} from "vue";
 import axios from "axios";
@@ -19,7 +18,7 @@ import {useRoute} from "vue-router";
 export default {
   name: 'App',
   components: {
-    Header,
+    // Header,
     // Header2,
     Footer,
   },

@@ -56,4 +56,15 @@ public class Shop {
 
     @Column(length = 400)
     private String image5;
+
+    //    @Override
+//    public String toString(){
+//        return "Reservesetting" + "seq=" + seq + "shopseq=" + shopseq + "team=" + team + "people=" + people + "date=" + date
+//                + "time0810=" + time0810 + "time1012=" + time1012 + "time1214=" + time1214 + "time1416=" + time1416 + "time1618=" + time1618 + "time1820=" + time1820
+//                + "time2022=" + time2022;
+//    }
+    @Override
+    public String toString(){
+        return "storename" + storename;
+    }
 }

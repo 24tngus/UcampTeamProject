@@ -1,5 +1,5 @@
 <template>
-
+  <Header/>
   <div class="container">
     <div class="boardTitle">
       <br><br>
@@ -111,9 +111,10 @@
 </template>
 
 <script>
-
+import Header from "@/components/header/Header.vue";
 export default {
-  name: "Faq"
+  name: "Faq",
+  components: {Header},
 }
 
 </script>

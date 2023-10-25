@@ -1,4 +1,5 @@
 <template>
+  <Header/>
   <div class="shop">
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
@@ -37,9 +38,11 @@
 <script>
 import axios from "axios";
 import {reactive} from "vue";
+import Header from "@/components/header/Header.vue";
 
 export default {
   name: "Shop",
+  components: {Header},
   setup() {
     const state = reactive({
       items: []

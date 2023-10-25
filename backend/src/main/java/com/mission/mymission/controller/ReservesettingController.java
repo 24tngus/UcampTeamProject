@@ -1,6 +1,5 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.Reserve;
 import com.mission.mymission.entity.Reservesetting;
 import com.mission.mymission.repository.ReservesettingRepository;
 import org.springframework.beans.factory.annotation.Autowired;

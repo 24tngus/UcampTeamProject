@@ -1,4 +1,5 @@
 <template>
+  <Header/>
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -160,12 +161,14 @@
 </template>
 
 <script>
+import Header from "@/components/header/Header.vue";
 
 import {reactive} from "vue";
 import axios from "axios";
 
 export default {
   name: "Reserve",
+  components: {Header},
   setup() {
     const state = reactive({
       items: []

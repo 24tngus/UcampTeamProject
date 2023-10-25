@@ -1,15 +1,16 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from "@/pages/Home.vue";
-import Login from "@/pages/Login.vue";
+import Login from "@/components/user/Login.vue";
 import Shop from "@/pages/Shop.vue";
-import Store from "@/pages/Store.vue";
+import Store from "@/pages/Home_Store.vue";
 import Reserve from "@/components/reserve/Reserve.vue";
-import Mypage from "@/components/mypage/Mypage.vue";
-import Cart from "@/components/Cart.vue";
+import Mypage from "@/components/user/Mypage.vue";
+import Cart from "@/components/user/Cart.vue";
 import Menu from "@/components/Menu.vue";
-import MypageInfo from "@/components/mypage/MypageInfo.vue";
-import Join from "@/pages/Join.vue";
-import MypageUpdate from "@/components/mypage/MypageUpdate.vue";
+import MypageInfo from "@/components/user/MypageInfo.vue";
+import Join from "@/components/user/Join.vue";
+import Join2 from "@/components/user_store/Join2.vue";
+import MypageUpdate from "@/components/user/MypageUpdate.vue";
 import Vegan from "@/components/veganInfo/Vegan.vue";
 import Faq from "@/components/Faq.vue";
 import Vegan2 from "@/components/veganInfo/Vegan2.vue";
@@ -20,7 +21,7 @@ import Korean from "@/components/foodCategory/Korean.vue";
 import Fusion from "@/components/foodCategory/Fusion.vue";
 import Western from "@/components/foodCategory/Western.vue";
 import User from "@/pages/User.vue";
-import Login2 from "@/pages/Login2.vue";
+import Login2 from "@/components/user_store/Login2.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -28,6 +29,7 @@ const routes = [
     {path: '/login', component: Login},
     {path: '/login2', component: Login2},
     {path: '/join', component: Join},
+    {path: '/join2', component: Join2},
     {path: '/shop', component: Shop},
     {path: '/store', component: Store},
     {path: '/reserve', component: Reserve},

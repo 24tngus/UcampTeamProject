@@ -4,14 +4,110 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Map.vue" afterDir="false" />
+    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="변경">
+      <change afterPath="$PROJECT_DIR$/public/fusion.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/korean.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/veganMain1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/veganMain2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/veganMain3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/western.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/02521f79.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/02521f79.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ShopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/around5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bege5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/bre5.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/flower5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/hut5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/insa5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/jung5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/maji5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/monk5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/oh5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/plant5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/sang5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/style5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/vegi5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/img/you5.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,14 +123,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2WjtaLgjqqUyLMstsamQnJ3x1PY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,23 +146,29 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Ucamp/VeganProject/VeganLoadMap/backend",
+    "git-widget-placeholder": "soyoon1025",
+    "last_opened_file_path": "C:/JavaWork/springboot/VeganLoadMap/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\김소윤\\AppData\\Local\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ],
     "vue.recent.templates": [
       "Vue Composition API Component"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\JavaWork\springboot\VeganLoadMap\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Ucamp\VeganProject\VeganLoadMap\src\components" />
     </key>
@@ -75,6 +182,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697257879810</updated>
       <workItem from="1697956455552" duration="936000" />
+      <workItem from="1698206491895" duration="21474000" />
     </task>
     <servers />
   </component>

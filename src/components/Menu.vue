@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div class="store">
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
@@ -39,9 +40,11 @@
 import axios from "axios";
 import {reactive} from "vue";
 import lib from "@/scripts/lib";
+import Header from "@/components/header/Header.vue";
 
 export default {
   name: "Store",
+  components: {Header},
   setup() {
     const state = reactive({
       menus: []

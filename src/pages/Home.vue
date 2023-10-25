@@ -1,4 +1,5 @@
 <template>
+  <Header />
   <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -6,39 +7,40 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-start">
-            <h1>Excellent Vegan Restaurant</h1>
-            <p class="opacity-75">VeganRoadMap이 선정한 우수 비건 식당을 만나보세요!</p>
-            <br>
-            <!--            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="veganMain1.jpg" alt="Slide 1" width="100%" height="700px">
           <div class="carousel-caption">
-            <h1>vegan & non-vegan</h1>
+            <h3>Excellent Vegan Restaurant</h3>
+            <p>VeganRoadMap이 선정한 우수 비건 식당을 만나보세요!</p>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="veganMain2.jpg" alt="Slide 2" width="100%" height="700px">
+          <div class="carousel-caption">
+            <h3>vegan & non-vegan</h3>
             <p>비건인들과 논비건인들이 함께할 수 있는 식사</p>
-            <br>
-            <!--            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>-->
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="800px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-end">
-            <h1>비건 식당 예약하기</h1>
+
+        <div class="carousel-item">
+          <img src="veganMain3.jpg" alt="Slide 3" width="100%" height="700px">
+          <div class="carousel-caption">
+            <h3>비건 식당 예약하기</h3>
             <p>비건 식당을 예약하고 대기 없이 간편하게 이용해보세요.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Reservation</a></p>
-            <br>
           </div>
         </div>
       </div>
+
+      <!-- 컨트롤 버튼 -->
+      <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,45 +59,48 @@
     <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image xlink:href="korean.jpg" x="-30" y="-90" width="500px" height="500px"/>
+        </svg>
         <h2 class="fw-normal">Korean</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">한식 예약 &raquo;</a></p>
+        <p><router-link to="/foodCategory/Korean" class="btn btn-secondary" id="btndetail">한식 예약 &raquo;</router-link></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Chinese</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">중식 예약 &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image xlink:href="western.jpg" x="-90" y="-80" width="500px" height="500px"/>
+        </svg>
         <h2 class="fw-normal">Western</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">양식 예약 &raquo;</a></p>
+        <p><router-link to="/foodCategory/Western" class="btn btn-secondary" id="btndetail">양식 예약 &raquo;</router-link></p>
       </div><!-- /.col-lg-4 -->
-      <!--      <div class="col-lg-4">-->
-      <!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"/></svg>-->
-      <!--        <h2 class="fw-normal">디저트</h2>-->
-      <!--        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
-      <!--      </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;-->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image xlink:href="fusion.jpg" x="0" y="-50" width="400px" height="400px"/>
+        </svg>
+        <h2 class="fw-normal">Fusion</h2>
+        <p><router-link to="/foodCategory/Fusion" class="btn btn-secondary" id="btndetail">퓨전 예약 &raquo;</router-link></p>
+      </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
     <hr>
     <br>
+
   </div>
   <br>
   <div class="container">
     <br>
     <h1 class="map">View on the map</h1><br><br>
-<!--    <Map/>-->
+        <Map/>
   </div>
 </template>
 
 <script>
 import {reactive} from "vue";
 import axios from "axios";
-// import Map from "@/components/Map.vue";
+import Map from "@/components/Map.vue";
+import Header from "@/components/header/Header.vue";
 
 export default {
   name: "Home",
-  // components: {Map},
+  components: {Header, Map},
   setup() {
     const state = reactive({
       items: []

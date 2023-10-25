@@ -25,4 +25,12 @@ public class ShopController {
 
         return shop;
     }
+
+    @GetMapping("/shop/categ")
+    public List<Shop> getKorean() {
+        List<Shop> shop1 = shopRepository.findByCategory("한식");
+        System.out.println("한식 카테고리 테스트" + shop1);
+        return shop1;
+    }
+
 }

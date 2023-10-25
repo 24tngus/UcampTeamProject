@@ -1,26 +1,21 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.Cart;
-import com.mission.mymission.entity.Shop;
 import com.mission.mymission.entity.User;
-import com.mission.mymission.exception.BusinessException;
 import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
-import com.mission.mymission.service.JwtServiceImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,18 +24,29 @@ import java.util.Optional;
 public class UserController {
     private final JwtService jwtService;
     private final UserRepository userRepository;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/account/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-        User user = userRepository.findByEmailAndPassword(params.get("email"), params.get("password"));
-        if (user!= null) { // seq 값을 토큰화 해서 cookie에 넣어 전달
+        String get_email = params.get("email");
+        String get_password = params.get("password");
+        User user = userRepository.findByEmail(get_email);
+        if (user!= null) { // id 확인
+            // seq 값을 토큰화 해서 cookie에 넣어 전달
             int seq = user.getSeq();
             String token = jwtService.getToken("seq", seq);
 
-            // token값을 클라이언트에 전달해서 인증할 수 있지만,
-            // 서버에서 관리하는게 안전해서 SSR 형식으로 구현
-//            return token;
+            String encodePassword = user.getPassword();
+            //System.out.println("암호화된 패스워드와 유저가 입력한 패스워드가 일치하는지" + decodePassword);
+            Boolean decodePassword = passwordEncoder.matches(get_password, encodePassword);
+
+            if (decodePassword != true) { // 비밀번호 확인
+                //암호화된 패스워드와 유저가 입력한 패스워드 비교 => 일치하면 true
+                //로그인 할 때 db에 암호화되어 저장된 패스워드와  로그인 창에서 입력한 패스워드와 비교해서
+                return new ResponseEntity<>(0, HttpStatus.OK);
+            }
+            // token값을 클라이언트에 전달해서 인증할 수 있지만, 서버에서 관리하는게 안전해서 SSR 형식으로 구현
             Cookie cookie = new Cookie("token", token);
             cookie.setHttpOnly(true);
             cookie.setPath("/");
@@ -49,7 +55,7 @@ public class UserController {
 
             return new ResponseEntity<>(seq, HttpStatus.OK);
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.OK);
     }
 
     @PostMapping("/account/logout")
@@ -80,11 +86,15 @@ public class UserController {
 
         User newUser = new User();
         newUser.setId(params.get("id"));
-        newUser.setPassword(params.get("password"));
         newUser.setName(params.get("name"));
         newUser.setNickname(params.get("nickname"));
         newUser.setEmail(params.get("email"));
         newUser.setTel(params.get("tel"));
+
+        //유저가 입력한 패스워드를 암호화시킨 변수 encodePassword (패스워드 암호화 작업)
+        String encodePassword = passwordEncoder.encode(params.get("password"));
+        //System.out.println("유저가 입력한 패스워드 => 암호화" + encodePassword);
+        newUser.setPassword(encodePassword);
 
         userRepository.save(newUser);
 
@@ -92,26 +102,38 @@ public class UserController {
     }
 
     @GetMapping("/mypage")
-    public ResponseEntity getLoginUser(@CookieValue(value = "token", required = false) String token) {
+    public ResponseEntity getMypage(@CookieValue(value = "token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
         int seq = jwtService.getSeq(token);
-        List<User> users = userRepository.findBySeq(seq);
+        User users = userRepository.findBySeq(seq);
 
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/mypage/{seq}")
-    public ResponseEntity getUserMypage(@CookieValue(value = "token", required = false) String token) {
+    @PutMapping("/mypage/update")
+    public ResponseEntity getMypageUpdate(@RequestBody User updateuser,
+                                          @CookieValue(value = "token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int seq = jwtService.getSeq(token);
-//        List<User> users = userRepository.findBySeq(seq);
+        User user = userRepository.findBySeq(seq);
+
+        user.setId(updateuser.getId());
+//        user.setPassword(updateuser.getPassword());
+        user.setName(updateuser.getName());
+        user.setNickname(updateuser.getNickname());
+        user.setEmail(updateuser.getEmail());
+        user.setTel(updateuser.getTel());
+
+        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
+        user.setPassword(encodePassword);
+
+        userRepository.save(user);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

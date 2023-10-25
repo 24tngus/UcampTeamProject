@@ -57,7 +57,6 @@
       </li>
     </ul>
 
-
   </header>
 </template>
 
@@ -81,7 +80,6 @@ export default {
 </script>
 
 <style>
-
 #abc{
   background: darkolivegreen;
   height : 70px;
@@ -94,7 +92,7 @@ export default {
 }
 .menu{
   color : aliceblue;
-  text-decoration-color: white;
+  text-decoration-color: darkolivegreen;
 }
 .btnbanner{
   width: 4px;
@@ -111,4 +109,3 @@ header .navbar .cart {
   color: #fff;
 }
 </style>
-

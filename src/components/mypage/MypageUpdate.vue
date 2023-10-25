@@ -232,7 +232,7 @@ a{
 }
 
 .userpw{
-  background:url(../../../public/img/icon01.png) no-repeat center right 15px;
+  background:url(../../../public/icon01.png) no-repeat center right 15px;
   background-size: 30px;
   background-color: #fff;
 }

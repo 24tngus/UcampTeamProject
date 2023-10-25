@@ -99,7 +99,7 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int seq = jwtService.getSeq(token);
-        List<User> users = userRepository.findBySeq(seq);
+        User users = userRepository.findBySeq(seq);
 
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
@@ -112,22 +112,16 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int seq = jwtService.getSeq(token);
-        List<User> user = userRepository.findBySeq(seq);
+        User user = userRepository.findBySeq(seq);
 
-//        if (user.getId() != null)
-//            user.setId(params.get("id"));
-//        if (user.getPassword() != null)
-//            user.setPassword(params.get("password"));
-//        if (user.getName() != null)
-//            user.setName(params.get("name"));
-//        if (user.getNickname() != null)
-//            user.setNickname(params.get("nickname"));
-//        if (user.getEmail() != null)
-//            user.setEmail(params.get("email"));
-//        if (user.getTel() != null)
-//            user.setTel(params.get("tel"));
-//
-//        userRepository.save(user);
+        user.setId(params.get("id"));
+        user.setPassword(params.get("password"));
+        user.setName(params.get("name"));
+        user.setNickname(params.get("nickname"));
+        user.setEmail(params.get("email"));
+        user.setTel(params.get("tel"));
+
+        userRepository.save(user);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

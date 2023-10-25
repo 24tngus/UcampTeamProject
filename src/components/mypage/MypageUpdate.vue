@@ -9,33 +9,33 @@
       </div>
     </div>
   </div>
-  <div class="member" v-for="(user, idx) in state.items" :key="idx">
+  <div class="member">
     <div class="field">
       <b>아이디</b>
       <span class="placehold-text">
-        <input type="text" v-bind:value="user.id">
+        <input type="text" v-bind:value="state.items.id" v-on:input="state.form.id">
       </span>
     </div>
     <div class="field">
       <b>비밀번호</b>
-      <input class="userpw" type="password" v-bind:value="user.password">
+      <input class="userpw" type="password" v-bind:value="state.items.password" v-on:input="state.form.password">
     </div>
     <div class="field">
       <b>이름</b>
-      <input type="text" v-bind:value="user.name">
+      <input type="text" v-bind:value="state.items.name" v-on:input="state.form.name">
     </div>
     <div class="field">
       <b>닉네임</b>
-      <input type="text" v-bind:value="user.nickname">
+      <input type="text" v-bind:value="state.items.nickname" v-on:input="state.form.nickname">
     </div>
     <div class="field">
       <b>이메일</b>
-      <input type="email" placeholder="example@naver.com" v-bind:value="user.email">
+      <input type="email" placeholder="example@naver.com" v-bind:value="state.items.email" v-on:input="state.form.email">
     </div>
     <div class="field tel-number">
       <b>휴대전화</b>
       <div>
-        <input type="tel" placeholder="전화번호 입력" v-bind:value="user.tel">
+        <input type="tel" placeholder="전화번호 입력" v-bind:value="state.items.tel" v-on:input="state.form.tel">
       </div>
     </div>
 
@@ -53,7 +53,7 @@ export default {
   name: "MypageUpdate",
   setup() {
     const state = reactive({
-      items: [],
+      items: Object,
       form :{
         id: "",
         password: "",
@@ -72,7 +72,10 @@ export default {
 
     load();
     const mypageupdate = () => {
-      axios.post("/api/mypage/update", state.form).then(()=> {
+      axios.put("/api/mypage/update", state.form).then(()=> {
+        console.log(state.form.id);
+        console.log(state.form.name);
+        console.log(state.form.nickname);
         window.alert("정보가 수정 되었습니다");
         router.push({path: "/mypage"});
       })
@@ -143,29 +146,41 @@ a{
 }
 
 /* 장바구니 결제완료 배송중 구매확정 [로우] */
-.shippingStatusContainer{
+.shippingStatusContainer .status{
   display: flex;
   justify-content: space-between;
   margin-bottom: 21px;
+}
+/* 장바구니 결제완료 배송중 구매확정 [아이템]  */
+.shippingStatusContainer .item{
+  display: flex;
+}
+
+.shippingStatusContainer .number{
   font-size: 31px;
   font-weight: 500;
+  text-align: center;
+}
+.shippingStatusContainer .text{
+  font-size: 12px;
+  font-weight: normal;
   color: #c2c2c2;
   text-align: center;
+}
+.shippingStatusContainer .icon{
+  display: flex;
   align-items: center;
   padding: 20px;
   width: 16px;
   height: 16px;
 }
 
-/*member sign in*/
 .member{
   width: 400px;
   /* border: 1px solid #000; */
   margin-left: 7px;
   padding: 0 20px;
   margin-bottom: 20px;
-  display: block;
-  margin :50px auto;
 }
 
 .member .field{

@@ -1,9 +1,7 @@
 <template>
   <div class="wrap">
     <div class="greenContainer">
-      <li v-for="(user, idx) in state.items" :key="idx">
-        <div class="name">{{user.name}}님 My Page</div>
-      </li>
+        <div class="name">{{state.items.name}}님 My Page</div>
     </div>
     <div class="shippingStatusContainer">
       <div class="title">
@@ -78,7 +76,7 @@ export default {
   name: "Mypage",
   setup() {
     const state = reactive({
-      items: []
+      items: Object
     })
 
     const load = () => {

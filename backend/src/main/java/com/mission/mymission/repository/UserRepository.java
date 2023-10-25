@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     User findByEmailAndPassword(String email, String password);
-    List<User> findBySeq(int seq);
+    User findBySeq(int seq);
 }

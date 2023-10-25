@@ -26,7 +26,7 @@
       </div>
       <div>
         <!-- 로그인 아이콘-->
-        <router-link to="/login" class="text-white" v-if="!$store.state.account.id">
+        <router-link to="/user" class="text-white" v-if="!$store.state.account.id">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         </router-link>
         <!-- 로그아웃 아이콘-->

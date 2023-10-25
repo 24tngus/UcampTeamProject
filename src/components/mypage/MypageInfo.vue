@@ -9,33 +9,33 @@
       </div>
     </div>
   </div>
-  <div class="member" v-for="(user, idx) in state.items" :key="idx">
+  <div class="member">
     <div class="field">
       <b>아이디</b>
       <span class="placehold-text">
-        <div class="block">{{user.id}}</div>
+        <div class="block">{{state.items.id}}</div>
       </span>
     </div>
     <div class="field">
       <b>비밀번호</b>
-      <div class="block">{{user.password}}</div>
+      <div class="block">{{state.items.password}}</div>
     </div>
     <div class="field">
       <b>이름</b>
-      <div class="block">{{user.name}}</div>
+      <div class="block">{{state.items.name}}</div>
     </div>
     <div class="field">
       <b>닉네임</b>
-      <div class="block">{{user.nickname}}</div>
+      <div class="block">{{state.items.nickname}}</div>
     </div>
     <div class="field">
       <b>이메일</b>
-      <div class="block">{{user.email}}</div>
+      <div class="block">{{state.items.email}}</div>
     </div>
     <div class="field tel-number">
       <b>휴대전화</b>
       <div>
-        <div class="block">{{user.tel}}</div>
+        <div class="block">{{state.items.tel}}</div>
       </div>
     </div>
     <button class="btn" @click="$router.push('/mypage_update')">수정</button>&nbsp;
@@ -53,7 +53,7 @@ export default {
   name: "MypageInfo",
   setup() {
     const state = reactive({
-      items: []
+      items: Object
     })
 
     const load = () => {

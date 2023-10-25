@@ -3,7 +3,7 @@
     <div class="container">
       <ul>
         <li v-for="(shop, idx) in state.items" :key="idx">
-          <img :src="shop.fileupload"/>
+          <img :src="shop.image"/>
           <span class="name">{{ shop.storename }}</span>
           <span class="category">{{shop.category}}</span>
           <span class="category">예약금{{ lib.getNumberFormatted(10000) }}원</span>

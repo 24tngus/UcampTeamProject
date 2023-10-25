@@ -1,16 +1,16 @@
 <template>
   <div class="form-signin w-100 m-auto">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <h1 class="h3 mb-3 fw-normal">사용자 로그인</h1>
 
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput"
                placeholder="name@example.com" v-model="state.form.email">
-        <label for="floatingInput">Email address</label>
+        <label for="floatingInput">이메일 입력</label>
       </div>
       <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword"
                placeholder="Password" v-model="state.form.password">
-        <label for="floatingPassword">Password</label>
+        <label for="floatingPassword">비밀번호</label>
       </div>
       <div class="form-check text-start my-3">
         <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
@@ -18,8 +18,8 @@
           Remember me
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" @click="submit()">Sign in</button>
-      <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
+      <button class="btn" @click="submit()">로그인</button> &nbsp;
+      <button class="btn" @click="$router.push('/join')">회원가입</button>
   </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
         router.push({path: "/"});
       })
     }
+
     return {state, submit}
   }
 }
@@ -54,6 +55,11 @@ export default {
 .form-signin {
   max-width: 330px;
   padding: 1rem;
+}
+
+.btn {
+  background-color: #24855b;
+  color: #ffffff;
 }
 
 .form-signin .form-floating:focus-within {

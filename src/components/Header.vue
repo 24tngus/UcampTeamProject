@@ -15,35 +15,7 @@
     </symbol>
   </svg>
 
-
   <header data-bs-theme="dark">
-
-
-    <!--
-      <div class="collapse text-bg-dark" id="navbarHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 py-4">
-              <ul class="list-unstyled">
-                <li class="nav-item">
-                  <router-link to="/" class="menu">식당</router-link> &nbsp;
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">예약</router-link>
-                  <div class="btnbanner"></div>
-                  <template>
-                    <div><router-link to="/" class="menu"></router-link> </div>
-                  </template>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">커뮤니티</router-link>
-                  <div class="btnbanner"></div>
-                  <router-link to="/" class="menu">로그인</router-link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
@@ -54,7 +26,7 @@
       </div>
       <div>
         <!-- 로그인 아이콘-->
-        <router-link to="/login" class="text-white" v-if="!$store.state.account.id">
+        <router-link to="/user" class="text-white" v-if="!$store.state.account.id">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         </router-link>
         <!-- 로그아웃 아이콘-->
@@ -62,6 +34,10 @@
           <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
         &nbsp;
+        <!-- 마이페이지 아이콘-->
+        <router-link to="/mypage" class="cart btn" v-if="$store.state.account.id">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </router-link>
         <!-- 카트 아이콘-->
         <router-link to="/cart" class="cart btn" v-if="$store.state.account.id">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -71,16 +47,15 @@
 
     <ul class="nav justify-content-center" id="abc">
       <li class="nav-item">
-        <router-link to="/" class="menu">Vegan</router-link>
+        <router-link to="/vegan" class="menu">Vegan</router-link>
         <div class="btnbanner"></div>
         <router-link to="/shop" class="menu">Restaurant</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/reserve" class="menu">Reservation</router-link>
+        <router-link to="/reserve_user" class="menu">Reservation</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/" class="menu">FAQ</router-link>
+        <router-link to="/faq" class="menu">FAQ</router-link>
       </li>
     </ul>
-
 
   </header>
 </template>
@@ -105,7 +80,6 @@ export default {
 </script>
 
 <style>
-
 #abc{
   background: darkolivegreen;
   height : 70px;
@@ -118,7 +92,7 @@ export default {
 }
 .menu{
   color : aliceblue;
-  text-decoration-color: white;
+  text-decoration-color: darkolivegreen;
 }
 .btnbanner{
   width: 4px;
@@ -135,4 +109,3 @@ header .navbar .cart {
   color: #fff;
 }
 </style>
-

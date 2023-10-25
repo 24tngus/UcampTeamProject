@@ -59,76 +59,40 @@
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <h2 class="fw-normal">Korean</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">한식 예약 &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-        <h2 class="fw-normal">Chinese</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">중식 예약 &raquo;</a></p>
+        <p><router-link to="/foodCategory/Korean" class="btn btn-secondary" id="btndetail">한식 예약 &raquo;</router-link></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
         <h2 class="fw-normal">Western</h2>
-        <p><a class="btn btn-secondary" href="#" id="btndetail">양식 예약 &raquo;</a></p>
+        <p><router-link to="/foodCategory/Western" class="btn btn-secondary" id="btndetail">양식 예약 &raquo;</router-link></p>
       </div><!-- /.col-lg-4 -->
-      <!--      <div class="col-lg-4">-->
-      <!--        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"/></svg>-->
-      <!--        <h2 class="fw-normal">디저트</h2>-->
-      <!--        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
-      <!--      </div>&lt;!&ndash; /.col-lg-4 &ndash;&gt;-->
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="300px" height="300px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <h2 class="fw-normal">Fusion</h2>
+        <p><router-link to="/foodCategory/Fusion" class="btn btn-secondary" id="btndetail">퓨전 예약 &raquo;</router-link></p>
+      </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
     <hr>
     <br>
-    <!--  <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">샌드위치</h2>
-          <p class="lead">주소/메뉴/가격</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-        </div>
-      </div>
 
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">해독주스</h2>
-          <p class="lead">주소/메뉴/가격</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-        </div>
-      </div>
-
-      <hr class="featurette-divider">
-
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">채식 식당</h2>
-          <p class="lead">주소/메뉴/가격</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-        </div>
-      </div> -->
   </div>
   <br>
   <div class="container">
     <br>
     <h1 class="map">View on the map</h1><br><br>
-    <Map/>
+<!--    <Map/>-->
   </div>
 </template>
 
 <script>
 import {reactive} from "vue";
 import axios from "axios";
-import Map from "@/components/Map.vue";
+
+// import Map from "@/components/Map.vue";
 
 export default {
   name: "Home",
-  components: {Map},
+  // components: {Map},
   setup() {
     const state = reactive({
       items: []

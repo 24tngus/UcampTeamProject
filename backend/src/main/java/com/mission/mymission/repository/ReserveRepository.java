@@ -55,5 +55,5 @@ public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
     @Query("SELECT SUM(r.team) FROM Reserve r where r.shopseq = :shopseq AND r.date = :date AND r.time2022 = :time2022")
     Integer findSumTeamByParams2022Reserve(@Param("shopseq") int shopseq, @Param("date") Date date, @Param("time2022") int time2022);
 
-
 }
+

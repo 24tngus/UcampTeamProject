@@ -2,21 +2,43 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Home from "@/pages/Home.vue";
 import Login from "@/pages/Login.vue";
 import Shop from "@/pages/Shop.vue";
-import Reserve from "@/components/Reserve.vue";
-import Mypage from "@/components/Mypage.vue";
+import Reserve from "@/components/reserve/Reserve.vue";
+import Mypage from "@/components/mypage/Mypage.vue";
 import Cart from "@/components/Cart.vue";
 import Menu from "@/components/Menu.vue";
-import Map from "@/components/Map.vue";
+import MypageInfo from "@/components/mypage/MypageInfo.vue";
+import Join from "@/pages/Join.vue";
+import MypageUpdate from "@/components/mypage/MypageUpdate.vue";
+import Vegan from "@/components/veganInfo/Vegan.vue";
+import Faq from "@/components/Faq.vue";
+import Vegan2 from "@/components/veganInfo/Vegan2.vue";
+import ReserveInsert from "@/components/reserve/ReserveInsert.vue";
+import ReserveUpdate from "@/components/reserve/ReserveUpdate.vue";
+import ReserveUser from "@/components/reserve/ReserveUser.vue";
+import Korean from "@/components/foodCategory/Korean.vue";
+import Fusion from "@/components/foodCategory/Fusion.vue";
+import Western from "@/components/foodCategory/Western.vue";
 
 const routes = [
     {path:'/', component: Home},
     {path: '/login', component: Login},
+    {path: '/join', component: Join},
     {path: '/shop', component: Shop},
     {path: '/reserve', component: Reserve},
+    {path: '/reserve_insert', component: ReserveInsert},
+    {path: '/reserve_update', component: ReserveUpdate},
+    {path: '/reserve_user', component: ReserveUser},
     {path: '/mypage', component: Mypage},
+    {path: '/mypage_info', component: MypageInfo},
+    {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
     {path: '/menu', component: Menu},
-    {path: '/map', component: Map},
+    {path: '/vegan', component: Vegan},
+    {path: '/vegan2', component: Vegan2},
+    {path: '/faq', component: Faq},
+    {path: '/foodCategory/Korean', component: Korean},
+    {path: '/foodCategory/Western', component: Western},
+    {path: '/foodCategory/Fusion', component: Fusion}
 ]
 
 const router = createRouter({

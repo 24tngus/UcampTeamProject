@@ -1,35 +1,39 @@
 <template>
-  <GoogleMap
-      api-key="AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk"
-      style="width: 100%; height: 500px"
-      :center="center"
-      :zoom="15"
-      language="kor"
-  >
-    <MarkerCluster>
-      <Marker v-for="(location, i) in locations" :options="{ position: location }" :key="i"
-              @click="showPlaceInfo()">
-        <InfoWindow>  <!-- Marker 클릭하면 나오는 부분 -->
-          <div id="contet">
-            <div id="siteNotice"></div>
-            <h1 id="firstHeading" class="firstHeading" v-if="detailPlaceInfo">{{ this.detailPlaceInfo.name }}</h1> <!-- 가게 이름 -->
-            <div id="bodyContent">
-              <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
-                {{ this.detailPlaceInfo.formatted_address }}
-              </p>
-              <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
-                {{ this.detailPlaceInfo.rating }}
-              </p>
-              <!--              <div>-->
-              <!--                <img src="../../public/img/bread.jpg" style="width: 100px">-->
-              <!--              </div>-->
+  <div class="map">
+    <div class="container">
+      <GoogleMap
+          api-key="AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk"
+          style="width: 100%; height: 500px"
+          :center="center"
+          :zoom="15"
+          language="kor"
+      >
+        <MarkerCluster>
+          <Marker v-for="(location, i) in locations" :options="{ position: location }" :key="i"
+                  @click="showPlaceInfo()">
+            <InfoWindow>  <!-- Marker 클릭하면 나오는 부분 -->
+              <div id="contet">
+                <div id="siteNotice"></div>
+                <h1 id="firstHeading" class="firstHeading" v-if="detailPlaceInfo">{{ this.detailPlaceInfo.name }}</h1> <!-- 가게 이름 -->
+                <div id="bodyContent">
+                  <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
+                    {{ this.detailPlaceInfo.formatted_address }}
+                  </p>
+                  <p v-if="detailPlaceInfo">  <!-- 도로명 주소 -->
+                    {{ this.detailPlaceInfo.rating }}
+                  </p>
+                  <!--              <div>-->
+                  <!--                <img src="../../public/img/bread.jpg" style="width: 100px">-->
+                  <!--              </div>-->
 
-            </div>
-          </div>
-        </InfoWindow>
-      </Marker>
-    </MarkerCluster>
-  </GoogleMap>
+                </div>
+              </div>
+            </InfoWindow>
+          </Marker>
+        </MarkerCluster>
+      </GoogleMap>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -49,7 +53,7 @@ export default defineComponent({
 
     return {mapCenter, locations}
   },  // setup()
-  data() {
+  data: function() {
     return {
       center : null,
       jsonData : null,

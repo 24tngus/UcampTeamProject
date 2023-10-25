@@ -35,17 +35,24 @@ export default {
       }
     })
     const submit = () => {
-      axios.post("/api/account/login", state.form).then((res)=> {
-        store.commit("setAccount", res.data); // store 저장
-        if (res.data == 0) {
-          window.alert("이메일이나 비밀번호가 틀립니다");
-        }
-        console.log(res.data);
-        window.alert("로그인 하였습니다");
-        router.push({path: "/"});
-      })
+        axios.post("/api/account/login", state.form).then((res)=> {
+          store.commit("setAccount", res.data); // store 저장
+          if (res.data == 0) {
+            if (state.form.email == "") {
+              window.alert("이메일을 입력해주세요");
+            } else if (state.form.password == "") {
+              window.alert("비밀번호를 입력해주세요");
+            } else {
+              window.alert("이메일이나 비밀번호가 틀립니다");
+              router.push({path: "/login"});
+            }
+          }else {
+            // console.log(res.data);
+            window.alert("로그인 하였습니다");
+            router.push({path: "/"});
+          }
+        })
     }
-
     return {state, submit}
   }
 }

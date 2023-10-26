@@ -66,7 +66,7 @@ export default {
     })
 
     const load = () => {
-      axios.get("/api/mypage").then(({data}) => {
+      axios.get("/api/user/mypage").then(({data}) => {
         // state.items = data;
         state.form.id=data.id;
         state.form.password=data.password;
@@ -87,7 +87,7 @@ export default {
         email: state.form.email,
         tel: state.form.tel
       }
-      axios.put("/api/mypage/update", updateData).then(()=> {
+      axios.put("/api/user/mypage/update", updateData).then(()=> {
         window.alert("정보가 수정 되었습니다");
         router.push({path: "/mypage_info"});
       })

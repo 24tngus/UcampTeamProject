@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ReserveController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ReservesettingController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Reserve.java" afterDir="false" />
@@ -190,6 +191,16 @@
       <change beforePath="$PROJECT_DIR$/src/pages/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Shop.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/src/components/Map.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/02521f79.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/02521f79.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,12 +223,18 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
+=======
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+>>>>>>> origin/main
   <component name="ProjectId" id="2WjtaLgjqqUyLMstsamQnJ3x1PY" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -230,17 +247,27 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "soohyun",
     "last_opened_file_path": "/Users/soohykim/Desktop/backup/public",
+=======
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Ucamp/VeganProject/VeganLoadMap/backend",
+>>>>>>> origin/main
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
     "settings.editor.selected.configurable": "terminal",
     "ts.external.directory.path": "/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+=======
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+>>>>>>> origin/main
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -250,6 +277,7 @@
   }
 }]]></component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/src/components" />
@@ -261,6 +289,10 @@
       <recent name="$PROJECT_DIR$/src/components/header" />
       <recent name="$PROJECT_DIR$/src/components/foodCategory" />
       <recent name="$PROJECT_DIR$/src/components/reserve" />
+=======
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Ucamp\VeganProject\VeganLoadMap\src\components" />
+>>>>>>> origin/main
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
@@ -271,6 +303,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697257879810</updated>
+<<<<<<< HEAD
       <workItem from="1697955110704" duration="15771000" />
       <workItem from="1698033671511" duration="7673000" />
       <workItem from="1698042693619" duration="3027000" />
@@ -282,12 +315,16 @@
       <workItem from="1698142228517" duration="29094000" />
       <workItem from="1698217620927" duration="17297000" />
       <workItem from="1698244024244" duration="3425000" />
+=======
+      <workItem from="1697956455552" duration="936000" />
+>>>>>>> origin/main
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -314,4 +351,6 @@
     <expand />
     <select />
   </component>
+=======
+>>>>>>> origin/main
 </project>

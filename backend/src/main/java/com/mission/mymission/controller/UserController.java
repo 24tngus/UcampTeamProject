@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/account/login")
+    @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
         String get_email = params.get("email");
         String get_password = params.get("password");
@@ -58,7 +58,7 @@ public class UserController {
         return new ResponseEntity<>(0, HttpStatus.OK);
     }
 
-    @PostMapping("/account/logout")
+    @PostMapping("/user/logout")
     public ResponseEntity logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("token", null);
         cookie.setPath("/");
@@ -69,7 +69,7 @@ public class UserController {
 //        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/account/check")
+    @GetMapping("/user/check")
     public ResponseEntity check(@CookieValue(value = "token", required = false) String token) {
         Claims claims = jwtService.getClaims(token);
 
@@ -81,7 +81,7 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @PostMapping("/join")
+    @PostMapping("/user/join")
     public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
 
         User newUser = new User();
@@ -101,7 +101,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/mypage")
+    @GetMapping("/user/mypage")
     public ResponseEntity getMypage(@CookieValue(value = "token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
@@ -113,7 +113,7 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PutMapping("/mypage/update")
+    @PutMapping("/user/mypage/update")
     public ResponseEntity getMypageUpdate(@RequestBody User updateuser,
                                           @CookieValue(value = "token", required = false) String token) {
 

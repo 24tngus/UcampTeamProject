@@ -23,9 +23,10 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
     private final ShopRepository shopRepository;
-
     private final ReviewRepository reviewRepository;
 
+
+    // User service
     @Override
     public List<User> getUserList() {
         List<User> userList = userRepository.findAll();
@@ -33,17 +34,20 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void deleteUser(String email) {
-        User user = userRepository.findByEmail(email);
+    public void deleteUser(String nickname) {
+        User user = userRepository.findByNickname(nickname);
         userRepository.delete(user);
     }
 
     @Override
-    public User getUser(String email) {
-        User user = userRepository.findByEmail(email);
+    public User getUser(String nickname) {
+        User user = userRepository.findByNickname(nickname);
         return user;
     }
 
+
+
+    // store service
     @Override
     public List<Store> getStoreList() {
         List<Store> storeList = storeRepository.findAll();
@@ -58,8 +62,17 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Store getStore(Long seq) {
+        Store store = storeRepository.findBySeq(seq);
+        return store;
+    }
+
+
+
+    // shop service
+    @Override
     public List<Shop> getShopList() {
-        List<Shop> shopList = shopRepository.findAll();
+        List<Shop> shopList = shopRepository.findByPermit(1);
         return shopList;
     }
 
@@ -76,6 +89,24 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public List<Shop> getNewShopReqList() {
+        List<Shop> shopList = shopRepository.findByPermit(0);
+        return shopList;
+    }
+
+    @Override
+    public void updateNewShopReq(Long seq) {
+        Shop shop = shopRepository.findBySeq(seq);
+        if (shop.getPermit() == 0) {
+            shop.setPermit(1);
+            shopRepository.save(shop);
+        }
+    }
+
+
+
+    // review service
+    @Override
     public List<Review> getReviewList() {
         List<Review> reviewList = reviewRepository.findAll();
         return reviewList;
@@ -85,6 +116,18 @@ public class AdminServiceImpl implements AdminService {
     public void deleteReview(Long seq) {
         Review review = reviewRepository.findBySeq(seq);
         reviewRepository.delete(review);
+    }
+
+    @Override
+    public List<Review> searchByWriter(String writer) {
+        List<Review> reviewList = reviewRepository.findByWriterContaining(writer);
+        return reviewList;
+    }
+
+    @Override
+    public List<Review> searchByShopSeq(Long shopSeq) {
+        List<Review> reviewList = reviewRepository.findByShopseq(shopSeq);
+        return reviewList;
     }
 
 

@@ -36,17 +36,10 @@ public class Store {
     @Column(length = 100, nullable = false)
     private String storenumber;
 
-    @Column(length = 100, nullable = false)
-    private String fileupload;
-
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime req = LocalDateTime.now();
 
     @Column(nullable = false)
-    private int permit;
-
-    @Column(nullable = false)
     private int status;
-
 }

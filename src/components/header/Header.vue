@@ -69,7 +69,7 @@ export default {
   name: 'Header',
   setup() {
     const logout = () => {
-      axios.post("/api/account/logout").then(()=>{
+      axios.post("/api/user/logout").then(()=>{
         store.commit('setAccount', 0);
         router.push({path: "/"});
       });

@@ -76,19 +76,6 @@ export default defineComponent({
       dbPlaceId: '',
     };
   },  // data()
-  async mounted() {
-
-    try {
-      // getCurrentUserLocation()으로 user의 currentLocation을 googleMap center로 설정
-      this.center = await this.getCurrentUserLocation();
-    } catch (error) {
-      console.log("Error User Location : " + error);
-    }
-
-    this.setInputData();
-  },  // mounted()
-  computed: {
-  },  // computed
   methods: {
     async showPlaceIdInfo () {  // place_id로 googleMap JSON Data를 Parsing
       fetch('https://proxy.cors.sh/https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJrQcG0R-dfDUREPJPWnn6jv0&key=AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk', {
@@ -238,6 +225,16 @@ export default defineComponent({
 
 
   },  // method()
+  async mounted() {
 
+    try {
+      // getCurrentUserLocation()으로 user의 currentLocation을 googleMap center로 설정
+      this.center = await this.getCurrentUserLocation();
+    } catch (error) {
+      console.log("Error User Location : " + error);
+    }
+
+    this.setInputData();
+  },  // mounted()
 })
 </script>

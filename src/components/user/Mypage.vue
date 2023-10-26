@@ -84,7 +84,7 @@ export default {
     })
 
     const load = () => {
-      axios.get("/api/mypage").then(({data}) => {
+      axios.get("/api/user/mypage").then(({data}) => {
         state.items = data;
       })
     };

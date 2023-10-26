@@ -49,7 +49,7 @@
       <li class="nav-item">
         <router-link to="/reserve" class="menu">Vegan</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/store" class="menu">가게 등록</router-link>
+        <router-link to="/shop_insert" class="menu">가게 등록</router-link>
         <div class="btnbanner"></div>
         <router-link to="/reserve_info" class="menu">예약 확인</router-link>
         <div class="btnbanner"></div>
@@ -69,7 +69,7 @@ export default {
   name: 'Header2',
   setup() {
     const logout = () => {
-      axios.post("/api/account/logout").then(()=>{
+      axios.post("/api/store/logout").then(()=>{
         store.commit('setAccount', 0);
         router.push({path: "/"});
       });

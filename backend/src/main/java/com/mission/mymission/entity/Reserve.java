@@ -7,10 +7,9 @@ import lombok.Setter;
 
 import java.sql.Date;
 
-@Table(name = "reserve")
-@Setter
-@Getter
 @Entity
+@Table(name = "reserve")
+@Setter @Getter
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

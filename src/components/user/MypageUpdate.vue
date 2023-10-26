@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="wrap">
     <div class="greenContainer">
       <div class="name">회원 정보 수정</div>
@@ -14,49 +13,49 @@
     <div class="field">
       <b>아이디</b>
       <span class="placehold-text">
-        <input type="text" v-bind:value="items.id" v-on:input="form.id">
+<!--        <input type="text" v-bind:value="state.items.id" v-on:input="state.form.id">-->
+        <input type="text" v-model="state.form.id">
       </span>
     </div>
     <div class="field">
       <b>비밀번호</b>
-      <input class="userpw" type="password" v-bind:value="items.password" v-on:input="form.password">
+      <input type="password" v-model="state.form.password">
     </div>
     <div class="field">
       <b>이름</b>
-      <input type="text" v-bind:value="items.name" v-on:input="form.name">
+      <input type="text" v-model="state.form.name">
     </div>
     <div class="field">
       <b>닉네임</b>
-      <input type="text" v-bind:value="items.nickname" v-on:input="form.nickname">
+      <input type="text" v-model="state.form.nickname">
     </div>
     <div class="field">
       <b>이메일</b>
-      <input type="email" placeholder="example@naver.com" v-bind:value="items.email" v-on:input="form.email">
+      <input type="email" v-model="state.form.email">
     </div>
     <div class="field tel-number">
       <b>휴대전화</b>
       <div>
-        <input type="tel" placeholder="전화번호 입력" v-bind:value="items.tel" v-on:input="form.tel">
+        <input type="text" v-model="state.form.tel">
       </div>
     </div>
 
-    <button class="btn" @click="update(form)">확인</button>
+    <button class="btn" @click="mypageupdate()">확인</button>
   </div>
 </template>
 
 <script>
 
+import {reactive} from "vue";
 import axios from "axios";
 import router from "@/scripts/router";
-import Header from "@/components/header/Header.vue";
 
 export default {
   name: "MypageUpdate",
-  components: {Header},
-  data() {
-    return {
-      items: [],
-      form: {
+  setup() {
+    const state = reactive({
+      items: Object,
+      form :{
         id: "",
         password: "",
         name: "",
@@ -64,24 +63,37 @@ export default {
         email: "",
         tel: ""
       }
-    };
-  },
-  created() {
-    this.load();
-  },
-  methods: {
-    load() {
-      axios.get("/api/mypage").then((response) => {
-        this.items = response.data;
+    })
+
+    const load = () => {
+      axios.get("/api/user/mypage").then(({data}) => {
+        // state.items = data;
+        state.form.id=data.id;
+        state.form.password=data.password;
+        state.form.name=data.name;
+        state.form.nickname=data.nickname;
+        state.form.email=data.email;
+        state.form.tel=data.tel;
       })
-    },
-    update(form) {
-      axios.put("/api/mypage/update", form).then(()=> {
+    };
+
+    load();
+    const mypageupdate = () => {
+      const updateData = {
+        id: state.form.id,
+        password: state.form.password,
+        name: state.form.name,
+        nickname: state.form.nickname,
+        email: state.form.email,
+        tel: state.form.tel
+      }
+      axios.put("/api/user/mypage/update", updateData).then(()=> {
         window.alert("정보가 수정 되었습니다");
-        this.load();
         router.push({path: "/mypage_info"});
       })
     }
+
+    return {state, mypageupdate}
   }
 }
 

@@ -24,7 +24,7 @@ export default {
   },
   setup() {
     const check = () => {
-      axios.get("/api/account/check").then(({data}) => {
+      axios.get("/api/user/check").then(({data}) => {
         console.log(data);
         store.commit("setAccount", data || 0); // data가 있을 경우 data 전달, 아닐 경우 null 전달
       })

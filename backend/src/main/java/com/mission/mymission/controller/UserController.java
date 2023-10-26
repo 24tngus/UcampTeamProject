@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostMapping("/account/login")
+    @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
         String get_email = params.get("email");
         String get_password = params.get("password");
@@ -38,7 +38,6 @@ public class UserController {
             String token = jwtService.getToken("seq", seq);
 
             String encodePassword = user.getPassword();
-            System.out.println("encode 패스워드좀 볼까 " + encodePassword);
             //System.out.println("암호화된 패스워드와 유저가 입력한 패스워드가 일치하는지" + decodePassword);
             Boolean decodePassword = passwordEncoder.matches(get_password, encodePassword);
 
@@ -59,7 +58,7 @@ public class UserController {
         return new ResponseEntity<>(0, HttpStatus.OK);
     }
 
-    @PostMapping("/account/logout")
+    @PostMapping("/user/logout")
     public ResponseEntity logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("token", null);
         cookie.setPath("/");
@@ -70,7 +69,7 @@ public class UserController {
 //        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/account/check")
+    @GetMapping("/user/check")
     public ResponseEntity check(@CookieValue(value = "token", required = false) String token) {
         Claims claims = jwtService.getClaims(token);
 
@@ -82,41 +81,7 @@ public class UserController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/mypage")
-    public ResponseEntity getMypage(@CookieValue(value = "token", required = false) String token) {
-
-        if (!jwtService.isValid(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        }
-        int seq = jwtService.getSeq(token);
-        User users = userRepository.findBySeq(seq);
-
-        return new ResponseEntity<>(users, HttpStatus.OK);
-    }
-
-    @PutMapping("/mypage/update")
-    public ResponseEntity getMypageUpdate(@RequestBody Map<String, String> params,
-                                          @CookieValue(value = "token", required = false) String token) {
-
-        if (!jwtService.isValid(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        }
-        int seq = jwtService.getSeq(token);
-        User user = userRepository.findBySeq(seq);
-
-        user.setId(params.get("id"));
-        user.setPassword(params.get("password"));
-        user.setName(params.get("name"));
-        user.setNickname(params.get("nickname"));
-        user.setEmail(params.get("email"));
-        user.setTel(params.get("tel"));
-
-        userRepository.save(user);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping("/join")
+    @PostMapping("/user/join")
     public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
 
         User newUser = new User();
@@ -132,6 +97,43 @@ public class UserController {
         newUser.setPassword(encodePassword);
 
         userRepository.save(newUser);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/user/mypage")
+    public ResponseEntity getMypage(@CookieValue(value = "token", required = false) String token) {
+
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        User users = userRepository.findBySeq(seq);
+
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @PutMapping("/user/mypage/update")
+    public ResponseEntity getMypageUpdate(@RequestBody User updateuser,
+                                          @CookieValue(value = "token", required = false) String token) {
+
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        User user = userRepository.findBySeq(seq);
+
+        user.setId(updateuser.getId());
+//        user.setPassword(updateuser.getPassword());
+        user.setName(updateuser.getName());
+        user.setNickname(updateuser.getNickname());
+        user.setEmail(updateuser.getEmail());
+        user.setTel(updateuser.getTel());
+
+        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
+        user.setPassword(encodePassword);
+
+        userRepository.save(user);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

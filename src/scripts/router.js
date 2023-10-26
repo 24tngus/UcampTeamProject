@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from "@/pages/Home.vue";
+import Home_Store from "@/pages/Home_Store.vue";
 import Login from "@/components/user/Login.vue";
 import Shop from "@/pages/Shop.vue";
 import Store from "@/pages/Home_Store.vue";
@@ -22,15 +23,18 @@ import Fusion from "@/components/foodCategory/Fusion.vue";
 import Western from "@/components/foodCategory/Western.vue";
 import User from "@/pages/User.vue";
 import Login2 from "@/components/user_store/Login2.vue";
+import ShopInsert from "@/components/user_store/ShopInsert.vue";
 
 const routes = [
     {path:'/', component: Home},
+    {path:'/home_store', component: Home_Store},
     {path: '/user', component: User},
     {path: '/login', component: Login},
     {path: '/login2', component: Login2},
     {path: '/join', component: Join},
     {path: '/join2', component: Join2},
     {path: '/shop', component: Shop},
+    {path: '/shop_insert', component: ShopInsert},
     {path: '/store', component: Store},
     {path: '/reserve', component: Reserve},
     {path: '/reserve_insert', component: ReserveInsert},

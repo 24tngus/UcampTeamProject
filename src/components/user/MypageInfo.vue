@@ -19,7 +19,7 @@
     </div>
     <div class="field">
       <b>비밀번호</b>
-      <div class="block">{{state.items.password}}</div>
+      <div class="block">***********</div>
     </div>
     <div class="field">
       <b>이름</b>
@@ -60,7 +60,7 @@ export default {
     })
 
     const load = () => {
-      axios.get("/api/mypage").then(({data}) => {
+      axios.get("/api/user/mypage").then(({data}) => {
         state.items = data;
       })
     };

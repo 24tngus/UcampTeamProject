@@ -6,9 +6,7 @@ import com.mission.mymission.repository.MenuRepository;
 import com.mission.mymission.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,11 @@ public class ShopController {
         List<Shop> shop1 = shopRepository.findByCategory("한식");
         System.out.println("한식 카테고리 테스트" + shop1);
         return shop1;
+    }
+
+    @PostMapping("/map")
+    public Shop postMap(@RequestBody Shop shop) {
+        return shopRepository.save(shop);
     }
 
 }

@@ -1,5 +1,6 @@
 <template>
   <Header />
+
   <div class="card shadow-sm">
     <div class="card-body">
       <div class="list-group">
@@ -10,7 +11,6 @@
               <div class="card-body">
                 <p class="card-text">
                   <span> {{korean.storename}} </span>
-
                 </p>
               </div>
             </div>

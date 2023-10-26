@@ -12,6 +12,8 @@
 
     <style>
         #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
+        #top {position: fixed; bottom: 30px; right: 30px;}
     </style>
 
 
@@ -26,11 +28,11 @@
         </div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">식당(주인) 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당(가게) 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">기타</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -39,7 +41,7 @@
         <!-- Page content -->
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
-            <p> 이 페이지는 식당(주인) 관리 페이지입니다. </p>
+            <p> 이 페이지는 판매자 관리 페이지입니다. </p>
         </div> <!-- /Page content -->
 
         <hr>
@@ -49,40 +51,34 @@
                 <thead>
                 <tr>
                     <th scope="col">Number</th>
+                    <th scope="col">shop-information</th>
                     <th scope="col">Id</th>
-                    <th scope="col">Password</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Tel</th>
                     <th scope="col">storeName</th>
                     <th scope="col">storenumber</th>
-                    <th scope="col">fileupload</th>
-                    <th scope="col">req</th>
-                    <th scope="col">permit</th>
-                    <th scope="col">status</th>
                     <th scope="col">delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="store, storeState : ${stores}">
                     <td th:text="${storeState.count}"></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/admin/manageStoreInfo/{seq}(seq=${store.seq})}">상세정보</a></td>
                     <td th:text="${store.id}"></td>
-                    <td th:text="${store.password}"></td>
                     <td th:text="${store.name}"></td>
                     <td th:text="${store.email}"></td>
                     <td th:text="${store.tel}"></td>
                     <td th:text="${store.storename}"></td>
                     <td th:text="${store.storenumber}"></td>
-                    <td th:text="${store.fileupload}"></td>
-                    <td th:text="${store.req}"></td>
-                    <td th:text="${store.permit}"></td>
-                    <td th:text="${store.status}"></td>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteStore/{seq}(seq=${store.seq})}"
                            onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
                 </tr>
                 </tbody>
             </table>
         </div>
+
+        <a class="btn btn-warning" href="#" id="top">맨 위로</a>
 
     </div> <!-- /#page-content-wrapper -->
 

@@ -1,36 +1,84 @@
 <template>
-  <Header/>
-  <div class="card shadow-sm">
-<!--    <span class="img" :style="{backgroundImage: `url(${item.imgPath})`}"/>-->
-    <div class="card-body">
-      <!--      <p class="card-text">-->
-      <!--        <span>{{ item.name }} &nbsp;</span>-->
-      <!--        <span class="discount badge bg-danger">-->
-      <!--          {{ item.discountPer }}%-->
-      <!--        </span>-->
-      <!--      </p>-->
-      <!--      <div class="d-flex justify-content-between align-items-center">-->
-      <!--        <button class="btn btn-primary" @click="addToCart(item.id)">-->
-      <!--          <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
-      <!--        </button>-->
-      <!--        <small class="price text-muted">-->
-      <!--          {{ lib.getNumberFormatted(item.price) }}원-->
-      <!--        </small>-->
-      <!--        <small class="real text-danger">-->
-      <!--          {{ lib.getNumberFormatted(item.price - (item.price * item.discountPer / 100)) }}%-->
-      <!--        </small>-->
-      <!--      </div>-->
+  <Header />
+  <div class="card shadow-sm" id="cat">
+    <div class="card-body" >
+      <div><h2 class="cattitle">Western Food</h2></div>
+      <div class="list-group" id="catlist">
+        <div v-for="(western, idx) in state.items" :key="idx">
+          <a href="/storeInfo" class="list-group-item list-group-item-action">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <p class="card-text">
+                  <span><h3 class="shopTitle"> {{western.storename}} </h3></span><br>
+                  <span class="shop1"> {{western.category}} </span><br>
+                  <span class = "shop2"> {{western.location}} </span><br>
+                  <span> {{western.rating}} </span><br>
+                  <span><img src="{{ western.image }}" /></span>
+
+                </p>
+              </div>
+            </div>
+          </a>
+        </div> <!-- v-for-->
+      </div>
+
     </div>
   </div>
 </template>
 
 <script>
+import { reactive, onMounted } from "vue";
+import axios from "axios";
 import Header from "@/components/header/Header.vue";
+
 export default {
   components: {Header},
-}
+  setup() {
+    const state = reactive({
+      items: [],
+    });
+
+    onMounted(() => {
+      axios.get("/api/shop/western").then((response) => {
+        state.items = response.data;
+      });
+    });
+
+    return { state };
+  },
+};
+
 </script>
 
 <style scoped>
+.shop2{
+  color : dimgray;
+}
+
+.shopTitle{
+  border : 1px solid yellow;
+  padding : 0;
+}
+
+.shop1{
+  border : 1px solid pink;
+  color : cadetblue;
+}
+#cat{
+  border : 1px solid green;
+  width : 70%;
+  height : auto;
+  margin : auto;
+}
+
+.cattitle{
+  border : 1px solid red;
+  padding : 20px;
+  font-weight: 700;
+}
+
+#catlist{
+  border : 1px solid blue;
+}
 
 </style>

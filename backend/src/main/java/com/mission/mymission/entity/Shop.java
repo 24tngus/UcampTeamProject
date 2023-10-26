@@ -65,6 +65,6 @@ public class Shop {
 //    }
     @Override
     public String toString(){
-        return "storename" + storename;
+        return "storename=" + storename + "category=" + category + "location=" + location + "rating=" + rating + "image=" + image;
     }
 }

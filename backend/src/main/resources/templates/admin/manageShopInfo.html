@@ -28,8 +28,9 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
@@ -98,7 +99,7 @@
                 <tr th:each="shop, shopState : ${shop}">
                     <th scope="col">Delete</th>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteShop/{seq}(seq=${shop.seq})}"
-                           onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
                 </tr>
             </table>
         </div>

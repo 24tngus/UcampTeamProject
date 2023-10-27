@@ -41,7 +41,7 @@ public class AdminController {
 
 
 
-
+    // User Controller
     // 고객 관리 페이지
     @GetMapping("/manageUser")
     public String manageUser(User user, BindingResult result, Model model) {
@@ -67,7 +67,7 @@ public class AdminController {
 
 
 
-
+    // Store Controller
     // 판매자 관리 페이지
     @GetMapping("/manageStore")
     public String manageStore(Model model) {
@@ -93,7 +93,7 @@ public class AdminController {
 
 
 
-
+    // Shop Controller
     // 식당 관리 페이지
     @GetMapping("/manageShop")
     public String manageShop(Model model) {
@@ -125,13 +125,6 @@ public class AdminController {
         return "/admin/manageNewShopReq";
     }
 
-    // 신규 식당 삭제 메서드
-    @GetMapping("/deleteNewShopReq/{seq}")
-    public String deleteNewShopReq(@PathVariable Long seq) {
-        adminService.deleteShop(seq);
-        return "redirect:/admin/manageNewShopReq";
-    }
-
     // 신규 식당 요청 상세정보 페이지
     @GetMapping("/manageNewShopReqInfo/{seq}")
     public String manageNewShopReqInfo(@PathVariable Long seq, Model model) {
@@ -140,16 +133,46 @@ public class AdminController {
         return "/admin/manageNewShopReqInfo";
     }
 
-    // 신규 식당 요청 확인 메서드
-    @GetMapping("/updateNewShopReq/{seq}")
-    public String updateNewShopReq(@PathVariable Long seq) {
-        adminService.updateNewShopReq(seq);
+    // 신규 식당 요청 승인 메서드
+    @GetMapping("/permitNewShopReq/{seq}")
+    public String permitNewShopReq(@PathVariable Long seq) {
+        adminService.permitNewShopReq(seq);
         return "redirect:/admin/manageShop";
+    }
+
+    // 신규 식당 요청 거부 메서드
+    @GetMapping("/refusalNewShopReq/{seq}")
+    public String refusalNewShopReq(@PathVariable Long seq) {
+        adminService.refusalNewShopReq(seq);
+        return "redirect:/admin/manageNewShopReq";
+    }
+
+    // 요청 거부된 식당 관리 페이지
+    @GetMapping("/manageRefusalShop")
+    public String manageRefusalShop(Model model) {
+        adminService.getrefusalShopList();
+        model.addAttribute("shops", adminService.getrefusalShopList());
+        return "/admin/manageRefusalShop";
+    }
+
+    // 요청 거부된 식당 삭제 메서드
+    @GetMapping("/deleteRefusalShop/{seq}")
+    public String deleteNewShopReq(@PathVariable Long seq) {
+        adminService.deleteShop(seq);
+        return "redirect:/admin/manageRefusalShop";
+    }
+
+    // 요청 거부된 식당 요청 상세정보 페이지
+    @GetMapping("/manageRefusalShopInfo/{seq}")
+    public String manageRefusalShopInfo(@PathVariable Long seq, Model model) {
+        Shop shop = adminService.getShop(seq);
+        model.addAttribute("shop", shop);
+        return "/admin/manageRefusalShopInfo";
     }
 
 
 
-
+    // Review Controller
     // 리뷰 관리 페이지
     @GetMapping("/manageReview")
     public String manageReview(Model model) {

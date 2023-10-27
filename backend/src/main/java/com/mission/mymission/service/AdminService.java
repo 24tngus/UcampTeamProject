@@ -30,7 +30,9 @@ public interface AdminService {
     void deleteShop(Long seq);
     Shop getShop(Long seq);
     List<Shop> getNewShopReqList();
-    void updateNewShopReq(Long seq);
+    void permitNewShopReq(Long seq);
+    void refusalNewShopReq(Long seq);
+    List<Shop> getrefusalShopList();
 
 
 

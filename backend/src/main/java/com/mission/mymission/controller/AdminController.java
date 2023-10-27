@@ -30,6 +30,22 @@ public class AdminController {
     // 관리자 메인페이지
     @GetMapping("/main")
     public String admin_main(Model model) {
+        // 고객 수
+        Long userCount = adminService.getUserCount();
+        model.addAttribute("userCount", userCount);
+
+        // 판매자 수
+        Long storeCount = adminService.getStoreCount();
+        model.addAttribute("storeCount", storeCount);
+
+        // 식당 수
+        Long shopCount = adminService.getShopCount();
+        model.addAttribute("shopCount", shopCount);
+
+        // 최근 댓글 5개까지 보여주기
+        adminService.getRecentReviews();
+        model.addAttribute("Review", adminService.getRecentReviews());
+
         return "/admin/main";
     }
 
@@ -144,7 +160,7 @@ public class AdminController {
     @GetMapping("/refusalNewShopReq/{seq}")
     public String refusalNewShopReq(@PathVariable Long seq) {
         adminService.refusalNewShopReq(seq);
-        return "redirect:/admin/manageNewShopReq";
+        return "redirect:/admin/refusalNewShopReq";
     }
 
     // 요청 거부된 식당 관리 페이지

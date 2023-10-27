@@ -13,7 +13,9 @@ import com.mission.mymission.repository.ShopRepository;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.repository.UserRepository;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +33,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<User> getUserList() {
         List<User> userList = userRepository.findAll();
+        Collections.reverse(userList);
         return userList;
     }
 
@@ -55,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Store> getStoreList() {
         List<Store> storeList = storeRepository.findAll();
-        log.info(storeList);
+        Collections.reverse(storeList);
         return storeList;
     }
 
@@ -80,6 +83,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Shop> getShopList() {
         List<Shop> shopList = shopRepository.findByPermit(1);
+        Collections.reverse(shopList);
         return shopList;
     }
 
@@ -101,6 +105,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Shop> getNewShopReqList() {
         List<Shop> shopList = shopRepository.findByPermit(0);
+        Collections.reverse(shopList);
         return shopList;
     }
 
@@ -128,6 +133,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Shop> getrefusalShopList() {
         List<Shop> shopList = shopRepository.findByPermit(2);
+        Collections.reverse(shopList);
         return shopList;
     }
 
@@ -139,6 +145,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Review> getReviewList() {
         List<Review> reviewList = reviewRepository.findAll();
+        Collections.reverse(reviewList);
         return reviewList;
     }
 
@@ -153,6 +160,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Review> searchByWriter(String writer) {
         List<Review> reviewList = reviewRepository.findByWriterContaining(writer);
+        Collections.reverse(reviewList);
         return reviewList;
     }
 
@@ -160,8 +168,37 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Review> searchByShopSeq(Long shopSeq) {
         List<Review> reviewList = reviewRepository.findByShopseq(shopSeq);
+        Collections.reverse(reviewList);
         return reviewList;
     }
 
+
+
+
+    // 메인 페이지 꾸미기
+    // 고객 수
+    @Override
+    public Long getUserCount() {
+        return userRepository.count();
+    }
+
+    // 판매자 수
+    @Override
+    public Long getStoreCount() {
+        return storeRepository.count();
+    }
+
+    // 승인 된 식당 수
+    @Override
+    public Long getShopCount() {
+        Long permitShopCount = shopRepository.countByPermit(1);
+        return permitShopCount;
+    }
+
+    // 최근 댓글 5개까지 보여주기
+    @Override
+    public List<Review> getRecentReviews() {
+        return reviewRepository.findTop5ByOrderBySeqDesc();
+    }
 
 }

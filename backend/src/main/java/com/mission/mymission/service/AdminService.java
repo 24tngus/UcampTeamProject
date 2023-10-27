@@ -41,4 +41,12 @@ public interface AdminService {
     void deleteReview(Long seq);
     List<Review> searchByWriter(String writer);
     List<Review> searchByShopSeq(Long shopSeq);
+    List<Review> getRecentReviews();
+
+
+    // main
+    Long getUserCount();
+    Long getStoreCount();
+    Long getShopCount();
+
 }

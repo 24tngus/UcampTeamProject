@@ -8,9 +8,11 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     Review findBySeq(Long seq);
 
-    List<Review> findByWriterContaining(String writer); // 작성자 이름으로 검색
+    List<Review> findByWriterContaining(String writer);
 
-    List<Review> findByShopseq(Long shopseq); // 가게 번호로 검색
+    List<Review> findByShopseq(Long shopseq);
+
+    List<Review> findTop5ByOrderBySeqDesc();
 
 
 }

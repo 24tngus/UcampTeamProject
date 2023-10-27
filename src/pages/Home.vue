@@ -85,10 +85,10 @@
 
   </div>
   <br>
-  <div class="container">
+  <div class="container" id="gmap">
     <br>
-    <h1 class="map">View on the map</h1><br><br>
-        <Map/>
+    <h1 class="map">View on the map</h1>
+        <Map class="map-component" />
   </div>
 </template>
 
@@ -114,6 +114,13 @@ export default {
 </script>
 
 <style scoped>
+.map-component {
+  border : 3px solid darkolivegreen;
+  padding : 30px;
+}
+#gmap{
+  width: 1300px; /* 원하는 너비로 설정 */
+}
 
 .row {
   text-align: center;

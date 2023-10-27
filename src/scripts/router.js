@@ -22,6 +22,7 @@ import Fusion from "@/components/foodCategory/Fusion.vue";
 import Western from "@/components/foodCategory/Western.vue";
 import User from "@/pages/User.vue";
 import Login2 from "@/components/user_store/Login2.vue";
+import ErrorPage from '@/components/ErrorPage.vue';
 
 const routes = [
     {path:'/', component: Home},
@@ -46,7 +47,10 @@ const routes = [
     {path: '/faq', component: Faq},
     {path: '/foodCategory/Korean', component: Korean},
     {path: '/foodCategory/Western', component: Western},
-    {path: '/foodCategory/Fusion', component: Fusion}
+    {path: '/foodCategory/Fusion', component: Fusion},
+    {path: '/error',component: ErrorPage},
+    {path: '/:pathMatch(.*)*',redirect: '/error'}
+
 ]
 
 const router = createRouter({

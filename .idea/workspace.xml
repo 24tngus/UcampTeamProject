@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="변경">
+      <change afterPath="$PROJECT_DIR$/public/veganerror.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ErrorPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/foodCategory/ModalView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/ShopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Shop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/foodCategory/Fusion.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/Fusion.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/foodCategory/Western.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/Western.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reserve/ReserveInsert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reserve/ReserveInsert.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/reserve/ReserveUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reserve/ReserveUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Shop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +58,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "soyoon1026",
-    "last_opened_file_path": "C:/JavaWork/springboot/VeganLoadMap/backend",
+    "last_opened_file_path": "C:/JavaWork/springboot/VeganLoadMap/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,6 +77,10 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\JavaWork\springboot\VeganLoadMap\public" />
+      <recent name="C:\JavaWork\springboot\VeganLoadMap\src\components" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Ucamp\VeganProject\VeganLoadMap\src\components" />
     </key>
@@ -86,8 +94,19 @@
       <option name="presentableId" value="Default" />
       <updated>1697257879810</updated>
       <workItem from="1697956455552" duration="936000" />
-      <workItem from="1698280678320" duration="20604000" />
+      <workItem from="1698280678320" duration="20899000" />
+      <workItem from="1698326974488" duration="14384000" />
+      <workItem from="1698365877963" duration="26909000" />
     </task>
+    <task id="LOCAL-00001" summary="변경">
+      <option name="closed" value="true" />
+      <created>1698314852506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698314852508</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,5 +128,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="변경" />
+    <option name="LAST_COMMIT_MESSAGE" value="변경" />
   </component>
 </project>

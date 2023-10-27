@@ -12,13 +12,11 @@
               <div class="card-body">
                 <p class="card-text">
                   <span> {{shop.storename}} </span> &nbsp;
+                  <span> {{shop.rating}} </span>
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <button class="btn btn-primary" @click="$router.push('/menu')">
+                  <button class="btn btn-primary" @click="$router.push('/menu')"><!--메뉴 상세보기-->
                     <i class="fa fa-plus" aria-hidden="true"></i>
-                  </button>
-                  <button class="btn btn-primary" @click="addToCart(shop.seq)">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   </button>
                   <button class="btn btn-primary" @click="$router.push('/reserve')">
                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>

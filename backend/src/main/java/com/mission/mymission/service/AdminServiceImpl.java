@@ -4,6 +4,7 @@ import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -83,15 +84,15 @@ public class AdminServiceImpl implements AdminService {
 
     // 식당 삭제
     @Override
-    public void deleteShopRegister(Long seq) {
-        ShopRegister shopRegister = ShopRegisterRepository.findBySeq(seq);
+    public void deleteShopRegister(String storeid) {
+        ShopRegister shopRegister = ShopRegisterRepository.findByStoreid(storeid);
         ShopRegisterRepository.delete(shopRegister);
     }
 
     // 식당 개별 조회
     @Override
-    public ShopRegister getShopRegister(Long seq) {
-        ShopRegister shopRegister = ShopRegisterRepository.findBySeq(seq);
+    public ShopRegister getShopRegister(String storeid) {
+        ShopRegister shopRegister = ShopRegisterRepository.findByStoreid(storeid);
         return shopRegister;
     }
 
@@ -131,6 +132,21 @@ public class AdminServiceImpl implements AdminService {
         return shopRegisterList;
     }
 
+    // 요청 거부된 식당 30일 후에 삭제되는 메서드
+//    @Scheduled(fixedRate = 30 * 24 * 60 * 60 * 1000)
+//    @Scheduled(fixedRate = 60000)
+//    public void deleteRefusalShopsAutomatically() {
+//        List<ShopRegister> shopRegisterList = getrefusalShopList();
+//        LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
+//
+//        for (ShopRegister shopRegister : shopRegisterList) {
+//            LocalDateTime requestDate = shopRegister.get();
+//            if (requestDate.isBefore(thirtyDaysAgo)) {
+//                deleteShopRegister((long) shopRegister.getSeq());
+//            }
+//        }
+//    }
+
 
 
 
@@ -160,8 +176,8 @@ public class AdminServiceImpl implements AdminService {
 
     // 식당 검색
     @Override
-    public List<Review> searchByShopSeq(Long shopSeq) {
-        List<Review> reviewList = reviewRepository.findByShopseq(shopSeq);
+    public List<Review> searchByStorename(String storename) {
+        List<Review> reviewList = reviewRepository.searchByStorename(storename);
         Collections.reverse(reviewList);
         return reviewList;
     }
@@ -186,6 +202,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Long getShopCount() {
         Long permitShopCount = ShopRegisterRepository.countByPermit(1);
+        return permitShopCount;
+    }
+
+    // 요청 들어온 식당 수
+    @Override
+    public Long getNewShopCount() {
+        Long permitShopCount = ShopRegisterRepository.countByPermit(0);
         return permitShopCount;
     }
 

@@ -15,7 +15,7 @@ public class ShopRegister {
     @Column(length = 100)
     private String storeid;
 
-    @Column(length = 100, nullable = false)
+    @Column(unique = true, length = 100, nullable = false)
     private String storename;
 
     @Column(length = 4000)

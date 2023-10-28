@@ -24,8 +24,8 @@ public interface AdminService {
 
     // shop service
     List<ShopRegister> getShopRegisterList();
-    void deleteShopRegister(Long seq);
-    ShopRegister getShopRegister(Long seq);
+    void deleteShopRegister(String storeid);
+    ShopRegister getShopRegister(String storeid);
     List<ShopRegister> getNewShopReqList();
     void permitNewShopReq(Long seq);
     void refusalNewShopReq(Long seq);
@@ -37,9 +37,7 @@ public interface AdminService {
     List<Review> getReviewList();
     void deleteReview(Long seq);
     List<Review> searchByWriter(String writer);
-    List<Review> searchByShopSeq(Long shopseq);
-
-//    List<Review> searchByStoreid(String storeid);
+    List<Review> searchByStorename(String storename);
     List<Review> getRecentReviews();
 
 
@@ -47,5 +45,6 @@ public interface AdminService {
     Long getUserCount();
     Long getStoreCount();
     Long getShopCount();
+    Long getNewShopCount();
 
 }

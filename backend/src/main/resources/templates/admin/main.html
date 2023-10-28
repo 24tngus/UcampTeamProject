@@ -48,7 +48,9 @@
 
             <hr>
 
-            <h3 style="margin: 50px"><a href="http://localhost:3000">VeganLoadMap</a></h3>
+            <h3 style="margin: 50px"><a href="http://localhost:3000" target="_blank"
+                                        class="btn btn-success"
+                                        style="font-size: 30px">VeganLoadMap 사이트 바로가기</a></h3>
 
             <div class="row">
                 <h3 style="margin:10px">현재 사이트 등록 현황</h3>
@@ -79,6 +81,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-3 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">신규 식당 요청 수</h5>
+                            <h1 class="card-text"><span th:text="${newShopCount}"></span></h1>
+                            <a href="/admin/manageNewShopReq" class="btn btn-outline-primary">신규 식당 요청 관리 페이지</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -98,7 +109,7 @@
                     <tbody>
                     <tr th:each="review : ${Review}">
                         <td th:text="${review.writer}"></td>
-                        <td th:text="${review.shopseq}"></td>
+                        <td th:text="${review.storeid}"></td>
                         <td th:text="${review.content}"></td>
                     </tr>
                     </tbody>

@@ -41,6 +41,10 @@ public class AdminController {
         Long shopCount = adminService.getShopCount();
         model.addAttribute("shopCount", shopCount);
 
+        // 요청 들어온 식당 수
+        Long newShopCount = adminService.getNewShopCount();
+        model.addAttribute("newShopCount", newShopCount);
+
         // 최근 댓글 5개까지 보여주기
         adminService.getRecentReviews();
         model.addAttribute("Review", adminService.getRecentReviews());
@@ -120,16 +124,16 @@ public class AdminController {
     }
 
     // 식당 삭제 메서드
-    @GetMapping("/deleteShop/{seq}")
-    public String deleteShop(@PathVariable Long seq) {
-        adminService.deleteShopRegister(seq);
+    @GetMapping("/deleteShop/{storeid}")
+    public String deleteShop(@PathVariable String storeid) {
+        adminService.deleteShopRegister(storeid);
         return "redirect:/admin/manageShop";
     }
 
     // 식당 상세정보 페이지
-    @GetMapping("/manageShopInfo/{seq}")
-    public String manageShopInfo(@PathVariable Long seq, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(seq);
+    @GetMapping("/manageShopInfo/{storeid}")
+    public String manageShopInfo(@PathVariable String storeid, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storeid);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageShopInfo";
     }
@@ -143,9 +147,9 @@ public class AdminController {
     }
 
     // 신규 식당 요청 상세정보 페이지
-    @GetMapping("/manageNewShopReqInfo/{seq}")
-    public String manageNewShopReqInfo(@PathVariable Long seq, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(seq);
+    @GetMapping("/manageNewShopReqInfo/{storeid}")
+    public String manageNewShopReqInfo(@PathVariable String storeid, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storeid);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageNewShopReqInfo";
     }
@@ -173,16 +177,16 @@ public class AdminController {
     }
 
     // 요청 거부된 식당 삭제 메서드
-    @GetMapping("/deleteRefusalShop/{seq}")
-    public String deleteNewShopReq(@PathVariable Long seq) {
-        adminService.deleteShopRegister(seq);
+    @GetMapping("/deleteRefusalShop/{storeid}")
+    public String deleteNewShopReq(@PathVariable String storeid) {
+        adminService.deleteShopRegister(storeid);
         return "redirect:/admin/manageRefusalShop";
     }
 
     // 요청 거부된 식당 요청 상세정보 페이지
-    @GetMapping("/manageRefusalShopInfo/{seq}")
-    public String manageRefusalShopInfo(@PathVariable Long seq, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(seq);
+    @GetMapping("/manageRefusalShopInfo/{storeid}")
+    public String manageRefusalShopInfo(@PathVariable String storeid, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storeid);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageRefusalShopInfo";
     }
@@ -214,10 +218,10 @@ public class AdminController {
             // 작성자 검색
             searchList = adminService.searchByWriter(keyword);
         } else if (filter == 1) {
-            // 가게번호(shopseq)로 검색
+            // 식당 이름(storename)으로 검색
             try {
-                Long shopSeq = Long.parseLong(keyword);
-                searchList = adminService.searchByShopSeq(shopSeq);
+                String storename = String.valueOf(keyword);
+                searchList = adminService.searchByStorename(storename);
             } catch (NumberFormatException e) {
 
             }

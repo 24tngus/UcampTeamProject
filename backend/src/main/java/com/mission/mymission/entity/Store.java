@@ -31,9 +31,6 @@ public class Store {
     private String tel;
 
     @Column(length = 100, nullable = false)
-    private String storename;
-
-    @Column(length = 100, nullable = false)
     private String storenumber;
 
     @Column(nullable = false)

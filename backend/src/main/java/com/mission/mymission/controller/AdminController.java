@@ -124,16 +124,16 @@ public class AdminController {
     }
 
     // 식당 삭제 메서드
-    @GetMapping("/deleteShop/{storeid}")
-    public String deleteShop(@PathVariable String storeid) {
-        adminService.deleteShopRegister(storeid);
+    @GetMapping("/deleteShop/{storename}")
+    public String deleteShop(@PathVariable String storename) {
+        adminService.deleteShopRegister(storename);
         return "redirect:/admin/manageShop";
     }
 
     // 식당 상세정보 페이지
-    @GetMapping("/manageShopInfo/{storeid}")
-    public String manageShopInfo(@PathVariable String storeid, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(storeid);
+    @GetMapping("/manageShopInfo/{storename}")
+    public String manageShopInfo(@PathVariable String storename, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storename);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageShopInfo";
     }
@@ -147,9 +147,9 @@ public class AdminController {
     }
 
     // 신규 식당 요청 상세정보 페이지
-    @GetMapping("/manageNewShopReqInfo/{storeid}")
-    public String manageNewShopReqInfo(@PathVariable String storeid, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(storeid);
+    @GetMapping("/manageNewShopReqInfo/{storename}")
+    public String manageNewShopReqInfo(@PathVariable String storename, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storename);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageNewShopReqInfo";
     }
@@ -177,16 +177,16 @@ public class AdminController {
     }
 
     // 요청 거부된 식당 삭제 메서드
-    @GetMapping("/deleteRefusalShop/{storeid}")
-    public String deleteNewShopReq(@PathVariable String storeid) {
-        adminService.deleteShopRegister(storeid);
+    @GetMapping("/deleteRefusalShop/{storename}")
+    public String deleteNewShopReq(@PathVariable String storename) {
+        adminService.deleteShopRegister(storename);
         return "redirect:/admin/manageRefusalShop";
     }
 
     // 요청 거부된 식당 요청 상세정보 페이지
-    @GetMapping("/manageRefusalShopInfo/{storeid}")
-    public String manageRefusalShopInfo(@PathVariable String storeid, Model model) {
-        ShopRegister shopRegister = adminService.getShopRegister(storeid);
+    @GetMapping("/manageRefusalShopInfo/{storename}")
+    public String manageRefusalShopInfo(@PathVariable String storename, Model model) {
+        ShopRegister shopRegister = adminService.getShopRegister(storename);
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageRefusalShopInfo";
     }

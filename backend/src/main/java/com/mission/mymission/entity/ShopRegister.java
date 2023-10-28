@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "shop_register")
 @Getter @Setter
@@ -50,4 +52,7 @@ public class ShopRegister {
 
     @Column(nullable = false)
     private int permit;
+
+    @Column(name = "permit_update_time")
+    private LocalDateTime permitUpdateTime;
 }

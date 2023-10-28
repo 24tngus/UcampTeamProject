@@ -6,21 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="최종 커밋 10/26 6시 35분">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/BackendApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Review.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/ShopRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/ShopRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/entity/Store.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ReviewRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRegisterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ShopRegisterRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReq.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShopInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShopInfo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageReview.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageReview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStore.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStoreInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStoreInfo.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,7 @@
       <workItem from="1697956455552" duration="936000" />
       <workItem from="1698283734418" duration="805000" />
       <workItem from="1698284594551" duration="15651000" />
-      <workItem from="1698457560644" duration="2125000" />
+      <workItem from="1698457560644" duration="3499000" />
     </task>
     <task id="LOCAL-00001" summary="test 1026">
       <created>1698284002549</created>

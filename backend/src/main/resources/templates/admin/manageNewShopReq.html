@@ -63,7 +63,7 @@
                 <tbody>
                 <tr th:each="shop, shopState : ${shopRegisters}">
                     <td th:text="${shopState.count}"></td>
-                    <td><a class="btn btn-outline-success" th:href="@{/admin/manageNewShopReqInfo/{storeid}(storeid=${shop.storeid})}">상세정보</a></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/admin/manageNewShopReqInfo/{storename}(storename=${shop.storename})}">상세정보</a></td>
                     <td th:text="${shop.storename}"></td>
                     <td th:text="${shop.category}"></td>
                     <td th:text="${shop.location}"></td>

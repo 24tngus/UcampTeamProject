@@ -24,8 +24,8 @@ public interface AdminService {
 
     // shop service
     List<ShopRegister> getShopRegisterList();
-    void deleteShopRegister(String storeid);
-    ShopRegister getShopRegister(String storeid);
+    void deleteShopRegister(String storename);
+    ShopRegister getShopRegister(String storename);
     List<ShopRegister> getNewShopReqList();
     void permitNewShopReq(Long seq);
     void refusalNewShopReq(Long seq);

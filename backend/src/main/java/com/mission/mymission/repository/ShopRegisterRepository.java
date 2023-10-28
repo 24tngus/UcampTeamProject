@@ -13,5 +13,5 @@ public interface ShopRegisterRepository extends JpaRepository<ShopRegister, Inte
 
     Long countByPermit(int i);
 
-    ShopRegister findByStoreid(String storeid);
+    ShopRegister findByStorename(String storename);
 }

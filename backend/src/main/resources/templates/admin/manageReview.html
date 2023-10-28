@@ -60,6 +60,7 @@
             </div>
             <div class="col-auto">
                 <button class="btn btn-outline-primary" type="submit">검색</button>
+                <a href="/admin/manageReview" class="btn btn-outline-primary">초기화</a>
             </div>
         </form>
 
@@ -99,14 +100,14 @@
                     <td th:text="${reviewState.count}"></td>
                     <td>
                         <a class="btn btn-outline-success"
-                           th:href="@{'/admin/manageShopInfo/' + ${review.storeid}}">
-                            <span th:text="${review.storeid}"></span>
+                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
+                            <span th:text="${review.writer}"></span>
                         </a>
                     </td>
                     <td>
                         <a class="btn btn-outline-success"
-                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
-                            <span th:text="${review.writer}"></span>
+                           th:href="@{'/admin/manageShopInfo/' + ${review.storename}}">
+                            <span th:text="${review.storename}"></span>
                         </a>
                     </td>
                     <td th:text="${review.content}"></td>

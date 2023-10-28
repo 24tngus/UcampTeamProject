@@ -21,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
     private final StoreRepository storeRepository;
     private final ShopRegisterRepository ShopRegisterRepository;
     private final ReviewRepository reviewRepository;
+    private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
 
 
     // User service
@@ -84,15 +85,15 @@ public class AdminServiceImpl implements AdminService {
 
     // 식당 삭제
     @Override
-    public void deleteShopRegister(String storeid) {
-        ShopRegister shopRegister = ShopRegisterRepository.findByStoreid(storeid);
+    public void deleteShopRegister(String storename) {
+        ShopRegister shopRegister = ShopRegisterRepository.findByStorename(storename);
         ShopRegisterRepository.delete(shopRegister);
     }
 
     // 식당 개별 조회
     @Override
-    public ShopRegister getShopRegister(String storeid) {
-        ShopRegister shopRegister = ShopRegisterRepository.findByStoreid(storeid);
+    public ShopRegister getShopRegister(String storename) {
+        ShopRegister shopRegister = ShopRegisterRepository.findByStorename(storename);
         return shopRegister;
     }
 
@@ -120,7 +121,11 @@ public class AdminServiceImpl implements AdminService {
         ShopRegister shopRegister = ShopRegisterRepository.findBySeq(seq);
         if (shopRegister.getPermit() == 0) {
             shopRegister.setPermit(2);
+
+            shopRegister.setPermitUpdateTime(LocalDateTime.now());
+
             ShopRegisterRepository.save(shopRegister);
+            scheduleShopRegisterDeletion.scheduleShopRegisterDeletion();
         }
     }
 
@@ -131,21 +136,6 @@ public class AdminServiceImpl implements AdminService {
         Collections.reverse(shopRegisterList);
         return shopRegisterList;
     }
-
-    // 요청 거부된 식당 30일 후에 삭제되는 메서드
-//    @Scheduled(fixedRate = 30 * 24 * 60 * 60 * 1000)
-//    @Scheduled(fixedRate = 60000)
-//    public void deleteRefusalShopsAutomatically() {
-//        List<ShopRegister> shopRegisterList = getrefusalShopList();
-//        LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
-//
-//        for (ShopRegister shopRegister : shopRegisterList) {
-//            LocalDateTime requestDate = shopRegister.get();
-//            if (requestDate.isBefore(thirtyDaysAgo)) {
-//                deleteShopRegister((long) shopRegister.getSeq());
-//            }
-//        }
-//    }
 
 
 

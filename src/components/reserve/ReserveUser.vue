@@ -168,7 +168,7 @@ export default {
         comment: this.comment,
       };
       axios
-          .post(`/api/reserveuser/insert`, data)
+          .post(`/api/reserve/insert`, data)
           .then((response) => {
             console.log("Data inserted successfully", response.data);
             // Handle success as needed
@@ -182,7 +182,7 @@ export default {
     },
     fetchData() {
       axios
-          .get(`/api/reversetest/reserveuser/${this.shopseq}/${this.date}`)
+          .get(`/api/reversetest/reserve/${this.shopseq}/${this.date}`)
           .then((response) => {
             this.reserveData = response.data[0];
             this.isDataLoaded = true;

@@ -1,24 +1,32 @@
 <template>
   <Header2 />
-  <br><br>
-  <div class="card shadow-sm" id="cat">
-    <div class="card-body" >
-      <div><h2 class="cattitle">가게 신규 등록</h2></div>
-      <div>
-        <ul>
-          <hr>
-          <div  class="memberform">
-            <b></b><br>
-            <b>가게 이름</b><input type="text" placeholder="상호명" id="storename" v-model="state.form.storename" required/><br>
-            <b>가게 정보</b><input type="text" placeholder="가게 소개" id="detailinfo" v-model="state.form.detailinfo" /><br>
-            <b>카테고리</b><input type="text" placeholder="한식/중식/양식/퓨전/카페" id="category" v-model="state.form.category" /><br>
-            <b>가게 위치</b><input type="text" placeholder="주소" id="location" v-model="state.form.location" /><br>
-            <b>가게 전화번호</b><input type="text" placeholder="가게 전화번호 (- 없이 입력)" id="phonenumber" v-model="state.form.phonenumber" /><br>
-            <b>가게 이미지 파일 첨부</b><input type="file" ref="fileInput" @change="onFileChange" /><br>
-            <hr>
-            <button text="button" class="bookbtn" @click="register()">등록</button>
+  <div id="wrapper">
+    <div id="container">
+      <div class="card shadow-sm" id="cat">
+        <div class="card-body" >
+          <div><h2 class="cattitle">가게 신규 등록</h2></div>
+          <div>
+            <ul>
+              <hr>
+              <div  class="memberform">
+                <b></b><br>
+                <b>가게 이름</b>
+                <div class="input-button-container">
+                  <input type="text" placeholder="상호명" id="storename" v-model="state.form.storename" required/>
+                  <button class="double" @click="exist(state.form.storename)">중복 확인</button>
+                </div>
+                <br>
+                <b>가게 정보</b><input type="text" placeholder="가게 소개" id="detailinfo" v-model="state.form.detailinfo" /><br>
+                <b>카테고리</b><input type="text" placeholder="한식/중식/양식/퓨전/카페" id="category" v-model="state.form.category" /><br>
+                <b>가게 위치</b><input type="text" placeholder="주소" id="location" v-model="state.form.location" /><br>
+                <b>가게 전화번호</b><input type="text" placeholder="가게 전화번호 (- 없이 입력)" id="phonenumber" v-model="state.form.phonenumber" /><br>
+                <b>가게 이미지 파일 첨부</b><input type="file" ref="fileInput" @change="onFileChange" /><br>
+                <hr>
+                <button text="button" class="bookbtn" @click="register()">등록</button>
+              </div>
+            </ul>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -67,9 +75,29 @@ export default {
       }
     })
 
+    const exist = (exist) => {
+      if (state.form.storename == "") {
+        window.alert("가게 이름을 입력해주세요");
+        router.push({path: "/shop_insert"});
+      } else {
+        axios.get(`/api/shop/register/join/${exist}`, ).then((res)=> {
+          if (res.data == 0) {
+            window.alert("중복된 가게 이름입니다. 지점명을 붙여서 다시 입력해주세요");
+          } else {
+            window.alert("등록 가능한 가게 입니다");
+            state.flag = 1;
+          }
+          router.push({path: "/shop_insert"});
+        })
+      }
+    }
+
     const register = () => {
       if (state.form.storename == "") {
         window.alert("가게 이름을 입력해주세요");
+        router.push({path: "/shop_insert"});
+      } else if (state.flag == 0) {
+        window.alert("가게 이름을 중복 검사 해주세요");
         router.push({path: "/shop_insert"});
       } else if (state.form.detailinfo == "") {
         window.alert("가게 상세정보를 입력해주세요");
@@ -93,12 +121,57 @@ export default {
         })
       }
     }
-    return {state, register}
+    return {state, register, exist}
   }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
+
+*,html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 13px;
+  font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
+}
+
+#wrapper {
+  background: #f1f1f1;
+}
+#container{
+  position: relative;
+  max-width: 90%;
+  min-width: 60%;
+  margin: 0 0 0 10%;
+}
+
+.form-group {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.input-button-container {
+  display: flex;
+  width: 100%;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.double {
+  background-color: darkolivegreen;
+  color: white;
+  padding: 15px;
+  width: 30%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  border : 1px solid white;
+}
+
 .datepicker-container {
   width: 40%;
   padding: 30px 0;

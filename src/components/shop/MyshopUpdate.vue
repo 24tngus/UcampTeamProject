@@ -9,13 +9,14 @@
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
           <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
       <!-- 본문 작성 -->
       <div class="online small" id="online">
-        <p>Received Value: {{$route.params.value}}</p>
+<!--        this.seq = router.currentRoute.value.params.value;-->
+<!--        <p>Received Value: {{$route.params.value}}</p>-->
         <h1>{{state.items.name}}님 가게 정보 수정</h1>
         <div class="member">
           <div class="field">
@@ -43,8 +44,12 @@
           <div class="field">
             <b>가게 대표 이미지</b>
             <input type="text" class="block" v-model="this.form.image">
+          </div><br>
+          <div class="button-container">
+            <button class="btn" @click="myshopupdate()">수정</button>
+            <button class="btn" @click="deleteShop()">삭제</button>
           </div>
-          <button class="btn" @click="myshopupdate()">확인</button>
+
         </div>
         <!-- 페이지 처리 -->
         <div id="num">
@@ -52,6 +57,7 @@
           <span><a href="">1</a></span>
           <span><a href="#"> > </a></span>
         </div>
+        <br><br><br><br><br><br><br><br><br><br>
       </div>
     </div>
   </div>
@@ -95,6 +101,12 @@ export default {
         this.form.image=data.image;
       })
     },
+    deleteShop() {
+      axios.delete(`/api/shop/register/delete/${this.seq}`).then(() => {
+        window.alert("가게 정보가 삭제 되었습니다");
+        router.push({path: "/mystore"});
+      })
+    },
     myshopupdate() {
       const updateData = {
         storename: this.form.storename,
@@ -105,10 +117,10 @@ export default {
         image: this.form.image
       }
       axios.put(`/api/shop/register/update/${this.seq}`, updateData).then(()=> {
-        window.alert("정보가 수정 되었습니다");
+        window.alert("가게 정보가 수정 되었습니다");
         router.push({path: "/mystore"});
       })
-    }
+    },
   },
   setup() {
     const state = reactive({
@@ -144,7 +156,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
 }
 
@@ -285,8 +297,8 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width:  880px;
-  margin: 40px auto;
+  min-width: 60%;
+  margin: 0 0 0 20%;
   background: #fff;
 }
 #container:after{
@@ -680,6 +692,7 @@ footer:before{
   color: #ffffff;
   width : 20%;
   height : 90%;
+  margin-right: 20px;
 }
 
 @media (max-width:768px) {

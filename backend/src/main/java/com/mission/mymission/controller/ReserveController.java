@@ -1,26 +1,48 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.Reserve;
+import com.mission.mymission.entity.Store;
 import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
+import com.mission.mymission.repository.StoreRepository;
+import com.mission.mymission.service.JwtService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Date;
+import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@Transactional
+@RequestMapping("/api")
 public class ReserveController {
-    @Autowired
-    ReserveRepository reserveRepository;
+    private final JwtService jwtService;
+    private final StoreRepository storeRepository;
+    private final ReserveRepository reserveRepository;
+    private final ReservesettingRepository reservesettingRepository;
 
-    @Autowired
-    ReservesettingRepository reservesettingRepository;
+    @GetMapping("/reserve")
+    public List<Reserve> getReserve(@CookieValue(value = "token", required = false) String token){
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        Store stores = storeRepository.findBySeq(seq);
+        String storeid = stores.getId();
 
-    @PostMapping("user/insert")
-    public ResponseEntity<Reserve> inserReserve(@RequestBody Reserve newReserve) {
+        List<Reserve> reserve = reserveRepository.findByStoreid(storeid);
+
+        return reserve;
+    }
+
+    @PostMapping("/api/reserve/insert")
+    public ResponseEntity<Reserve> insertReserve(@RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
 //        System.out.println("newReserve=" + newReserve);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서

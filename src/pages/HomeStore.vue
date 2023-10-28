@@ -114,7 +114,40 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
 
+*,html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 13px;
+  font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
+}
+
+.image-size {
+  width: 50%;
+}
+
+a{color: #333;
+  text-decoration:none;
+}
+
+ul li{
+  list-style: none;
+}
+#container{
+  position: relative;
+  max-width: 70%;
+  min-width: 60%;
+  margin: 0 0 0 20%;
+  background: #fff;
+}
+
+#wrapper{
+  background: #f1f1f1;
+
+}
 .row {
   text-align: center;
 }

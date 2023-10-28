@@ -55,6 +55,15 @@ public class ShopRegisterController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/shop/register/join/{storename}")
+    public ResponseEntity joinExist(@PathVariable("storename") String storename, HttpServletResponse res) {
+        ShopRegister exist = registerRepository.findByStorename(storename);
+        if (exist != null) {
+            return new ResponseEntity<>(0, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(1, HttpStatus.OK);
+    }
+
     @GetMapping("/shop/register/info")
     public ResponseEntity getShop (@CookieValue(value = "token", required = false) String token) {
         if (!jwtService.isValid(token)) {
@@ -69,13 +78,7 @@ public class ShopRegisterController {
     }
 
     @GetMapping("/shop/register/info/{seq}")
-    public ResponseEntity getShops (@PathVariable("seq") int seq,
-                                    @CookieValue(value = "token", required = false) String token) {
-        if (!jwtService.isValid(token)) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-        }
-        int tseq = jwtService.getSeq(token);
-        Store stores = storeRepository.findBySeq(tseq);
+    public ResponseEntity getShops (@PathVariable("seq") int seq) {
 
         ShopRegister reg = registerRepository.findBySeq(seq);
 
@@ -100,4 +103,11 @@ public class ShopRegisterController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping("/shop/register/delete/{seq}")
+    public ResponseEntity removeShop (@PathVariable("seq") int seq) {
+        ShopRegister reg = registerRepository.findBySeq(seq);
+
+        registerRepository.delete(reg);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

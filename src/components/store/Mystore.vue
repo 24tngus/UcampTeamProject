@@ -8,7 +8,7 @@
         <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
         <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
         <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
-        <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+        <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="item">
           <div>
-            <router-link to="/review">
+            <router-link to="/review_store">
             <div class="green number">3</div>
             <div class="item_text">가게후기</div>
             </router-link>
@@ -81,7 +81,7 @@
           </router-link>
         </li>
         <li class="thumbox">
-          <router-link to="/review">
+          <router-link to="/review_store">
             <div class="textbox">
               <img src="../../../public/aaa5.png" class="image-size" />
               <br><br>
@@ -98,6 +98,7 @@
         <span><a href="">1</a></span>
         <span><a href="#"> > </a></span>
       </div>
+      <br><br><br><br><br><br><br><br><br><br>
     </div>
   </div>
 </div>
@@ -269,7 +270,7 @@ ul li{
 }
 
 #wrapper{
-  background: #f1f1f1
+  background: #f1f1f1;
 }
 #wrapper header {
   position: relative !important;
@@ -281,8 +282,8 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width:  880px;
-  margin: 40px auto;
+  min-width: 60%;
+  margin: 0 0 0 20%;
   background: #fff;
 }
 #container:after{
@@ -362,6 +363,7 @@ button.on{
 .online.small h1{
   font-size: 25px;
   margin-bottom: 40px;
+  width: 100%;
 }
 .online .filter{
   width: 100%;
@@ -389,10 +391,9 @@ button.on{
 }
 .online ul{
   text-align: center;
-  padding: 0 5%;
+  padding: 0;
   max-width: 100%;
-  min-width: 600px;
-
+  min-width: 70%;
 }
 .online .thumbox{
   /*    padding-left: 120px;*/
@@ -405,7 +406,8 @@ button.on{
   text-align: center
 }
 .online .thumbox .img{
-  background-size: contain;
+  background-size: 90%;
+
   width: 120px;
   height: 100px;
   display: table-cell;

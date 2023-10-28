@@ -8,7 +8,7 @@
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
           <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
@@ -21,7 +21,9 @@
             <div class='project-tasks'>
               <div class='project-column' v-for="(re, idx) in state.items" :key="idx">
                 <div class='task' draggable='true'>
-                  <router-link to="/reserve_detail">
+                  <router-link :to="{ name: 'reserve_detail', params: { value: re.seq } }">
+                    <img src="../../../public/aaa4.png" class="image-size" />
+                    <br>
                     <div class='task__tags'>
                       <span class='task__tag task__tag--copyright'>{{re.reserver}}님 예약</span>
                       <button class='task__options'></button></div>
@@ -40,6 +42,7 @@
           <span><a href="">1</a></span>
           <span><a href="#"> > </a></span>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
       </div>
     </div>
   </div>
@@ -95,12 +98,12 @@ export default {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
 }
 
 .image-size {
-  width: 50%;
+  width: 20%
 }
 
 a{color: #333;
@@ -238,8 +241,8 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width:  880px;
-  margin: 40px auto;
+  min-width: 60%;
+  margin: 0 0 0 20%;
   background: #fff;
 }
 #container:after{
@@ -473,9 +476,9 @@ h1 {
   font-size:30px;
 }
 .project {
-  padding:2rem;
-  max-width:75%;
-  width:100%;
+  padding: 2rem;
+  max-width: 75%;
+  width: 100%;
   display:inline-block;
 }
 
@@ -491,7 +494,7 @@ h1 {
 
   &:hover {
     box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-    border-color: rgba(162, 179, 207, .2) !important;
+    border-color: green !important;
   }
 
   p {

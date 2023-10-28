@@ -8,7 +8,7 @@
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
           <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
@@ -16,36 +16,100 @@
       <div class="online small" id="online">
         <h1>{{state.store.name}}님 가게 예약 확인</h1>
 
-        <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour">
+        <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour" style="width: 550px">
           <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-4 shadow">
+            <div class="modal-content rounded-4 shadow" style="width: 500px">
               <div class="modal-body p-5">
-                <h2 class="fw-bold mb-0">What's new</h2>
-
-                <ul class="d-grid gap-4 my-5 list-unstyled small">
-                  <li class="d-flex gap-4">
-                    <svg class="bi text-body-secondary flex-shrink-0" width="48" height="48"><use xlink:href="#grid-fill"/></svg>
-                    <div>
-                      <h5 class="mb-0">Grid view</h5>
-                      Not into lists? Try the new grid view.
-                    </div>
-                  </li>
-                  <li class="d-flex gap-4">
-                    <svg class="bi text-warning flex-shrink-0" width="48" height="48"><use xlink:href="#bookmark-star"/></svg>
-                    <div>
-                      <h5 class="mb-0">Bookmarks</h5>
-                      Save items you love for easy access later.
-                    </div>
-                  </li>
-                  <li class="d-flex gap-4">
-                    <svg class="bi text-primary flex-shrink-0" width="48" height="48"><use xlink:href="#film"/></svg>
-                    <div>
-                      <h5 class="mb-0">Video embeds</h5>
-                      Share videos wherever you go.
-                    </div>
-                  </li>
-                </ul>
-                <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Great, thanks!</button>
+                <tr>
+                  <td style="padding: 30px 30px 0 30px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr><td align="left" style="padding: 0 0 15px 0; font-size: 20px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #43515E; font-weight: 300; width: 500px">
+                        {{form.reserver}}님 예약 상세 정보
+                      </td></tr>
+                      <!-- DASHED LINE -->
+                      <tr><td style="padding: 0px 0px 0px 0px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr><td align="center" style="padding: 15px 0 0 0; font-size: 16px; line-height: 1px; font-family: Helvetica, Arial, sans-serif; color: #999999; border-bottom: 1px dashed #999999;" class="padding-copy">
+                          </td></tr></table></td></tr><br><br>
+                      <!-- CHECK-IN -->
+                      <tr><td>
+                        <table class="txt" cellspacing="0" cellpadding="0" border="0" width="100%">
+                          <tr><td valign="top" style="padding: 0 0 5px 0;">
+                            <!-- LEFT COLUMN -->
+                            <table cellpadding="0" cellspacing="0" border="0" width="26%" align="left" class="responsive-table">
+                              <tr><td align="center" style="padding: 0 0 0 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p-bold">
+                                날짜 :
+                              </td></tr>
+                            </table>
+                            <!-- RIGHT COLUMN -->
+                            <table cellpadding="0" cellspacing="0" border="0" width="70%" align="right" class="responsive-table">
+                              <tr><td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #00b1b1; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
+                                {{ formatDate(form.date) }}
+                              </td></tr>
+                            </table>
+                          </td></tr>
+                        </table>
+                      </td></tr>
+                      <!-- CHECK-OUT -->
+                      <tr><td><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                              <td valign="top" style="padding: 0 0 5px 0;">
+                                <!-- LEFT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="26%" align="left" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p-bold">
+                                      시간 :
+                                    </td>
+                                  </tr>
+                                </table>
+                                <!-- RIGHT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="70%" align="right" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #00b1b1; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
+                                      {{ time }}
+                                    </td></tr></table></td></tr></table></td></tr>
+                      <!-- NUMBER OF ROOMS -->
+                      <tr><td><table cellspacing="0" cellpadding="0" border="0" width="100%"><tr>
+                              <td valign="top" style="padding: 0 0 5px 0;">
+                                <!-- LEFT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="26%" align="left" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p-bold">
+                                      인원 수 :
+                                    </td>
+                                  </tr>
+                                </table>
+                                <!-- RIGHT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="70%" align="right" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
+                                      {{ form.people }}
+                                    </td></tr></table></td></tr></table></td></tr>
+                      <!-- ROOM TYPE -->
+                      <tr><td><table cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                              <td valign="top" style="padding: 0 0 0 0;">
+                                <!-- LEFT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="26%" align="left" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 600; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p-bold">
+                                      요청 사항 :
+                                    </td>
+                                  </tr>
+                                </table>
+                                <!-- RIGHT COLUMN -->
+                                <table cellpadding="0" cellspacing="0" border="0" width="70%" align="right" class="responsive-table">
+                                  <tr>
+                                    <td align="center" style="padding: 0 0 0 0; font-family: Arial, sans-serif; color: #333333; font-family: 'Open Sans', Helvetica, Arial, sans-serif; color: #999999; font-weight: 400; font-size: 12px; line-height: 22px; text-align: left;" bgcolor="#ffffff" class="flex-p">
+                                      {{form.comment}}
+                                    </td></tr></table></td></tr></table></td></tr>
+                    </table>
+                  </td>
+                </tr><br><br><br>
+                <div class="button-container">
+                  <button type="button" class="small-btn" @click="$router.push('/reserve_select')" data-bs-dismiss="modal">확인</button>
+                  <button type="button" class="small-btn" @click="this.delete(this.form.seq)" data-bs-dismiss="modal">삭제</button>
+                </div>
               </div>
             </div>
           </div>
@@ -56,6 +120,7 @@
           <span><a href="">1</a></span>
           <span><a href="#"> > </a></span>
         </div>
+        <br><br><br><br><br><br><br><br><br><br>
       </div>
     </div>
   </div>
@@ -65,10 +130,71 @@
 import axios from "axios";
 import Header2 from "@/components/header/Header2.vue";
 import {reactive} from "vue";
+import router from "@/scripts/router";
 
 export default {
   components: {Header2},
+  data() {
+    return {
+      seq: null,
+      form :{
+        seq: 0,
+        reserver: "",
+        team: 0,
+        people: 0,
+        date: null,
+        time1: 0,
+        time2 :0,
+        time3 :0,
+        time4 :0,
+        time5: 0,
+        time6: 0,
+        time7: 0,
+        comment: ""
+      },
+      time:""
+    };
+  },
+  created() {
+    this.seq = router.currentRoute.value.params.value;
+    this.load_shop();
+  },
   methods: {
+    load_shop() {
+      axios.get(`/api/reserve/shop/info/${this.seq}`).then(({data}) => {
+        this.form.seq = data.seq;
+        this.form.reserver = data.reserver;
+        this.form.team = data.team;
+        this.form.people = data.people;
+        this.form.date = data.date;
+        this.form.time1 = data.time0810;
+        this.form.time2 = data.time1012;
+        this.form.time3 = data.time1214;
+        this.form.time4 = data.time1416;
+        this.form.time5 = data.time1618;
+        this.form.time6 = data.time1820;
+        this.form.time7 = data.time2022;
+        this.form.comment = data.comment;
+        this.formateTime();
+      })
+    },
+    formateTime() {
+      if (this.form.time1 == 1) {
+        this.time = "08:00 ~ 10:00"
+      } else if (this.form.time2 == 1) {
+        this.time = "10:00 ~ 12:00"
+      } else if (this.form.time3 == 1) {
+        this.time = "12:00 ~ 14:00"
+      } else if (this.form.time4 == 1) {
+        this.time = "14:00 ~ 16:00"
+      } else if (this.form.time5 == 1) {
+        this.time = "16:00 ~ 18:00"
+      } else if (this.form.time6 == 1) {
+        this.time = "18:00 ~ 20:00"
+      } else if (this.form.time7 == 1) {
+        this.time = "20:00 ~ 22:00"
+      }
+    },
     formatDate(timestamp) {
       const date = new Date(timestamp);
       const year = date.getFullYear();
@@ -78,12 +204,18 @@ export default {
       const daysOfWeek = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
       const dayName = daysOfWeek[dayOfWeek];
       return `${year}년 ${month}월 ${day}일 ${dayName}`;
+    },
+    delete(seq) {
+      axios.delete(`/api/reserve/set/delete/${seq}`).then(() => {
+        this.load_shop();
+        window.alert("예약 정보가 삭제 되었습니다");
+        router.push({path: "/reserve_select"});
+      })
     }
   },
   setup() {
     const state = reactive({
-      store: Object,
-      items: []
+      store: Object
     })
     const load = () => {
       axios.get("/api/store/mypage").then(({data}) => {
@@ -91,13 +223,6 @@ export default {
       })
     };
     load();
-    const reserve = () => {
-      axios.get("/api/reserve").then(({data}) => {
-        state.items = data;
-      })
-    };
-
-    reserve();
     return {state};
   }
 };
@@ -111,7 +236,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
 }
 
@@ -130,7 +255,9 @@ ul li{
 #wrapper{
   width: 100%;
 }
-
+.txt {
+  font-size: 15px;
+}
 #num{
   text-align: center;
   margin: 30px 0;
@@ -169,7 +296,7 @@ ul li{
   background: #d4d4d4;
 }
 #num span:hover a,#num span:hover i{
-  color: #fff
+  color: grey;
 }
 
 .status{
@@ -254,8 +381,8 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width:  880px;
-  margin: 40px auto;
+  min-width: 60%;
+  margin: 0 0 0 20%;
   background: #fff;
 }
 #container:after{
@@ -456,13 +583,20 @@ footer:before{
   }
 }
 
-.btn {
+.button-container {
+  text-align: center; /* Center-align the buttons horizontally */
+}
+.small-btn {
   background-color: darkolivegreen;
   color: #ffffff;
-  width : 20%;
-  height : 90%;
+  margin-right: 40px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 30%;
+  height: 10%;
 }
-
 :root {
   --bg:#ebf0f7;
   --header:#fbf4f6;

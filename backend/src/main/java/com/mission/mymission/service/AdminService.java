@@ -1,11 +1,8 @@
 package com.mission.mymission.service;
 
+import com.mission.mymission.entity.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.mission.mymission.entity.Review;
-import com.mission.mymission.entity.Shop;
-import com.mission.mymission.entity.Store;
-import com.mission.mymission.entity.User;
 
 import java.util.List;
 
@@ -21,16 +18,20 @@ public interface AdminService {
 
     // store service
     List<Store> getStoreList();
-    void deleteStore(Long seq);
+    void deleteStore(String email);
     Store getStore(Long seq);
 
 
     // shop service
-    List<Shop> getShopList();
-    void deleteShop(Long seq);
-    Shop getShop(Long seq);
-    List<Shop> getNewShopReqList();
-    void updateNewShopReq(Long seq);
+    List<ShopRegister> getShopRegisterList();
+    void deleteShopRegister(String storename);
+    ShopRegister getShopRegister(String storename);
+    List<ShopRegister> getNewShopReqList();
+    void permitNewShopReq(Long seq);
+    void refusalNewShopReq(Long seq);
+    List<ShopRegister> getrefusalShopList();
+    String getStoreIdByStoreName(String storename);
+    String getStoreEmailById(String storeid);
 
 
 
@@ -38,5 +39,14 @@ public interface AdminService {
     List<Review> getReviewList();
     void deleteReview(Long seq);
     List<Review> searchByWriter(String writer);
-    List<Review> searchByShopSeq(Long shopSeq);
+    List<Review> searchByStorename(String storename);
+    List<Review> getRecentReviews();
+
+
+    // main
+    Long getUserCount();
+    Long getStoreCount();
+    Long getShopCount();
+    Long getNewShopCount();
+
 }

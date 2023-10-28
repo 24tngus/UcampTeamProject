@@ -29,9 +29,10 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="/admin/manageReview">식당 후기 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
@@ -41,7 +42,7 @@
         <!-- Page content -->
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
-            <p> 이 페이지는 리뷰 관리 페이지입니다. </p>
+            <p> 이 페이지는 식당 후기 관리 페이지입니다. </p>
         </div> <!-- /Page content -->
 
         <hr>
@@ -55,10 +56,11 @@
                 </select>
             </div>
             <div class="col-auto">
-                <input class="form-control sm-5" type="text" name="keyword" placeholder="작성자 이름을 입력하세요" />
+                <input class="form-control sm-5" type="text" name="keyword" placeholder="내용을 입력하세요" />
             </div>
             <div class="col-auto">
                 <button class="btn btn-outline-primary" type="submit">검색</button>
+                <a href="/admin/manageReview" class="btn btn-outline-primary">초기화</a>
             </div>
         </form>
 
@@ -67,11 +69,11 @@
                 <thead>
                 <tr>
                     <th scope="col">Number</th>
-                    <th scope="col">shopseq</th>
-                    <th scope="col">writer</th>
-                    <th scope="col">content</th>
-                    <th scope="col">image</th>
-                    <th scope="col">status</th>
+                    <th scope="col">Writer</th>
+                    <th scope="col">StoreName</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,42 +81,39 @@
                     <td th:text="${reviewState.count}"></td>
                     <td>
                         <a class="btn btn-outline-success"
-                           th:href="@{'/admin/manageShopInfo/' + ${review.shopseq}}">
-                            <span th:text="${review.shopseq}"></span>
+                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
+                            <span th:text="${review.writer}"></span>
                         </a>
                     </td>
                     <td>
                         <a class="btn btn-outline-success"
-                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
-                            <span th:text="${review.writer}"></span>
+                           th:href="@{'/admin/manageShopInfo/' + ${review.storename}}">
+                            <span th:text="${review.storename}"></span>
                         </a>
                     </td>
                     <td th:text="${review.content}"></td>
                     <td th:text="${review.status}"></td>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteReview/{seq}(seq=${review.seq})}"
-                           onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
                 </tr>
                 <tr th:each="review, reviewState : ${searchList}">
                     <td th:text="${reviewState.count}"></td>
-                    <td>
-                        <a class="btn btn-outline-success"
-                           th:href="@{'/admin/manageShopInfo/' + ${review.shopseq}}">
-                            <span th:text="${review.shopseq}"></span>
-                        </a>
-                    </td>
                     <td>
                         <a class="btn btn-outline-success"
                            th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
                             <span th:text="${review.writer}"></span>
                         </a>
                     </td>
-                    <td th:text="${review.content}"></td>
-                    <td th:text="${review.status}"></td>
                     <td>
-                        <a class="btn btn-outline-danger" th:href="@{/admin/deleteReview/{seq}(seq=${review.seq})}"
-                           onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete
+                        <a class="btn btn-outline-success"
+                           th:href="@{'/admin/manageShopInfo/' + ${review.storename}}">
+                            <span th:text="${review.storename}"></span>
                         </a>
                     </td>
+                    <td th:text="${review.content}"></td>
+                    <td th:text="${review.status}"></td>
+                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteReview/{seq}(seq=${review.seq})}"
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
                 </tr>
                 </tbody>
             </table>

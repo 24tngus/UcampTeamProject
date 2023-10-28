@@ -1,14 +1,11 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.ReserveSetting;
-import com.mission.mymission.entity.ShopRegister;
-import com.mission.mymission.entity.Store;
+import com.mission.mymission.entity.*;
+import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
-import com.mission.mymission.repository.ShopRegisterRepository;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,20 +21,13 @@ import java.util.List;
 @Transactional
 @RequestMapping("/api")
 public class ReservesettingController {
-    @Autowired
-    ReservesettingRepository reservesettingRepository;
-
     private final JwtService jwtService;
     private final StoreRepository storeRepository;
-    private final ShopRegisterRepository registerRepository;
+    private final ReserveRepository reserveRepository;
+    private final ReservesettingRepository reservesettingRepository;
 
-    @GetMapping("/reserve")
-    public List<ReserveSetting> getReserve(){
-        List<ReserveSetting> reserves = reservesettingRepository.findAll();
-
-        return reserves;
-    }
-    @GetMapping("/reserve/shop")
+    // 판매자가 예약 등록한 리스트 반환
+    @GetMapping("/reserve/set")
     public List<ReserveSetting> getReserveShop(@CookieValue(value = "token", required = false) String token){
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
@@ -50,14 +40,30 @@ public class ReservesettingController {
 
         return reserves;
     }
-    @PutMapping("/reserve/update/{seq}")
-    public void updateReserveSetting(@PathVariable int seq, @RequestBody ReserveSetting updatedReserve) {
+
+    @GetMapping("/reserve/shop/info/{seq}")
+    public ResponseEntity getReserveUser (@PathVariable("seq") int seq) {
+        Reserve reserve = reserveRepository.findBySeq(seq);
+
+        return new ResponseEntity<>(reserve, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/reserve/set/delete/{seq}")
+    public ResponseEntity removeReserve (@PathVariable("seq") int seq) {
+        Reserve reserve = reserveRepository.findBySeq(seq);
+
+        reserveRepository.delete(reserve);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/reserve/set/update/{seq}")
+    public void updateReserve(@PathVariable int seq, @RequestBody ReserveSetting updatedReserve) {
         reservesettingRepository.updateReservesetting(seq, updatedReserve.getTeam(), updatedReserve.getPeople(), updatedReserve.getDate(),
                 updatedReserve.getTime0810(), updatedReserve.getTime1012(), updatedReserve.getTime1214(), updatedReserve.getTime1416(),
                 updatedReserve.getTime1618(), updatedReserve.getTime1820(), updatedReserve.getTime2022());
     }
 
-    @PostMapping("/reserve/insert")
+    @PostMapping("/reserve/set/insert")
     public ResponseEntity<ReserveSetting> insertReserve(@RequestBody ReserveSetting newReserve, @CookieValue(value = "token", required = false) String token) {
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
@@ -70,7 +76,8 @@ public class ReservesettingController {
         ReserveSetting savedReserve = reservesettingRepository.save(newReserve);
         return ResponseEntity.ok(savedReserve);
     }
-    @GetMapping("/reverse/reserveuser/{storeid}/{date}")
+
+    @GetMapping("/reserve/{storeid}/{date}")
     public List<ReserveSetting> getTime(@PathVariable String storeid, @PathVariable Date date) {
         List<ReserveSetting> result = reservesettingRepository.findByStoreidAndDate(storeid, date);
         System.out.println(storeid);

@@ -8,8 +8,8 @@
         <div class="buttontab">
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-          <router-link to="/reserve_update"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
@@ -42,17 +42,13 @@
             </div>
           </div>
           <div class="field">
-            <b>가게 이름</b>
-            <input type="text" class="block" v-model="state.form.storename">
-          </div>
-          <div class="field">
             <b>사업자 등록 번호</b>
             <div class="block">{{state.form.storenumber}}</div>
           </div>
           <div class="field">
             <b>사업자 등록증</b>
             <div class="block">{{state.form.storefile}}</div>
-          </div>
+          </div><br>
           <button class="btn" @click="mystoreupdate()">확인</button>
         </div>
         <!-- 페이지 처리 -->
@@ -61,6 +57,7 @@
           <span><a href="">1</a></span>
           <span><a href="#"> > </a></span>
         </div>
+        <br><br><br><br><br><br><br><br><br><br>
       </div>
     </div>
   </div>
@@ -84,7 +81,6 @@ export default {
         name: "",
         email: "",
         tel: "",
-        storename: "",
         storenumber: "",
         storefile: ""
       }
@@ -97,7 +93,6 @@ export default {
         state.form.name=data.name;
         state.form.email=data.email;
         state.form.tel=data.tel;
-        state.form.storename=data.storename;
         state.form.storenumber=data.storenumber;
         state.form.storefile=data.storefile;
       })
@@ -111,12 +106,11 @@ export default {
         name: state.form.name,
         email: state.form.email,
         tel: state.form.tel,
-        storename: state.form.storename,
         storenumber: state.form.storenumber,
         storefile: state.form.storefile
       }
       axios.put("/api/store/mypage/update", updateData).then(()=> {
-        window.alert("정보가 수정 되었습니다");
+        window.alert("회원 정보가 수정 되었습니다");
         router.push({path: "/mystore_info"});
       })
     }
@@ -135,7 +129,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   color: #333;
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
 }
 
@@ -276,10 +270,11 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width:  880px;
-  margin: 40px auto;
+  min-width: 60%;
+  margin: 0 0 0 20%;
   background: #fff;
 }
+
 #container:after{
   content:'';
   display: block;

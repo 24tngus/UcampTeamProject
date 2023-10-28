@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.sql.Date;
+import java.util.List;
 
 public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 
-
+    List<Reserve> findByStoreid(String id);
+    Reserve findBySeq(int seq);
     Reserve save(Reserve reserve);
 
     @Query("SELECT SUM(r.people) FROM Reserve r where r.storeid = :storeid AND r.date = :date AND r.time0810 = :time0810")

@@ -12,8 +12,11 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @Column(nullable = false)
-    private int shopseq;
+    @Column(nullable = false, length = 100)
+    private String storeid;
+
+    @Column(nullable = false, length = 100)
+    private String storename;
 
     @Column(nullable = false, length = 100)
     private String writer;

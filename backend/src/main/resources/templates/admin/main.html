@@ -31,8 +31,9 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
@@ -44,7 +45,78 @@
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
             <p> 이 페이지는 VeganLoadMap의 관리자 페이지입니다. </p>
-            <h2>관리자 페이지 메인 페이지에는 뭘 써야 하나~</h2>
+
+            <hr>
+
+            <h3 style="margin: 50px"><a href="http://localhost:3000" target="_blank"
+                                        class="btn btn-success"
+                                        style="font-size: 30px">VeganLoadMap 사이트 바로가기</a></h3>
+
+            <div class="row">
+                <h3 style="margin:10px">현재 사이트 등록 현황</h3>
+                <div class="col-sm-3 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">고객 등록 수</h5>
+                            <h1 class="card-text"><span th:text="${userCount}"></span></h1>
+                            <a href="/admin/manageUser" class="btn btn-outline-primary">고객 관리 페이지</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">판매자 등록 수</h5>
+                            <h1 class="card-text"><span th:text="${storeCount}"></span></h1>
+                            <a href="/admin/manageStore" class="btn btn-outline-primary">판매자 관리 페이지</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">식당 등록 수</h5>
+                            <h1 class="card-text"><span th:text="${shopCount}"></span></h1>
+                            <a href="/admin/manageShop" class="btn btn-outline-primary">식당 관리 페이지</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">신규 식당 요청 수</h5>
+                            <h1 class="card-text"><span th:text="${newShopCount}"></span></h1>
+                            <a href="/admin/manageNewShopReq" class="btn btn-outline-primary">신규 식당 요청 관리 페이지</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card" style="margin-top: 20px">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 style="margin: 10px">최근 작성된 후기</h3>
+                    <a href="/admin/manageReview" class="btn btn-outline-primary">후기 관리 페이지</a>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Writer</th>
+                        <th>ShopSeq</th>
+                        <th>Content</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="review : ${Review}">
+                        <td th:text="${review.writer}"></td>
+                        <td th:text="${review.storeid}"></td>
+                        <td th:text="${review.content}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
         </div> <!-- /Page content -->
     </div> <!-- /#page-content-wrapper -->
     <a class="btn btn-warning" href="#" id="top">맨 위로</a>

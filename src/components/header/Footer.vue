@@ -26,3 +26,8 @@ export default {
 }
 </script>
 
+<style scoped>
+* {
+  background: #f1f1f1;
+}
+</style>

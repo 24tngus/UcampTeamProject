@@ -18,7 +18,9 @@
             <div class="input-area">
               <label for="id" class="blind">아이디</label>
               <input type="text" placeholder="아이디" id="id" v-model="state.form.id" required/>
-              <button @click="exist(state.form.id)">중복 확인</button>
+            </div>
+            <div class="input-area">
+              <button class="double" @click="exist(state.form.id)">중복 확인</button>
             </div>
           </li>
           <li class="row">
@@ -156,6 +158,13 @@ ul {
 }
 li {
   list-style: none;
+}
+
+.double {
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+  background: darkolivegreen;
 }
 select {
   display: inline-block;

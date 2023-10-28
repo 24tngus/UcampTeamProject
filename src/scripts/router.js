@@ -28,9 +28,14 @@ import Mystore from "@/components/store/Mystore.vue";
 import MystoreInfo from "@/components/store/MystoreInfo.vue";
 import MystoreUpdate from "@/components/store/MystoreUpdate.vue";
 import MyshopUpdate from "@/components/shop/MyshopUpdate.vue";
-import test from "@/components/reserve/test.vue";
+// import test from "@/pages/test.vue";
 import MyshopInfo from "@/components/shop/MyshopInfo.vue";
-import Myreview from "@/components/store/Myreview.vue";
+import ReserveSelect from "@/components/reserve/ReserveSelect.vue";
+import ReserveDetail from "@/components/reserve/ReserveDetail.vue";
+import ReviewStore from "@/components/review/ReviewStore.vue";
+import ErrorPage from "@/components/ErrorPage.vue";
+import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
+import Review from "@/components/review/Review.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -51,6 +56,8 @@ const routes = [
     {path: '/reserve', component: Reserve},
     {path: '/reserve_insert', component: ReserveInsert},
     {path: '/reserve_update', component: ReserveUpdate},
+    {path: '/reserve_select', component: ReserveSelect},
+    {path: '/reserve_detail/:value', name: "reserve_detail", component: ReserveDetail},
     {path: '/reserve_user', component: ReserveUser},
     {path: '/mypage', component: Mypage},
     {path: '/mypage_info', component: MypageInfo},
@@ -63,8 +70,12 @@ const routes = [
     {path: '/foodCategory/Korean', component: Korean},
     {path: '/foodCategory/Western', component: Western},
     {path: '/foodCategory/Fusion', component: Fusion},
-    {path: '/review', component: Myreview},
-    {path: '/test', component: test}
+    {path: '/review', component: Review},
+    {path: '/review_update', component: ReviewUpdate},
+    {path: '/review_store', component: ReviewStore},
+    {path: '/error',component: ErrorPage},
+    {path: '/:pathMatch(.*)*',redirect: '/error'}
+    // {path: '/test', component: test}
 ]
 
 const router = createRouter({

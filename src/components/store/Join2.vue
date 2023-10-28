@@ -16,7 +16,9 @@
             <div class="input-area">
               <label for="id" class="blind">아이디</label>
               <input type="text" placeholder="아이디" id="id" v-model="state.form.id" required/>
-              <button @click="exist(state.form.id)">중복 확인</button>
+            </div>
+            <div class="input-area">
+              <button class="double" @click="exist(state.form.id)">중복 확인</button>
             </div>
           </li>
           <li class="row">
@@ -24,6 +26,7 @@
               <input type="password" placeholder="비밀번호" id="password" v-model="state.form.password" required/>
             </div>
           </li>
+
         </ul>
         <ul class="container">
           <li class="row name-area">
@@ -47,9 +50,6 @@
           </li>
         </ul>
         <ul class="container">
-          <li class="row name-area">
-            <input type="text" placeholder="가게 이름" id="storename" v-model="state.form.storename" required/>
-          </li>
           <li class="row email-area">
             <input type="text" placeholder="사업자 등록 번호" id="storenumber" v-model="state.form.storenumber" />
           </li>
@@ -104,7 +104,6 @@ export default {
         name: "",
         email: "",
         tel: "",
-        storename: "",
         storenumber: "",
         storefile: ""
       }
@@ -144,9 +143,6 @@ export default {
         router.push({path: "/join2"});
       } else if (state.form.tel == "") {
         window.alert("전화번호를 입력해주세요");
-        router.push({path: "/join2"});
-      } else if (state.form.storename == "") {
-        window.alert("가게 이름을 입력해주세요");
         router.push({path: "/join2"});
       } else if (state.form.storenumber == "") {
         window.alert("사업자 등록 번호를 입력해주세요");
@@ -265,6 +261,12 @@ fieldset legend {
 }
 
 /* Button */
+.double {
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+  background: darkolivegreen;
+}
 .btn {
   margin: 0;
   padding: 0;
@@ -290,7 +292,6 @@ fieldset legend {
   color: white;
   font-weight: 300;
   background: darkolivegreen;
-
 }
 .btn.btn-submit .submit-text {
   position: relative;

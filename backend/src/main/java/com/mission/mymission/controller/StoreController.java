@@ -79,7 +79,6 @@ public class StoreController {
         newStore.setName(params.get("name"));
         newStore.setEmail(params.get("email"));
         newStore.setTel(params.get("tel"));
-        newStore.setStorename(params.get("storename"));
         newStore.setStorenumber(params.get("storenumber"));
         newStore.setStorefile(params.get("storefile"));
 
@@ -126,7 +125,6 @@ public class StoreController {
         store.setName(updatestore.getName());
         store.setEmail(updatestore.getEmail());
         store.setTel(updatestore.getTel());
-        store.setStorename(updatestore.getStorename());
         store.setStorenumber(updatestore.getStorenumber());
         store.setStorefile(updatestore.getStorefile());
 

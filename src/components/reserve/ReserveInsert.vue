@@ -141,7 +141,7 @@ export default {
         time2022: this.time2022
       };
       axios
-          .post('/api/reservetest/insert', data)
+          .post('/api/reserve/set/insert', data)
           .then((response) => {
             console.log('Data inserted successfully', response.data);
             // Handle success as needed

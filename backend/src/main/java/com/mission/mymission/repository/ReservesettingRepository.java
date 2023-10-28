@@ -1,5 +1,6 @@
 package com.mission.mymission.repository;
 
+import com.mission.mymission.entity.Reserve;
 import com.mission.mymission.entity.ReserveSetting;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

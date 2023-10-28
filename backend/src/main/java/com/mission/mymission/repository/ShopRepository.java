@@ -14,10 +14,4 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
 
     List<Shop> findByCategory(String category);
 
-    Shop findBySeq(Long seq);
-
-    List<Shop> findByPermit(int i);
-
-    Long countByPermit(int i);
-
 }

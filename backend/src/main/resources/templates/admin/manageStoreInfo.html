@@ -90,7 +90,7 @@
                 </tr>
                 <tr th:each="store, storeState : ${store}">
                     <th scope="col">Delete</th>
-                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteStore/{seq}(seq=${store.seq})}"
+                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteStore/{email}(email=${store.email})}"
                            onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
                 </tr>
             </table>

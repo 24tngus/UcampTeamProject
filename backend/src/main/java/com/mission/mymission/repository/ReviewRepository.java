@@ -14,5 +14,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     List<Review> findTop5ByOrderBySeqDesc();
 
+//    List<Review> findByStoreid(String storeid);
+
 
 }

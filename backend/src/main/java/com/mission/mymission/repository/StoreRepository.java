@@ -13,4 +13,6 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
 
     Store findBySeq(Long seq);
 
+    Store findByEmail(String email);
+
 }

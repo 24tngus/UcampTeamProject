@@ -48,55 +48,43 @@
 
         <div>
             <table class="table">
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Seq</th>
                     <td th:text="${shop.seq}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Storename</th>
                     <td th:text="${shop.storename}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
-                    <th scope="col">Placeid</th>
-                    <td th:text="${shop.placeid}"></td>
-                </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Detailinfo</th>
                     <td th:text="${shop.detailinfo}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Category</th>
                     <td th:text="${shop.category}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Location</th>
                     <td th:text="${shop.location}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
-                    <th scope="col">Rating</th>
-                    <td th:text="${shop.rating}"></td>
-                </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Phonenumber</th>
                     <td th:text="${shop.phonenumber}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
-                    <th scope="col">Lat</th>
-                    <td th:text="${shop.lat}"></td>
-                </tr>
-                <tr th:each="shop, shopState : ${shop}">
-                    <th scope="col">Lng</th>
-                    <td th:text="${shop.lng}"></td>
-                </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Image</th>
                     <td th:text="${shop.image}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Permit</th>
                     <td th:text="${shop.permit}"></td>
                 </tr>
-                <tr th:each="shop, shopState : ${shop}">
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">StoreId</th>
+                    <td th:text="${shop.storeid}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
                     <th scope="col">Delete</th>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteShop/{seq}(seq=${shop.seq})}"
                            onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>

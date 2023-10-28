@@ -2,6 +2,9 @@ package com.mission.mymission.service;
 
 import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,6 +25,9 @@ public class AdminServiceImpl implements AdminService {
     private final ShopRegisterRepository ShopRegisterRepository;
     private final ReviewRepository reviewRepository;
     private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
     // User service
@@ -88,6 +94,32 @@ public class AdminServiceImpl implements AdminService {
     public void deleteShopRegister(String storename) {
         ShopRegister shopRegister = ShopRegisterRepository.findByStorename(storename);
         ShopRegisterRepository.delete(shopRegister);
+    }
+
+    // storename으로 storeid 찾기
+    @Transactional
+    public String getStoreIdByStoreName(String storename) {
+        String query = "SELECT sr.storeid FROM ShopRegister sr WHERE sr.storename = :storename";
+        List<String> results = entityManager.createQuery(query, String.class)
+                .setParameter("storename", storename)
+                .getResultList();
+
+        String storeId = results.get(0);
+        System.out.println("Found storeId: " + storeId);
+        return storeId;
+    }
+
+    // storeid로 store의 email 찾기
+    @Transactional
+    public String getStoreEmailById(String storeid) {
+        String query = "SELECT s.email FROM Store s WHERE s.id = :storeid";
+        List<String> results = entityManager.createQuery(query, String.class)
+                .setParameter("storeid", storeid)
+                .getResultList();
+
+        String storeEmail = results.get(0);
+        System.out.println("Store email: " + storeEmail);
+        return storeEmail;
     }
 
     // 식당 개별 조회

@@ -30,6 +30,8 @@ public interface AdminService {
     void permitNewShopReq(Long seq);
     void refusalNewShopReq(Long seq);
     List<ShopRegister> getrefusalShopList();
+    String getStoreIdByStoreName(String storename);
+    String getStoreEmailById(String storeid);
 
 
 

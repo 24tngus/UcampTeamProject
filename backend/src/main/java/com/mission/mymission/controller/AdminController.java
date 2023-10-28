@@ -2,6 +2,8 @@ package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.*;
 import com.mission.mymission.service.EmailSendService;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.Banner;
@@ -25,6 +27,7 @@ public class AdminController {
 
     private final AdminService adminService;
     private final EmailSendService emailSendService;
+
 
     // 관리자 메인페이지
     @GetMapping("/main")
@@ -126,7 +129,21 @@ public class AdminController {
     // 식당 삭제 메서드
     @GetMapping("/deleteShop/{storename}")
     public String deleteShop(@PathVariable String storename) {
-        adminService.deleteShopRegister(storename);
+        // 단계 1: 'storename'을 사용하여 'shop_register'에서 'storeid'를 가져옵니다.
+        String storeid = adminService.getStoreIdByStoreName(storename);
+
+        if (storeid != null) {
+            // 단계 2: 'storeid'를 사용하여 store 테이블에서 이메일을 가져옵니다.
+            String storeEmail = adminService.getStoreEmailById(storeid);
+
+            if (storeEmail != null) {
+                adminService.deleteShopRegister(storename);
+
+                // 단계 3: 이메일을 보냅니다.
+                emailSendService.sendMailShop(storeEmail);
+            }
+        }
+
         return "redirect:/admin/manageShop";
     }
 

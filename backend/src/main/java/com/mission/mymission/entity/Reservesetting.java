@@ -10,13 +10,13 @@ import java.sql.Date;
 @Setter
 @Getter
 @Entity
-public class Reservesetting {
+public class ReserveSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @Column(nullable = false)
-    private int shopseq;
+    @Column(length = 100)
+    private String storeid;
 
     @Column(nullable = false)
     private int team;
@@ -52,7 +52,7 @@ public class Reservesetting {
 
     @Override
     public String toString(){
-        return "Reservesetting" + "seq=" + seq + "shopseq=" + shopseq + "team=" + team + "people=" + people + "date=" + date
+        return "Reservesetting" + "seq=" + seq + "storeid=" + storeid + "team=" + team + "people=" + people + "date=" + date
                 + "time0810=" + time0810 + "time1012=" + time1012 + "time1214=" + time1214 + "time1416=" + time1416 + "time1618=" + time1618 + "time1820=" + time1820
                 + "time2022=" + time2022;
     }

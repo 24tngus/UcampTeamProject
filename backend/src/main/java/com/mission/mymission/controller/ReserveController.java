@@ -19,15 +19,15 @@ public class ReserveController {
     @Autowired
     ReservesettingRepository reservesettingRepository;
 
-    @PostMapping("/api/reserveuser/insert")
+    @PostMapping("user/insert")
     public ResponseEntity<Reserve> inserReserve(@RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
-        System.out.println("newReserve=" + newReserve);
+//        System.out.println("newReserve=" + newReserve);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서
         // 0 보다 작으면 false , 0보다 크면 true
 
 
-        int reservesettingShopSeq = newReserve.getShopseq(); // vue에서 가져온 식당고유번호
+        String reservesettingstoreid = newReserve.getStoreid(); // vue에서 가져온 식당고유번호
         Date reservesettingDate = newReserve.getDate(); // vue에서 가져온 날짜
         int reservesettingtime0810 = newReserve.getTime0810(); // vue에서 가져온 시간대
         int reservesettingtime1012 = newReserve.getTime1012(); // vue에서 가져온 시간대
@@ -38,87 +38,87 @@ public class ReserveController {
         int reservesettingtime2022 = newReserve.getTime2022(); // vue에서 가져온 시간대
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime0810SumPeople = reservesettingRepository.findSumPeopleByParams0810(reservesettingShopSeq, reservesettingDate, reservesettingtime0810);
+        int reservesettingtime0810SumPeople = reservesettingRepository.findSumPeopleByParams0810(reservesettingstoreid, reservesettingDate, reservesettingtime0810);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime0810SumTeam = reservesettingRepository.findSumTeamByParams0810(reservesettingShopSeq, reservesettingDate, reservesettingtime0810);
+        int reservesettingtime0810SumTeam = reservesettingRepository.findSumTeamByParams0810(reservesettingstoreid, reservesettingDate, reservesettingtime0810);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime1012SumPeople = reservesettingRepository.findSumPeopleByParams1012(reservesettingShopSeq, reservesettingDate, reservesettingtime1012);
+        int reservesettingtime1012SumPeople = reservesettingRepository.findSumPeopleByParams1012(reservesettingstoreid, reservesettingDate, reservesettingtime1012);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime1012SumTeam = reservesettingRepository.findSumTeamByParams1012(reservesettingShopSeq, reservesettingDate, reservesettingtime1012);
+        int reservesettingtime1012SumTeam = reservesettingRepository.findSumTeamByParams1012(reservesettingstoreid, reservesettingDate, reservesettingtime1012);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime1214SumPeople = reservesettingRepository.findSumPeopleByParams1214(reservesettingShopSeq, reservesettingDate, reservesettingtime1214);
+        int reservesettingtime1214SumPeople = reservesettingRepository.findSumPeopleByParams1214(reservesettingstoreid, reservesettingDate, reservesettingtime1214);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime1214SumTeam = reservesettingRepository.findSumTeamByParams1214(reservesettingShopSeq, reservesettingDate, reservesettingtime1214);
+        int reservesettingtime1214SumTeam = reservesettingRepository.findSumTeamByParams1214(reservesettingstoreid, reservesettingDate, reservesettingtime1214);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime1416SumPeople = reservesettingRepository.findSumPeopleByParams1416(reservesettingShopSeq, reservesettingDate, reservesettingtime1416);
+        int reservesettingtime1416SumPeople = reservesettingRepository.findSumPeopleByParams1416(reservesettingstoreid, reservesettingDate, reservesettingtime1416);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime1416SumTeam = reservesettingRepository.findSumTeamByParams1416(reservesettingShopSeq, reservesettingDate, reservesettingtime1416);
+        int reservesettingtime1416SumTeam = reservesettingRepository.findSumTeamByParams1416(reservesettingstoreid, reservesettingDate, reservesettingtime1416);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime1618SumPeople = reservesettingRepository.findSumPeopleByParams1618(reservesettingShopSeq, reservesettingDate, reservesettingtime1618);
+        int reservesettingtime1618SumPeople = reservesettingRepository.findSumPeopleByParams1618(reservesettingstoreid, reservesettingDate, reservesettingtime1618);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime1618SumTeam = reservesettingRepository.findSumTeamByParams1618(reservesettingShopSeq, reservesettingDate, reservesettingtime1618);
+        int reservesettingtime1618SumTeam = reservesettingRepository.findSumTeamByParams1618(reservesettingstoreid, reservesettingDate, reservesettingtime1618);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime1820SumPeople = reservesettingRepository.findSumPeopleByParams1820(reservesettingShopSeq, reservesettingDate, reservesettingtime1820);
+        int reservesettingtime1820SumPeople = reservesettingRepository.findSumPeopleByParams1820(reservesettingstoreid, reservesettingDate, reservesettingtime1820);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime1820SumTeam = reservesettingRepository.findSumTeamByParams1820(reservesettingShopSeq, reservesettingDate, reservesettingtime1820);
+        int reservesettingtime1820SumTeam = reservesettingRepository.findSumTeamByParams1820(reservesettingstoreid, reservesettingDate, reservesettingtime1820);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 인원 수
-        int reservesettingtime2022SumPeople = reservesettingRepository.findSumPeopleByParams2022(reservesettingShopSeq, reservesettingDate, reservesettingtime2022);
+        int reservesettingtime2022SumPeople = reservesettingRepository.findSumPeopleByParams2022(reservesettingstoreid, reservesettingDate, reservesettingtime2022);
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 최대 팀 수
-        int reservesettingtime2022SumTeam = reservesettingRepository.findSumTeamByParams2022(reservesettingShopSeq, reservesettingDate, reservesettingtime2022);
+        int reservesettingtime2022SumTeam = reservesettingRepository.findSumTeamByParams2022(reservesettingstoreid, reservesettingDate, reservesettingtime2022);
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime0810SumPeople = reserveRepository.findSumPeopleByParams0810Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime0810);
+        Integer reservetime0810SumPeople = reserveRepository.findSumPeopleByParams0810Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime0810);
         reservetime0810SumPeople = reservetime0810SumPeople != null ? reservetime0810SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime0810SumTeam = reserveRepository.findSumTeamByParams0810Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime0810);
+        Integer reservetime0810SumTeam = reserveRepository.findSumTeamByParams0810Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime0810);
         reservetime0810SumTeam = reservetime0810SumTeam != null ? reservetime0810SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime1012SumPeople = reserveRepository.findSumPeopleByParams1012Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1012);
+        Integer reservetime1012SumPeople = reserveRepository.findSumPeopleByParams1012Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1012);
         reservetime1012SumPeople = reservetime1012SumPeople != null ? reservetime1012SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime1012SumTeam = reserveRepository.findSumTeamByParams1012Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1012);
+        Integer reservetime1012SumTeam = reserveRepository.findSumTeamByParams1012Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1012);
         reservetime1012SumTeam = reservetime1012SumTeam != null ? reservetime1012SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime1214SumPeople = reserveRepository.findSumPeopleByParams1214Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1214);
+        Integer reservetime1214SumPeople = reserveRepository.findSumPeopleByParams1214Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1214);
         reservetime1214SumPeople = reservetime1214SumPeople != null ? reservetime1214SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime1214SumTeam = reserveRepository.findSumTeamByParams1214Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1214);
+        Integer reservetime1214SumTeam = reserveRepository.findSumTeamByParams1214Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1214);
         reservetime1214SumTeam = reservetime1214SumTeam != null ? reservetime1214SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime1416SumPeople = reserveRepository.findSumPeopleByParams1416Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1416);
+        Integer reservetime1416SumPeople = reserveRepository.findSumPeopleByParams1416Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1416);
         reservetime1416SumPeople = reservetime1416SumPeople != null ? reservetime1416SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime1416SumTeam = reserveRepository.findSumTeamByParams1416Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1416);
+        Integer reservetime1416SumTeam = reserveRepository.findSumTeamByParams1416Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1416);
         reservetime1416SumTeam = reservetime1416SumTeam != null ? reservetime1416SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime1618SumPeople = reserveRepository.findSumPeopleByParams1618Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1618);
+        Integer reservetime1618SumPeople = reserveRepository.findSumPeopleByParams1618Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1618);
         reservetime1618SumPeople = reservetime1618SumPeople != null ? reservetime1618SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime1618SumTeam = reserveRepository.findSumTeamByParams1618Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1618);
+        Integer reservetime1618SumTeam = reserveRepository.findSumTeamByParams1618Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1618);
         reservetime1618SumTeam = reservetime1618SumTeam != null ? reservetime1618SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime1820SumPeople = reserveRepository.findSumPeopleByParams1820Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1820);
+        Integer reservetime1820SumPeople = reserveRepository.findSumPeopleByParams1820Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1820);
         reservetime1820SumPeople = reservetime1820SumPeople != null ? reservetime1820SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime1820SumTeam = reserveRepository.findSumTeamByParams1820Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime1820);
+        Integer reservetime1820SumTeam = reserveRepository.findSumTeamByParams1820Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime1820);
         reservetime1820SumTeam = reservetime1820SumTeam != null ? reservetime1820SumTeam : 0;
 
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 인원 수 합
-        Integer reservetime2022SumPeople = reserveRepository.findSumPeopleByParams2022Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime2022);
+        Integer reservetime2022SumPeople = reserveRepository.findSumPeopleByParams2022Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime2022);
         reservetime2022SumPeople = reservetime2022SumPeople != null ? reservetime2022SumPeople : 0;
         //vue에서 가져온 해당 식당 고유번호, 날짜, 시간대의 예약된 팀 수 합
-        Integer reservetime2022SumTeam = reserveRepository.findSumTeamByParams2022Reserve(reservesettingShopSeq, reservesettingDate, reservesettingtime2022);
+        Integer reservetime2022SumTeam = reserveRepository.findSumTeamByParams2022Reserve(reservesettingstoreid, reservesettingDate, reservesettingtime2022);
         reservetime2022SumTeam = reservetime2022SumTeam != null ? reservetime2022SumTeam : 0;
 
         //해당 식당 고유번호, 날짜, 시간대의 예약되어있는 인원 수 합 + vue에서 넘어온 인원(people 수)

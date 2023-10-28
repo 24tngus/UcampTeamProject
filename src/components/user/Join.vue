@@ -11,7 +11,6 @@
       </a>
     </h1>
   </header>
-
         <legend>회원가입</legend>
 
         <ul class="container">
@@ -19,6 +18,7 @@
             <div class="input-area">
               <label for="id" class="blind">아이디</label>
               <input type="text" placeholder="아이디" id="id" v-model="state.form.id" required/>
+              <button @click="exist(state.form.id)">중복 확인</button>
             </div>
           </li>
           <li class="row">
@@ -27,7 +27,6 @@
             </div>
           </li>
         </ul>
-
         <ul class="container">
           <li class="row name-area">
             <input type="text" placeholder="이름" id="name" v-model="state.form.name" required/>
@@ -39,12 +38,11 @@
             <input type="email" placeholder="이메일" id="email" v-model="state.form.email" />
           </li>
         </ul>
-
         <ul class="container">
           <li class="row tel-area">
             <div class="input-area">
               <select>
-                <option value="" selected disabled>국가번호</option>
+<!--                <option value="" selected disabled>국가번호</option>-->
                 <option value="82">+82</option>
               </select>
             </div>
@@ -66,13 +64,13 @@ import {reactive} from "vue";
 import axios from "axios";
 import router from "@/scripts/router";
 import Header from "@/components/header/Header.vue";
-import store from "@/scripts/store";
 
 export default {
   name: "Join",
   components: {Header},
   setup() {
     const state = reactive({
+      flag: 0,
       form :{
         id: "",
         password: "",
@@ -82,15 +80,53 @@ export default {
         tel: ""
       }
     })
+    const exist = (exist) => {
+      if (state.form.id == "") {
+        window.alert("아이디를 입력해주세요");
+        router.push({path: "/join"});
+      } else {
+        axios.get(`/api/user/join/${exist}`, ).then((res)=> {
+          if (res.data == 0) {
+            window.alert("중복된 아이디입니다. 다시 입력해주세요");
+          } else {
+            window.alert("사용 가능한 아이디입니다");
+            state.flag = 1;
+          }
+          router.push({path: "/join"});
+        })
+      }
+    }
     const join = () => {
-      axios.post("/api/user/join", state.form).then((res)=> {
-        store.commit("setAccount", res.data);
-        window.alert("회원가입 되었습니다");
-        router.push({path: "/login"});
-      })
+      if (state.form.id == "") {
+        window.alert("아이디를 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.flag != 1) {
+        window.alert("아이디를 중복 검사해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.password == "") {
+        window.alert("비밀번호를 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.name == "") {
+        window.alert("이름을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.nickname == "") {
+        window.alert("닉네임을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.email == "") {
+        window.alert("이메일을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.tel == "") {
+        window.alert("전화번호를 입력해주세요");
+        router.push({path: "/join"});
+      } else {
+        axios.post("/api/user/join", state.form).then(()=> {
+          window.alert("회원가입 되었습니다");
+          router.push({path: "/login"});
+        })
+      }
     }
 
-    return {state, join}
+    return {state, join, exist}
   }
 }
 
@@ -312,7 +348,6 @@ fieldset legend {
   margin-left: 10px;
 }
 
-
 /* Header */
 .header .logo {
   display: block;
@@ -328,11 +363,5 @@ fieldset legend {
 /* Main */
 .main .form {
   margin: 0 15px;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  font-size: 12px;
 }
 </style>

@@ -1,72 +1,101 @@
 <template>
-  <div>
-    <ul>
-      식당 고유 번호 <input type="number" v-model="shopseq">{{ shopseq }}<br>
-      예약 유저 닉네임 <input type="text" v-model="reserver">{{ reserver }}<br>
-      예약 팀 수 <input tpye="number" v-model="team">{{ team }}<br>
-      예약 인원 수 <input type="number" v-model="people">{{ people }}<br>
-      예약 날짜 <input type="date" v-model="date">{{ date }}<br>
-      <div v-if="isDataLoaded">
-        <template v-if="reserveData">
-          08:00 ~ 10:00
-          <button @click="toggleTime(reserveData, 'time0810')" :disabled="reserveGetData.time0810 !== 1">
-            {{ reserveData.time0810 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time0810 }}
-          <br>
-          10:00 ~ 12:00
-          <button @click="toggleTime(reserveData, 'time1012')" :disabled="reserveGetData.time1012 !== 1">
-            {{ reserveData.time1012 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time1012 }}
-          <br>
-          12:00 ~ 14:00
-          <button @click="toggleTime(reserveData, 'time1214')" :disabled="reserveGetData.time1214 !== 1">
-            {{ reserveData.time1214 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time1214 }}
-          <br>
-          14:00 ~ 16:00
-          <button @click="toggleTime(reserveData, 'time1416')" :disabled="reserveGetData.time1416 !== 1">
-            {{ reserveData.time1416 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time1416 }}
-          <br>
-          16:00 ~ 18:00
-          <button @click="toggleTime(reserveData, 'time1618')" :disabled="reserveGetData.time1618 !== 1">
-            {{ reserveData.time1618 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time1618 }}
-          <br>
-          18:00 ~ 20:00
-          <button @click="toggleTime(reserveData, 'time1820')" :disabled="reserveGetData.time1820 !== 1">
-            {{ reserveData.time1820 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time1820 }}
-          <br>
-          20:00 ~ 22:00
-          <button @click="toggleTime(reserveData, 'time2022')" :disabled="reserveGetData.time2022 !== 1">
-            {{ reserveData.time2022 === 1 ? '선택' : '해제' }}
-          </button>
-          {{ reserveData.time2022 }}
-          <br>
+  <Header />
+  <br><br>
+  <div class="card shadow-sm" id="cat">
+    <div class="card-body" >
+      <div><h2 class="cattitle">Book Here!</h2></div>
+      <div>
+        <ul>
+          <hr>
+          <div class="memberform">
+            <div class="member">
+              <div class="field">
+                <b>식당 고유 번호</b>
+                <input type="number" v-model="shopseq" class="ruser" >{{ shopseq }}<br>
+              </div>
+              <div class="field">
+                <b>예약 유저 닉네임</b>
+                <input type="text" v-model="reserver" class="ruser" >{{ reserver }}<br>
+              </div>
+              <div class="fieldbook">
+                <b>예약 팀 수</b>
+                <div>
+                  <input type="number" v-model="team" class="ruser" >{{ team }}<br>
+                  <b>예약 인원 수</b>
+                  <input type="number" v-model="people" class="ruser" >{{ people }}<br>
+                </div>
+              </div>
+              <div class="field">
+                <b>예약 날짜</b>
+                <input type="date" v-model="date" class="ruser" >{{ date }}<br>
+              </div>
+            </div>
+            <div v-if="isDataLoaded">
+              <template v-if="reserveData">
+                08:00 ~ 10:00
+                <button @click="toggleTime(reserveData, 'time0810')" :disabled="reserveGetData.time0810 !== 1">
+                  {{ reserveData.time0810 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time0810 }}
+                <br>
+                10:00 ~ 12:00
+                <button @click="toggleTime(reserveData, 'time1012')" :disabled="reserveGetData.time1012 !== 1">
+                  {{ reserveData.time1012 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time1012 }}
+                <br>
+                12:00 ~ 14:00
+                <button @click="toggleTime(reserveData, 'time1214')" :disabled="reserveGetData.time1214 !== 1">
+                  {{ reserveData.time1214 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time1214 }}
+                <br>
+                14:00 ~ 16:00
+                <button @click="toggleTime(reserveData, 'time1416')" :disabled="reserveGetData.time1416 !== 1">
+                  {{ reserveData.time1416 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time1416 }}
+                <br>
+                16:00 ~ 18:00
+                <button @click="toggleTime(reserveData, 'time1618')" :disabled="reserveGetData.time1618 !== 1">
+                  {{ reserveData.time1618 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time1618 }}
+                <br>
+                18:00 ~ 20:00
+                <button @click="toggleTime(reserveData, 'time1820')" :disabled="reserveGetData.time1820 !== 1">
+                  {{ reserveData.time1820 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time1820 }}
+                <br>
+                20:00 ~ 22:00
+                <button @click="toggleTime(reserveData, 'time2022')" :disabled="reserveGetData.time2022 !== 1">
+                  {{ reserveData.time2022 === 1 ? '선택' : '해제' }}
+                </button>
+                {{ reserveData.time2022 }}
+                <br>
 
 
-        </template>
-        <template v-else>
-          해당 날짜에 대한 정보가 없습니다. 다른 날짜를 선택해주세요.<br>
-        </template>
+              </template>
+              <template v-else>
+                해당 날짜에 대한 정보가 없습니다. 다른 날짜를 선택해주세요.<br>
+              </template>
+            </div>
+            <b>요청사항</b> <input type="text" v-model="comment" class="com">{{ comment }}<hr>
+            <button @click="insertReserve" class="bookbtn">예약하기</button>
+          </div>
+        </ul>
       </div>
-      코멘트 <input type="text" v-model="comment">{{ comment }}<br>
-      <button @click="insertReserve">예약하기</button>
-    </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Header from "@/components/header/Header.vue";
 
 export default {
+  components: {Header},
   data() {
     return {
       reserveGetData: {
@@ -200,4 +229,49 @@ export default {
 </script>
 
 <style scoped>
+.memberform{
+  padding : 0 30px 30px 30px;
+}
+.fieldbook div{
+  display: flex;
+  gap:10px;
+}
+.member input:not(input[type=radio]), .com{
+  border: 1px solid #dadada;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 6px;
+}
+.bookbtn{
+  background-color: darkolivegreen;
+  color: white;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  border : 1px solid white;
+}
+.field{
+  margin :10px 0; /*상하로 좀 띄워주기*/
+  gap:10px;
+}
+.member b{
+  /* border: 1px solid #000; */
+  display: block; /*수직 정렬하기 */
+  margin-bottom: 5px;
+}
+#cat{
+  width : 60%;
+  height : auto;
+  margin : auto;
+  text-align: left;
+}
+.cattitle{
+  padding : 20px;
+  font-weight: 700;
+}
+
 </style>

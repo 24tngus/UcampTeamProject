@@ -19,7 +19,7 @@
 
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <router-link to="/" class="navbar-brand d-flex align-items-center">
+        <router-link to="/home_store" class="navbar-brand d-flex align-items-center">
           <i class="fa fa-pagelines" aria-hidden="true"></i>&nbsp;
           <strong>VeganRoadMap</strong>
         </router-link>
@@ -30,30 +30,26 @@
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         </router-link>
         <!-- 로그아웃 아이콘-->
-        <a to="/login" class="text-white" @click="logout()" v-else>
+        <a to="/login2" class="text-white" @click="logout()" v-else>
           <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
         &nbsp;
         <!-- 마이페이지 아이콘-->
-        <router-link to="/mypage" class="cart btn" v-if="$store.state.account.id">
+        <router-link to="/mystore" class="cart btn" v-if="$store.state.account.id">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-        </router-link>
-        <!-- 카트 아이콘-->
-        <router-link to="/cart" class="cart btn" v-if="$store.state.account.id">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         </router-link>
       </div>
     </div>
 
     <ul class="nav justify-content-center" id="abc">
       <li class="nav-item">
-        <router-link to="/reserve" class="menu">Vegan</router-link>
+        <router-link to="/vegan3" class="menu">비건로드맵 소개</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/shop_insert" class="menu">가게 등록</router-link>
+        <router-link to="/shop_insert" class="menu">입점신청</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/reserve_info" class="menu">예약 확인</router-link>
+        <router-link to="/reserve_select" class="menu">예약 확인</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/reserve_user" class="menu">FAQ</router-link>
+        <router-link to="/vegan4" class="menu">이용가이드</router-link>
       </li>
     </ul>
 
@@ -79,7 +75,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #abc{
   background: darkolivegreen;
   height : 70px;

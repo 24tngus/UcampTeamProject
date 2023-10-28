@@ -18,7 +18,7 @@ import java.util.Optional;
 public class ImageController {
     @Autowired
     private ImageRepository imageRepository;
-    
+
     @PostMapping("/upload")
     public void uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
         Image image = new Image();
@@ -26,7 +26,7 @@ public class ImageController {
         image.setData(file.getBytes());
         imageRepository.save(image);
     }
-    
+
     @GetMapping("/download/{name}")
     public ResponseEntity<byte[]> downloadImage(@PathVariable String name) {
         Optional<Image> image = imageRepository.findByName(name);

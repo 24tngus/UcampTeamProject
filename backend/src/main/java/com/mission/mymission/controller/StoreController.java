@@ -3,7 +3,6 @@ package com.mission.mymission.controller;
 import com.mission.mymission.entity.Store;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.service.JwtService;
-import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.File;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -85,6 +81,7 @@ public class StoreController {
         newStore.setTel(params.get("tel"));
         newStore.setStorename(params.get("storename"));
         newStore.setStorenumber(params.get("storenumber"));
+        newStore.setStorefile(params.get("storefile"));
 
         //유저가 입력한 패스워드를 암호화시킨 변수 encodePassword (패스워드 암호화 작업)
         String encodePassword = passwordEncoder.encode(params.get("password"));
@@ -95,10 +92,17 @@ public class StoreController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping("/store/join/{id}")
+    public ResponseEntity joinExist(@PathVariable("id") String id, HttpServletResponse res) {
+        Store exist = storeRepository.findById(id);
+        if (exist != null) {
+            return new ResponseEntity<>(0, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(1, HttpStatus.OK);
+    }
 
     @GetMapping("/store/mypage")
     public ResponseEntity getStore(@CookieValue(value = "token", required = false) String token) {
-
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
@@ -124,6 +128,7 @@ public class StoreController {
         store.setTel(updatestore.getTel());
         store.setStorename(updatestore.getStorename());
         store.setStorenumber(updatestore.getStorenumber());
+        store.setStorefile(updatestore.getStorefile());
 
         String encodePassword = passwordEncoder.encode(updatestore.getPassword());
         store.setPassword(encodePassword);

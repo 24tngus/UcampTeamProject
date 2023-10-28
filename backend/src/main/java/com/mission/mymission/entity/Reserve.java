@@ -15,8 +15,8 @@ public class Reserve {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @Column(nullable = false)
-    private int shopseq;
+    @Column(length = 100)
+    private String storeid;
 
     @Column(length = 100, nullable = false)
     private String reserver;

@@ -1,41 +1,91 @@
 <template>
   <Header2/>
-  <div>
-    <ul>
-      <li v-for="reserve in reserves" :key="reserve.seq">
-        예약 세팅 고유 번호 {{reserve.seq}}<br>
-        가게고유번호 {{ reserve.shopseq }}<br>
-        max 테이블 개수 <input type="number" v-model="reserve.team"><br>
-        max 인원 수 <input type="number" v-model="reserve.people"><br>
-        예약 날짜 <input type="date" v-model="reserve.date"><br>
-        08:00 ~ 10:00 <button @click="toggleTime(reserve, 'time0810')">{{ reserve.time0810 === 1 ? '해제' : '선택' }}</button>{{ reserve.time0810 }}<br>
-        10:00 ~ 12:00 <button @click="toggleTime(reserve, 'time1012')">{{ reserve.time1012 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1012 }}<br>
-        12:00 ~ 14:00 <button @click="toggleTime(reserve, 'time1214')">{{ reserve.time1214 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1214 }}<br>
-        14:00 ~ 16:00 <button @click="toggleTime(reserve, 'time1416')">{{ reserve.time1416 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1416 }}<br>
-        16:00 ~ 18:00 <button @click="toggleTime(reserve, 'time1618')">{{ reserve.time1618 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1618 }}<br>
-        18:00 ~ 20:00 <button @click="toggleTime(reserve, 'time1820')">{{ reserve.time1820 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1820 }}<br>
-        20:00 ~ 22:00 <button @click="toggleTime(reserve, 'time2022')">{{ reserve.time2022 === 1 ? '해제' : '선택' }}</button>{{ reserve.time2022 }}<br>
-        <button @click="updateReserve(reserve)">수정하기</button>
-      </li>
-    </ul>
+  <div id="wrapper">
+    <div id="container">
+      <div class="tab">
+        <router-link to="/mystore"><h1>마이페이지</h1></router-link>
+        <div class="buttontab">
+          <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
+          <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
+          <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+        </div>
+      </div>
+
+      <!-- 본문 작성 -->
+      <div class="online small" id="online">
+        <h1>{{state.items.storename}} 가게 예약 확인</h1>
+        <br><br>
+        <div class='app'>
+          <main class='project'>
+            <div class='project-tasks'>
+              <div class='project-column'>
+                <div class='task' draggable='true'>
+                  <router-link to="/reserve_select">
+                    <div class='task__tags'>
+                      <span class='task__tag task__tag--copyright'>예약</span>
+                      <button class='task__options'></button></div>
+                    <p>Konsep hero title yang menarik</p>
+                  </router-link>
+                </div>
+
+
+              </div>
+
+            </div>
+          </main>
+        </div>
+
+        <!-- 페이지 처리 -->
+        <div id="num">
+          <span><a href="#"> &lt; </a></span>
+          <span><a href="">1</a></span>
+          <span><a href="#"> > </a></span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Header2 from "@/components/header/Header2.vue";
+import {reactive} from "vue";
 
 export default {
   components: {Header2},
+  setup() {
+    const state = reactive({
+      items: [],
+      storename: ""
+    })
+    const load = () => {
+      axios.get("/api/store/mypage").then(({data}) => {
+        state.items = data;
+      })
+    };
+    return {state, load};
+  },
   data() {
     return {
-      reserves: [],
+      reserves: []
     };
   },
   created() {
     this.fetchReserves();
   },
   methods: {
+    formatDate(timestamp) {
+      const date = new Date(timestamp);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const dayOfWeek = date.getDay();
+      const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      const dayName = daysOfWeek[dayOfWeek];
+      return `${year}년 ${month}월 ${day}일 ${dayName}`;
+    },
+    // 수정시 시간 1개만 선택할 수 있도록 구현
     checkOtherTime(reserve, time) {
       for (let key in reserve) {
         if (key.includes('time') && key !== time && reserve[key] === 1) {
@@ -57,10 +107,9 @@ export default {
       }
       this.updateReserve(reserve);
     },
-
     updateReserve(reserve) {
       axios
-          .put(`/api/reservetest/update/${reserve.seq}`, reserve)
+          .put(`/api/reserve/update/${reserve.seq}`, reserve)
           .then((response) => {
             console.log("Reserve updated successfully", response.data);
             this.fetchReserves();
@@ -69,10 +118,9 @@ export default {
             console.error("Error updating reserve", error);
           });
     },
-
     fetchReserves() {
       axios
-          .get("/api/reservetest")
+          .get("/api/reserve/shop")
           .then((response) => {
             this.reserves = response.data;
           })
@@ -85,4 +133,415 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
+
+*,html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 13px;
+  font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
+}
+
+.image-size {
+  width: 50%;
+}
+
+a{color: #333;
+  text-decoration:none;
+}
+
+ul li{
+  list-style: none;
+}
+
+#wrapper{
+  width: 100%;
+}
+
+#num{
+  text-align: center;
+  margin: 30px 0;
+  padding: 40px 0;
+  position: relative;
+  z-index: 2
+}
+#num:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left: 0;
+  border-top: 1px solid #d4d4d4;
+  z-index: -1
+}
+#num span{
+  display: inline-block;
+  border: 1px solid #d4d4d4;
+  margin: 0 2px;
+  padding: 5px 10px;
+  vertical-align: middle;
+  cursor: pointer
+}
+#num span a{
+  font-size: 10px;
+}
+.currentNum{
+  background: #32312f!important;
+}
+.currentNum a{
+  color: #fff
+}
+#num span:hover{
+  background: #d4d4d4;
+}
+#num span:hover a,#num span:hover i{
+  color: #fff
+}
+
+.status{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 21px;
+}
+.item{
+  display: flex;
+}
+.number{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+.item_text{
+  font-size: 11px;
+  font-weight: normal;
+  color: #c2c2c2;
+  text-align: center;
+}
+.item_icon{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 16px;
+  height: 16px;
+}
+
+#notice:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+#notice ul{
+  display: inline-block;
+  height:25px;
+  line-height: 25px;
+  width: 70%;
+  text-align: left;
+  padding-left: 15%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  background-size: 20px;
+}
+#notice ul:after{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 25px;
+  line-height: 25px;
+  background-size: 20px;
+  z-index: 2000;
+  top:4px;
+  left: 16%;
+  z-index: 120;
+}
+
+#noticewrap a, #noticewrap i{
+  color: #fff;
+}
+#noticewrap ul a{
+  font-size: 0.7em;
+}
+
+#noticewrap p{
+  display: inline-block;
+  line-height: 25px;
+}
+
+#wrapper{
+  background: #f1f1f1
+}
+#wrapper header {
+  position: relative !important;
+  background: #fff!important
+}
+#wrapper .headerwrap a, #wrapper .user i{
+  color: #333
+}
+#container{
+  position: relative;
+  max-width: 70%;
+  min-width:  880px;
+  margin: 40px auto;
+  background: #fff;
+}
+#container:after{
+  content:'';
+  display: block;
+  clear: both
+}
+#container > div:not(:first-of-type){
+  background: #fff;
+  padding: 40px 20px 0 250px;
+
+}
+.tab{
+  position: absolute;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  /*    float: left;*/
+  /*    background: pink;*/
+  height: 100%;
+  /*    position: relative;*/
+  padding: 200px 20px 0 20px;
+}
+.tab:after{
+  content: '';
+  display: block;
+  clear:both
+}
+button{
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  height: 70px;
+}
+button.on{
+  color: #fa2828;
+  font-weight: 900
+}
+.tab h1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*    float: left;*/
+  height: 150px;
+  width: 100%;
+  background: darkolivegreen;
+  color: #fff;
+  font-size: 18px;
+  text-align: left;
+  padding: 25px
+}
+.tab button{
+  width: 100%;
+  text-align: left;
+  height: 80px;
+  font-size: 14px;
+  font-weight: 800;
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px
+}
+.tab button:hover{
+  color: #fa2828;
+}
+.tab button:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.online.small h1{
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+
+#num{
+  text-align: center;
+  margin: 30px 0;
+  padding: 40px 0;
+  position: relative;
+  z-index: 2
+}
+#num:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left: 0;
+  border-top: 1px solid #d4d4d4;
+  z-index: -1
+}
+#num span{
+  display: inline-block;
+  border: 1px solid #d4d4d4;
+  margin: 0 2px;
+  padding: 5px 10px;
+  vertical-align: middle;
+  cursor: pointer
+}
+#num span a{
+  font-size: 10px;
+}
+.currentNum{
+  background: #32312f!important;
+}
+.currentNum a{
+  color: #fff
+}
+#num span:hover{
+  background: #d4d4d4;
+}
+#num span:hover a,#num span:hover i{
+  color: #fff
+}
+footer{
+  background: #fff;
+  position: relative;
+  z-index: 1
+}
+footer:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 300%;
+  height: 100%;
+  background: #fff;
+  z-index: -1
+}
+@media (max-width:700px){
+  #wrapper header {
+    position: fixed !important;
+    top: 0;
+  }
+  #container{
+    position: relative;
+    min-width: 100%;
+    max-width: 100%;
+    margin-top: 120px;
+  }
+  .tab{
+    width: 100%;
+    height:100px;
+    padding:0  20px 0 0;
+  }
+  .tab > h1{
+    position:static;
+    float: left;
+    height: 100%;
+    width: 30%;
+  }
+  .tab .buttontab{
+    float: left;
+    width: 70%;
+    height:100%;
+    padding-left: 20px;
+  }
+  .tab button{
+    height: 50%;
+  }
+
+  #container > div:not(:first-of-type){
+    padding:120px 0 0 0;
+    width: 100%;
+  }
+  .online ul{
+    min-width: 100%;
+    max-width: 100%
+  }
+  .online ul .thumbox{
+    padding: 0 0 0 120px ;
+  }
+  #online h1{
+    display: none;
+  }
+
+  .online .thumbox{
+    margin-bottom: 25px;
+    width:100%;
+  }
+  .online .thumbox .textbox{
+    text-align: left;
+  }
+
+  .online .thumbox .img{
+    left:0;
+    transform: translate(0);
+  }
+  #num{
+    display: none
+  }
+}
+
+.btn {
+  background-color: darkolivegreen;
+  color: #ffffff;
+  width : 20%;
+  height : 90%;
+}
+
+:root {
+  --bg:#ebf0f7;
+  --header:#fbf4f6;
+  --text:#2e2e2f;
+  --white:#ffffff;
+  --light-grey:#c4cad3;
+  --tag-1:#ceecfd;
+  --tag-1-text:#2e87ba;
+  --tag-2:#d6ede2;
+  --tag-2-text:#13854e;
+  --tag-3:#ceecfd;
+  --tag-3-text:#2d86ba;
+  --tag-4:#f2dcf5;
+  --tag-4-text:#a734ba;
+  --purple:#7784ee;
+}
+
+@mixin display {
+  display:flex;
+  align-items:center;
+}
+
+h1 {
+  font-size:30px;
+}
+.project {
+  padding:2rem;
+  max-width:75%;
+  width:100%;
+  display:inline-block;
+}
+
+.task {
+  cursor: move;
+  background-color:white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  margin-bottom: 1rem;
+  border: 3px dashed transparent;
+
+  &:hover {
+    box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+    border-color: rgba(162, 179, 207, .2) !important;
+  }
+
+  p {
+    font-size: 15px;
+    margin: 1.2rem 0;
+  }
+}
 </style>

@@ -36,6 +36,9 @@ public class Store {
     @Column(length = 100, nullable = false)
     private String storenumber;
 
+    @Column(length = 100, nullable = false)
+    private String storefile;
+
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime req = LocalDateTime.now();

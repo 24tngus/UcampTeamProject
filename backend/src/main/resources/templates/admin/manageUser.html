@@ -12,6 +12,8 @@
 
     <style>
         #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
+        #top {position: fixed; bottom: 30px; right: 30px;}
     </style>
 
 
@@ -26,11 +28,11 @@
         </div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">식당(주인) 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당(가게) 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">기타</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -51,12 +53,9 @@
                     <th scope="col">Number</th>
                     <th scope="col">user-information</th>
                     <th scope="col">Id</th>
-                    <th scope="col">Password</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Tel</th>
-                    <th scope="col">Req</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Nickname</th>
                     <th scope="col">delete</th>
                 </tr>
@@ -64,14 +63,11 @@
                 <tbody>
                 <tr th:each="user, userState : ${users}">
                     <td th:text="${userState.count}"></td>
-                    <td><a class="btn btn-outline-success" th:href="@{/admin/manageUserInfo/{email}(email=${user.email})}">상세정보</a></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/admin/manageUserInfo/{nickname}(nickname=${user.nickname})}">상세정보</a></td>
                     <td th:text="${user.id}"></td>
-                    <td th:text="${user.password}"></td>
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.email}"></td>
                     <td th:text="${user.tel}"></td>
-                    <td th:text="${user.req}"></td>
-                    <td th:text="${user.status}"></td>
                     <td th:text="${user.nickname}"></td>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteUser/{email}(email=${user.email})}"
                            onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
@@ -79,6 +75,8 @@
                 </tbody>
             </table>
         </div>
+
+        <a class="btn btn-warning" href="#" id="top">맨 위로</a>
 
     </div> <!-- /#page-content-wrapper -->
 

@@ -57,6 +57,9 @@ public class Shop {
     @Column(length = 400)
     private String image5;
 
+    @Column(nullable = false)
+    private int permit;
+
     //    @Override
 //    public String toString(){
 //        return "Reservesetting" + "seq=" + seq + "shopseq=" + shopseq + "team=" + team + "people=" + people + "date=" + date

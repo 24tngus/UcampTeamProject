@@ -12,6 +12,8 @@
 
     <style>
         #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
+        #top {position: fixed; bottom: 30px; right: 30px;}
     </style>
 
 
@@ -26,11 +28,11 @@
         </div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">식당(주인) 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당(가게) 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">기타</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -43,6 +45,22 @@
         </div> <!-- /Page content -->
 
         <hr>
+
+        <form class="row g-3" method="get" action="/admin/searchReview">
+            <div class="col-auto">
+                <select class="form-select" name="filter">
+                    <!--                    <option selected>필터를 선택하세요</option>-->
+                    <option value="1">가게 검색</option>
+                    <option value="2">작성자 검색</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input class="form-control sm-5" type="text" name="keyword" placeholder="작성자 이름을 입력하세요" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-primary" type="submit">검색</button>
+            </div>
+        </form>
 
         <div>
             <table class="table">
@@ -59,16 +77,50 @@
                 <tbody>
                 <tr th:each="review, reviewState : ${reviews}">
                     <td th:text="${reviewState.count}"></td>
-                    <td th:text="${review.shopseq}"></td>
-                    <td th:text="${review.writer}"></td>
+                    <td>
+                        <a class="btn btn-outline-success"
+                           th:href="@{'/admin/manageShopInfo/' + ${review.shopseq}}">
+                            <span th:text="${review.shopseq}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success"
+                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
+                            <span th:text="${review.writer}"></span>
+                        </a>
+                    </td>
                     <td th:text="${review.content}"></td>
                     <td th:text="${review.status}"></td>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteReview/{seq}(seq=${review.seq})}"
                            onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
                 </tr>
+                <tr th:each="review, reviewState : ${searchList}">
+                    <td th:text="${reviewState.count}"></td>
+                    <td>
+                        <a class="btn btn-outline-success"
+                           th:href="@{'/admin/manageShopInfo/' + ${review.shopseq}}">
+                            <span th:text="${review.shopseq}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-success"
+                           th:href="@{'/admin/manageUserInfo/' + ${review.writer}}">
+                            <span th:text="${review.writer}"></span>
+                        </a>
+                    </td>
+                    <td th:text="${review.content}"></td>
+                    <td th:text="${review.status}"></td>
+                    <td>
+                        <a class="btn btn-outline-danger" th:href="@{/admin/deleteReview/{seq}(seq=${review.seq})}"
+                           onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete
+                        </a>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
+
+        <a class="btn btn-warning" href="#" id="top">맨 위로</a>
 
     </div> <!-- /#page-content-wrapper -->
 

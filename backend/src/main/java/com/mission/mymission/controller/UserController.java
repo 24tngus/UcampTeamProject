@@ -83,9 +83,10 @@ public class UserController {
 
     @PostMapping("/user/join")
     public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
-
         User newUser = new User();
-        newUser.setId(params.get("id"));
+
+        String get_id = params.get("id");
+        newUser.setId(get_id);
         newUser.setName(params.get("name"));
         newUser.setNickname(params.get("nickname"));
         newUser.setEmail(params.get("email"));
@@ -98,7 +99,16 @@ public class UserController {
 
         userRepository.save(newUser);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(1, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/join/{id}")
+    public ResponseEntity joinExist(@PathVariable("id") String id, HttpServletResponse res) {
+        User exist = userRepository.findById(id);
+        if (exist != null) {
+            return new ResponseEntity<>(0, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(1, HttpStatus.OK);
     }
 
     @GetMapping("/user/mypage")

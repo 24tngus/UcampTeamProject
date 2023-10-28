@@ -4,185 +4,58 @@
   <div class="card shadow-sm">
     <div class="card-body">
       <div class="joinform">
-
-  <!--
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Naver SignUp</title>
-    -->
-  <!-- Google Material Icons -->
-  <!--
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  -->
-  <!-- Archivo Black Font -->
-  <!--
-  <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
--->
   <header class="header">
-    <!--
-      AS-IS
-      - code
-        <h1 class="blind">네이버 회원가입</h1>
-        <span class="logo">
-          <a href="#">회원가입</a>
-        </span>
-      - comment
-        h1을 블라인드 처리하지 말고 logo랑 하나로 묶는 게 좋을 거 같네요.
-
-      TO-BE
-      - 아래와 같이 변경 함.
-      - Anchor내에 회원가입을 넣은 이유: VoiceOver와 같은 접근성 툴이용시 이 문서가 네이버 회원가입임을 알게하기 위함.
-    -->
     <h1>
       <a href="#" class="logo">
         VeganRoadMap
-        <span class="blind">회원가입</span>
       </a>
     </h1>
   </header>
-
-        <legend>Sign Up</legend>
+        <legend>회원가입</legend>
 
         <ul class="container">
           <li class="row">
             <div class="input-area">
               <label for="id" class="blind">아이디</label>
-              <input type="text" placeholder="아이디" id="id"  required/>
+              <input type="text" placeholder="아이디" id="id" v-model="state.form.id" required/>
+              <button @click="exist(state.form.id)">중복 확인</button>
             </div>
           </li>
           <li class="row">
             <div class="input-area">
-              <label for="password" class="blind">비밀번호</label>
-              <input type="password" placeholder="비밀번호" id="password"  required/>
-            </div>
-          </li>
-          <li class="row">
-            <div class="input-area">
-              <label for="password-recheck" class="blind">비밀번호 재확인</label>
-              <input type="password" placeholder="비밀번호 재확인" id="password-recheck"  required/>
+              <input type="password" placeholder="비밀번호" id="password" v-model="state.form.password" required/>
             </div>
           </li>
         </ul>
-
         <ul class="container">
           <li class="row name-area">
-            <label for="name" class="blind">이름</label>
-            <input type="text" placeholder="이름" id="name"  required/>
+            <input type="text" placeholder="이름" id="name" v-model="state.form.name" required/>
           </li>
-          <!--
-            - input + label trick: https://css-tricks.com/almanac/selectors/c/checked/
-          -->
-          <li class="row">
-            <div class="btn-group">
-              <div class="btn-item">
-                <input type="radio" name="sex" value="male" id="male" class="blind" required/>
-                <label for="male">남자</label>
-              </div>
-              <div class="btn-item">
-                <input type="radio" name="sex" value="female" id="female" class="blind" />
-                <label for="female">여자</label>
-              </div>
-            </div>
+          <li class="row name-area">
+            <input type="text" placeholder="닉네임" id="nickname" v-model="state.form.nickname" required/>
           </li>
           <li class="row email-area">
-            <label for="email" class="blind">본인확인 이메일(선택)</label>
-            <input type="email" placeholder="본인확인 이메일(선택)" id="email"  />
+            <input type="email" placeholder="이메일" id="email" v-model="state.form.email" />
           </li>
         </ul>
-
         <ul class="container">
           <li class="row tel-area">
             <div class="input-area">
               <select>
-                <option value="" selected disabled>국가번호</option>
+<!--                <option value="" selected disabled>국가번호</option>-->
                 <option value="82">+82</option>
               </select>
             </div>
             <div class="input-area">
-              <label for="tel-number" class="blind">휴대전화번호</label>
-              <input type="tel" placeholder="휴대전화번호" id="tel-number" required/>
+              <input type="tel" placeholder="휴대전화번호 (- 없이 입력)" id="tel-number" v-model="state.form.tel" required/>
             </div>
-
-
           </li>
         </ul>
-
-        <button text="button" class="btn btn-submit">
-          <span class="submit-text">가입하기</span>
-        </button>
+        <button text="button" class="btn btn-submit" @click="join()">회원가입</button>
         <br><br><br>
-
       </div>
     </div>
   </div>
-
-  <!--
-    </body>
-  </html>
-  -->
-
-  <!--  <div class="wrap">-->
-<!--    <div class="greenContainer">-->
-<!--      <div class="name">회원 정보</div>-->
-<!--    </div>-->
-<!--    <div class="shippingStatusContainer">-->
-<!--      <div class="title">-->
-<!--        회원 정보-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="member">-->
-<!--    <div class="field">-->
-<!--      <b>아이디</b>-->
-<!--      <span class="placehold-text"><input type="text" v-model="state.form.id"></span>-->
-<!--    </div>-->
-<!--    <div class="field">-->
-<!--      <b>비밀번호</b>-->
-<!--      <input class="userpw" type="password" v-model="state.form.password">-->
-<!--    </div>-->
-<!--&lt;!&ndash;    <div class="field">&ndash;&gt;-->
-<!--&lt;!&ndash;      <b>비밀번호 재확인</b>&ndash;&gt;-->
-<!--&lt;!&ndash;      <input class="userpw-confirm" type="password">&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--    <div class="field">-->
-<!--      <b>이름</b>-->
-<!--      <input type="text" v-model="state.form.name">-->
-<!--    </div>-->
-<!--    <div class="field">-->
-<!--      <b>닉네임</b>-->
-<!--      <input type="text" v-model="state.form.nickname">-->
-<!--    </div>-->
-<!--    <div class="field">-->
-<!--      <b>이메일</b>-->
-<!--      <input type="email" placeholder="example@naver.com" v-model="state.form.email">-->
-<!--&lt;!&ndash;      <select>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="">직접입력</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="aver.com">naver.com</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="gmail.com">gmail.com</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="nate.com">nate.com</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="hanmail.net">hanmail.net</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="yahoo.com">yahoo.com</option>&ndash;&gt;-->
-<!--&lt;!&ndash;        <option value="yahoo.com">outlook.com</option>&ndash;&gt;-->
-<!--&lt;!&ndash;      </select>&ndash;&gt;-->
-<!--    </div>-->
-<!--    <div class="field tel-number">-->
-<!--      <b>휴대전화</b>-->
-<!--      <select>-->
-<!--        <option value="">대한민국 +82</option>-->
-<!--      </select>-->
-<!--      <div>-->
-<!--        <input type="tel" placeholder="전화번호 입력 (- 없이 입력)" v-model="state.form.tel">-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <button class="btn" @click="join()">회원가입</button>-->
-<!--  </div>-->
 </template>
 
 <script>
@@ -197,6 +70,7 @@ export default {
   components: {Header},
   setup() {
     const state = reactive({
+      flag: 0,
       form :{
         id: "",
         password: "",
@@ -206,14 +80,53 @@ export default {
         tel: ""
       }
     })
+    const exist = (exist) => {
+      if (state.form.id == "") {
+        window.alert("아이디를 입력해주세요");
+        router.push({path: "/join"});
+      } else {
+        axios.get(`/api/user/join/${exist}`, ).then((res)=> {
+          if (res.data == 0) {
+            window.alert("중복된 아이디입니다. 다시 입력해주세요");
+          } else {
+            window.alert("사용 가능한 아이디입니다");
+            state.flag = 1;
+          }
+          router.push({path: "/join"});
+        })
+      }
+    }
     const join = () => {
-      axios.post("/api/user/join", state.form).then(()=> {
-        window.alert("회원가입 되었습니다");
-        router.push({path: "/login"});
-      })
+      if (state.form.id == "") {
+        window.alert("아이디를 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.flag != 1) {
+        window.alert("아이디를 중복 검사해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.password == "") {
+        window.alert("비밀번호를 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.name == "") {
+        window.alert("이름을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.nickname == "") {
+        window.alert("닉네임을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.email == "") {
+        window.alert("이메일을 입력해주세요");
+        router.push({path: "/join"});
+      } else if (state.form.tel == "") {
+        window.alert("전화번호를 입력해주세요");
+        router.push({path: "/join"});
+      } else {
+        axios.post("/api/user/join", state.form).then(()=> {
+          window.alert("회원가입 되었습니다");
+          router.push({path: "/login"});
+        })
+      }
     }
 
-    return {state, join}
+    return {state, join, exist}
   }
 }
 
@@ -435,7 +348,6 @@ fieldset legend {
   margin-left: 10px;
 }
 
-
 /* Header */
 .header .logo {
   display: block;
@@ -451,11 +363,5 @@ fieldset legend {
 /* Main */
 .main .form {
   margin: 0 15px;
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  font-size: 12px;
 }
 </style>

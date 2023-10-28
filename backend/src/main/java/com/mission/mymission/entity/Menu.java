@@ -13,7 +13,7 @@ public class Menu {
     private int seq;
 
     @Column(nullable = false)
-    private int shopseq;
+    private int storeid;
 
     @Column(length = 400, nullable = false)
     private String menu;

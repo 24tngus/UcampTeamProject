@@ -12,6 +12,7 @@
 
     <style>
         #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
     </style>
 
 
@@ -26,11 +27,11 @@
         </div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">식당(주인) 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당(가게) 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">기타</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -39,7 +40,7 @@
         <!-- Page content -->
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
-            <p> 이 페이지는 식당(가게) 상세정보 페이지입니다. </p>
+            <p> 이 페이지는 식당 상세정보 페이지입니다. </p>
         </div> <!-- /Page content -->
 
         <hr>
@@ -47,7 +48,7 @@
         <div>
             <table class="table">
                 <tr th:each="shop, shopState : ${shop}">
-                    <th scope="col">Number</th>
+                    <th scope="col">Seq</th>
                     <td th:text="${shop.seq}"></td>
                 </tr>
                 <tr th:each="shop, shopState : ${shop}">
@@ -91,6 +92,10 @@
                     <td th:text="${shop.image}"></td>
                 </tr>
                 <tr th:each="shop, shopState : ${shop}">
+                    <th scope="col">Permit</th>
+                    <td th:text="${shop.permit}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shop}">
                     <th scope="col">Delete</th>
                     <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteShop/{seq}(seq=${shop.seq})}"
                            onclick="if(!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')){return false;}">delete</a></td>
@@ -98,7 +103,7 @@
             </table>
         </div>
 
-        <button class="btn btn-outline-success" onclick="location.href='/admin/manageShop'">나가기</button>
+        <button class="btn btn-outline-success" onClick="history.go(-1)">나가기</button>
 
     </div> <!-- /#page-content-wrapper -->
 

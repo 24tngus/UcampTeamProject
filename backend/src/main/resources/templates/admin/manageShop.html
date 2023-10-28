@@ -12,6 +12,8 @@
 
     <style>
         #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
+        #top {position: fixed; bottom: 30px; right: 30px;}
     </style>
 
 
@@ -26,11 +28,11 @@
         </div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">식당(주인) 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">신규 식당 요청 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당(가게) 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">기타</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
         </div>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -39,7 +41,7 @@
         <!-- Page content -->
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
-            <p> 이 페이지는 식당(가게) 관리 페이지입니다. </p>
+            <p> 이 페이지는 식당 관리 페이지입니다. </p>
         </div> <!-- /Page content -->
 
         <hr>
@@ -69,6 +71,8 @@
                 </tbody>
             </table>
         </div>
+
+        <a class="btn btn-warning" href="#" id="top">맨 위로</a>
 
     </div> <!-- /#page-content-wrapper -->
 

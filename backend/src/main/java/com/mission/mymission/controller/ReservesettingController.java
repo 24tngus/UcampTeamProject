@@ -1,43 +1,79 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.Reservesetting;
+import com.mission.mymission.entity.ReserveSetting;
+import com.mission.mymission.entity.ShopRegister;
+import com.mission.mymission.entity.Store;
 import com.mission.mymission.repository.ReservesettingRepository;
+import com.mission.mymission.repository.ShopRegisterRepository;
+import com.mission.mymission.repository.StoreRepository;
+import com.mission.mymission.service.JwtService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@Transactional
+@RequestMapping("/api")
 public class ReservesettingController {
     @Autowired
     ReservesettingRepository reservesettingRepository;
 
-    @GetMapping("/api/reservetest")
-    public List<Reservesetting> getReserve(){
-        List<Reservesetting> reserves = reservesettingRepository.findAll();
+    private final JwtService jwtService;
+    private final StoreRepository storeRepository;
+    private final ShopRegisterRepository registerRepository;
+
+    @GetMapping("/reserve")
+    public List<ReserveSetting> getReserve(){
+        List<ReserveSetting> reserves = reservesettingRepository.findAll();
 
         return reserves;
     }
-    @PutMapping("/api/reservetest/update/{seq}")
-    public void updateReserveSetting(@PathVariable int seq, @RequestBody Reservesetting updatedReserve) {
+    @GetMapping("/reserve/shop")
+    public List<ReserveSetting> getReserveShop(@CookieValue(value = "token", required = false) String token){
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        Store stores = storeRepository.findBySeq(seq);
+        String storeid = stores.getId();
+
+        List<ReserveSetting> reserves = reservesettingRepository.findByStoreid(storeid);
+
+        return reserves;
+    }
+    @PutMapping("/reserve/update/{seq}")
+    public void updateReserveSetting(@PathVariable int seq, @RequestBody ReserveSetting updatedReserve) {
         reservesettingRepository.updateReservesetting(seq, updatedReserve.getTeam(), updatedReserve.getPeople(), updatedReserve.getDate(),
                 updatedReserve.getTime0810(), updatedReserve.getTime1012(), updatedReserve.getTime1214(), updatedReserve.getTime1416(),
                 updatedReserve.getTime1618(), updatedReserve.getTime1820(), updatedReserve.getTime2022());
     }
 
-    @PostMapping("/api/reservetest/insert")
-    public ResponseEntity<Reservesetting> insertReserve(@RequestBody Reservesetting newReserve) {
-        newReserve.setShopseq(2);
-        Reservesetting savedReserve = reservesettingRepository.save(newReserve);
+    @PostMapping("/reserve/insert")
+    public ResponseEntity<ReserveSetting> insertReserve(@RequestBody ReserveSetting newReserve, @CookieValue(value = "token", required = false) String token) {
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        Store stores = storeRepository.findBySeq(seq);
+        String storeid = stores.getId();
+        // 추가
+        newReserve.setStoreid(storeid);
+        ReserveSetting savedReserve = reservesettingRepository.save(newReserve);
         return ResponseEntity.ok(savedReserve);
     }
-    @GetMapping("/api/reversetest/reserveuser/{shopseq}/{date}")
-    public List<Reservesetting> getTime(@PathVariable int shopseq, @PathVariable Date date) {
-        List<Reservesetting> result = reservesettingRepository.findByShopseqAndDate(shopseq, date);
-        System.out.println(shopseq);
+    @GetMapping("/reverse/reserveuser/{storeid}/{date}")
+    public List<ReserveSetting> getTime(@PathVariable String storeid, @PathVariable Date date) {
+        List<ReserveSetting> result = reservesettingRepository.findByStoreidAndDate(storeid, date);
+        System.out.println(storeid);
         System.out.println(date);
 
         int time0810Sum = 0;
@@ -48,7 +84,7 @@ public class ReservesettingController {
         int time1820Sum = 0;
         int time2022Sum = 0;
 
-        for (Reservesetting reserve : result) {
+        for (ReserveSetting reserve : result) {
             time0810Sum += reserve.getTime0810();
             time1012Sum += reserve.getTime1012();
             time1214Sum += reserve.getTime1214();
@@ -58,7 +94,7 @@ public class ReservesettingController {
             time2022Sum += reserve.getTime2022();
         }
 
-        Reservesetting sumReserve = new Reservesetting();
+        ReserveSetting sumReserve = new ReserveSetting();
         sumReserve.setTime0810(time0810Sum);
         sumReserve.setTime1012(time1012Sum);
         sumReserve.setTime1214(time1214Sum);
@@ -76,7 +112,7 @@ public class ReservesettingController {
         System.out.println("time2022" + time2022Sum);
 
 
-        List<Reservesetting> sumResult = new ArrayList<>();
+        List<ReserveSetting> sumResult = new ArrayList<>();
         sumResult.add(sumReserve);
 
         System.out.println("Sum of time0810: " + time0810Sum);

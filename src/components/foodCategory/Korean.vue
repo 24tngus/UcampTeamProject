@@ -88,10 +88,9 @@ export default {
       console.log(korean.image)
     };
 
-    const setImgUrl = (imageName) => {
-      return require(`../../../public/${imageName}`);
+    const setImgUrl = async (imageName) => {
+      return import(`../../../public/${imageName}`);
     };
-
     return { state, showModal, setImgUrl };
   },
   data() {

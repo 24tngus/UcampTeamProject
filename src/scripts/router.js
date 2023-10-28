@@ -45,7 +45,7 @@ const routes = [
     {path: '/vegan', component: Vegan},
     {path: '/vegan2', component: Vegan2},
     {path: '/faq', component: Faq},
-    {path: '/foodCategory/Korean', component: Korean},
+    { path: '/foodCategory/Korean', component: Korean },
     {path: '/foodCategory/Western', component: Western},
     {path: '/foodCategory/Fusion', component: Fusion},
     {path: '/error',component: ErrorPage},

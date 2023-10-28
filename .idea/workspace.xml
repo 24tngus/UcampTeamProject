@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="변경">
-      <change afterPath="$PROJECT_DIR$/public/veganerror.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ErrorPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/foodCategory/ModalView.vue" afterDir="false" />
+    <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="1028 변경 소윤!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/eslint/738260db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/Korean.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reserve/ReserveInsert.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reserve/ReserveInsert.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/reserve/ReserveUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reserve/ReserveUser.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Shop.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Shop.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/foodCategory/ModalView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/foodCategory/ModalView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +48,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "soyoon1026",
-    "last_opened_file_path": "C:/JavaWork/springboot/VeganLoadMap/public",
+    "last_opened_file_path": "C:/JavaWork/springboot/VeganLoadMap/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,7 +86,8 @@
       <workItem from="1697956455552" duration="936000" />
       <workItem from="1698280678320" duration="20899000" />
       <workItem from="1698326974488" duration="14384000" />
-      <workItem from="1698365877963" duration="26909000" />
+      <workItem from="1698365877963" duration="27174000" />
+      <workItem from="1698459238562" duration="2506000" />
     </task>
     <task id="LOCAL-00001" summary="변경">
       <option name="closed" value="true" />
@@ -106,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698314852508</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1028 변경 소윤!">
+      <option name="closed" value="true" />
+      <created>1698426547102</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698426547103</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +130,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="변경" />
+    <MESSAGE value="1028 변경 소윤!" />
+    <option name="LAST_COMMIT_MESSAGE" value="1028 변경 소윤!" />
   </component>
 </project>

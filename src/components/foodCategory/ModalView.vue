@@ -7,22 +7,16 @@
         <slot name="modalText">
           default modalText
         </slot>
-        <button @click="handleButtonClick" class="mreserve">예약하기</button>
+        <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { useRouter } from "vue-router";
 
 export default {
-  methods: {
-    handleButtonClick() {
-      const router = useRouter();
-      router.push("/api/reserve");
-    },
-  },
+
 };
 </script>
 

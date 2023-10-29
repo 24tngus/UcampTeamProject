@@ -140,8 +140,8 @@ public class UserController {
         user.setEmail(updateuser.getEmail());
         user.setTel(updateuser.getTel());
 
-        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
-        user.setPassword(encodePassword);
+//        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
+//        user.setPassword(encodePassword);
 
         userRepository.save(user);
 

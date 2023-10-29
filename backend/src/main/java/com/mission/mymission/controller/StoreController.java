@@ -1,5 +1,6 @@
 package com.mission.mymission.controller;
 
+import com.mission.mymission.entity.ShopRegister;
 import com.mission.mymission.entity.Store;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.service.JwtService;
@@ -128,11 +129,18 @@ public class StoreController {
         store.setStorenumber(updatestore.getStorenumber());
         store.setStorefile(updatestore.getStorefile());
 
-        String encodePassword = passwordEncoder.encode(updatestore.getPassword());
-        store.setPassword(encodePassword);
+//        String encodePassword = passwordEncoder.encode(updatestore.getPassword());
+//        store.setPassword(encodePassword);
 
         storeRepository.save(store);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/store/mypage/delete/{seq}")
+    public ResponseEntity removeStore (@PathVariable("seq") int seq) {
+        Store store = storeRepository.findBySeq(seq);
+        storeRepository.delete(store);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

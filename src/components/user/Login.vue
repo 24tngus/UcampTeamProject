@@ -6,8 +6,10 @@
       <form action="#">
         <h1>Sign In</h1>
         <div class="social-container">
-          <a href="#" class="social"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
-          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+          <a href="#" class="social"><div id="naver_id_login"></div></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true" @click="googleLoginBtn"></i></a>
+          &nbsp;&nbsp;&nbsp;
           <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
         </div>
         <span>or use your account</span>
@@ -37,6 +39,13 @@ import Header from "@/components/header/Header.vue";
 
 export default {
   components: {Header},
+  mounted(){
+    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000");
+    const state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40); // 버튼 설정
+    naver_id_login.setState(state);
+    naver_id_login.init_naver_id_login();
+  },
   setup() {
     const state = reactive({
       form :{

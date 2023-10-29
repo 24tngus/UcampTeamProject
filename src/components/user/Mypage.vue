@@ -1,7 +1,6 @@
 <template>
   <Header />
   <div id="wrapper">
-
     <div id="container">
       <div class="tab">
         <router-link to="/mypage"><h1>마이페이지</h1></router-link>
@@ -20,7 +19,7 @@
           <div class="item">
             <div>
               <router-link to="/cart">
-                <div class="green number">1</div>
+                <div class="green number"><img src="../../../public/a_cart2.png" style="width: 40px"/></div><br>
               </router-link>
               <div class="item_text">장바구니</div>
             </div>
@@ -28,14 +27,14 @@
           </div>
           <div class="item">
             <div>
-              <div class="number">0</div>
+              <div class="number"><img src="../../../public/a_cart3.jpeg" style="width: 55px" /> </div>
               <div class="item_text">결제완료</div>
             </div>
             <div class="item_icon"> > </div>
           </div>
           <div class="item">
             <div>
-              <div class="green number">1</div>
+              <div class="green number"><img src="../../../public/a_reserve6.png" style="width: 35px" /></div><br>
               <div class="item_text">이용완료</div>
             </div>
             <div class="item_icon"> > </div>
@@ -43,7 +42,7 @@
           <div class="item">
             <div>
               <router-link to="/review">
-              <div class="green number">3</div>
+              <div class="green number"><img src="../../../public/a_review4.png" style="width: 55px" /></div>
               <div class="item_text">가게후기</div>
               </router-link>
             </div>
@@ -54,7 +53,7 @@
           <li class="thumbox">
             <router-link to="/mypage_info">
               <div class="textbox">
-                <img src="../../../public/aaa.png" class="image-size" />
+                <img src="../../../public/a_user.png" class="image-size" />
                 <br><br>
                 <h3>회원 정보</h3>
                 <p>#전화번호 변경 #이름 변경</p>
@@ -64,7 +63,7 @@
           <li class="thumbox">
             <router-link to="/cart">
               <div class="textbox">
-                <img src="../../../public/aaa2.png" class="image-size" />
+                <img src="../../../public/a_shop.png" class="image-size" />
                 <br><br>
                 <h3>장바구니</h3>
                 <p>#예약 대기 #예약 하러가기</p>
@@ -74,7 +73,7 @@
           <li class="thumbox">
             <router-link to="/reserve_user">
               <div class="textbox">
-                <img src="../../../public/aaa3.png" class="image-size" />
+                <img src="../../../public/a_reserve.png" class="image-size" />
                 <br><br>
                 <h3>예약 확인</h3>
                 <p>#예약 일정 관리 #예약 취소</p>
@@ -84,7 +83,7 @@
           <li class="thumbox">
             <router-link to="/review">
               <div class="textbox">
-                <img src="../../../public/aaa5.png" class="image-size" />
+                <img src="../../../public/a_review.png" class="image-size" />
                 <br><br>
                 <h3>리뷰 확인</h3>
                 <p>#후기 관리 #가게 피드백</p>
@@ -283,7 +282,7 @@ ul li{
   position: relative;
   max-width: 70%;
   min-width:  880px;
-  margin: 40px auto;
+  margin: 0 0 0 10%;
   background: #fff;
 }
 #container:after{
@@ -293,7 +292,7 @@ ul li{
 }
 #container > div:not(:first-of-type){
   background: #fff;
-  padding: 40px 20px 0 250px;
+  padding: 3% 10% 0 30%;
 
 }
 .tab{
@@ -443,126 +442,6 @@ button.on{
   margin-bottom: 10px;
 }
 
-
-#num{
-  text-align: center;
-  margin: 30px 0;
-  padding: 40px 0;
-  position: relative;
-  z-index: 2
-}
-#num:before{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top:0px;
-  left: 0;
-  border-top: 1px solid #d4d4d4;
-  z-index: -1
-}
-#num span{
-  display: inline-block;
-  border: 1px solid #d4d4d4;
-  margin: 0 2px;
-  padding: 5px 10px;
-  vertical-align: middle;
-  cursor: pointer
-}
-#num span a{
-  font-size: 10px;
-}
-.currentNum{
-  background: #32312f!important;
-}
-.currentNum a{
-  color: #fff
-}
-#num span:hover{
-  background: #d4d4d4;
-}
-#num span:hover a,#num span:hover i{
-  color: #fff
-}
-footer{
-  background: #fff;
-  position: relative;
-  z-index: 1
-}
-footer:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 300%;
-  height: 100%;
-  background: #fff;
-  z-index: -1
-}
-@media (max-width:700px){
-  #wrapper header {
-    position: fixed !important;
-    top: 0;
-  }
-  #container{
-    position: relative;
-    min-width: 100%;
-    max-width: 100%;
-    margin-top: 120px;
-  }
-  .tab{
-    width: 100%;
-    height:100px;
-    padding:0  20px 0 0;
-  }
-  .tab > h1{
-    position:static;
-    float: left;
-    height: 100%;
-    width: 30%;
-  }
-  .tab .buttontab{
-    float: left;
-    width: 70%;
-    height:100%;
-    padding-left: 20px;
-  }
-  .tab button{
-    height: 50%;
-  }
-
-  #container > div:not(:first-of-type){
-    padding:120px 0 0 0;
-    width: 100%;
-  }
-  .online ul{
-    min-width: 100%;
-    max-width: 100%
-  }
-  .online ul .thumbox{
-    padding: 0 0 0 120px ;
-  }
-  #online h1{
-    display: none;
-  }
-
-  .online .thumbox{
-    margin-bottom: 25px;
-    width:100%;
-  }
-  .online .thumbox .textbox{
-    text-align: left;
-  }
-
-  .online .thumbox .img{
-    left:0;
-    transform: translate(0);
-  }
-  #num{
-    display: none
-  }
-}
-/*member sign in*/
 .member{
   width: 400px;
   /* border: 1px solid #000; */
@@ -594,23 +473,6 @@ footer:before{
   margin-bottom: 5px;
 }
 
-.member .member select{
-  border: 1px solid #dadada;
-  padding: 15px;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.member input[type=button],
-.member input[type=submit]{
-  background-color:green;
-  color:#fff
-}
-
-.member input:focus, .member select:focus{
-  border: 1px solid #2db400;
-}
-
 .field.birth div{ /*field 이면서 birth*/
   display: flex;
   gap:10px; /*간격 벌려줌*/
@@ -634,44 +496,6 @@ footer:before{
   background-color: #fff;
 }
 
-.placehold-text{
-  display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
-  position:relative;
-  /* border: 1px solid #000; */
-}
-
-.placehold-text:before{
-  position:absolute; /*before은 inline 요소이기 때문에 span으로 감싸줌 */
-  right : 20px;
-  top:13px;
-  pointer-events: none; /*자체가 가지고 있는 pointer event 를 없애준다 */
-}
-
-.member-footer {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 20px;
-}
-
-.member-footer div a:hover{
-  text-decoration: underline;
-  color:#2db400
-}
-
-.member-footer div a:after{
-  content:'|';
-  font-size: 10px;
-  color:#bbb;
-  margin-right: 5px;
-  margin-left: 7px;
-  display: inline-block;
-  transform: translateY(-1px);
-}
-
-.member-footer div a:last-child:after{
-  display: none;
-}
-
 .btn {
   background-color: darkolivegreen;
   color: #ffffff;
@@ -679,9 +503,4 @@ footer:before{
   height : 90%;
 }
 
-@media (max-width:768px) {
-  .member{
-    width: 100%;
-  }
-}
 </style>

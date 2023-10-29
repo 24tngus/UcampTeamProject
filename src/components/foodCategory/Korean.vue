@@ -17,7 +17,7 @@
                     <div class="mtext-and-image-container">
                       <div class="mdetails">
                         <div class="mtext-content">
-                          <span><h3 class="shopTitle"> {{korean.storename}} </h3></span>
+                          <span><h3 class="shopTitle"> {{korean.storename}}</h3></span>
                           <span class="shop1"> {{korean.category}} </span> &nbsp;
                           <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>&nbsp;{{korean.rating}} </span><br>
                           <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{korean.phonenumber}}</span><br>
@@ -45,7 +45,10 @@
             <div class="card-body">
               <div class="text-and-image-container">
                 <div class="text-content">
-                  <span><h3 class="shopTitle"> {{korean.storename}} </h3></span>
+                  <span><h3 class="shopTitle"> {{korean.storename}}
+                  <i v-if="flag" @click="cartFlag" class="fa fa-star-o" aria-hidden="true"></i>
+                           <i v-else @click="cartFlag" class="fa fa-bath" aria-hidden="true"></i>
+                  </h3></span>
                   <span class="shop1"> {{korean.category}} </span> &nbsp;
                   <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{korean.rating}} </span><br>
                   <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{korean.location}} </span>
@@ -104,6 +107,7 @@ export default {
     return {
       modalVisible : false,
       sortOrder : "ascending",
+      flag: 0
     };
   },
   components: {ModalView, Header},
@@ -119,6 +123,9 @@ export default {
     },
   },
   methods: {
+    cartFlag() {
+      this.flag = !this.flag;
+    },
     sortByRating(event) {
       this.sortOrder = event.target.value;
     },

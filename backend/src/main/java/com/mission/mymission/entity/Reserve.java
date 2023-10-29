@@ -4,12 +4,14 @@ package com.mission.mymission.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.sql.Date;
 
 @Entity
 @Table(name = "reserve")
 @Setter @Getter
+@ToString
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,4 +59,7 @@ public class Reserve {
 
     @Column
     private int status;
+
+    @Column(nullable = false)
+    private String storename;
 }

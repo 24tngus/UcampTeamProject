@@ -49,7 +49,10 @@
             <b>사업자 등록증</b>
             <div class="block">{{state.form.storefile}}</div>
           </div><br>
-          <button class="btn" @click="mystoreupdate()">확인</button>
+          <div class="button-container">
+            <button class="btn" @click="mystoreupdate()">수정</button>&nbsp;
+            <button class="btn" @click="deleteStore()">탈퇴</button>
+          </div>
         </div>
         <!-- 페이지 처리 -->
         <div id="num">
@@ -76,8 +79,9 @@ export default {
   setup() {
     const state = reactive({
       form :{
+        seq: "",
         id: "",
-        password: "",
+        password: "*************",
         name: "",
         email: "",
         tel: "",
@@ -87,9 +91,9 @@ export default {
     })
     const load = () => {
       axios.get("/api/store/mypage").then(({data}) => {
-        // state.items = data;
+        state.form.seq = data.seq;
         state.form.id=data.id;
-        state.form.password=data.password;
+        // state.form.password=data.password;
         state.form.name=data.name;
         state.form.email=data.email;
         state.form.tel=data.tel;
@@ -102,7 +106,7 @@ export default {
     const mystoreupdate = () => {
       const updateData = {
         id: state.form.id,
-        password: state.form.password,
+        // password: state.form.password,
         name: state.form.name,
         email: state.form.email,
         tel: state.form.tel,
@@ -115,7 +119,14 @@ export default {
       })
     }
 
-    return {state, mystoreupdate}
+    const deleteStore = () => {
+      axios.delete(`/api/store/mypage/delete/${state.form.seq}`).then(() => {
+        window.alert("탈퇴 처리 되었습니다");
+        router.push({path: "/"});
+      })
+    }
+
+    return {state, mystoreupdate, deleteStore}
   }
 }
 

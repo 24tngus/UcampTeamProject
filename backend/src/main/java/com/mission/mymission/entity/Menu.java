@@ -13,10 +13,13 @@ public class Menu {
     private int seq;
 
     @Column(nullable = false)
-    private int storeid;
+    private int shopseq;
 
     @Column(length = 400, nullable = false)
     private String menu;
+
+    @Column(length = 400)
+    private String info;
 
     @Column(length = 4000)
     private String image;

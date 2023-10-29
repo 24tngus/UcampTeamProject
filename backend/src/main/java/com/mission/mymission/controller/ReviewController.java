@@ -1,8 +1,11 @@
 package com.mission.mymission.controller;
 
+import com.mission.mymission.entity.Reserve;
 import com.mission.mymission.entity.Review;
+import com.mission.mymission.entity.Store;
 import com.mission.mymission.entity.User;
 import com.mission.mymission.repository.ReviewRepository;
+import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +25,22 @@ import java.util.Map;
 public class ReviewController {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
+    private final StoreRepository storeRepository;
     private final JwtService jwtService;
 
+    @GetMapping("/review")
+    public List<Review> getReview(@CookieValue(value = "token", required = false) String token){
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        Store stores = storeRepository.findBySeq(seq);
+        String storeid = stores.getId();
+
+        List<Review> review = reviewRepository.findByStoreid(storeid);
+
+        return review;
+    }
     @GetMapping("/review/list")
     public Map<String, Object> getReviewMap(@CookieValue(value = "token", required = false) String token){
         if (!jwtService.isValid(token)) {

@@ -22,7 +22,7 @@
               <div class='project-column' v-for="(re, idx) in state.items" :key="idx">
                 <div class='task' draggable='true'>
                   <router-link :to="{ name: 'reserve_detail', params: { value: re.seq } }">
-                    <img src="../../../public/aaa4.png" class="image-size" />
+                    <img src="../../../public/a_reserve2.png" class="image-size" />
                     <br>
                     <div class='task__tags'>
                       <span class='task__tag task__tag--copyright'>{{re.reserver}}님 예약</span>

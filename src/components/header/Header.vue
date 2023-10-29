@@ -47,7 +47,7 @@
 
     <ul class="nav justify-content-center" id="abc">
       <li class="nav-item">
-        <router-link to="/vegan" class="menu">Vegan</router-link>
+        <router-link to="/vegan1" class="menu">Vegan</router-link>
         <div class="btnbanner"></div>
         <router-link to="/shop" class="menu">Restaurant</router-link>
         <div class="btnbanner"></div>

@@ -26,7 +26,11 @@
                         </div>
 
                         <div class="text-content">
-                          <span><h3 class="shopTitle"> {{shop.storename}} </h3></span>
+                          <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
+                          <span class="cartbtn">
+                            <i v-if="shop.flag" @click="cartFlag(shop)" class="fa fa-heart" aria-hidden="true"></i>
+                            <i v-else @click="cartFlag(shop)" class="fa fa-heart-o" aria-hidden="true"></i>
+                          </span>
                           <span class="shop1"> {{shop.category}} </span> &nbsp;
                           <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
                           <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
@@ -64,6 +68,9 @@ export default {
     };
 
     axios.get("/api/shop").then(({data}) => {
+      data.forEach(shop => {
+        shop.flag = false;
+      });
       state.items = data;
     })
 
@@ -78,14 +85,23 @@ export default {
   data() {
     return {
       imgUrl: null,
+      flag : 0
     }
   },
   methods: {
+    cartFlag(shop) {
+      shop.flag = !shop.flag
+    }
   }
 }
 </script>
 
 <style scoped>
+.cartbtn{
+  border : 1px solid blue;
+  display : inline-block;
+}
+
 .shopimage1:hover{
   transform: scale(3);
   transition: transform 0.3s; /* 변환 효과에 0.3초 동안의 트랜지션 적용 */

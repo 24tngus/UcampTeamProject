@@ -41,8 +41,11 @@
 
 
           <div v-if="isFutureDate(reserve.newdate)" class="submit">
-           <button type="submit">리뷰 쓰기</button>
-<!--          <router-link :to="{ name: 'review_insert', params: { value: reserve.storename } }"><button type="submit">리뷰 쓰기</button></router-link>&ndash;&gt;-->
+<!--           <button type="submit">리뷰 쓰기</button>-->
+            <router-link :to="{ name: 'review_insert', params: { value: reserve.storename} }">
+              <button type="submit">리뷰 쓰기</button>
+            </router-link>
+
             <div class="ease"></div>
           </div>
         </form>

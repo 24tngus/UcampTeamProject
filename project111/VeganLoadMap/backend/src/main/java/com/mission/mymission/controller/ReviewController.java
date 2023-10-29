@@ -75,24 +75,23 @@ public class ReviewController {
         return reviewList;
     }
 
-    @PostMapping("/review/insert/{storename}")
-    public ResponseEntity<Review> insertReview(@CookieValue(value = "token", required = false) String token, @RequestParam String storename,@RequestBody Review newReview){
+    @PutMapping("/review/insert/{storename}")
+    public ResponseEntity<Review> insertReview(@CookieValue(value = "token", required = false) String token, @PathVariable String storename,@RequestBody Review newReview){
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int seq = jwtService.getSeq(token);
         User users = userRepository.findBySeq(seq);
 
-        String storeid = newReview.getStoreid();
+//        String storeid = newReview.getStoreid();
         String writer = users.getNickname();
         Review review = new Review();
         review.setStorename(storename);
-        review.setStoreid(storeid);
+//        review.setStoreid(storeid);
         review.setWriter(writer);
-        review.setSeq(newReview.getSeq());
         review.setContent(newReview.getContent());
         review.setImage(newReview.getImage());
-        review.setStatus(newReview.getStatus());
+        review.setStatus(1);
         review = reviewRepository.save(review);
         return ResponseEntity.ok(review);
     }

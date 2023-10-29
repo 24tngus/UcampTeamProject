@@ -1,5 +1,5 @@
 <template>
-  <header>Review</header>
+   <Header />
   <div id="reviewContainer" class="container" style="margin-left: -3px">
     <div v-for="review in reviews" :key="review.seq" class="review">
       <input type="hidden" v-model="review.seq"/>
@@ -27,8 +27,10 @@
 </template>
 <script>
 import axios from 'axios';
+import Header from "@/components/header/Header.vue";
 
 export default {
+  components: {Header},
   data() {
     return {
       reviews: [],

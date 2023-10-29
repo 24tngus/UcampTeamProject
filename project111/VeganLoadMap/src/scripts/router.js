@@ -80,7 +80,7 @@ const routes = [
     {path: '/foodCategory/Fusion', component: Fusion},
     {path: '/review', component: Review},
     {path: '/myreview', component: MyReview},
-    {path: '/review_insert/:value', name: ":review_insert", component: ReviewInsert},
+    {path: '/review_insert/:value', name: "review_insert", component: ReviewInsert },
     {path: '/review_update/:value',name:"review_update", component: ReviewUpdate},
     {path: '/review_store', component: ReviewStore},
     {path: '/test', component: test},

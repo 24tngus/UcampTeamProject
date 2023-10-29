@@ -12,7 +12,7 @@
           <div class="list-group-item list-group-item-action" @click="showModal(korean)">
             <ModalView v-if="korean.modalVisible">
               <template v-slot:modalText>
-                <div class="card shadow-sm">
+                <div class="card shadow-sm" @click="korean.modalVisible = false">
                   <div class="card-body">
                     <div class="mtext-and-image-container">
                       <div class="mdetails">
@@ -83,15 +83,6 @@ export default {
 
     const showModal = (korean) => {
       korean.modalVisible = !korean.modalVisible;
-      console.log(korean.storename)
-      console.log(korean.location)
-      console.log(korean.rating)
-      console.log(korean.image)
-      console.log(korean.image1)
-      console.log(korean.image2)
-      console.log(korean.image3)
-      console.log(korean.image4)
-      console.log(korean.image5)
     };
 
     const setImgUrl = (imageName) => {
@@ -134,7 +125,7 @@ export default {
   transition: transform 0.3s; /* 변환 효과에 0.3초 동안의 트랜지션 적용 */
 }
 .ming:hover{
-  transform: scale(3); /* 이미지 크기를 1.2배로 확대 */
+  transform: scale(3);
   transition: transform 0.3s; /* 변환 효과에 0.3초 동안의 트랜지션 적용 */
 }
 /* 기존 스타일 유지 */

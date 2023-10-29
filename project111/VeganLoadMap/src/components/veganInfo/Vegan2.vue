@@ -1,0 +1,91 @@
+<template>
+  <Header/>
+  <br><br>
+  <div class="wiv">
+    <div>
+      <strong class="what">About Vegan</strong>
+    </div>
+    <br>
+
+    <div class="whatbtn">
+      <router-link to="/vegan"><button type="button" class="btn btn-success" id="whatis">Vegan food</button></router-link>
+      <router-link to="/vegan2"><button type="button" class="btn btn-success" id="whatis">Vegetarian</button></router-link>
+    </div>
+
+    <div class="vegetarian">
+      <br><h3 class="vtitle">&nbsp;&nbsp;<i class="fa fa-leaf" aria-hidden="true"></i>&nbsp;What Is Vegetarian?</h3><br>
+      <strong>채식주의자란?</strong><br>
+      &nbsp;&nbsp;채식주의자(vegetarian)는 동물 기반 식품을 제한하거나 포함하지 않는 식단을 따르는 사람을 가리킵니다. <br>
+      채식주의자는 식사 스타일에 따라 다양한 종류로 나뉠 수 있으며, 아래에서 주요 채식주의자의 종류를 설명하겠습니다:<br><br><br>
+
+      <strong>채식주의자의 종류</strong>  <br>
+
+      <strong>1. </strong><b>락토 오보 채식주의자 (Lacto-Ovo Vegetarian)</b>
+      <br> &nbsp;&nbsp;락토 오보 채식주의자는 유제품과 계란을 포함한 동물성 식품을 섭취하지 않는 사람을 가리킵니다. 이들은 유제품과 계란을 채식 식단의 중요한 영양원으로 고려합니다.<br>
+
+      <strong>2. </strong><b>락토 채식주의자 (Lacto-Vegetarian)</b>
+      <br> &nbsp;&nbsp;락토 채식주의자는 유제품을 섭취하고, 육류, 가금류, 해산물 및 계란을 포함하지 않는 식단을 따릅니다. 유제품은 주로 단백질 및 칼슘 공급원으로 사용됩니다.<br>
+
+      <strong>3. </strong><b>오보 채식주의자 (Ovo-Vegetarian)</b>
+      <br> &nbsp;&nbsp;오보 채식주의자는 계란을 섭취하고, 육류, 가금류, 해산물 및 유제품을 제한하는 식단을 따릅니다. 계란은 단백질과 다른 영양소를 제공하는 중요한 식품입니다.<br>
+
+      <strong>4. </strong><b>폴로 채식주의자 (Pollotarian)</b>
+      <br> &nbsp;&nbsp;폴로 채식주의자는 육류와 해산물을 제한하며, 가금류 (예: 닭)를 포함한 식단을 따릅니다. 이들은 주로 채식 식단으로 인간 건강 및 환경적 이점을 얻으려는 사람들 중 하나입니다.<br>
+
+      <strong>5. </strong><b>비건 (Vegan)</b>
+      <br> &nbsp;&nbsp;비건은 가장 엄격한 채식주의자로, 동물성 식품을 모두 제한합니다. 비건은 육류, 가금류, 해산물, 유제품, 계란 및 다른 동물성 성분을 섭취하지 않습니다.<br>
+
+      <strong>6. </strong><b>로완식주의자 (Raw Vegan)</b>
+      <br> &nbsp;&nbsp;로완식주의자는 비건 식단을 따르지만 식물성 식품을 가열하지 않고 날 것으로 섭취합니다. 이들은 주로 과일, 채소, 견과류, 씨앗 및 혹은 건강을 위해 날 것으로 섭취될 수 있는 다른 비건 식품을 포함합니다.<br>
+      <br><br><br>
+    </div>
+  </div> <!--wiv-->
+
+</template>
+
+<script>
+import Header from "@/components/header/Header.vue";
+export default {
+  name: "Vegan2",
+  components: {Header},
+}
+</script>
+
+<style scoped>
+.vtitle{
+  color : dimgray;
+  font-weight: 600;
+}
+.wiv{
+  width : 60%;
+  height : auto;
+  margin : auto;
+}
+
+.what{
+  font-size: 40px;
+}
+
+.whatbtn{
+  margin-right: 30px;
+}
+
+#whatis{
+  float: right;
+  border : 1px solid #67833c;
+  background: #67833c;
+}
+#whatis:hover{
+  background: #3d5225;
+  border : 1px solid #3d5225;
+
+}
+
+.vegetarian{
+  background: #BDCEBDFC;
+  border-radius: 7px;
+  margin : 0 30px;
+  padding : 10px 20px;
+}
+
+</style>

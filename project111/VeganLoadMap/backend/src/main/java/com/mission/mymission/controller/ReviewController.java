@@ -91,6 +91,7 @@ public class ReviewController {
         review.setWriter(writer);
         review.setContent(newReview.getContent());
         review.setImage(newReview.getImage());
+        review.setStar(newReview.getStar());
         review.setStatus(1);
         review = reviewRepository.save(review);
         return ResponseEntity.ok(review);
@@ -112,7 +113,7 @@ public class ReviewController {
         Review updateReviewPro = reviewRepository.findBySeq(updateReview.getSeq());
         updateReviewPro.setContent(updateReview.getContent());
         updateReviewPro.setImage(updateReview.getImage());
-        System.out.println("내용" + updateReviewPro.getContent());
+        updateReviewPro.setStar(updateReview.getStar());
         reviewRepository.save(updateReviewPro);
         return ResponseEntity.ok("Review updated successfully");
     }

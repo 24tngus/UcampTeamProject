@@ -5,7 +5,43 @@
       <label></label>
       <textarea name="content" v-model="review.content"
                 placeholder="식당을 이용하신 후 자유롭게 의견을 나눠주세요. 음식의 맛, 서비스, 분위기 등을 자세히 기술해주시면 다른 이용자들에게 큰 도움이 됩니다."></textarea>
+      <label></label>
+      <div>
+        <input type="radio" id="star1" value="1" v-model="review.star" class="star-radio">
+        <label for="star1">
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </label>
 
+        <input type="radio" id="star2" value="2" v-model="review.star" class="star-radio">
+        <label for="star2">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </label>
+
+        <input type="radio" id="star3" value="3" v-model="review.star" class="star-radio">
+        <label for="star3">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </label>
+
+        <input type="radio" id="star4" value="4" v-model="review.star" class="star-radio">
+        <label for="star4">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </label>
+
+        <input type="radio" id="star5" value="5" v-model="review.star" class="star-radio">
+        <label for="star5">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        </label>
+      </div>
       <input ref="image" @change="uploadImg()" type="file" id="chooseFile" name="chooseFile" accept="image/*">
       <button type="submit">등록</button>
     </form>
@@ -21,7 +57,8 @@ export default {
     return {
       review: {
         content: '',
-        image: ''
+        image: '',
+        star:'',
       },
     };
   },
@@ -31,7 +68,7 @@ export default {
       axios
           .put(`/api/review/insert/${storename}`, this.review)
           .then(() => {
-            window.alert("리뷰정보가 수정 되었습니다");
+            window.alert("리뷰정보가  입력되었습니다");
             router.push({path: "/myreview"});
           })
           .catch((error) => {
@@ -64,7 +101,14 @@ header {
   margin: 0 auto;
   padding: 0.5em;
 }
-
+input[type="radio"]:checked + label i {
+  color: #FEC902; /* 원하는 색상으로 변경하세요 */
+}
+.star-radio {
+  /* radio 버튼을 숨기기 위한 방법 */
+  position: absolute;
+  left: -9999px;
+}
 body {
   max-width: 1024px;
   margin: 20px auto;

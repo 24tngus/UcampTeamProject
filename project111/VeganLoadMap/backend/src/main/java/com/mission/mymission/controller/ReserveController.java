@@ -53,14 +53,12 @@ public class ReserveController {
         int seq = jwtService.getSeq(token);
         User users = userRepository.findBySeq(seq);
         List<Reserve> reserves = reserveRepository.findByReserver(users.getNickname());
-        System.out.println("리저브" + reserves);
         return reserves;
     }
 
     @PostMapping("/api/reserve/insert")
     public ResponseEntity<Reserve> insertReserve(@RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
-//        System.out.println("newReserve=" + newReserve);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서
         // 0 보다 작으면 false , 0보다 크면 true
 

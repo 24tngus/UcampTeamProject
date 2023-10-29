@@ -1,15 +1,6 @@
 <template>
   <header>Review</header>
   <div id="reviewContainer" class="container" style="margin-left: -3px">
-<!--    <form @submit.prevent="addReview">-->
-<!--      <label></label>-->
-<!--      <textarea name="content" v-model="newReview.content"-->
-<!--                placeholder="식당을 이용하신 후 자유롭게 의견을 나눠주세요. 음식의 맛, 서비스, 분위기 등을 자세히 기술해주시면 다른 이용자들에게 큰 도움이 됩니다."></textarea>-->
-
-<!--      &lt;!&ndash;<button v-on:click="addReview()">Send</button>&ndash;&gt;-->
-<!--      <input ref="image" @change="uploadImg()" type="file" id="chooseFile" name="chooseFile" accept="image/*">-->
-<!--      <button type="submit">등록</button>-->
-<!--    </form>-->
     <div v-for="review in reviews" :key="review.seq" class="review">
       <input type="hidden" v-model="review.seq"/>
       <input type="hidden" v-model="review.storeid"/>
@@ -21,14 +12,39 @@
       <div class="review-box">
 
         <div class="review-author">
-          <p><strong>{{ review.writer }}</strong></p>
+          <p><strong>{{ review.writer }} &nbsp;</strong>
+            <template v-if="review.star === 1">
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </template>
+            <template v-else-if="review.star === 2">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </template>
+            <template v-else-if="review.star === 3">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </template>
+            <template v-else-if="review.star === 4">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </template>
+            <template v-else-if="review.star === 5">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </template>
+          </p>
         </div>
+
         <div class="review-comment">
           <p>{{ review.content }}</p>
         </div>
       </div>
-      <!--      <button v-if="review.writer === nickname" type="button" @click="goToReviewUpdatePage(review)">수정</button>-->
-      <!--      <router-link to="/review_update"><button v-if="review.writer === nickname" type="button">수정</button></router-link>-->
       <router-link :to="{ name: 'review_update', params: { value: review.seq } }"><button v-if="review.writer === nickname" type="button">수정</button></router-link>
 
       <button v-if="review.writer === nickname" type="button" @click="deleteReview(review)">삭제</button>
@@ -114,7 +130,9 @@ export default {
 * {
   box-sizing: border-box;
 }
-
+.fa.fa-star{
+  color:#FEC902;
+}
 header {
   width: 80%;
   font-size: 2em;

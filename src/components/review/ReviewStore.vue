@@ -14,20 +14,21 @@
 
     <!-- 본문 작성 -->
     <div class="online small" id="online">
-      <h1>{{state.items.name}}님 가게 리뷰 확인</h1>
+      <h1>{{state.store.name}}님 가게 리뷰 확인</h1>
       <br><br>
       <div class='app'>
         <main class='project'>
           <div class='project-tasks'>
-            <div class='project-column' >
+            <div class='project-column' v-for="(re, idx) in state.items" :key="idx">
               <div class='task' draggable='true'>
                   <img src="../../../public/aaa7.png" class="image-size" />
-                  <br>
+                &nbsp;&nbsp;<span class='task__tag task__tag--copyright'>{{re.writer}}님 리뷰</span>
                   <div class='task__tags'>
-                    <span class='task__tag task__tag--copyright'>나님 리뷰</span>
-                    <button class='task__options'></button></div>
-                  <p>hi</p>
+                    <button class='task__options'></button>
+                    <p>{{re.content}}</p>
+                  </div>
               </div>
+
             </div>
 
           </div>
@@ -53,19 +54,27 @@ import axios from "axios";
 import Header2 from "@/components/header/Header2.vue";
 
 export default {
-  name: "MyReview",
+  name: "ReviewStore",
   components: {Header2},
   setup() {
     const state = reactive({
-      items: Object
+      store: Object,
+      items: []
     })
 
     const load = () => {
       axios.get("/api/store/mypage").then(({data}) => {
-        state.items = data;
+        state.store = data;
       })
     };
     load();
+    const review = () => {
+      axios.get("/api/review").then(({data}) => {
+        state.items = data;
+      })
+    };
+
+    review();
 
     return {state};
   }

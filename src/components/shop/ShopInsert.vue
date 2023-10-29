@@ -21,7 +21,7 @@
                 <b>가게 위치</b><input type="text" placeholder="주소" id="location" v-model="state.form.location" /><br>
                 <b>가게 전화번호</b><input type="text" placeholder="가게 전화번호 (- 없이 입력)" id="phonenumber" v-model="state.form.phonenumber" /><br>
                 <b>가게 이미지 파일 첨부</b><input type="file" ref="fileInput" @change="onFileChange" /><br>
-                <hr>
+                <hr><br><br>
                 <button text="button" class="bookbtn" @click="register()">등록</button>
               </div>
             </ul>

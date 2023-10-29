@@ -30,8 +30,9 @@
           </div>
         </div>
       </div>
+      <hr style="border: solid 5px #2ecc71;">
+      <Review />
     </div>
-
   </div>
 
 </template>
@@ -41,10 +42,11 @@ import axios from "axios";
 import {reactive} from "vue";
 import lib from "@/scripts/lib";
 import Header from "@/components/header/Header.vue";
+import Review from "@/components/review/Review.vue";
 
 export default {
   name: "Store",
-  components: {Header},
+  components: {Header, Review},
   setup() {
     const state = reactive({
       menus: []

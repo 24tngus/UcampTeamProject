@@ -26,11 +26,13 @@
                         </div>
 
                         <div class="text-content">
-                          <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
-                          <span class="cartbtn">
-                            <i v-if="shop.flag" @click="cartFlag(shop)" class="fa fa-heart" aria-hidden="true"></i>
-                            <i v-else @click="cartFlag(shop)" class="fa fa-heart-o" aria-hidden="true"></i>
-                          </span>
+                          <div class="title-and-cart">
+                            <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
+                            <span class="cartbtn">
+                              <i v-if="shop.flag" @click="cartFlag(shop)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                              <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                            </span>
+                          </div>
                           <span class="shop1"> {{shop.category}} </span> &nbsp;
                           <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
                           <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
@@ -97,9 +99,23 @@ export default {
 </script>
 
 <style scoped>
-.cartbtn{
-  border : 1px solid blue;
-  display : inline-block;
+
+.title-and-cart {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 아이콘들 간의 간격을 조절합니다. */
+.cartbtn i {
+  margin: 0 5px;
+  color: red; /* 아이콘의 색을 빨간색으로 지정합니다. */
+}
+
+/* 아이콘 크기 설정 */
+.fa-2x {
+  font-size: 2em;
 }
 
 .shopimage1:hover{

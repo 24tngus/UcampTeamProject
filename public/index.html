@@ -12,6 +12,9 @@
             integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
             crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title><%= htmlWebpackPlugin.options.title %></title>
+      <!-- 구글 로그인-->
+      <meta name="google-signin-client_id" content="839987739091-k0tglidv7eq5g3on116alhkmrs2me38v.apps.googleusercontent.com" />
+      <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
   </head>
   <body>
     <noscript>
@@ -19,5 +22,12 @@
     </noscript>
     <div id="app"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- 구글 로그인-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- 네이버 로그인 -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
   </body>
 </html>

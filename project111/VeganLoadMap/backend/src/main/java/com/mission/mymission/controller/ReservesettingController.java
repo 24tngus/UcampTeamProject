@@ -72,8 +72,12 @@ public class ReservesettingController {
         Store stores = storeRepository.findBySeq(seq);
 
         String storeid = stores.getId();
-        // 추가
         newReserve.setStoreid(storeid);
+//        newReserve.setStoreid("example11");
+        if (reservesettingRepository.existsByDetails(newReserve.getDate(), newReserve.getTime0810(), newReserve.getTime1012(), newReserve.getTime1214(), newReserve.getTime1416(), newReserve.getTime1618(), newReserve.getTime1820(), newReserve.getTime2022())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build(); // 이미 존재하는 경우 409 Conflict 반환
+        }
+
         ReserveSetting savedReserve = reservesettingRepository.save(newReserve);
         return ResponseEntity.ok(savedReserve);
     }

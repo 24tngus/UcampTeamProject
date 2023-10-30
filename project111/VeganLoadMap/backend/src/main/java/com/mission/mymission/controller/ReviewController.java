@@ -44,6 +44,7 @@ public class ReviewController {
     @GetMapping("/review/list")
     public Map<String, Object> getReviewMap(@CookieValue(value = "token", required = false) String token,
                                             @RequestParam String storename){
+        System.out.println("식당" + storename);
         if (!jwtService.isValid(token)) {
             List<Review> reviewList = reviewRepository.findByStorename(storename);
             Collections.reverse(reviewList);

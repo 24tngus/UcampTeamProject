@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Admin Page</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #admin {font-size: 30px; display: flex; justify-content: center;}
+        #page-content-wrapper {margin-left: 10px;}
+    </style>
+
+
+</head>
+
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light">
+            <a href="/admin/main" class="navbar-brand" id="admin">Admin</a>
+        </div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="/admin/manageShop">식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/etc">기타</a>
+        </div>
+    </div> <!-- /#sidebar-wrapper -->
+
+    <!-- Page content wrapper -->
+    <div id="page-content-wrapper">
+        <!-- Page content -->
+        <div class="container-fluid">
+            <h1 class="mt-4">관리자 페이지</h1>
+            <p> 이 페이지는 식당 상세정보 페이지입니다. </p>
+        </div> <!-- /Page content -->
+
+        <hr>
+
+        <div>
+            <table class="table">
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Seq</th>
+                    <td th:text="${shop.seq}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Storename</th>
+                    <td th:text="${shop.storename}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Detailinfo</th>
+                    <td th:text="${shop.detailinfo}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Category</th>
+                    <td th:text="${shop.category}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Location</th>
+                    <td th:text="${shop.location}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Phonenumber</th>
+                    <td th:text="${shop.phonenumber}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Image</th>
+                    <td th:text="${shop.image}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Permit</th>
+                    <td th:text="${shop.permit}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">StoreId</th>
+                    <td th:text="${shop.storeid}"></td>
+                </tr>
+                <tr th:each="shop, shopState : ${shopRegister}">
+                    <th scope="col">Delete</th>
+                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteShop/{storename}(storename=${shop.storename})}"
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="btn btn-outline-success" onClick="history.go(-1)">나가기</button>
+
+    </div> <!-- /#page-content-wrapper -->
+
+
+
+
+</div> <!-- /#wrapper -->
+
+
+<!-- Bootstrap core JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

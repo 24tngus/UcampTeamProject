@@ -59,16 +59,16 @@
               <div class="container">
                 <div class="image-content">
                   <div class="image-column">
-                    <img :src="shop.image2" class="shopimage1" v-if="shop.image2 !== null" />
-                    <img :src="setImgUrl(shop.image2)" v-else />
+                    <img :src="shop.image1" class="shopimage1" v-if="shop.image2 && !shop.image2.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image2)"  class="shopimage1" v-else />
                   </div>
                   <div class="image-column">
-                    <img :src="shop.image1" class="shopimage1" v-if="shop.image1 !== null" />
-                    <img :src="setImgUrl(shop.image1)" v-else />
+                    <img :src="shop.image2" class="shopimage1" v-if="shop.image1 && !shop.image1.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image1)"  class="shopimage1" v-else />
                   </div>
                   <div class="image-column">
-                    <img :src="shop.image3" class="shopimage1" v-if="shop.image3 !== null" />
-                    <img :src="setImgUrl(shop.image3)" v-else />
+                    <img :src="shop.image3" class="shopimage1" v-if="shop.image3 && !shop.image3.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image3)"  class="shopimage1" v-else />
                   </div>
                 </div>
               </div>

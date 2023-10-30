@@ -15,7 +15,7 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
 <!--                  <button class="btn btn-primary" @click="$router.push('/menu')">-->
-                    <button class="btn btn-primary" @click="$router.push({ path: '/menu', query: { storename: shop.storename } })">
+                    <button class="btn btn-primary" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">
 
                     <i class="fa fa-plus" aria-hidden="true"></i>
                   </button>

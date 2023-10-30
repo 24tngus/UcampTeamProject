@@ -70,6 +70,7 @@ public class ReservesettingController {
         }
         int seq = jwtService.getSeq(token);
         Store stores = storeRepository.findBySeq(seq);
+
         String storeid = stores.getId();
         // 추가
         newReserve.setStoreid(storeid);

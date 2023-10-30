@@ -40,6 +40,9 @@
             </template>
           </p>
         </div>
+        <div class="review-comment">
+          <p>{{ review.content }}</p>
+        </div>
       </div>
       <router-link :to="{ name: 'review_update', params: { value: review.seq } }"><button type="button">수정</button></router-link>
 

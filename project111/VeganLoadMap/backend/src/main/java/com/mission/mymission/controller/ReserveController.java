@@ -1,9 +1,6 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.Reserve;
-import com.mission.mymission.entity.Review;
-import com.mission.mymission.entity.Store;
-import com.mission.mymission.entity.User;
+import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
 import com.mission.mymission.repository.StoreRepository;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Date;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -40,6 +38,7 @@ public class ReserveController {
         Store stores = storeRepository.findBySeq(seq);
         String storeid = stores.getId();
         List<Reserve> reserve = reserveRepository.findByStoreid(storeid);
+        Collections.reverse(reserve);
 
         return reserve;
     }
@@ -55,8 +54,8 @@ public class ReserveController {
         List<Reserve> reserves = reserveRepository.findByReserver(users.getNickname());
         return reserves;
     }
-
-    @PostMapping("/api/reserve/insert")
+    //유저가 예약할 때 사용하는 메소드
+    @PostMapping("/reserve/insert")
     public ResponseEntity<Reserve> insertReserve(@RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서
@@ -250,4 +249,6 @@ public class ReserveController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+
 }

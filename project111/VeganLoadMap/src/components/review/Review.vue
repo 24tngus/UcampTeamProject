@@ -75,6 +75,8 @@ export default {
   methods: {
     fetchReview() {
       const storename = this.$route.query.storename;
+      const seq = this.$route.query.seq;
+      console.log("seq : "+seq);
       axios
           .get("/api/review/list", {
             params: {

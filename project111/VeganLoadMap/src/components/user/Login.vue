@@ -11,7 +11,7 @@
           <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="Email" v-model="state.form.email">
+        <input type="text" placeholder="Email" v-model="state.form.email">
         <input type="password" placeholder="Password" v-model="state.form.password" /><br>
         <button @click="submit()">로그인</button>
       </form>
@@ -45,7 +45,8 @@ export default {
       }
     })
     const submit = () => {
-        axios.post("/api/user/login", state.form).then((res)=> {
+      const data = state.form
+        axios.post("/api/user/login", data).then((res)=> {
           store.commit("setAccount", res.data); // store 저장
           if (res.data == 0) {
             if (state.form.email == "") {

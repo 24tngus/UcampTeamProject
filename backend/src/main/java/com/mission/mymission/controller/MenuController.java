@@ -1,7 +1,9 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.Menu;
+import com.mission.mymission.entity.Shop;
 import com.mission.mymission.repository.MenuRepository;
+import com.mission.mymission.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,7 @@ import java.util.List;
 public class MenuController {
     @Autowired
     private final MenuRepository menuRepository;
+    private final ShopRepository shopRepository;
 
     @GetMapping("/menu")
     public List<Menu> getMenu() {
@@ -33,6 +36,13 @@ public class MenuController {
         System.out.println("getMenuByShopSeq => " + menuList);
 
         return menuList;
+    }
+
+    @RequestMapping("/menu/shop/{seq}")
+    public Shop getMenuBySeq(@PathVariable("seq") int seq) {
+        Shop shop = shopRepository.findBySeq(seq);
+
+        return shop;
     }
 
 }

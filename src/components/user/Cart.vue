@@ -7,8 +7,8 @@
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
-          <router-link to="/reserve_user"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
       <!-- 본문  -->
@@ -24,7 +24,7 @@
           <figcaption>
             <h3>{{ shop.storename }}</h3>
             <p>{{shop.location}}</p>
-            <img src="../../../public/a_cart2.png"  class="res" @click="$router.push('/reserve')">
+            <img src="../../../public/a_reserve.png"  class="res" @click="$router.push('/reserve')">
             <img src="../../../public/a_trash.png"  class="del"  @click="remove(shop.seq)">
           </figcaption>
         </figure>
@@ -240,7 +240,7 @@ export default {
   left: -20%;
   -webkit-transform: translate(-50%, 50%);
   transform: translate(-50%, 50%);
-  width: 20%;
+  width: 22%;
   line-height: 56px;
   text-align: center;
   opacity: 0.7;

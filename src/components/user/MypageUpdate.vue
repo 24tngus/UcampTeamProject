@@ -8,8 +8,8 @@
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
-          <router-link to="/reserve_user"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
@@ -47,7 +47,8 @@
               <input type="text" class="block" v-model="state.form.tel">
             </div>
           </div>
-          <button class="btn" @click="mypageupdate()">확인</button>
+          <button class="btn" @click="mypageupdate()">수정</button>&nbsp;
+          <button class="btn" @click="deleteUser()">탈퇴</button>
         </div>
         <!-- 페이지 처리 -->
         <div id="num">
@@ -109,7 +110,14 @@ export default {
       })
     }
 
-    return {state, mypageupdate}
+    const deleteUser = () => {
+      axios.delete(`/api/user/mypage/delete/${state.form.seq}`).then(() => {
+        window.alert("탈퇴 처리 되었습니다");
+        router.push({path: "/"});
+      })
+    }
+
+    return {state, mypageupdate, deleteUser}
   }
 }
 

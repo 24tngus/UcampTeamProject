@@ -162,7 +162,7 @@ body {
       rgba(240, 240, 240, 0.144),
       rgba(255, 255, 255, 0.336)
   ),
-  url("https://i.postimg.cc/KY4x3V3H/2023-10-29-12-45-37.png");
+  url("https://i.postimg.cc/Xq5YZ3kV/1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

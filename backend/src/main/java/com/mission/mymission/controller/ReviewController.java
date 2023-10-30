@@ -42,9 +42,10 @@ public class ReviewController {
         return review;
     }
     @GetMapping("/review/list")
-    public Map<String, Object> getReviewMap(@CookieValue(value = "token", required = false) String token){
+    public Map<String, Object> getReviewMap(@CookieValue(value = "token", required = false) String token,
+                                            @RequestParam String storename){
         if (!jwtService.isValid(token)) {
-            List<Review> reviewList = reviewRepository.findAll();
+            List<Review> reviewList = reviewRepository.findByStorename(storename);
             Collections.reverse(reviewList);
             Map<String, Object> resultMap = new HashMap<>();
             resultMap.put("reviewList", reviewList);
@@ -62,24 +63,36 @@ public class ReviewController {
 
         return resultMap;
     }
+    @GetMapping("/myreview")
+    public List<Review> getMyReview(@CookieValue(value = "token", required = false) String token){
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        User users = userRepository.findBySeq(seq);
+        List<Review> reviewList = reviewRepository.findByWriterContaining(users.getNickname());
+        Collections.reverse(reviewList);
+        return reviewList;
+    }
 
-    @PostMapping("/review/insert")
-    public ResponseEntity<Review> insertReview(@CookieValue(value = "token", required = false) String token, @RequestBody Review newReview){
+    @PutMapping("/review/insert/{storename}")
+    public ResponseEntity<Review> insertReview(@CookieValue(value = "token", required = false) String token, @PathVariable String storename,@RequestBody Review newReview){
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int seq = jwtService.getSeq(token);
         User users = userRepository.findBySeq(seq);
 
-        String storeid = newReview.getStoreid();
+//        String storeid = newReview.getStoreid();
         String writer = users.getNickname();
         Review review = new Review();
-        review.setStoreid(storeid);
+        review.setStorename(storename);
+//        review.setStoreid(storeid);
         review.setWriter(writer);
-        review.setSeq(newReview.getSeq());
         review.setContent(newReview.getContent());
         review.setImage(newReview.getImage());
-        review.setStatus(newReview.getStatus());
+        review.setStar(newReview.getStar());
+        review.setStatus(1);
         review = reviewRepository.save(review);
         return ResponseEntity.ok(review);
     }
@@ -100,7 +113,7 @@ public class ReviewController {
         Review updateReviewPro = reviewRepository.findBySeq(updateReview.getSeq());
         updateReviewPro.setContent(updateReview.getContent());
         updateReviewPro.setImage(updateReview.getImage());
-        System.out.println("내용" + updateReviewPro.getContent());
+        updateReviewPro.setStar(updateReview.getStar());
         reviewRepository.save(updateReviewPro);
         return ResponseEntity.ok("Review updated successfully");
     }

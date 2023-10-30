@@ -228,4 +228,13 @@ export default {
   object-position: center;
 }
 
+/* 클릭 전의 색상 */
+.accordion-header button.collapsed {
+  background-color: rgb(255, 255, 255);
+}
+/* 클릭 후의 색상 */
+.accordion-header button:not(.collapsed) {
+  background-color: #eafaea;
+  color : #051c17;
+}
 </style>

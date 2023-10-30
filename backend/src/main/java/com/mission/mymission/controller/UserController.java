@@ -1,5 +1,6 @@
 package com.mission.mymission.controller;
 
+import com.mission.mymission.entity.Store;
 import com.mission.mymission.entity.User;
 import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
@@ -32,6 +33,10 @@ public class UserController {
         String get_email = params.get("email");
         String get_password = params.get("password");
         User user = userRepository.findByEmail(get_email);
+
+        System.out.println("Email: " + get_email);
+        System.out.println("Password: " + get_password);
+        System.out.println( user.getEmail());
         if (user!= null) { // id 확인
             // seq 값을 토큰화 해서 cookie에 넣어 전달
             int seq = user.getSeq();
@@ -85,8 +90,7 @@ public class UserController {
     public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
         User newUser = new User();
 
-        String get_id = params.get("id");
-        newUser.setId(get_id);
+        newUser.setId(params.get("id"));
         newUser.setName(params.get("name"));
         newUser.setNickname(params.get("nickname"));
         newUser.setEmail(params.get("email"));
@@ -145,6 +149,13 @@ public class UserController {
 
         userRepository.save(user);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/mypage/delete/{seq}")
+    public ResponseEntity removeUser (@PathVariable("seq") int seq) {
+        User user = userRepository.findBySeq(seq);
+        userRepository.delete(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

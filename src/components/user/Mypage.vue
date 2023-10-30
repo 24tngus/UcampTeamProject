@@ -7,8 +7,8 @@
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
-          <router-link to="/reserve_user"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
             </router-link>
           </li>
           <li class="thumbox">
-            <router-link to="/reserve_user">
+            <router-link to="/reserve_usercheck">
               <div class="textbox">
                 <img src="../../../public/a_reserve.png" class="image-size" />
                 <br><br>

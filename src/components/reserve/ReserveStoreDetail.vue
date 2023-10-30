@@ -7,7 +7,7 @@
         <div class="buttontab">
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-          <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
           <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
@@ -107,7 +107,7 @@
                   </td>
                 </tr><br><br><br>
                 <div class="button-container">
-                  <button type="button" class="small-btn" @click="$router.push('/reserve_select')" data-bs-dismiss="modal">확인</button>
+                  <button type="button" class="small-btn" @click="$router.push('/reserve_store')" data-bs-dismiss="modal">확인</button>
                   <button type="button" class="small-btn" @click="this.delete(this.form.seq)" data-bs-dismiss="modal">삭제</button>
                 </div>
               </div>
@@ -209,7 +209,7 @@ export default {
       axios.delete(`/api/reserve/set/delete/${seq}`).then(() => {
         this.load_shop();
         window.alert("예약 정보가 삭제 되었습니다");
-        router.push({path: "/reserve_select"});
+        router.push({path: "/reserve_store"});
       })
     }
   },

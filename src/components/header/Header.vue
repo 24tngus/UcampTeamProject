@@ -51,7 +51,8 @@
         <div class="btnbanner"></div>
         <router-link to="/shop" class="menu">Restaurant</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/reserve" class="menu">Reservation</router-link>
+        <router-link to="/reserve_usercheck" class="menu" v-if="$store.state.account.id">Reservation</router-link>
+        <router-link to="/reserve" class="menu" v-else>Reservation</router-link>
         <div class="btnbanner"></div>
         <router-link to="/faq" class="menu">FAQ</router-link>
       </li>

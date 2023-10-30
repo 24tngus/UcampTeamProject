@@ -3,14 +3,59 @@
   <section class="showcase-area" id="showcase">
     <div class="background-image" :style="'background-image: url(/aaa1.png)'"></div>
     <div class="showcase-container">
-      <h1 class="main-title" id="home">Vegan Restaurant</h1><br>
+      <h1 class="main-title" id="home">Recommendation</h1><br>
+      <p>Choose what you want!</p>
     </div>
-  </section><br><br><br>
+  </section>
   <div class="card shadow-sm" id="cat">
-    <div class="card-body" >
+    <div class="card-body" ><br>
       <div><h2 class="cattitle">Restaurant</h2></div>
       <div class="list-group" id="catlist">
         <div class="card-body">
+          <!-- shop -->
+          <div class="card-body">
+            <div class="col" v-for="(shop, idx) in state.items" :key="idx">
+              <div class="card shadow-sm" id="cardshop">
+                <div class="container">
+                  <div class="image-content">
+                    <div class="image-column">
+                      <img :src="shop.image1" class="shopimage1" v-if="shop.image2 && !shop.image2.startsWith('AcJ')" />
+                      <img :src="setImgUrl(shop.image2)"  class="shopimage1" v-else />
+                    </div>
+                    <div class="image-column">
+                      <img :src="shop.image2" class="shopimage1" v-if="shop.image1 && !shop.image1.startsWith('AcJ')" />
+                      <img :src="setImgUrl(shop.image1)"  class="shopimage1" v-else />
+                    </div>
+                    <div class="image-column">
+                      <img :src="shop.image3" class="shopimage1" v-if="shop.image3 && !shop.image3.startsWith('AcJ')" />
+                      <img :src="setImgUrl(shop.image3)"  class="shopimage1" v-else />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-content">
+                  <div class="title-and-cart">
+                    <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
+                    <span class="cartbtn">
+                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                      <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
+                            </span>
+                  </div>
+                  <span class="shop1"> {{shop.category}} </span> &nbsp;
+                  <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
+                  <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
+                  <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center" id="mbtn">
+                  <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
+                  <!--<p>{{shop.seq}}</p>-->
+                  <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
+                </div>
+              </div> <br>
+            </div>
+          </div>
+
+          <!-- shop_register -->
           <div class="col" v-for="(shop, idx) in state.items2" :key="idx">
             <div class="card shadow-sm" id="cardshop">
               <div class="container">
@@ -41,48 +86,6 @@
                 <span class="shop1"> {{shop.category}} </span> &nbsp;
 <!--                shop_register에 rating 칼럼 추가 필요 (리뷰 합산에서 구현 필요)-->
                 <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>4.5 </span><br>
-                <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
-                <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center" id="mbtn">
-                <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
-                <!--<p>{{shop.seq}}</p>-->
-                <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
-              </div>
-            </div> <br>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <div class="col" v-for="(shop, idx) in state.items" :key="idx">
-            <div class="card shadow-sm" id="cardshop">
-              <div class="container">
-                <div class="image-content">
-                  <div class="image-column">
-                    <img :src="shop.image1" class="shopimage1" v-if="shop.image2 && !shop.image2.startsWith('AcJ')" />
-                    <img :src="setImgUrl(shop.image2)"  class="shopimage1" v-else />
-                  </div>
-                  <div class="image-column">
-                    <img :src="shop.image2" class="shopimage1" v-if="shop.image1 && !shop.image1.startsWith('AcJ')" />
-                    <img :src="setImgUrl(shop.image1)"  class="shopimage1" v-else />
-                  </div>
-                  <div class="image-column">
-                    <img :src="shop.image3" class="shopimage1" v-if="shop.image3 && !shop.image3.startsWith('AcJ')" />
-                    <img :src="setImgUrl(shop.image3)"  class="shopimage1" v-else />
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-content">
-                <div class="title-and-cart">
-                  <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
-                  <span class="cartbtn">
-                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                    <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
-                            </span>
-                </div>
-                <span class="shop1"> {{shop.category}} </span> &nbsp;
-                <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
                 <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
                 <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
               </div>
@@ -300,7 +303,7 @@ export default {
 
 
 .showcase-area {
-  height: 50vh;
+  height: 32vh;
   background: linear-gradient(
       rgba(240, 240, 240, 0.144),
       rgba(255, 255, 255, 0.336)
@@ -326,8 +329,11 @@ export default {
 }
 .main-title {
   text-transform: uppercase;
-  margin-top: 1.5em;
+  margin-top: 0.5em;
   font-size: 200%;
   color: #695a5a;
+}
+p {
+  color: #bd8282;
 }
 </style>

@@ -14,22 +14,24 @@ import java.io.IOException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/images")
+@RequestMapping("/api")
 public class ImageController {
     @Autowired
     private ImageRepository imageRepository;
 
-    @PostMapping("/upload")
-    public void uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+    @PostMapping("/images/upload")
+    public Long uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
         Image image = new Image();
         image.setName(file.getOriginalFilename());
         image.setData(file.getBytes());
-        imageRepository.save(image);
+        Long save_id = imageRepository.save(image).getId();
+
+        return save_id;
     }
 
-    @GetMapping("/download/{name}")
-    public ResponseEntity<byte[]> downloadImage(@PathVariable String name) {
-        Optional<Image> image = imageRepository.findByName(name);
+    @GetMapping("/images/download/{id}")
+    public ResponseEntity<byte[]> downloadImage(@PathVariable Long id) {
+        Optional<Image> image = imageRepository.findById(id);
         if (image.isPresent()) {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_JPEG);

@@ -1,6 +1,6 @@
 <template>
   <Header/>
-  <br><br>
+  <br><br><br><br><br>
   <div class="container" id="container">
     <div class="form-container sign-in-container">
       <form action="#">
@@ -21,6 +21,7 @@
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
 </template>
 
 <script>

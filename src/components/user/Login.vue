@@ -1,6 +1,6 @@
 <template>
   <Header/>
-  <br><br>
+  <br><br><br><br><br>
   <div class="container" id="container">
     <div class="form-container sign-in-container">
       <form action="#">
@@ -28,6 +28,7 @@
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
 </template>
 
 <script>
@@ -68,6 +69,8 @@ export default {
           }else {
             // console.log(res.data);
             window.alert("로그인 하였습니다");
+            console.log(state.form.email);
+            console.log(state.form.password);
             router.push({path: "/"});
           }
         })

@@ -5,7 +5,7 @@
     <div class="album py-5 bg-body-tertiary">
       <!-- * * * Food-Menu Section * * * -->
       <section id="food-menu">
-        <h2 class="food-menu-heading">Food Menu</h2>
+        <h2 class="food-menu-heading">{{this.shop.storename}}'s  Menu Top5</h2>
         <div class="food-menu-container container">
           <div class="food-menu-item" v-for="(menu, idx) in this.menus" :key="idx">
             <div class="food-img">
@@ -67,17 +67,24 @@ export default {
   data() {
     return {
       seq: null,
-      menus: []
+      menus: [],
+      shop: Object
     }
   },
   created() {
     this.seq = router.currentRoute.value.params.value;
     this.getMenu();
+    this.getShop();
   },
   methods: {
     getMenu() {
       axios.get(`/api/menu/${this.seq}`).then(({data}) => {
         this.menus = data;
+      })
+    },
+    getShop() {
+      axios.get(`/api/menu/shop/${this.seq}`).then(({data}) => {
+        this.shop = data;
       })
     }
   },

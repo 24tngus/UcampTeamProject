@@ -58,6 +58,8 @@
             <input type="file" ref="fileInput" @change="onFileChange" />
           </li>
         </ul>
+        <img :src="imageURL" alt="이미지" />
+<!--        <button text="button" class="btn btn-submit" @click="downloadImage(this.fileId)">사진보기</button>-->
         <button text="button" class="btn btn-submit" @click="join()">회원가입</button>
         <br><br><br>
       </div>
@@ -81,18 +83,23 @@ export default {
       const formData = new FormData();
       // const name = this.selectedFile.name;
       formData.append("file", this.selectedFile);
-      axios.post("/api/images/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      axios.post("/api/images/upload", formData, {headers: {"Content-Type": "multipart/form-data",},}).then((data) => {
+        this.downloadImage(data.data);
       });
       // window.open(`/api/images/download/${name}`);
       this.state.form.storefile = this.selectedFile.name;
-    }
+    },
+    downloadImage(fileId) {
+      this.imageURL =`/api/images/download/${fileId}`;
+    },
+
   },
   data() {
     return {
       selectedFile: null,
+      filename: null,
+      fileId: 60,
+      imageURL: ""
     };
   },
   setup() {

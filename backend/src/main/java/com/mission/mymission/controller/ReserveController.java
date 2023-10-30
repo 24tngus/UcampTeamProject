@@ -1,10 +1,13 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.Reserve;
+import com.mission.mymission.entity.Review;
 import com.mission.mymission.entity.Store;
+import com.mission.mymission.entity.User;
 import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
 import com.mission.mymission.repository.StoreRepository;
+import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ReserveController {
     private final JwtService jwtService;
+    private final UserRepository userRepository;
     private final StoreRepository storeRepository;
     private final ReserveRepository reserveRepository;
     private final ReservesettingRepository reservesettingRepository;
@@ -35,16 +39,26 @@ public class ReserveController {
         int seq = jwtService.getSeq(token);
         Store stores = storeRepository.findBySeq(seq);
         String storeid = stores.getId();
-
         List<Reserve> reserve = reserveRepository.findByStoreid(storeid);
 
         return reserve;
+    }
+    @GetMapping("/myreserve")
+    public List<Reserve> getMyReserve(
+            @CookieValue(value = "token", required = false) String token
+    ){
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        int seq = jwtService.getSeq(token);
+        User users = userRepository.findBySeq(seq);
+        List<Reserve> reserves = reserveRepository.findByReserver(users.getNickname());
+        return reserves;
     }
 
     @PostMapping("/api/reserve/insert")
     public ResponseEntity<Reserve> insertReserve(@RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
-//        System.out.println("newReserve=" + newReserve);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서
         // 0 보다 작으면 false , 0보다 크면 true
 

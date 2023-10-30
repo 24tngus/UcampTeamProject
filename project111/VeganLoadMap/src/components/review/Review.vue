@@ -70,17 +70,16 @@ export default {
     };
   },
   created() {
+    // this.storename = router.currentRoute.value.params.valu2;
     this.fetchReview();
   },
   methods: {
     fetchReview() {
       const storename = this.$route.query.storename;
-      const seq = this.$route.query.seq;
-      console.log("seq : "+seq);
       axios
           .get("/api/review/list", {
             params: {
-              storename: storename // 이 부분에서 해당 데이터를 전달합니다.
+              storename: storename,
             }
           })
           .then((response) => {

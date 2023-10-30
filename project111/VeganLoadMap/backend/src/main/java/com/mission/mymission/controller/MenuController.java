@@ -28,7 +28,7 @@ public class MenuController {
     }
 
     @RequestMapping("/menu/{shopseq}")
-    public List<Menu> getMenuByshopseq(@RequestParam int shopseq) {
+    public List<Menu> getMenuByShopSeq(@PathVariable int shopseq) {
         List<Menu> menuList = menuRepository.findByshopseq(shopseq);
         System.out.println("getMenuByShopSeq => " + menuList);
         System.out.println("호출되는지 확인");
@@ -37,6 +37,7 @@ public class MenuController {
 
         return menuList;
     }
+
 
     @RequestMapping("/menu/shop/{seq}")
     public Shop getMenuBySeq(@PathVariable("seq") int seq) {

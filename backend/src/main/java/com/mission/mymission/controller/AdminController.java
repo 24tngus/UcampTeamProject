@@ -187,6 +187,25 @@ public class AdminController {
         return "redirect:/admin/manageDuplicateShop";
     }
 
+    // 검색 필터
+    @GetMapping("/searchShop")
+    public String searchShop(@RequestParam String keyword, @RequestParam int filter, Model model) {
+        List<Shop> searchList = new ArrayList<>();
+
+        if (filter == 1) {
+            // 식당 이름(storename)으로 검색
+            try {
+                String storename = String.valueOf(keyword);
+                searchList = adminService.searchShopByStorename(storename);
+            } catch (NumberFormatException e) {
+
+            }
+        }
+
+        model.addAttribute("searchList", searchList);
+        return "admin/manageDuplicateShop";
+    }
+
 
 
 

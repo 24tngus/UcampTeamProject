@@ -42,14 +42,28 @@
         <!-- Page content -->
         <div class="container-fluid">
             <h1 class="mt-4">관리자 페이지</h1>
-            <p> 이 페이지는 식당 관리 페이지입니다. </p>
+            <p> 이 페이지는 중복되는 식당 관리 페이지입니다. </p>
         </div> <!-- /Page content -->
 
         <hr>
 
+        <form class="row g-3" method="get" action="/admin/searchShop">
+            <div class="col-auto">
+                <select class="form-select" name="filter">
+                    <option value="1">가게 검색</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input class="form-control sm-5" type="text" name="keyword" placeholder="내용을 입력하세요" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-outline-primary" type="submit">검색</button>
+                <a href="/admin/manageDuplicateShop" class="btn btn-outline-primary">초기화</a>
+            </div>
+        </form>
+
         <div>
             <table class="table">
-                <h3>Shop_register</h3>
                 <thead>
                 <tr>
                     <th scope="col">Number</th>
@@ -62,6 +76,15 @@
                 </thead>
                 <tbody>
                 <tr th:each="shop, shopState : ${DuplicateShop}">
+                    <td th:text="${shopState.count}"></td>
+                    <td th:text="${shop.seq}"></td>
+                    <td th:text="${shop.storename}"></td>
+                    <td th:text="${shop.category}"></td>
+                    <td th:text="${shop.location}"></td>
+                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteDuplicateShop/{seq}(seq=${shop.seq})}"
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
+                </tr>
+                <tr th:each="shop, shopState : ${searchList}">
                     <td th:text="${shopState.count}"></td>
                     <td th:text="${shop.seq}"></td>
                     <td th:text="${shop.storename}"></td>

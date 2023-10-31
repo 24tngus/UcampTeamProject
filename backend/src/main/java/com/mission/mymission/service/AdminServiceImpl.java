@@ -113,6 +113,14 @@ public class AdminServiceImpl implements AdminService {
         shopRepository.delete(shop);
     }
 
+    @Override
+    public List<Shop> searchShopByStorename(String storename) {
+        List<Shop> shopList = shopRepository.searchByStorename(storename);
+        Collections.reverse(shopList);
+        return shopList;
+    }
+
+
 
 
     // shop_register service

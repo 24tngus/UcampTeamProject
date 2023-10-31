@@ -63,6 +63,7 @@ public class AdminController {
 
 
 
+
     // User Controller
     // 고객 관리 페이지
     @GetMapping("/manageUser")
@@ -87,6 +88,7 @@ public class AdminController {
         model.addAttribute("user", user);
         return "/admin/manageUserInfo";
     }
+
 
 
 
@@ -161,11 +163,32 @@ public class AdminController {
     @GetMapping("/manageShopRegisterInfo/{storename}")
     public String manageShopRegisterInfo(@PathVariable String storename, Model model) {
         ShopRegister shopRegister = adminService.getShopRegister(storename);
-        model.addAttribute("shopRegister", shopRegister);
         Shop shop = adminService.getShop(storename);
+        model.addAttribute("shopRegister", shopRegister);
         model.addAttribute("shop", shop);
         return "/admin/manageShopRegisterInfo";
     }
+
+
+
+
+    // 중복되는 shop 관리 페이지
+    @GetMapping("/manageDuplicateShop")
+    public String manageDuplicateShop(Model model) {
+        adminService.getDuplicateShop();
+        model.addAttribute("DuplicateShop", adminService.getDuplicateShop());
+        return "/admin/manageDuplicateShop";
+    }
+
+    // 중복되는 shop 삭제 메서드
+    @GetMapping("/deleteDuplicateShop/{seq}")
+    public String deleteDuplicateShop(@PathVariable long seq) {
+        adminService.deleteDuplicateShop(seq);
+        return "redirect:/admin/manageDuplicateShop";
+    }
+
+
+
 
     // 신규 식당 요청 관리 페이지
     @GetMapping("/manageNewShopReq")
@@ -196,6 +219,9 @@ public class AdminController {
         adminService.refusalNewShopReq(seq);
         return "redirect:/admin/manageRefusalShop";
     }
+
+
+
 
     // 요청 거부된 식당 관리 페이지
     @GetMapping("/manageRefusalShop")
@@ -232,6 +258,7 @@ public class AdminController {
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageRefusalShopInfo";
     }
+
 
 
 

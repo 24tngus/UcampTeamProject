@@ -26,6 +26,8 @@ public interface AdminService {
     List<Shop> getShopList();
     void deleteShop(String storename);
     Shop getShop(String storename);
+    List<Shop> getDuplicateShop();
+    void deleteDuplicateShop(long seq);
 
 
     // shop_register service

@@ -2,9 +2,7 @@ package com.mission.mymission.service;
 
 import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -22,6 +20,7 @@ import java.util.*;
 public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
+    private final ShopRepository shopRepository;
     private final ShopRegisterRepository ShopRegisterRepository;
     private final ReviewRepository reviewRepository;
     private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
@@ -81,6 +80,42 @@ public class AdminServiceImpl implements AdminService {
 
 
     // shop service
+    @Override
+    public List<Shop> getShopList() {
+        List<Shop> shopList = shopRepository.findAll();
+        Collections.reverse(shopList);
+        return shopList;
+    }
+
+    @Override
+    public void deleteShop(String storename) {
+        Shop shop = shopRepository.findByStorename(storename);
+        shopRepository.delete(shop);
+    }
+
+    @Override
+    public Shop getShop(String storename) {
+        Shop shop = shopRepository.findByStorename(storename);
+        return shop;
+    }
+
+    @Override
+    public List<Shop> getDuplicateShop() {
+        String jpql = "SELECT s FROM Shop s WHERE s.storename IN " +
+                "(SELECT s2.storename FROM Shop s2 GROUP BY s2.storename HAVING COUNT(s2.storename) > 1)";
+        TypedQuery<Shop> query = entityManager.createQuery(jpql, Shop.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public void deleteDuplicateShop(long seq) {
+        Shop shop = shopRepository.findBySeq(seq);
+        shopRepository.delete(shop);
+    }
+
+
+
+    // shop_register service
     // 식당 전체 목록 조회
     @Override
     public List<ShopRegister> getShopRegisterList() {

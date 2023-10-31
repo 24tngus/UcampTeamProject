@@ -14,4 +14,7 @@ public interface ShopRepository extends JpaRepository<Shop, Integer> {
 
     List<Shop> findByCategory(String category);
 
+    Shop findByStorename(String storename);
+
+    Shop findBySeq(Long seq);
 }

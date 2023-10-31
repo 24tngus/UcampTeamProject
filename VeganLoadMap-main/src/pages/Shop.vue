@@ -47,7 +47,9 @@
                   <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center" id="mbtn">
-                  <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
+                  <!--                  <button class="mreserve" @click="$router.push({name:'menu', query: {storename: shop.storename, seq: shop.seq}})">대표메뉴</button>-->
+                  <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">대표메뉴</button>
+
                   <!--<p>{{shop.seq}}</p>-->
                   <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
                 </div>
@@ -62,15 +64,15 @@
                 <div class="image-content">
                   <div class="image-column">
                     <img :src="require(`@/assets/${shop.image2}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image2" class="shopimage1">-->
+                    <!--                    <img :src="'../../public/' + shop.image2" class="shopimage1">-->
                   </div>
                   <div class="image-column">
                     <img :src="require(`@/assets/${shop.image1}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image1" class="shopimage1">-->
+                    <!--                    <img :src="'../../public/' + shop.image1" class="shopimage1">-->
                   </div>
                   <div class="image-column">
                     <img :src="require(`@/assets/${shop.image3}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image3" class="shopimage1">-->
+                    <!--                    <img :src="'../../public/' + shop.image3" class="shopimage1">-->
                   </div>
                 </div>
               </div>
@@ -84,13 +86,16 @@
                             </span>
                 </div>
                 <span class="shop1"> {{shop.category}} </span> &nbsp;
-<!--                shop_register에 rating 칼럼 추가 필요 (리뷰 합산에서 구현 필요)-->
+                <!--                shop_register에 rating 칼럼 추가 필요 (리뷰 합산에서 구현 필요)-->
                 <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>4.5 </span><br>
                 <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
                 <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
               </div>
               <div class="d-flex justify-content-between align-items-center" id="mbtn">
-                <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
+                <!--                <button class="mreserve" @click="$router.push({name:'menu', params: {value1: shop.seq, value2:shop.storename}})">대표메뉴</button>-->
+                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>
+                <router-link :to="{ name: 'menu', params: { value1: 'shop.seq' } }">대표메뉴</router-link>
+
                 <!--<p>{{shop.seq}}</p>-->
                 <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
               </div>
@@ -152,6 +157,12 @@ export default {
       flag : 0
     }
   },
+  methods: {
+    goToMenu(storename, seq) {
+      this.$router.push({ name: 'menu', query: { storename, seq } });
+    }
+  },
+
 }
 </script>
 

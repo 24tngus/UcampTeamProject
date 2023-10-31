@@ -69,7 +69,7 @@ const routes = [
     {path: '/mypage_info', component: MypageInfo},
     {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
-    {path: '/menu/:value', name:"menu", component: Menu},
+    {path: '/menu', name:"menu", component: Menu},
     {path: '/vegan1', component: Vegan1},
     {path: '/vegan2', component: Vegan2},
     {path: '/vegan3', component: Vegan3},

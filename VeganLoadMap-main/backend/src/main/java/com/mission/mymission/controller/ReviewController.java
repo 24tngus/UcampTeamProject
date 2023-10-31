@@ -117,4 +117,9 @@ public class ReviewController {
         reviewRepository.save(updateReviewPro);
         return ResponseEntity.ok("Review updated successfully");
     }
+
+    @PostMapping("/map2")
+    public Review insertApiReview(@RequestBody Review review){
+        return reviewRepository.save(review);
+    }
 }

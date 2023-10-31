@@ -58,32 +58,32 @@
       <div class="review-box">
 
         <div class="review-author">
-<!--          <p><strong>{{ review.writer }} &nbsp;</strong>-->
-            <template v-if="review.star === 1">
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </template>
-            <template v-else-if="review.star === 2">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </template>
-            <template v-else-if="review.star === 3">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </template>
-            <template v-else-if="review.star === 4">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </template>
-            <template v-else-if="review.star === 5">
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-            </template>
+          <!--          <p><strong>{{ review.writer }} &nbsp;</strong>-->
+          <template v-if="review.star === 1">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </template>
+          <template v-else-if="review.star === 2">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </template>
+          <template v-else-if="review.star === 3">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </template>
+          <template v-else-if="review.star === 4">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </template>
+          <template v-else-if="review.star === 5">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </template>
         </div>
       </div>
       <router-link :to="{ name: 'review_update', params: { value: review.seq } }"><button type="button">수정</button></router-link>

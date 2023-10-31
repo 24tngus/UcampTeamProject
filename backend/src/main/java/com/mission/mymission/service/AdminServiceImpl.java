@@ -67,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
     // 판매자 삭제
     @Override
     public void deleteStore(String email) {
-        Store store = storeRepository.findByEmail(email);
+        Store store = storeRepository.findById(email);
         storeRepository.delete(store);
     }
 

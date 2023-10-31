@@ -33,9 +33,9 @@ public class StoreController {
 
     @PostMapping("/store/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-        String get_email = params.get("email");
+        String get_id = params.get("id");
         String get_password = params.get("password");
-        Store store = storeRepository.findByEmail(get_email);
+        Store store = storeRepository.findById(get_id);
         if (store != null) { // id 확인
             // seq 값을 토큰화 해서 cookie에 넣어 전달
             int seq = store.getSeq();

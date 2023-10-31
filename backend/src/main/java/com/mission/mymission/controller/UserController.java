@@ -30,10 +30,10 @@ public class UserController {
 
     @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-        String get_email = params.get("email");
+        String get_id = params.get("id");
         String get_password = params.get("password");
 
-        User user = userRepository.findByEmailAndPassword(get_email, get_password);
+        User user = userRepository.findById(get_id);
 
         if (user != null) { // 사용자가 존재하는지 확인
 

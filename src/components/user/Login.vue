@@ -13,7 +13,7 @@
           <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="email" v-model="state.form.email">
+        <input type="id" placeholder="ID" v-model="state.form.id">
         <input type="password" placeholder="Password" v-model="state.form.password" /><br>
         <button @click="submit()">로그인</button>
       </div>
@@ -50,7 +50,7 @@ export default {
   setup() {
     const state = reactive({
       form :{
-        email: "",
+        id: "",
         password: ""
       }
     })
@@ -58,19 +58,16 @@ export default {
         axios.post("/api/user/login", state.form).then((res)=> {
           store.commit("setAccount", res.data); // store 저장
           if (res.data == 0) {
-            if (state.form.email == "") {
-              window.alert("이메일을 입력해주세요");
+            if (state.form.id == "") {
+              window.alert("아이디를 입력해주세요");
             } else if (state.form.password == "") {
               window.alert("비밀번호를 입력해주세요");
             } else {
-              window.alert("이메일이나 비밀번호가 틀립니다");
+              window.alert("아이디나 비밀번호가 틀립니다");
               router.push({path: "/login"});
             }
           }else {
-            // console.log(res.data);
             window.alert("로그인 하였습니다");
-            console.log(state.form.email);
-            console.log(state.form.password);
             router.push({path: "/"});
           }
         })

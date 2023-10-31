@@ -4,8 +4,7 @@ import com.mission.mymission.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    User findByEmailAndPassword(String email, String password);
+    User findById(String id);
     User findBySeq(int seq);
     User findByNickname(String nickname);
-    User findById(String id);
 }

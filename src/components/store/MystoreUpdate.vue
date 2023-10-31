@@ -8,7 +8,7 @@
         <div class="buttontab">
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-          <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
           <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
@@ -47,9 +47,13 @@
           </div>
           <div class="field">
             <b>사업자 등록증</b>
-            <div class="block">{{state.form.storefile}}</div>
+            <input type="file" ref="fileInput" @change="onFileChange" />
+            <img v-if="imageURL !== 0"  :src="imageURL" style="width: 100%"/>
           </div><br>
-          <button class="btn" @click="mystoreupdate()">확인</button>
+          <div class="button-container">
+            <button class="btn" @click="mystoreupdate()">수정</button>&nbsp;
+            <button class="btn" @click="deleteStore()">탈퇴</button>
+          </div>
         </div>
         <!-- 페이지 처리 -->
         <div id="num">
@@ -73,11 +77,33 @@ import Header2 from "@/components/header/Header2.vue";
 export default {
   name: "MystoreUpdate",
   components: {Header2},
+  data() {
+    return {
+      selectedFile: null,
+      imageURL: "",
+    };
+  },
+  methods: {
+    onFileChange() {
+      this.selectedFile = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      // const name = this.selectedFile.name;
+      formData.append("file", this.selectedFile);
+      axios.post("/api/images/upload", formData, {headers: {"Content-Type": "multipart/form-data",},}).then((data) => {
+        this.state.form.storefile = data.data;
+        this.downloadImage(data.data);
+      });
+    },
+    downloadImage(fileId) {
+      this.imageURL =`/api/images/download/${fileId}`;
+    },
+  },
   setup() {
     const state = reactive({
       form :{
+        seq: "",
         id: "",
-        password: "",
+        password: "*************",
         name: "",
         email: "",
         tel: "",
@@ -87,9 +113,9 @@ export default {
     })
     const load = () => {
       axios.get("/api/store/mypage").then(({data}) => {
-        // state.items = data;
+        state.form.seq = data.seq;
         state.form.id=data.id;
-        state.form.password=data.password;
+        // state.form.password=data.password;
         state.form.name=data.name;
         state.form.email=data.email;
         state.form.tel=data.tel;
@@ -102,7 +128,7 @@ export default {
     const mystoreupdate = () => {
       const updateData = {
         id: state.form.id,
-        password: state.form.password,
+        // password: state.form.password,
         name: state.form.name,
         email: state.form.email,
         tel: state.form.tel,
@@ -115,7 +141,14 @@ export default {
       })
     }
 
-    return {state, mystoreupdate}
+    const deleteStore = () => {
+      axios.delete(`/api/store/mypage/delete/${state.form.seq}`).then(() => {
+        window.alert("탈퇴 처리 되었습니다");
+        router.push({path: "/"});
+      })
+    }
+
+    return {state, mystoreupdate, deleteStore}
   }
 }
 

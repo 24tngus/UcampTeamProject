@@ -4,18 +4,20 @@
 
     <div id="container">
       <div class="tab">
-        <router-link to="/mystore"><h1>마이페이지</h1></router-link>
+        <router-link to="/mypage"><h1>마이페이지</h1></router-link>
         <div class="buttontab">
-          <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
-          <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-          <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
-          <router-link to="/review"><button class="tablink">리뷰 확인</button></router-link>
+          <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
+          <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
+          <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
       <!-- 본문 작성 -->
       <div class="online small" id="online">
+        <br>
         <h1>{{state.form.name}}님 회원 정보 수정</h1>
+        <br><br>
         <div class="member">
           <div class="field">
             <b>아이디</b>
@@ -45,7 +47,8 @@
               <input type="text" class="block" v-model="state.form.tel">
             </div>
           </div>
-          <button class="btn" @click="mypageupdate()">확인</button>
+          <button class="btn" @click="mypageupdate()">수정</button>&nbsp;
+          <button class="btn" @click="deleteUser()">탈퇴</button>
         </div>
         <!-- 페이지 처리 -->
         <div id="num">
@@ -72,7 +75,7 @@ export default {
     const state = reactive({
       form :{
         id: "",
-        password: "",
+        password: "*************",
         name: "",
         nickname: "",
         email: "",
@@ -83,7 +86,7 @@ export default {
     const load = () => {
       axios.get("/api/user/mypage").then(({data}) => {
         state.form.id=data.id;
-        state.form.password=data.password;
+        // state.form.password=data.password;
         state.form.name=data.name;
         state.form.nickname=data.nickname;
         state.form.email=data.email;
@@ -95,7 +98,7 @@ export default {
     const mypageupdate = () => {
       const updateData = {
         id: state.form.id,
-        password: state.form.password,
+        // password: state.form.password,
         name: state.form.name,
         nickname: state.form.nickname,
         email: state.form.email,
@@ -107,7 +110,14 @@ export default {
       })
     }
 
-    return {state, mypageupdate}
+    const deleteUser = () => {
+      axios.delete(`/api/user/mypage/delete/${state.form.seq}`).then(() => {
+        window.alert("탈퇴 처리 되었습니다");
+        router.push({path: "/"});
+      })
+    }
+
+    return {state, mypageupdate, deleteUser}
   }
 }
 
@@ -125,7 +135,9 @@ export default {
   font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
 }
 
-img{border: none}
+.image-size {
+  width: 50%;
+}
 
 a{color: #333;
   text-decoration:none;
@@ -137,33 +149,6 @@ ul li{
 
 #wrapper{
   width: 100%;
-}
-
-.status{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 21px;
-}
-.item{
-  display: flex;
-}
-.number{
-  font-size: 25px;
-  font-weight: 500;
-  text-align: center;
-}
-.item_text{
-  font-size: 11px;
-  font-weight: normal;
-  color: #c2c2c2;
-  text-align: center;
-}
-.item_icon{
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  width: 16px;
-  height: 16px;
 }
 
 #num{
@@ -205,6 +190,33 @@ ul li{
 }
 #num span:hover a,#num span:hover i{
   color: #fff
+}
+
+.status{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 21px;
+}
+.item{
+  display: flex;
+}
+.number{
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+.item_text{
+  font-size: 11px;
+  font-weight: normal;
+  color: #c2c2c2;
+  text-align: center;
+}
+.item_icon{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 16px;
+  height: 16px;
 }
 
 #notice:after{
@@ -263,7 +275,7 @@ ul li{
   position: relative;
   max-width: 70%;
   min-width:  880px;
-  margin: 40px auto;
+  margin: 0 0 0 10%;
   background: #fff;
 }
 #container:after{
@@ -273,7 +285,7 @@ ul li{
 }
 #container > div:not(:first-of-type){
   background: #fff;
-  padding: 40px 20px 0 250px;
+  padding: 3% 10% 0 30%;
 
 }
 .tab{
@@ -423,61 +435,82 @@ button.on{
   margin-bottom: 10px;
 }
 
+.member{
+  width: 400px;
+  /* border: 1px solid #000; */
+  margin-left: 7px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
 
-#num{
-  text-align: center;
-  margin: 30px 0;
-  padding: 40px 0;
-  position: relative;
-  z-index: 2
+.member .logo{
+  /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
+  display: block;
+  margin :50px auto;
 }
-#num:before{
-  content: '';
-  position: absolute;
+
+.member .field{
+  margin :5px 0; /*상하로 좀 띄워주기*/
+}
+
+.member b{
+  /* border: 1px solid #000; */
+  display: block; /*수직 정렬하기 */
+  margin-bottom: 5px;
+}
+
+.block {
+  border: 1px solid #dadada;
+  padding: 15px;
   width: 100%;
-  height: 100%;
-  top:0px;
-  left: 0;
-  border-top: 1px solid #d4d4d4;
-  z-index: -1
+  margin-bottom: 5px;
 }
-#num span{
-  display: inline-block;
-  border: 1px solid #d4d4d4;
-  margin: 0 2px;
-  padding: 5px 10px;
-  vertical-align: middle;
-  cursor: pointer
+
+.field.birth div{ /*field 이면서 birth*/
+  display: flex;
+  gap:10px; /*간격 벌려줌*/
 }
-#num span a{
-  font-size: 10px;
+
+.field.tel-number div {
+  display: flex;
 }
-.currentNum{
-  background: #32312f!important;
+
+.field.gender div{
+  border: 1px solid #dadada;
+  padding: 15px 5px;
+  background-color: #fff;
 }
-.currentNum a{
-  color: #fff
+
+.btn {
+  background-color: darkolivegreen;
+  color: #ffffff;
+  width : 20%;
+  height : 90%;
 }
-#num span:hover{
-  background: #d4d4d4;
+button{
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  height: 70px;
 }
-#num span:hover a,#num span:hover i{
-  color: #fff
+button.on{
+  color: #fa2828;
+  font-weight: 900
 }
-footer{
-  background: #fff;
-  position: relative;
-  z-index: 1
+
+.online .thumbox .textbox h3{
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
-footer:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 300%;
-  height: 100%;
-  background: #fff;
-  z-index: -1
+.online .thumbox .textbox p{
+  color: #6e6a67;
+  font-size: 11px;
+}
+.online .thumbox .textbox p:first-of-type{
+  margin-bottom: 10px;
 }
 @media (max-width:700px){
   #wrapper header {
@@ -542,78 +575,12 @@ footer:before{
     display: none
   }
 }
-/*member sign in*/
-.member{
-  width: 400px;
-  /* border: 1px solid #000; */
-  margin-left: 7px;
-  padding: 0 20px;
-  margin-bottom: 20px;
-}
-
-.member .logo{
-  /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
-  display: block;
-  margin :50px auto;
-}
-
-.member .field{
-  margin :5px 0; /*상하로 좀 띄워주기*/
-}
-
-.member b{
-  /* border: 1px solid #000; */
-  display: block; /*수직 정렬하기 */
-  margin-bottom: 5px;
-}
-
 .block {
   border: 1px solid #dadada;
   padding: 15px;
   width: 100%;
   margin-bottom: 5px;
 }
-
-.member .member select{
-  border: 1px solid #dadada;
-  padding: 15px;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.member input[type=button],
-.member input[type=submit]{
-  background-color:green;
-  color:#fff
-}
-
-.member input:focus, .member select:focus{
-  border: 1px solid #2db400;
-}
-
-.field.birth div{ /*field 이면서 birth*/
-  display: flex;
-  gap:10px; /*간격 벌려줌*/
-}
-
-.field.tel-number div {
-  display: flex;
-}
-
-.field.tel-number div input:nth-child(1){
-  flex:2;
-}
-
-.field.tel-number div input:nth-child(2){
-  flex:1;
-}
-
-.field.gender div{
-  border: 1px solid #dadada;
-  padding: 15px 5px;
-  background-color: #fff;
-}
-
 .placehold-text{
   display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
   position:relative;
@@ -626,32 +593,6 @@ footer:before{
   top:13px;
   pointer-events: none; /*자체가 가지고 있는 pointer event 를 없애준다 */
 }
-
-.member-footer {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 20px;
-}
-
-.member-footer div a:hover{
-  text-decoration: underline;
-  color:#2db400
-}
-
-.member-footer div a:after{
-  content:'|';
-  font-size: 10px;
-  color:#bbb;
-  margin-right: 5px;
-  margin-left: 7px;
-  display: inline-block;
-  transform: translateY(-1px);
-}
-
-.member-footer div a:last-child:after{
-  display: none;
-}
-
 .btn {
   background-color: darkolivegreen;
   color: #ffffff;

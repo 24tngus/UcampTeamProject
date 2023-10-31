@@ -36,9 +36,9 @@ public class CartController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
-    @PostMapping("/cart/shop/{shopseq}")
+    @PostMapping("/cart/insert/{shopSeq}")
     public ResponseEntity pushCartShop(
-            @PathVariable("shopseq") int shopseq,
+            @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value="token", required = false) String token) {
 
         if (!jwtService.isValid(token)) {
@@ -46,17 +46,17 @@ public class CartController {
         }
 
         int userSeq = jwtService.getSeq(token);
-        Cart cart = cartRepository.findByUserSeqAndShopSeq(userSeq, shopseq);
+        Cart cart = cartRepository.findByUserSeqAndShopSeq(userSeq, shopSeq);
 
         if (cart == null) {
             Cart newCart = new Cart();
             newCart.setUserSeq(userSeq);
-            newCart.setShopSeq(shopseq);
+            newCart.setShopSeq(shopSeq);
             cartRepository.save(newCart);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/cart/shop/{shopseq}")
+    @DeleteMapping("/cart/delete/{shopSeq}")
     public ResponseEntity removeCartShop(
             @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value = "token", required = false) String token) {

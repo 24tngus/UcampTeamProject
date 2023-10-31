@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findByStoreid(String storeid);
+    List<Review> findByStorename(String storename);
+
     Review findBySeq(int seq);
 
     Review findBySeq(Long seq);

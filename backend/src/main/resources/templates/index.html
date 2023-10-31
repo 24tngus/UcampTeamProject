@@ -2,24 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <body>
-<table>
-    <tr>
-        <th>Seq</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>EntryDate</th>
-        <th>Update</th>
-        <th>Delete</th>
-    </tr>
-    <tr th:each="user, userStat : ${user}">
-        <td th:text="${userStat.count}"></td>
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.password}"></td>
-<!--        <td><a th:href="@{/userspage/edit/{id}(id=${user.id})}">Update</a></td>-->
-<!--        <td><a th:href="@{/userspage/delete/{id}(id=${user.id})}">delete</a></td>-->
-    </tr>
-</table>
+<h1>테스트 페이지</h1>
 <!--<p><a href="/userspage/signup">Insert</a></p>-->
 </body>
 </html>

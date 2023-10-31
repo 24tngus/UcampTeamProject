@@ -131,7 +131,7 @@ export default {
       const data = {
         team: this.team,
         people: this.people,
-        date: this.date,
+        date: this.formattedPickerDate,
         time0810: this.time0810,
         time1012: this.time1012,
         time1214: this.time1214,
@@ -141,14 +141,20 @@ export default {
         time2022: this.time2022
       };
       axios
+
           .post('/api/reserve/set/insert', data)
           .then((response) => {
             console.log('Data inserted successfully', response.data);
+            alert("예약 설정이 완료되었습니다.")
             // Handle success as needed
           })
           .catch((error) => {
-            console.error('Error inserting data', error);
-            // Handle error as needed
+            if (error.response && error.response.status === 409) {
+              alert("이미 존재하는 예약 세팅값입니다."); // 이미 존재하는 경우 메시지를 보여줌
+            } else {
+              console.error('Error inserting data', error);
+              // Handle other errors as needed
+            }
           });
     },
     clearpickerDate: function () {

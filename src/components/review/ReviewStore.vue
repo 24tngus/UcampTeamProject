@@ -7,7 +7,7 @@
       <div class="buttontab">
         <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
         <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-        <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+        <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
         <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
       </div>
     </div>
@@ -21,7 +21,7 @@
           <div class='project-tasks'>
             <div class='project-column' v-for="(re, idx) in state.items" :key="idx">
               <div class='task' draggable='true'>
-                  <img src="../../../public/aaa7.png" class="image-size" />
+                  <img src="../../../public/a_review2.png" class="image-size" />
                 &nbsp;&nbsp;<span class='task__tag task__tag--copyright'>{{re.writer}}님 리뷰</span>
                   <div class='task__tags'>
                     <button class='task__options'></button>

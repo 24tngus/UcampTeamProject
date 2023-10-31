@@ -1,20 +1,22 @@
 <template>
   <Header/>
-  <br><br>
+  <br><br><br><br><br>
   <div class="container" id="container">
     <div class="form-container sign-in-container">
-      <form action="#">
+      <div class="form-floating">
         <h1>Sign In</h1>
         <div class="social-container">
-          <a href="#" class="social"><i class="fa fa-facebook-f" aria-hidden="true"></i></a>
-          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+          <a href="#" class="social"><div id="naver_id_login"></div></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true" @click="googleLoginBtn"></i></a>
+          &nbsp;&nbsp;&nbsp;
           <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="Email" v-model="state.form.email">
+        <input type="id" placeholder="ID" v-model="state.form.id">
         <input type="password" placeholder="Password" v-model="state.form.password" /><br>
         <button @click="submit()">로그인</button>
-      </form>
+      </div>
     </div>
     <div class="overlay-container">
       <div class="overlay">
@@ -26,6 +28,7 @@
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
 </template>
 
 <script>
@@ -37,10 +40,17 @@ import Header from "@/components/header/Header.vue";
 
 export default {
   components: {Header},
+  mounted(){
+    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000");
+    const state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40); // 버튼 설정
+    naver_id_login.setState(state);
+    naver_id_login.init_naver_id_login();
+  },
   setup() {
     const state = reactive({
       form :{
-        email: "",
+        id: "",
         password: ""
       }
     })
@@ -48,16 +58,15 @@ export default {
         axios.post("/api/user/login", state.form).then((res)=> {
           store.commit("setAccount", res.data); // store 저장
           if (res.data == 0) {
-            if (state.form.email == "") {
-              window.alert("이메일을 입력해주세요");
+            if (state.form.id == "") {
+              window.alert("아이디를 입력해주세요");
             } else if (state.form.password == "") {
               window.alert("비밀번호를 입력해주세요");
             } else {
-              window.alert("이메일이나 비밀번호가 틀립니다");
+              window.alert("아이디나 비밀번호가 틀립니다");
               router.push({path: "/login"});
             }
           }else {
-            // console.log(res.data);
             window.alert("로그인 하였습니다");
             router.push({path: "/"});
           }
@@ -141,7 +150,7 @@ button.ghost {
   border-color: #FFFFFF;
 }
 
-form {
+.form-floating {
   background-color: #FFFFFF;
   display: flex;
   align-items: center;

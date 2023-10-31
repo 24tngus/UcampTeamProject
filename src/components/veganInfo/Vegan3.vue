@@ -9,14 +9,14 @@
           고객은 카테고리 검색을 통해 식당을 추천 받고 실시간 예약을 진행할 수 있습니다.</p>
       </div>
       <div class="about-img">
-        <img src="../../../public/aaa18.png" alt="food" />
+        <img src="../../../public/a_reserve5.png" alt="food" />
       </div>
     </div>
   </section>
   <section id="about">
     <div class="about-wrapper container">
       <div class="about-img">
-        <img src="../../../public/aaa19.png" alt="food" />
+        <img src="../../../public/a_map.png" alt="food" />
       </div>
       <div class="about-text">
         <p class="small">Location</p>
@@ -38,7 +38,7 @@
           예약금 제도를 통해 노쇼를 방지하고자 합니다.</p>
       </div>
       <div class="about-img">
-        <img src="../../../public/aaa15.png" alt="food" />
+        <img src="../../../public/a_reserve4.png" alt="food" />
       </div>
     </div>
   </section>
@@ -47,7 +47,7 @@
     <div class="food-container container">
       <div class="food-type fruite">
         <div class="img-container">
-          <img src="../../../public/aaa13.png" alt="error" />
+          <img src="../../../public/a_vegan.png" alt="error" />
           <div class="img-content">
             <h3>식당 추천</h3>
             <a href="이미지 파일 경로" onclick="window.open('static/home.png', '미리보기', 'width=400, height=400'); return false;" class="btn btn-primary">미리보기</a>
@@ -56,7 +56,7 @@
       </div>
       <div class="food-type vegetable">
         <div class="img-container">
-          <img src="../../../public/aaa11.png" alt="error" />
+          <img src="../../../public/a_reserve3.png" alt="error" />
           <div class="img-content">
             <h3>예약 관리</h3>
             <a href="이미지 파일 경로" onclick="window.open('static/reserved.png', '미리보기', 'width=400, height=400'); return false;" class="btn btn-primary">미리보기</a>
@@ -65,7 +65,7 @@
       </div>
       <div class="food-type grin">
         <div class="img-container">
-          <img src="../../../public/aaa9.png" alt="error" />
+          <img src="../../../public/a_review5.png" alt="error" />
           <div class="img-content">
             <h3>리뷰 관리</h3>
             <a href="이미지 파일 경로" onclick="window.open('static/review.png', '미리보기', 'width=400, height=400'); return false;" class="btn btn-primary">미리보기</a>
@@ -97,6 +97,13 @@ export default {
 
 body {
   font-family: "Poppins", sans-serif;
+}
+
+.full-image {
+  width: auto; /* 이미지의 너비를 자동으로 조절합니다. */
+  max-height: 100%; /* 이미지의 최대 높이를 부모 요소에 맞게 설정합니다. */
+  display: block; /* 이미지가 가로로 확장되는 것을 방지합니다. */
+  margin: 0 auto; /* 이미지를 수평 중앙 정렬합니다. */
 }
 
 .container {

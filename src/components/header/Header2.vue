@@ -35,7 +35,7 @@
         <router-link to="/vegan4" class="menu">이용가이드</router-link>
       </li>
     </ul>
-    <div class="wrapper"><br><br></div>
+    <div class="wrapper"></div>
 
   </header>
 </template>

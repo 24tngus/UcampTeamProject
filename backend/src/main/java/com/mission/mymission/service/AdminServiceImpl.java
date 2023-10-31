@@ -39,12 +39,12 @@ public class AdminServiceImpl implements AdminService {
         return userList;
     }
 
-    // 고객 삭제
-    @Override
-    public void deleteUser(String email) {
-        User user = userRepository.findByEmail(email);
-        userRepository.delete(user);
-    }
+//    // 고객 삭제
+//    @Override
+//    public void deleteUser(String email) {
+//        User user = userRepository.findByEmailAndPassword(email);
+//        userRepository.delete(user);
+//    }
 
     // 고객 개별 조회
     @Override
@@ -67,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
     // 판매자 삭제
     @Override
     public void deleteStore(String email) {
-        Store store = storeRepository.findByEmail(email);
+        Store store = storeRepository.findById(email);
         storeRepository.delete(store);
     }
 

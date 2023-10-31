@@ -1,5 +1,6 @@
 package com.mission.mymission.controller;
 
+import com.mission.mymission.entity.Store;
 import com.mission.mymission.entity.User;
 import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
@@ -29,34 +30,36 @@ public class UserController {
 
     @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-        String get_email = params.get("email");
+        String get_id = params.get("id");
         String get_password = params.get("password");
-        User user = userRepository.findByEmail(get_email);
-        if (user!= null) { // id 확인
-            // seq 값을 토큰화 해서 cookie에 넣어 전달
-            int seq = user.getSeq();
-            String token = jwtService.getToken("seq", seq);
 
-            String encodePassword = user.getPassword();
-            //System.out.println("암호화된 패스워드와 유저가 입력한 패스워드가 일치하는지" + decodePassword);
-            Boolean decodePassword = passwordEncoder.matches(get_password, encodePassword);
+        User user = userRepository.findById(get_id);
 
-            if (decodePassword != true) { // 비밀번호 확인
-                //암호화된 패스워드와 유저가 입력한 패스워드 비교 => 일치하면 true
-                //로그인 할 때 db에 암호화되어 저장된 패스워드와  로그인 창에서 입력한 패스워드와 비교해서
-                return new ResponseEntity<>(0, HttpStatus.OK);
+        if (user != null) { // 사용자가 존재하는지 확인
+
+            // 사용자의 암호 해시와 입력한 암호를 비교
+            boolean isPasswordMatch = passwordEncoder.matches(get_password, user.getPassword());
+
+            if (isPasswordMatch) { // 암호 일치
+                // 사용자의 일련 번호 가져오기
+                int seq = user.getSeq();
+                String token = jwtService.getToken("seq", seq);
+
+                // JWT 토큰을 클라이언트로 전달하도록 쿠키를 설정
+                Cookie cookie = new Cookie("token", token);
+                cookie.setHttpOnly(true);
+                cookie.setPath("/");
+
+                res.addCookie(cookie);
+
+                return new ResponseEntity<>(seq, HttpStatus.OK);
             }
-            // token값을 클라이언트에 전달해서 인증할 수 있지만, 서버에서 관리하는게 안전해서 SSR 형식으로 구현
-            Cookie cookie = new Cookie("token", token);
-            cookie.setHttpOnly(true);
-            cookie.setPath("/");
-
-            res.addCookie(cookie);
-
-            return new ResponseEntity<>(seq, HttpStatus.OK);
         }
+
+        // 로그인 실패
         return new ResponseEntity<>(0, HttpStatus.OK);
     }
+
 
     @PostMapping("/user/logout")
     public ResponseEntity logout(HttpServletResponse res) {
@@ -85,8 +88,7 @@ public class UserController {
     public ResponseEntity join(@RequestBody Map<String, String> params, HttpServletResponse res) {
         User newUser = new User();
 
-        String get_id = params.get("id");
-        newUser.setId(get_id);
+        newUser.setId(params.get("id"));
         newUser.setName(params.get("name"));
         newUser.setNickname(params.get("nickname"));
         newUser.setEmail(params.get("email"));
@@ -140,11 +142,18 @@ public class UserController {
         user.setEmail(updateuser.getEmail());
         user.setTel(updateuser.getTel());
 
-        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
-        user.setPassword(encodePassword);
+//        String encodePassword = passwordEncoder.encode(updateuser.getPassword());
+//        user.setPassword(encodePassword);
 
         userRepository.save(user);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/mypage/delete/{seq}")
+    public ResponseEntity removeUser (@PathVariable("seq") int seq) {
+        User user = userRepository.findBySeq(seq);
+        userRepository.delete(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

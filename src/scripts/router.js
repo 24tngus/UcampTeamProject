@@ -12,7 +12,6 @@ import MypageInfo from "@/components/user/MypageInfo.vue";
 import Join from "@/components/user/Join.vue";
 import Join2 from "@/components/store/Join2.vue";
 import MypageUpdate from "@/components/user/MypageUpdate.vue";
-import Vegan from "@/components/veganInfo/Vegan.vue";
 import Faq from "@/components/Faq.vue";
 import Vegan2 from "@/components/veganInfo/Vegan2.vue";
 import ReserveInsert from "@/components/reserve/ReserveInsert.vue";
@@ -29,8 +28,6 @@ import MystoreInfo from "@/components/store/MystoreInfo.vue";
 import MystoreUpdate from "@/components/store/MystoreUpdate.vue";
 import MyshopUpdate from "@/components/shop/MyshopUpdate.vue";
 import MyshopInfo from "@/components/shop/MyshopInfo.vue";
-import ReserveSelect from "@/components/reserve/ReserveSelect.vue";
-import ReserveDetail from "@/components/reserve/ReserveDetail.vue";
 import ReviewStore from "@/components/review/ReviewStore.vue";
 import ErrorPage from "@/components/ErrorPage.vue";
 import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
@@ -38,6 +35,12 @@ import Review from "@/components/review/Review.vue";
 import test from "@/pages/test.vue"
 import Vegan3 from "@/components/veganInfo/Vegan3.vue";
 import Vegan4 from "@/components/veganInfo/Vegan4.vue";
+import MyReview from "@/components/review/MyReview.vue";
+import ReviewInsert from "@/components/review/ReviewInsert.vue";
+import ReserveUserCheck from "@/components/reserve/ReserveUserCheck.vue";
+import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
+import ReserveStore from "@/components/reserve/ReserveStore.vue";
+import Vegan1 from "@/components/veganInfo/Vegan1.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -58,15 +61,17 @@ const routes = [
     {path: '/reserve', component: Reserve},
     {path: '/reserve_insert', component: ReserveInsert},
     {path: '/reserve_update', component: ReserveUpdate},
-    {path: '/reserve_select', component: ReserveSelect},
-    {path: '/reserve_detail/:value', name: "reserve_detail", component: ReserveDetail},
+    {path: '/reserve_store', component: ReserveStore},
+    {path: '/reserve_storedetail/:value', name: "reserve_storedetail", component: ReserveStoreDetail},
     {path: '/reserve_user', component: ReserveUser},
+    {path: '/reserve_usercheck', component: ReserveUserCheck},
     {path: '/mypage', component: Mypage},
     {path: '/mypage_info', component: MypageInfo},
     {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
-    {path: '/menu', component: Menu},
-    {path: '/vegan', component: Vegan},
+    // {path: '/menu', component: Menu},
+    {path: '/menu', name:"menu", component: Menu},
+    {path: '/vegan1', component: Vegan1},
     {path: '/vegan2', component: Vegan2},
     {path: '/vegan3', component: Vegan3},
     {path: '/vegan4', component: Vegan4},
@@ -75,6 +80,8 @@ const routes = [
     {path: '/foodCategory/Western', component: Western},
     {path: '/foodCategory/Fusion', component: Fusion},
     {path: '/review', component: Review},
+    {path: '/myreview', component: MyReview},
+    {path: '/review_insert/:value', name: "review_insert", component: ReviewInsert },
     {path: '/review_update/:value',name:"review_update", component: ReviewUpdate},
     {path: '/review_store', component: ReviewStore},
     {path: '/test', component: test},

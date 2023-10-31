@@ -2,7 +2,7 @@
   <Header2 />
   <section class="showcase-area" id="showcase">
     <div class="showcase-container">
-      <h1 class="main-title" id="home">채식 식당 예약 서비스 : VeganLoadMap</h1><br><br>
+      <h1 class="main-title" id="home">VeganLoadMap</h1><br><br>
       <p>비건식을 시작하기로 한 사람들에게 맞춤 식당을 추천</p>
       <p>예약 편의성과 신규 고객 유치까지</p>
       <a href="/shop_insert" class="btn btn-primary">시작하기</a>
@@ -10,15 +10,48 @@
   </section>
   <br><br>
   <div class="stepcont">
-    <img src="../../../public/aaa20.png" class="step" />
+    <img src="../../../public/aaa3.png" class="step" />
   </div>
   <section id="about">
     <div class="about-wrapper container">
       <div class="about-text">
-        <p class="small">One Click</p>
-        <h2>인기 맛집도 클릭 한번으로 <br> 손쉽게 예약</h2><br>
-        <p>사용자는 예약에 필요한 간단한 정보를 입력하는 것만으로 인기 있는 맛집을 간편하게 예약할 수 있습니다.<br>
-          고객은 카테고리 검색을 통해 식당을 추천 받고 실시간 예약을 진행할 수 있습니다.</p>
+        <p class="small">One Step</p>
+        <h2>입점 신청</h2><br><br>
+        <div class="about-p">신속하고 공정한 거래를 위해 <br>공식 입점 채널인 홈페이지를 통한 입점 신청만 가능합니다.</div>
+        <br>사업자 등록번호를 입력하여 로그인합니다.<br>
+        기본 정보(가게/판매 메뉴 정보)를 입력한 후 가게 대표 이미지와 함께 저장하시면 제안이 완료됩니다.
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="about-wrapper container">
+      <div class="about-img">
+        <p class="small">Two Step</p>
+        <h2>입점 최종 평가</h2><br><br>
+        <div class="about-p">입점 심사는 제안등록 접수일 기준 3영업일 이내 완료됩니다.</div>
+        <img src="../../../public/aaa2.png">
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="about-wrapper container">
+      <div class="about-text">
+        <p class="small">Three Step</p>
+        <h2>입점 승인/거부</h2><br><br>
+        <div class="about-p">입점 결과는 등록하신 이메일을 통해 확인하실 수 있습니다.</div>
+        <br><br>입점 승인/거부가 완료되면 담당자 이메일로 안내해드립니다.<br><br>
+        <img src="../../../public/aaa4.png" style="width: 90%; border: 1px solid darkolivegreen;">
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="about-wrapper container">
+      <div class="about-img">
+        <p class="small">Four Step</p>
+        <h2>상품 입점</h2><br><br>
+        <div class="about-p">VeganLoadMap에서 본인의 가게를 확인하세요!<br><br></div>
+        <button class="btn btn-primary">입점 신청 하러가기</button>
+
       </div>
     </div>
   </section>
@@ -33,7 +66,7 @@
     <div class="food-container container">
       <div class="food-type fruite">
         <div class="img-container">
-          <img src="../../../public/aaa13.png" alt="error" />
+          <img src="../../../public/a_vegan.png" alt="error" />
           <div class="img-content">
             <h3>식당 추천</h3>
             <a href="/foodCategory/Korean" class="btn btn-primary" target="blank">보러가기</a>
@@ -42,7 +75,7 @@
       </div>
       <div class="food-type vegetable">
         <div class="img-container">
-          <img src="../../../public/aaa11.png" alt="error" />
+          <img src="../../../public/a_reserve3.png" alt="error" />
           <div class="img-content">
             <h3>예약 관리</h3>
             <a href="이미지 파일 경로" onclick="window.open('static/aaa11.png', '미리보기', 'width=400, height=400'); return false;" class="btn btn-primary">미리보기</a>
@@ -51,7 +84,7 @@
       </div>
       <div class="food-type grin">
         <div class="img-container">
-          <img src="../../../public/aaa9.png" alt="error" />
+          <img src="../../../public/a_review5.png" alt="error" />
           <div class="img-content">
             <h3>리뷰 관리</h3>
             <a href="이미지 파일 경로" onclick="window.open('static/aaa9.png', '미리보기', 'width=400, height=400'); return false;" class="btn btn-primary">미리보기</a>
@@ -72,6 +105,21 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+.step {
+  width: 80%;
+  height: 20%;
+}
+.stepcont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.click {
+  width: 200px; /* 원하는 너비 */
+  height: 200px; /* 원하는 높이 */
+  object-fit: cover; /* 이미지 크기 유지 및 크롭 (선택적) */
+}
+
 *,
 *::after,
 *::before {
@@ -90,31 +138,6 @@ body {
   margin: auto;
 }
 
-.step {
-  width: 80%;
-  height: 20%;
-}
-.stepcont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.round-button {
-  width: 50px; /* 버튼의 너비 조절 */
-  height: 50px; /* 버튼의 높이 조절 */
-  background-color: #007bff; /* 원하는 배경 색상 지정 */
-  border-radius: 50%; /* 원 모양으로 만들기 */
-  display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
-  color: white; /* 텍스트 색상 */
-  cursor: pointer;
-}
-
-#home {
-  font-size: 200%;
-}
-
 .btn {
   display: inline-block;
   padding: 0.5em 1.5em;
@@ -128,12 +151,16 @@ body {
 
 .btn-primary {
   color: #fff;
-  background: #16a083;
+  background: darkolivegreen;
+  width: 15%;
+  opacity: 0.7; /* 투명도를 조정합니다. 0.0에서 1.0까지 가능합니다. */
+  transition: opacity 0.3s ease-in-out;
 }
 
 .btn-primary:hover {
-  background: #117964;
+  background: darkolivegreen;
   transition: background 0.3s ease-in-out;
+  opacity: 1.0;
 }
 
 .navbar input[type="checkbox"],
@@ -182,13 +209,12 @@ body {
 }
 
 .main-title {
-  text-transform: uppercase;
   margin-top: 1.5em;
 }
 
 #about {
   padding: 50px 0;
-  background: #f5f5f7;
+  background:white;
 }
 
 .about-wrapper {
@@ -207,7 +233,7 @@ body {
 
 #about .small {
   font-size: 1.2rem;
-  color: #666;
+  color: #f88f2c;
   font-weight: 600;
 }
 
@@ -228,6 +254,7 @@ body {
   flex: 1 1 400px;
   padding: 30px;
   margin: auto;
+  font-size: 18px;
   transform: translate(-150%);
   animation: about-text-animation 1s ease-in-out forwards;
 }
@@ -242,9 +269,15 @@ body {
   display: block;
   height: 400px;
   max-width: 100%;
+  font-size: 18px;
   margin: auto;
   object-fit: cover;
-  object-position: right;
+  object-position: left;
+}
+
+.about-p {
+  color: rgba(20, 52, 13, 0.47);
+  font-size: 23px;
 }
 
 #food {
@@ -563,5 +596,9 @@ body {
   }
 }
 
-
+@media (orientation: landscape) and (max-height: 500px) {
+  .showcase-area {
+    height: 50vmax;
+  }
+}
 </style>

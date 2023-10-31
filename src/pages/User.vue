@@ -1,11 +1,11 @@
 <template>
   <Header/>
-  <br><br>
+  <br><br><br><br><br>
   <div class="container" id="container">
     <div class="form-container sign-in-container">
       <form action="#">
         <h1>사용자</h1>
-        <img src="../../public/aaa.png" class="image-size" />
+        <img src="../../public/a_user.png" class="image-size" />
         <p>VeganLoadMap 식당 예약을 원하신다면</p><br>
         <button class="btn" @click="$router.push('/login')">사용자 로그인</button> &nbsp;
       </form>
@@ -14,13 +14,14 @@
       <div class="overlay">
         <div class="overlay-panel overlay-right">
           <h1>판매자</h1>
-          <img src="../../public/aaa2.png" class="image-size" />
+          <img src="../../public/a_shop.png" class="image-size" />
           <p>VeganLoadMap에 입점 신청을 원하신다면</p><br>
           <button class="btn" @click="$router.push('/login2')">판매자 로그인</button>
         </div>
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
 </template>
 
 <script>

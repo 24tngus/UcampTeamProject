@@ -7,7 +7,7 @@
       <div class="buttontab">
         <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
         <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
-        <router-link to="/reserve_select"><button class="tablink">예약 확인</button></router-link>
+        <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
         <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
       </div>
     </div>
@@ -53,7 +53,7 @@
         <li class="thumbox">
           <router-link to="/mystore_info">
             <div class="textbox">
-              <img src="../../../public/aaa.png" class="image-size" />
+              <img src="../../../public/a_user.png" class="image-size" />
               <br><br>
               <h3>회원 정보</h3>
               <p>#전화번호 변경 #이름 변경</p>
@@ -63,7 +63,7 @@
         <li class="thumbox">
           <router-link to="/myshop_info">
             <div class="textbox">
-              <img src="../../../public/aaa2.png" class="image-size" />
+              <img src="../../../public/a_shop.png" class="image-size" />
               <br><br>
               <h3>가게 정보</h3>
               <p>#주소 변경 #가게 상호명 변경</p>
@@ -71,9 +71,9 @@
           </router-link>
         </li>
         <li class="thumbox">
-          <router-link to="/reserve_select">
+          <router-link to="/reserve_store">
             <div class="textbox">
-              <img src="../../../public/aaa3.png" class="image-size" />
+              <img src="../../../public/a_reserve.png" class="image-size" />
               <br><br>
               <h3>예약 확인</h3>
               <p>#예약 일정 관리 #예약 취소</p>
@@ -83,7 +83,7 @@
         <li class="thumbox">
           <router-link to="/review_store">
             <div class="textbox">
-              <img src="../../../public/aaa5.png" class="image-size" />
+              <img src="../../../public/a_review.png" class="image-size" />
               <br><br>
               <h3>리뷰 확인</h3>
               <p>#후기 관리 #가게 피드백</p>

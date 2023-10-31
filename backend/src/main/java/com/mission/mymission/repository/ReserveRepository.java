@@ -11,6 +11,7 @@ import java.util.List;
 public interface ReserveRepository extends JpaRepository<Reserve, Integer> {
 
     List<Reserve> findByStoreid(String id);
+    List<Reserve> findByReserver(String reserver);
     Reserve findBySeq(int seq);
     Reserve save(Reserve reserve);
 

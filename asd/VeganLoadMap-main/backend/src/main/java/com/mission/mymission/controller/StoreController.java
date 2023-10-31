@@ -45,11 +45,11 @@ public class StoreController {
             //System.out.println("암호화된 패스워드와 유저가 입력한 패스워드가 일치하는지" + decodePassword);
             Boolean decodePassword = passwordEncoder.matches(get_password, encodePassword);
 
-//            if (decodePassword != true) { // 비밀번호 확인
+            if (decodePassword != true) { // 비밀번호 확인
 //                //암호화된 패스워드와 유저가 입력한 패스워드 비교 => 일치하면 true
 //                //로그인 할 때 db에 암호화되어 저장된 패스워드와  로그인 창에서 입력한 패스워드와 비교해서
-//                return new ResponseEntity<>(0, HttpStatus.OK);
-//            }
+                return new ResponseEntity<>(0, HttpStatus.OK);
+            }
             // token값을 클라이언트에 전달해서 인증할 수 있지만, 서버에서 관리하는게 안전해서 SSR 형식으로 구현
             Cookie cookie = new Cookie("token", token);
             cookie.setHttpOnly(true);

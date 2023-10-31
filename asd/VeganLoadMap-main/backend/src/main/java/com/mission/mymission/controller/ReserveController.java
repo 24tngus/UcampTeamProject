@@ -255,6 +255,11 @@ public class ReserveController {
         }
         return ResponseEntity.badRequest().build();
     }
+    @DeleteMapping("/reserve/delete/{seq}")
+    public ResponseEntity removeReserve(@PathVariable("seq") int seq){
+        Reserve reserve = reserveRepository.findBySeq(seq);
 
-
+        reserveRepository.delete(reserve);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

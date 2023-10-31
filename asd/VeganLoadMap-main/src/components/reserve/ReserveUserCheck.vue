@@ -39,7 +39,7 @@
             추가 내용 : <input name="name" type="text" v-model="reserve.comment" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" id="name" readonly/>
           </p>
 
-
+          <button @click="deleteReserve(reserve.seq)">예약 삭제</button>
           <div v-if="isFutureDate(reserve.newdate)" class="submit">
             <!--           <button type="submit">리뷰 쓰기</button>-->
             <router-link :to="{ name: 'review_insert', params: { value: reserve.storename} }">
@@ -71,6 +71,17 @@ export default {
     this.fetchReserve();
   },
   methods:{
+    deleteReserve(seq) {
+      axios
+          .delete(`/api/reserve/delete/${seq}`)
+          .then(() => {
+            this.fetchReserve();
+          })
+          .catch((error) => {
+            console.error("예약 삭제 중 오류 발생", error);
+          });
+            alert("예약이 성공적으로 취소되었습니다.");
+    },
     isFutureDate(date) {
       const today = new Date();
       const newDate = new Date(date);

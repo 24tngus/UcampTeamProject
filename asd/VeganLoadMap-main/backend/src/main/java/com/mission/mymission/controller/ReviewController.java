@@ -41,7 +41,6 @@ public class ReviewController {
 
         return review;
     }
-    //
     @GetMapping("/review/list")
     public Map<String, Object> getReviewMap(@CookieValue(value = "token", required = false) String token,
                                             @RequestParam String storename){

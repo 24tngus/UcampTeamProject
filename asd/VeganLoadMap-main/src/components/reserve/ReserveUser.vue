@@ -10,17 +10,10 @@
           <div class="memberform">
             <div class="member">
               <div class="field">
-                <b>식당 고유 번호</b>
-                <input type="number" v-model="shopseq" class="ruser" >{{ shopseq }}<br>
-              </div>
-              <div class="field">
-                <b>예약 유저 닉네임</b>
-                <input type="text" v-model="reserver" class="ruser" >{{ reserver }}<br>
+                <b>{{ storename }}</b>
               </div>
               <div class="fieldbook">
-                <b>예약 팀 수</b>
                 <div>
-                  <input type="number" v-model="team" class="ruser" >{{ team }}<br>
                   <b>예약 인원 수</b>
                   <input type="number" v-model="people" class="ruser" >{{ people }}<br>
                 </div>
@@ -93,6 +86,7 @@
 <script>
 import axios from "axios";
 import Header from "@/components/header/Header.vue";
+import router from "@/scripts/router";
 
 export default {
   components: {Header},
@@ -107,6 +101,7 @@ export default {
         time1820: 0,
         time2022: 0,
       },
+      storename: '',
       shopseq: 0,
       reserver: "",
       team: 0,
@@ -124,6 +119,9 @@ export default {
       isDataLoaded: true,
       reserveData: null,
     };
+  },
+  mounted() {
+    this.storename = this.$route.query.storename;
   },
   methods: {
     toggleTime(reserve, time) {
@@ -153,8 +151,6 @@ export default {
     },
     insertReserve() {
       const data = {
-        shopseq: this.shopseq,
-        reserver: this.reserver,
         team: this.team,
         people: this.people,
         date: this.date,
@@ -168,21 +164,26 @@ export default {
         comment: this.comment,
       };
       axios
-          .post(`/api/reserve/insert`, data)
+          .post(`/api/reserve/insert`, data, {params: {
+            storename: this.storename
+            }})
           .then((response) => {
             console.log("Data inserted successfully", response.data);
-            // Handle success as needed
+            alert("예약이 완료되었습니다.")
+            router.push({path: "/reserve_usercheck"});
           })
           .catch((error) => {
             console.error("Error inserting data", error);
             // Handle error as needed
             alert("현재 예약 인원이 가득찼습니다.");
-            window.location.reload(); //
+            window.location.reload();
           });
     },
     fetchData() {
       axios
-          .get(`/api/reserve/${this.shopseq}/${this.date}`)
+          .get(`/api/reservesetting/${this.date}`, {params:{
+            storename: this.storename
+            }})
           .then((response) => {
             this.reserveData = response.data[0];
             this.isDataLoaded = true;

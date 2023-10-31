@@ -63,7 +63,7 @@ const routes = [
     {path: '/reserve_update', component: ReserveUpdate},
     {path: '/reserve_store', component: ReserveStore},
     {path: '/reserve_storedetail/:value', name: "reserve_storedetail", component: ReserveStoreDetail},
-    {path: '/reserve_user', component: ReserveUser},
+    {path: '/reserve_user', name:"reserve_user", component: ReserveUser},
     {path: '/reserve_usercheck', component: ReserveUserCheck},
     {path: '/mypage', component: Mypage},
     {path: '/mypage_info', component: MypageInfo},

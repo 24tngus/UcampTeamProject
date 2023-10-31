@@ -3,6 +3,7 @@ package com.mission.mymission.controller;
 import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
+import com.mission.mymission.repository.ShopRegisterRepository;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 public class ReservesettingController {
     private final JwtService jwtService;
     private final StoreRepository storeRepository;
+    private final ShopRegisterRepository shopRegisterRepository;
     private final ReserveRepository reserveRepository;
     private final ReservesettingRepository reservesettingRepository;
 
@@ -82,8 +84,10 @@ public class ReservesettingController {
         return ResponseEntity.ok(savedReserve);
     }
 
-    @GetMapping("/reserve/{storeid}/{date}")
-    public List<ReserveSetting> getTime(@PathVariable String storeid, @PathVariable Date date) {
+    @GetMapping("/reservesetting/{date}")
+    public List<ReserveSetting> getTime(@RequestParam String storename, @PathVariable Date date) {
+        ShopRegister shopRegister = shopRegisterRepository.findByStorename(storename);
+        String storeid = shopRegister.getStoreid();
         List<ReserveSetting> result = reservesettingRepository.findByStoreidAndDate(storeid, date);
         System.out.println(storeid);
         System.out.println(date);

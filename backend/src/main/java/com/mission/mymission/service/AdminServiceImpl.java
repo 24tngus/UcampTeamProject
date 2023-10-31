@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService {
     private final StoreRepository storeRepository;
     private final ShopRegisterRepository ShopRegisterRepository;
     private final ReviewRepository reviewRepository;
-//    private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
+    private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -157,7 +157,7 @@ public class AdminServiceImpl implements AdminService {
             shopRegister.setPermitUpdateTime(LocalDateTime.now());
 
             ShopRegisterRepository.save(shopRegister);
-//            scheduleShopRegisterDeletion.scheduleShopRegisterDeletion();
+            scheduleShopRegisterDeletion.scheduleShopRegisterDeletion();
         }
     }
 

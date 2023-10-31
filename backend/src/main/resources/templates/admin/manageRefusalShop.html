@@ -30,7 +30,7 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShopRegister">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3 active" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
@@ -58,7 +58,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Location</th>
                     <th scope="col">permitUpdateTime</th>
-<!--                    <th scope="col">Delete</th>-->
+                    <th scope="col">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,6 +69,8 @@
                     <td th:text="${shop.category}"></td>
                     <td th:text="${shop.location}"></td>
                     <td th:text="${shop.permitUpdateTime}"></td>
+                    <td><a class="btn btn-outline-danger" th:href="@{/admin/deleteRefusalShop/{storename}(storename=${shop.storename})}"
+                           onclick="if(!confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까??')){return false;}">삭제</a></td>
                 </tr>
                 </tbody>
             </table>

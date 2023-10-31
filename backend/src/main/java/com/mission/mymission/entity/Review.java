@@ -29,7 +29,4 @@ public class Review {
 
     @Column(nullable = false)
     private int status;
-
-    @Column
-    private int star;
 }

@@ -58,6 +58,36 @@ public class UserController {
         return new ResponseEntity<>(0, HttpStatus.OK);
     }
 
+    @PostMapping("/user/naver-login")
+    public ResponseEntity naverLogin(@RequestBody Map<String, String> params, HttpServletResponse res) {
+        String naverToken = params.get("naverToken");
+
+        // 네이버 토큰 검증
+        Claims claims = jwtService.getClaims(naverToken);
+
+        if (claims != null) {
+            // 네이버 토큰 검증 성공
+            int seq = Integer.parseInt(claims.get("seq").toString());
+
+            // 해당 사용자를 식별하여 로그인 처리
+            // (이 부분에서 로그인 처리 로직을 구현하거나 사용자를 식별하는데 필요한 추가 동작을 수행)
+
+            String token = jwtService.getToken("seq", seq);
+
+            // 토큰을 클라이언트로 전달
+            Cookie cookie = new Cookie("token", token);
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            res.addCookie(cookie);
+
+            return new ResponseEntity<>(seq, HttpStatus.OK);
+        } else {
+            // 네이버 토큰 검증 실패
+            // 로그인 실패 처리
+            return new ResponseEntity<>(0, HttpStatus.OK);
+        }
+    }
+
     @PostMapping("/user/logout")
     public ResponseEntity logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("token", null);

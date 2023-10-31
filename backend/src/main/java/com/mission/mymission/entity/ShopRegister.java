@@ -53,6 +53,6 @@ public class ShopRegister {
     @Column(nullable = false)
     private int permit;
 
-    @Column(name = "permitUpdateTime")
+    @Column(name = "permit_update_time")
     private LocalDateTime permitUpdateTime;
 }

@@ -36,7 +36,7 @@ public class CartController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
-    @PostMapping("/cart/insert/{shopSeq}")
+    @PostMapping("/cart/shop/{shopSeq}")
     public ResponseEntity pushCartShop(
             @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value="token", required = false) String token) {
@@ -56,7 +56,7 @@ public class CartController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @DeleteMapping("/cart/delete/{shopSeq}")
+    @DeleteMapping("/cart/shop/{shopSeq}")
     public ResponseEntity removeCartShop(
             @PathVariable("shopSeq") int shopSeq,
             @CookieValue(value = "token", required = false) String token) {

@@ -109,7 +109,13 @@ export default {
       state.items = data;
     })
     return {state};
-  }
+  },
+
+  mounted() {
+    this.naver_id_login = new window.naver_id_login("Client Id", "callback URL");
+    console.log("naver_id_login object:", this.naver_id_login);
+  },
+
 }
 </script>
 

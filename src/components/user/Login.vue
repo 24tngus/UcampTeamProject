@@ -6,15 +6,19 @@
       <form action="#">
         <h1>Sign In</h1>
         <div class="social-container">
-          <a href="#" class="social"><div id="naver_id_login"></div></a>
+          <a href="#" className="social">
+            <div id="naver_id_login" @click="naverLogin"></div>
+          </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true" @click="googleLoginBtn"></i></a>
+          <a href="#" className="social"><i className="fa fa-google-plus" aria-hidden="true"
+                                            @click="googleLoginBtn"></i></a>
           &nbsp;&nbsp;&nbsp;
-          <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
+          <a href="#" className="social"><i className="fa fa-comments" aria-hidden="true"
+                                            id="custom-login-btn" @click="kakaoLogin"></i></a>
         </div>
         <span>or use your account</span>
         <input type="email" placeholder="Email" v-model="state.form.email">
-        <input type="password" placeholder="Password" v-model="state.form.password" /><br>
+        <input type="password" placeholder="Password" v-model="state.form.password"/><br>
         <button @click="submit()">로그인</button>
       </form>
     </div>
@@ -23,7 +27,7 @@
         <div class="overlay-panel overlay-right">
           <h1>Welcome to VeganRoadMap!</h1>
           <p>로그인 및 회원가입 후에 비건로드맵을 즐겨보세요!</p>
-          <button class="ghost" id="signUp" @click="$router.push('/join')">회원가입</button>
+          <button className="ghost" id="signUp" @click="$router.push('/join')">회원가입</button>
         </div>
       </div>
     </div>
@@ -39,41 +43,76 @@ import Header from "@/components/header/Header.vue";
 
 export default {
   components: {Header},
-  mounted(){
-    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000");
+  mounted() {
+    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000/naver_callback");
     const state = naver_id_login.getUniqState();
-    naver_id_login.setButton("white", 2,40); // 버튼 설정
+    naver_id_login.setButton("white", 2, 40); // 버튼 설정
     naver_id_login.setState(state);
     naver_id_login.init_naver_id_login();
   },
   setup() {
     const state = reactive({
-      form :{
+      form: {
         email: "",
         password: ""
       }
     })
     const submit = () => {
-        axios.post("/api/user/login", state.form).then((res)=> {
-          store.commit("setAccount", res.data); // store 저장
-          if (res.data == 0) {
-            if (state.form.email == "") {
-              window.alert("이메일을 입력해주세요");
-            } else if (state.form.password == "") {
-              window.alert("비밀번호를 입력해주세요");
-            } else {
-              window.alert("이메일이나 비밀번호가 틀립니다");
-              router.push({path: "/login"});
-            }
-          }else {
-            // console.log(res.data);
-            window.alert("로그인 하였습니다");
-            router.push({path: "/"});
+      axios.post("/api/user/login", state.form).then((res) => {
+        store.commit("setAccount", res.data); // store 저장
+        if (res.data == 0) {
+          if (state.form.email == "") {
+            window.alert("이메일을 입력해주세요");
+          } else if (state.form.password == "") {
+            window.alert("비밀번호를 입력해주세요");
+          } else {
+            window.alert("이메일이나 비밀번호가 틀립니다");
+            router.push({path: "/login"});
           }
-        })
+        } else {
+          // console.log(res.data);
+          window.alert("로그인 하였습니다");
+          router.push({path: "/"});
+        }
+      })
     }
-    return {state, submit}
-  }
+
+    const kakaoLogin = () => {
+      window.Kakao.Auth.login({
+        scope: "profile_image, account_email",
+        success: getKakaoAccount,
+      });
+    }
+
+    const getKakaoAccount = () => {
+      window.Kakao.API.request({
+        url: "/v2/user/me",
+        success: (res) => {
+          const kakao_account = res.kakao_account;
+          const ninkname = kakao_account.profile.ninkname;
+          const email = kakao_account.email;
+          console.log("ninkname", ninkname);
+          console.log("email", email);
+
+          // 로그인 처리 구현
+          alert("로그인 성공!");
+        },
+        fail: (error) => {
+          console.log(error);
+        },
+      });
+    }
+
+    return {state, submit, kakaoLogin, getKakaoAccount}
+  },
+
+  methods: {
+    kakaoLogout() {
+      window.Kakao.Auth.logout((res) => {
+        console.log(res);
+      });
+    },
+  },
 }
 </script>
 
@@ -172,8 +211,8 @@ input {
 .container {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-  0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+  0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
   width: 768px;
@@ -235,7 +274,7 @@ input {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container{
+.container.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 

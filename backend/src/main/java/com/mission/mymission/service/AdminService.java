@@ -23,6 +23,12 @@ public interface AdminService {
 
 
     // shop service
+    List<Shop> getShopList();
+    void deleteShop(String storename);
+    Shop getShop(String storename);
+
+
+    // shop_register service
     List<ShopRegister> getShopRegisterList();
     void deleteShopRegister(String storename);
     ShopRegister getShopRegister(String storename);

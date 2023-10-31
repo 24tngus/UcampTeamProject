@@ -18,9 +18,6 @@ public class Menu {
     @Column(length = 400, nullable = false)
     private String menu;
 
-    @Column(length = 400)
-    private String info;
-
     @Column(length = 4000)
     private String image;
 

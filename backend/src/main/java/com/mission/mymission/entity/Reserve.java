@@ -4,21 +4,20 @@ package com.mission.mymission.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.sql.Date;
 
-@Entity
 @Table(name = "reserve")
-@Setter @Getter
-@ToString
+@Setter
+@Getter
+@Entity
 public class Reserve {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @Column(length = 100)
-    private String storeid;
+    @Column(nullable = false)
+    private int shopseq;
 
     @Column(length = 100, nullable = false)
     private String reserver;
@@ -59,7 +58,4 @@ public class Reserve {
 
     @Column
     private int status;
-
-    @Column(nullable = false)
-    private String storename;
 }

@@ -1,12 +1,12 @@
 <template>
   <Header2/>
   <div>
-    <ul>
-      <li v-for="reserve in reserves" :key="reserve.seq">
-        예약 세팅 고유 번호 {{reserve.seq}}<br>
-        가게고유번호 {{ reserve.shopseq }}<br>
-        max 테이블 개수 <input type="number" v-model="selectedTeam"><br>
-        max 인원 수 <input type="number" v-model="selectedPeople"><br>
+
+    <div v-if="this.selectedReserve.seq === 0">
+      예약 등록 정보가 없습니다.
+    </div>
+        max 테이블 개수 <input type="number" v-model="this.selectedReserve.team"><br>
+        max 인원 수 <input type="number" v-model="this.selectedReserve.people"><br>
         예약 날짜 <input type="date" v-model="reserve.date"><br><br>
         08:00 ~ 10:00 <button @click="toggleTime(reserve, 'time0810')">{{ reserve.time0810 === 1 ? '해제' : '선택' }}</button>{{ reserve.time0810 }}<br>
         10:00 ~ 12:00 <button @click="toggleTime(reserve, 'time1012')">{{ reserve.time1012 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1012 }}<br>
@@ -16,45 +16,53 @@
         18:00 ~ 20:00 <button @click="toggleTime(reserve, 'time1820')">{{ reserve.time1820 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1820 }}<br>
         20:00 ~ 22:00 <button @click="toggleTime(reserve, 'time2022')">{{ reserve.time2022 === 1 ? '해제' : '선택' }}</button>{{ reserve.time2022 }}<br>
         <button @click="updateReserve(reserve)">수정하기</button>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Header2 from "@/components/header/Header2.vue";
-// import {reactive} from "vue";
+import router from "@/scripts/router";
 
 export default {
-  components: {Header2},
+  components: { Header2 },
   data() {
     return {
       reserves: [],
+      reserve: {
+        seq: 0,
+        team: "",
+        people: "",
+        date: "",
+        time0810: 0,
+        time1012: 0,
+        time1214: 0,
+        time1416: 0,
+        time1618: 0,
+        time1820: 0,
+        time2022: 0,
+      },
+      selectedReserve: {},
+      selectedTeam: 0,
+      selectedPeople: 0,
+      selectedSeq: 0
     };
   },
   created() {
-    this.fetchReserves();
+    this.reserve.date = new Date().toISOString().split('T')[0]; // 현재 날짜로 설정
+    this.fetchReserves(this.reserve.date);
   },
   methods: {
     formatDate(date) {
-      const formattedDate = new Date(date).toISOString().split('T')[0];
+      const formattedDate = new Date(date).toISOString().split("T")[0];
       return formattedDate;
-    },
-    checkOtherTime(reserve, time) {
-      for (let key in reserve) {
-        if (key.includes('time') && key !== time && reserve[key] === 1) {
-          return true;
-        }
-      }
-      return false;
     },
     toggleTime(reserve, time) {
       if (reserve[time] === 1) {
         reserve[time] = 0;
       } else {
         for (let key in reserve) {
-          if (key.includes('time') && key !== time) {
+          if (key.includes("time") && key !== time) {
             reserve[key] = 0;
           }
         }
@@ -62,13 +70,17 @@ export default {
       }
       const selectedReserve = this.reserves.find((r) => r.seq === reserve.seq);
       if (selectedReserve) {
-        // 선택된 예약의 team과 people 값을 즉시 불러옴
+
         this.selectedTeam = selectedReserve.team;
         this.selectedPeople = selectedReserve.people;
+        this.selectedSeq = selectedReserve.seq;
       }
+      this.fetchReserves(this.reserve.date);
     },
-
     updateReserve(reserve) {
+      reserve.seq = this.selectedReserve.seq;
+      reserve.team = this.selectedReserve.team;
+      reserve.people = this.selectedReserve.people;
       axios
           .put(`/api/reserve/set/update/${reserve.seq}`, reserve)
           .then((response) => {
@@ -78,21 +90,39 @@ export default {
           .catch((error) => {
             console.error("Error updating reserve", error);
           });
+      alert("수정되었습니다.");
+      router.push({path: "/"});
     },
+    fetchReserves(date) {
+      const formattedDate = new Date(date).toISOString().split("T")[0];
+      const checksetting = {
+        date: formattedDate,
+        time0810: this.reserve.time0810,
+        time1012: this.reserve.time1012,
+        time1214: this.reserve.time1214,
+        time1416: this.reserve.time1416,
+        time1618: this.reserve.time1618,
+        time1820: this.reserve.time1820,
+        time2022: this.reserve.time2022,
+        team: this.reserve.team,
+        people: this.reserve.people
+      };
+      console.log("예약", JSON.stringify(checksetting));
 
-    fetchReserves() {
       axios
-          .get("/api/reserve")
+          .get("/api/reservecheck", {
+            params: checksetting,
+          })
           .then((response) => {
-            this.reserves = response.data;
-            this.reserves.forEach(reserve => {
-              reserve.date = new Date(reserve.date).toISOString().split('T')[0];
-            });
+            this.selectedReserve = response.data;
+            console.log("팀" + this.selectedReserve.team);
+            console.log("사람" + this.selectedReserve.people);
           })
           .catch((error) => {
             console.error("Error fetching reserves", error);
           });
     },
+
   },
 };
 </script>

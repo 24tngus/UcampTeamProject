@@ -12,7 +12,7 @@ public interface AdminService {
 
     // User service
     List<User> getUserList();
-    void deleteUser(String email);
+//    void deleteUser(String email);
     User getUser(String nickname);
 
 

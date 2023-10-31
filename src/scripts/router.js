@@ -13,6 +13,7 @@ import Join from "@/components/user/Join.vue";
 import Join2 from "@/components/store/Join2.vue";
 import MypageUpdate from "@/components/user/MypageUpdate.vue";
 import Faq from "@/components/Faq.vue";
+import Vegan2 from "@/components/veganInfo/Vegan2.vue";
 import ReserveInsert from "@/components/reserve/ReserveInsert.vue";
 import ReserveUpdate from "@/components/reserve/ReserveUpdate.vue";
 import ReserveUser from "@/components/reserve/ReserveUser.vue";
@@ -32,15 +33,14 @@ import ErrorPage from "@/components/ErrorPage.vue";
 import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
 import Review from "@/components/review/Review.vue";
 import test from "@/pages/test.vue"
-import Vegan1 from "@/components/veganInfo/Vegan1.vue";
-import Vegan2 from "@/components/veganInfo/Vegan2.vue";
 import Vegan3 from "@/components/veganInfo/Vegan3.vue";
 import Vegan4 from "@/components/veganInfo/Vegan4.vue";
-import ReviewInsert from "@/components/review/ReviewInsert.vue";
 import MyReview from "@/components/review/MyReview.vue";
-import ReserveStore from "@/components/reserve/ReserveStore.vue";
-import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
+import ReviewInsert from "@/components/review/ReviewInsert.vue";
 import ReserveUserCheck from "@/components/reserve/ReserveUserCheck.vue";
+import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
+import ReserveStore from "@/components/reserve/ReserveStore.vue";
+import Vegan1 from "@/components/veganInfo/Vegan1.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -69,7 +69,8 @@ const routes = [
     {path: '/mypage_info', component: MypageInfo},
     {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
-    {path: '/menu/:value', name:"menu", component: Menu},
+    // {path: '/menu', component: Menu},
+    {path: '/menu', name:"menu", component: Menu},
     {path: '/vegan1', component: Vegan1},
     {path: '/vegan2', component: Vegan2},
     {path: '/vegan3', component: Vegan3},

@@ -5,9 +5,9 @@
       <li v-for="reserve in reserves" :key="reserve.seq">
         예약 세팅 고유 번호 {{reserve.seq}}<br>
         가게고유번호 {{ reserve.shopseq }}<br>
-        max 테이블 개수 <input type="number" v-model="reserve.team"><br>
-        max 인원 수 <input type="number" v-model="reserve.people"><br>
-        예약 날짜 <input type="date" v-model="reserve.date"><br>
+        max 테이블 개수 <input type="number" v-model="selectedTeam"><br>
+        max 인원 수 <input type="number" v-model="selectedPeople"><br>
+        예약 날짜 <input type="date" v-model="reserve.date"><br><br>
         08:00 ~ 10:00 <button @click="toggleTime(reserve, 'time0810')">{{ reserve.time0810 === 1 ? '해제' : '선택' }}</button>{{ reserve.time0810 }}<br>
         10:00 ~ 12:00 <button @click="toggleTime(reserve, 'time1012')">{{ reserve.time1012 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1012 }}<br>
         12:00 ~ 14:00 <button @click="toggleTime(reserve, 'time1214')">{{ reserve.time1214 === 1 ? '해제' : '선택' }}</button>{{ reserve.time1214 }}<br>
@@ -37,6 +37,10 @@ export default {
     this.fetchReserves();
   },
   methods: {
+    formatDate(date) {
+      const formattedDate = new Date(date).toISOString().split('T')[0];
+      return formattedDate;
+    },
     checkOtherTime(reserve, time) {
       for (let key in reserve) {
         if (key.includes('time') && key !== time && reserve[key] === 1) {
@@ -56,7 +60,12 @@ export default {
         }
         reserve[time] = 1;
       }
-      this.updateReserve(reserve);
+      const selectedReserve = this.reserves.find((r) => r.seq === reserve.seq);
+      if (selectedReserve) {
+        // 선택된 예약의 team과 people 값을 즉시 불러옴
+        this.selectedTeam = selectedReserve.team;
+        this.selectedPeople = selectedReserve.people;
+      }
     },
 
     updateReserve(reserve) {
@@ -76,6 +85,9 @@ export default {
           .get("/api/reserve")
           .then((response) => {
             this.reserves = response.data;
+            this.reserves.forEach(reserve => {
+              reserve.date = new Date(reserve.date).toISOString().split('T')[0];
+            });
           })
           .catch((error) => {
             console.error("Error fetching reserves", error);

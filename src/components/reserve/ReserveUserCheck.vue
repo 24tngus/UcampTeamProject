@@ -59,7 +59,7 @@ import Header from "@/components/header/Header.vue";
 import axios from "axios";
 
 export default {
-  name: "ReserveUserCheck",
+  name: "ReserveTest",
   components: {Header},
   data(){
     return {
@@ -133,7 +133,9 @@ html {
 
 .feedback-input:focus {
   background: #fff;
+  box-shadow: 0;
   border: 3px solid #3498db;
+  color: #3498db;
   outline: none;
   padding: 13px 13px 13px 54px;
 }
@@ -143,6 +145,7 @@ html {
   border: #30aed6 solid 3px;
 }
 
+/* Icons ---------------------------------- */
 #name {
   background-image: url(http://rexkirby.com/kirbyandson/images/name.svg);
   background-size: 30px 30px;
@@ -207,7 +210,6 @@ input:focus, textarea:focus {
   transition: all 0.3s;
   margin-top: -4px;
   font-weight: 700;
-  line-height: 1.5; /* 올바른 line-height 값 설정 */
 }
 
 #button-blue:hover {
@@ -246,3 +248,5 @@ input:focus, textarea:focus {
   }
 }
 </style>
+<script setup>
+</script>

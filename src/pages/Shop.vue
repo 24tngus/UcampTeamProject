@@ -12,7 +12,51 @@
       <div><h2 class="cattitle">Restaurant</h2></div>
       <div class="list-group" id="catlist">
         <div class="card-body">
-          <!-- shop -->
+          <!-- shop_register -->
+          <div class="col" v-for="(shop, idx) in state.items2" :key="idx">
+            <div class="card shadow-sm" id="cardshop">
+              <div class="container">
+                <div class="image-content">
+                  <div class="image-column">
+                    <img :src="require(`@/assets/${shop.image2}`)" class="shopimage1">
+                    <!--                    <img :src="'../../public/' + shop.image2" class="shopimage1">-->
+                  </div>
+                  <div class="image-column">
+                    <img :src="require(`@/assets/${shop.image1}`)" class="shopimage1">
+                    <!--                    <img :src="'../../public/' + shop.image1" class="shopimage1">-->
+                  </div>
+                  <div class="image-column">
+                    <img :src="require(`@/assets/${shop.image3}`)" class="shopimage1">
+                    <!--                    <img :src="'../../public/' + shop.image3" class="shopimage1">-->
+                  </div>
+                </div>
+              </div>
+              <div class="text-content">
+                <div class="title-and-cart">
+                  <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
+                  <span class="cartbtn">
+                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                    <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
+                            </span>
+                </div>
+                <span class="shop1"> {{shop.category}} </span> &nbsp;
+                <!--                shop_register에 rating 칼럼 추가 필요 (리뷰 합산에서 구현 필요)-->
+                <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>4.5 </span><br>
+                <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
+                <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
+              </div>
+              <div class="btn-style" id="mbtn">
+                <!--                하단 코드로 작동도 가능-->
+                <!--                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>-->
+                <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">대표메뉴</button>
+                <button class="mreserve" @click="goToReserve(shop.storename)">예약하기</button>
+              </div>
+            </div> <br>
+          </div>
+        </div>
+
+
+        <!-- shop -->
           <div class="card-body">
             <div class="col" v-for="(shop, idx) in state.items" :key="idx">
               <div class="card shadow-sm" id="cardshop">
@@ -36,68 +80,20 @@
                 <div class="text-content">
                   <div class="title-and-cart">
                     <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
-                    <span class="cartbtn">
-                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                      <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
-                            </span>
                   </div>
                   <span class="shop1"> {{shop.category}} </span> &nbsp;
                   <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
                   <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
                   <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
                 </div>
-                <div class="d-flex justify-content-between align-items-center" id="mbtn">
-                  <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
-                  <!--<p>{{shop.seq}}</p>-->
-                  <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
+                <div class="btn-style2" id="mbtn">
+                  <!--                하단 코드로 작동도 가능-->
+                  <!--                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>-->
+                  <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">대표메뉴</button>
                 </div>
               </div> <br>
             </div>
           </div>
-
-          <!-- shop_register -->
-          <div class="col" v-for="(shop, idx) in state.items2" :key="idx">
-            <div class="card shadow-sm" id="cardshop">
-              <div class="container">
-                <div class="image-content">
-                  <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image2}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image2" class="shopimage1">-->
-                  </div>
-                  <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image1}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image1" class="shopimage1">-->
-                  </div>
-                  <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image3}`)" class="shopimage1">
-<!--                    <img :src="'../../public/' + shop.image3" class="shopimage1">-->
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-content">
-                <div class="title-and-cart">
-                  <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
-                  <span class="cartbtn">
-                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                    <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
-                            </span>
-                </div>
-                <span class="shop1"> {{shop.category}} </span> &nbsp;
-<!--                shop_register에 rating 칼럼 추가 필요 (리뷰 합산에서 구현 필요)-->
-                <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>4.5 </span><br>
-                <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
-                <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center" id="mbtn">
-                <button class="mreserve" @click="$router.push({name:'menu', params: {value: shop.seq}})">대표메뉴</button>
-                <!--<p>{{shop.seq}}</p>-->
-                <button class="mreserve" @click="$router.push('/reserve')">예약하기</button>
-              </div>
-            </div> <br>
-          </div>
-        </div>
-
 
       </div>
     </div>
@@ -152,6 +148,15 @@ export default {
       flag : 0
     }
   },
+  methods: {
+    goToMenu(storename, seq) {
+      this.$router.push({ name: 'menu', query: { storename, seq } });
+    },
+    goToReserve(storename){
+      this.$router.push({ name : 'reserve_user', query: {storename}});
+    }
+  },
+
 }
 </script>
 
@@ -222,16 +227,23 @@ export default {
   margin: 0 20px;
 }
 
+.btn-style {
+  margin-left: 70%;
+}
+
+.btn-style2 {
+  margin-left: 75%;
+}
+
 #mbtn {
   text-align: center;
   width: 200px;
-  margin-left : 430px;
   padding-bottom: 10px;
 }
 .mreserve{
-  margin-top : 10px;
+  margin: 10% 0 0 7%;
   border : 2px solid darkolivegreen;
-  padding : 8px 20px;
+  padding : 5% 10% 5% 10%;
   background: darkolivegreen;
   border-radius: 7px;
   color : white;
@@ -296,11 +308,6 @@ export default {
   color: cadetblue;
   font-weight: 600;
 }
-
-
-
-
-
 
 .showcase-area {
   height: 32vh;

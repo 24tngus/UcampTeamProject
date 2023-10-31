@@ -3,7 +3,7 @@
   <br><br><br><br><br>
   <div class="container" id="container">
   <div class="form-container sign-in-container">
-    <form action="#">
+    <div class="form-floating">
       <h1>Sign In</h1>
       <div class="social-container">
         <a href="#" class="social"><div id="naver_id_login"></div></a>
@@ -13,10 +13,10 @@
         <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
       </div>
       <span>or use your account</span>
-      <input type="email" placeholder="Email" v-model="state.form.email">
+      <input type="email" placeholder="ID" v-model="state.form.email">
       <input type="password" placeholder="Password" v-model="state.form.password" /><br>
       <button @click="submit()">로그인</button>
-    </form>
+    </div>
     </div>
     <div class="overlay-container">
       <div class="overlay">
@@ -150,7 +150,7 @@ button.ghost {
   border-color: #FFFFFF;
 }
 
-form {
+.form-floating {
   background-color: #FFFFFF;
   display: flex;
   align-items: center;

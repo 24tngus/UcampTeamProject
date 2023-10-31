@@ -7,10 +7,7 @@ import com.mission.mymission.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,12 +28,16 @@ public class MenuController {
     }
 
     @RequestMapping("/menu/{shopseq}")
-    public List<Menu> getMenuByshopseq(@PathVariable("shopseq") int shopseq) {
+    public List<Menu> getMenuByShopSeq(@PathVariable int shopseq) {
         List<Menu> menuList = menuRepository.findByshopseq(shopseq);
         System.out.println("getMenuByShopSeq => " + menuList);
+        System.out.println("호출되는지 확인");
+        System.out.println();
+        System.out.println();
 
         return menuList;
     }
+
 
     @RequestMapping("/menu/shop/{seq}")
     public Shop getMenuBySeq(@PathVariable("seq") int seq) {

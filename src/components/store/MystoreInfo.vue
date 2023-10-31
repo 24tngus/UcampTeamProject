@@ -48,10 +48,9 @@
         </div>
         <div class="field">
           <b>사업자 등록증</b>
-          <div class="block">{{state.items.storefile}}</div>
+          <div><img v-if="imageURL !== 0"  :src="`/api/images/download/${state.items.storefile}`" style="width: 100%"/></div>
         </div><br>
         <button class="btn" @click="$router.push('/mystore_update')">수정</button>&nbsp;
-        <button class="btn" @click="$router.push('/mystore')">확인</button>
       </div>
       <!-- 페이지 처리 -->
       <div id="num">
@@ -82,6 +81,7 @@ export default {
     const load = () => {
       axios.get("/api/store/mypage").then(({data}) => {
         state.items = data;
+        // this.imageURL =`/api/images/download/${state.items.storefile}`;
       })
     };
     load();

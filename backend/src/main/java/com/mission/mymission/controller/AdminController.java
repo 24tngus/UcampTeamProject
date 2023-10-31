@@ -75,7 +75,7 @@ public class AdminController {
     // 고객 삭제 메서드
     @GetMapping("/deleteUser/{email}")
     public String deleteUser(@PathVariable String email) {
-        adminService.deleteUser(email);
+//        adminService.deleteUser(email);
         emailSendService.sendMail(email);
         return "redirect:/admin/manageUser";
     }

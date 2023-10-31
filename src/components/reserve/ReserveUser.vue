@@ -182,7 +182,7 @@ export default {
     },
     fetchData() {
       axios
-          .get(`/api/reversetest/reserve/${this.shopseq}/${this.date}`)
+          .get(`/api/reserve/${this.shopseq}/${this.date}`)
           .then((response) => {
             this.reserveData = response.data[0];
             this.isDataLoaded = true;

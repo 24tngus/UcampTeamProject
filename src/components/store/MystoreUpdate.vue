@@ -47,7 +47,8 @@
           </div>
           <div class="field">
             <b>사업자 등록증</b>
-            <div class="block">{{state.form.storefile}}</div>
+            <input type="file" ref="fileInput" @change="onFileChange" />
+            <img v-if="imageURL !== 0"  :src="imageURL" style="width: 100%"/>
           </div><br>
           <div class="button-container">
             <button class="btn" @click="mystoreupdate()">수정</button>&nbsp;
@@ -76,6 +77,27 @@ import Header2 from "@/components/header/Header2.vue";
 export default {
   name: "MystoreUpdate",
   components: {Header2},
+  data() {
+    return {
+      selectedFile: null,
+      imageURL: "",
+    };
+  },
+  methods: {
+    onFileChange() {
+      this.selectedFile = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      // const name = this.selectedFile.name;
+      formData.append("file", this.selectedFile);
+      axios.post("/api/images/upload", formData, {headers: {"Content-Type": "multipart/form-data",},}).then((data) => {
+        this.state.form.storefile = data.data;
+        this.downloadImage(data.data);
+      });
+    },
+    downloadImage(fileId) {
+      this.imageURL =`/api/images/download/${fileId}`;
+    },
+  },
   setup() {
     const state = reactive({
       form :{

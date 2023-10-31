@@ -2,10 +2,14 @@
   <Header />
 
   <div class="store">
+
     <div class="album py-5 bg-body-tertiary">
+
       <!-- * * * Food-Menu Section * * * -->
       <section id="food-menu">
-        <h2 class="food-menu-heading">{{this.shop.storename}}'s  Menu Top5</h2>
+        <div style="margin-left: 18%; font-size: 2em;"><i id="up_back" class="fa fa-chevron-left fa-3x" aria-hidden="true" @click="goBack"></i></div>
+        <div><h2 class="cattitle">Fusion Food</h2></div>
+
         <div class="food-menu-container container">
           <div class="food-menu-item" v-for="(menu, idx) in this.menus" :key="idx">
             <div class="food-img">
@@ -23,69 +27,83 @@
       <!-- * * * Review Section * * *-->
       <section id="reviews">
         <h2 class="review-title">What Our Customers Say</h2>
-        <div class="review-container container">
-          <div class="review-box">
-            <div class="customer-detail">
-              <div class="customer-photo">
-                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
-                <p class="customer-name">Ross Lee</p>
-              </div>
-              <!--              <div class="customer-photo">-->
-              <!--                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />-->
-              <!--                <p class="customer-name">Ross Lee</p>-->
-              <!--              </div>-->
-            </div>
-            <div class="star-rating">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-            </div>
-            <p class="review-text">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
-              voluptas cupiditate aspernatur odit doloribus non.
-            </p>
-          </div>
-        </div>
+        <!--        <div class="review-container container">-->
+        <!--          <div class="review-box">-->
+        <!--            <div class="customer-detail">-->
+        <!--              <div class="customer-photo">-->
+        <!--                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />-->
+        <!--                <p class="customer-name">Ross Lee</p>-->
+        <!--              </div>-->
+        <!--              &lt;!&ndash;              <div class="customer-photo">&ndash;&gt;-->
+        <!--              &lt;!&ndash;                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />&ndash;&gt;-->
+        <!--              &lt;!&ndash;                <p class="customer-name">Ross Lee</p>&ndash;&gt;-->
+        <!--              &lt;!&ndash;              </div>&ndash;&gt;-->
+        <!--            </div>-->
+        <!--            <div class="star-rating">-->
+        <!--              <span class="fa fa-star checked"></span>-->
+        <!--              <span class="fa fa-star checked"></span>-->
+        <!--              <span class="fa fa-star checked"></span>-->
+        <!--              <span class="fa fa-star checked"></span>-->
+        <!--              <span class="fa fa-star checked"></span>-->
+        <!--            </div>-->
+        <!--            <p class="review-text">-->
+        <!--              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit-->
+        <!--              voluptas cupiditate aspernatur odit doloribus non.-->
+        <!--            </p>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </section>
     </div>
-
+    <hr style="border: solid 5px #2ecc71;">
+    <Review />
   </div>
 
+  <div style="font-size: 2em; margin-right: 5%; float:right;">
+    <i id="up_back" class="fa fa-chevron-up fa-3x" aria-hidden="true" @click="goUp"/>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
-import router from "@/scripts/router";
+// import router from "@/scripts/router";
 import lib from "@/scripts/lib";
 import Header from "@/components/header/Header.vue";
+import Review from "@/components/review/Review.vue";
+import {reactive} from "vue";
 
 export default {
   name: "Store",
-  components: {Header},
+  components: {Header,
+    Review
+  },
   data() {
     return {
       seq: null,
-      menus: [],
-      shop: Object
+      menus: []
     }
   },
   created() {
-    this.seq = router.currentRoute.value.params.value;
+    // this.seq = router.currentRoute.value.params.value1;
+    console.log("router seq 확인", this.seq);
     this.getMenu();
-    this.getShop();
   },
   methods: {
     getMenu() {
-      axios.get(`/api/menu/${this.seq}`).then(({data}) => {
+      const seq = this.$route.query.seq;
+
+      console.log("seq " + seq);
+      axios.get(`/api/menu/${seq}`, {params: { seq: seq } }).then(({data}) => {
         this.menus = data;
-      })
+        console.log("getMenu 호출");
+        console.log("data 확인", data);
+      });
     },
-    getShop() {
-      axios.get(`/api/menu/shop/${this.seq}`).then(({data}) => {
-        this.shop = data;
-      })
+
+    goBack() {
+      this.$router.go(-1)
+    },
+    goUp() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   },
   setup() {
@@ -93,7 +111,14 @@ export default {
       return require(`../../public/${imageName}`);
     };
 
-    return { lib, setImgUrl };
+    const state = reactive({
+      menus: []
+    })
+    axios.get("/api/menu").then(({data}) => {
+      state.menus = data;
+    })
+
+    return { lib, setImgUrl, state };
   },
 }
 </script>
@@ -101,6 +126,11 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
 
+.cattitle{
+  padding : 20px;
+  font-weight: 700;
+
+}
 
 
 .container {
@@ -108,6 +138,13 @@ export default {
   margin : auto;
   text-align: center;
 
+}
+
+#up_back{
+  cursor: pointer;
+  font-size: 3em;
+  color: #556B2F;
+  opacity: 0.3;
 }
 
 /* .........../ Food Menu /............ */

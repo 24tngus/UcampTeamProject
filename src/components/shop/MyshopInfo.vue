@@ -13,8 +13,20 @@
       </div>
     </div>
 
+    <div v-if="state.shops.length === 0">
+      <div class="online small" id="online">
+        <h1>{{state.items.name}}님 가게 정보</h1>
+        <div class="member">
+          <div class="field">
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <b>등록하신 가게가 없습니다.</b>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- 본문 작성 -->
-    <div class="online small" id="online">
+    <div class="online small" id="online" v-else>
       <h1>{{state.items.name}}님 가게 정보</h1>
 
       <div class="member" v-for="(shop, idx) in state.shops" :key="idx">
@@ -85,6 +97,7 @@ export default {
     const loadshop = () => {
       axios.get(`/api/shop/register/info`).then(({data}) => {
         state.shops = data;
+        console.log("items", data);
       })
     };
     loadshop();
@@ -535,11 +548,6 @@ footer:before{
 .member .logo{
   /*로고는 이미지라 인라인 블록이니까 마진 오토 안됨 블록요소만 됨 */
   display: block;
-  margin :50px auto;
-}
-
-.member .field{
-  margin :5px 0; /*상하로 좀 띄워주기*/
 }
 
 .member b{

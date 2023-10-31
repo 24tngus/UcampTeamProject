@@ -1,979 +1,327 @@
 <template>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2 id="heading">Sign Up Your User Account</h2>
+          <p>Fill all form field to go to next step</p>
+          <form id="msform">
+            <!-- fieldsets -->
+            <fieldset v-if="flag === 1">
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Account</strong></li>
+                <li id="personal"><strong>Personal</strong></li>
+                <li id="payment"><strong>Image</strong></li>
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Account Information:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 1 - 4</h2>
+                  </div>
+                </div> <label class="fieldlabels">Email: *</label> <input type="email" name="email" placeholder="Email Id" /> <label class="fieldlabels">Username: *</label> <input type="text" name="uname" placeholder="UserName" /> <label class="fieldlabels">Password: *</label> <input type="password" name="pwd" placeholder="Password" /> <label class="fieldlabels">Confirm Password: *</label> <input type="password" name="cpwd" placeholder="Confirm Password" />
+              </div> <input type="button" @click="next" name="next" class="next action-button" value="Next" />
+            </fieldset>
 
 
-  <div class="mobile-wrap">
-    <div class="mobile clearfix">
-      <div class="header">
-        <span class="ion-ios-navicon pull-left"><i></i></span>
-        <span class="title">Home</span>
-        <span class="ion-ios-search pull-right"></span>
-        <div class="search">
-          <form method="post">
-            <input type="search" placeholder="Search Here">
+            <fieldset v-if="this.flag === 2">
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Account</strong></li>
+                <li class="active" id="personal"><strong>Personal</strong></li>
+                <li id="payment"><strong>Image</strong></li>
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Personal Information:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 2 - 4</h2>
+                  </div>
+                </div> <label class="fieldlabels">First Name: *</label> <input type="text" name="fname" placeholder="First Name" /> <label class="fieldlabels">Last Name: *</label> <input type="text" name="lname" placeholder="Last Name" /> <label class="fieldlabels">Contact No.: *</label> <input type="text" name="phno" placeholder="Contact No." /> <label class="fieldlabels">Alternate Contact No.: *</label> <input type="text" name="phno_2" placeholder="Alternate Contact No." />
+              </div> <input type="button" @click="next" name="next" class="next action-button" value="Next" />
+              <input type="button" @click="previous" name="previous" class="previous action-button-previous" value="Previous" />
+            </fieldset>
+
+            <fieldset v-if="this.flag === 3">
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Account</strong></li>
+                <li class="active" id="personal"><strong>Personal</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
+                <li id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Image Upload:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 3 - 4</h2>
+                  </div>
+                </div> <label class="fieldlabels">Upload Your Photo:</label> <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
+              </div> <input type="button" @click="next" name="next" class="next action-button" value="Submit" />
+              <input type="button" @click="previous" name="previous" class="previous action-button-previous" value="Previous" />
+            </fieldset>
+
+            <fieldset v-if="this.flag === 4">
+              <ul id="progressbar">
+                <li class="active" id="account"><strong>Account</strong></li>
+                <li class="active" id="personal"><strong>Personal</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
+                <li class="active" id="confirm"><strong>Finish</strong></li>
+              </ul>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Finish:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 4 - 4</h2>
+                  </div>
+                </div> <br><br>
+                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                <div class="row justify-content-center">
+                  <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div>
+                </div> <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-7 text-center">
+                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+
           </form>
         </div>
-      </div>
-      <div class="content">
-        <div class="html search">
-          <div class="title bounceInDown animated">Search Result</div>
-          <p class="flipInX animated">Sorry,<br>no matches found for <b class="key"></b></p>
-        </div>
-        <div class="html welcome visible">
-          <div class="datetime">
-            <div class="day lightSpeedIn animated">Thursday</div>
-            <div class="date lightSpeedIn animated">June 18, 2015</div>
-            <div class="time lightSpeedIn animated">08:00 AM</div>
-          </div>
-        </div>
-      </div>
-      <div class="nav">
-        <a href="#profile" class="nav-item nav-count-1"><i class="ion-ios-person-outline"></i><span class="invisible">Profile</span></a>
-        <a href="#compose" class="nav-item nav-count-2"><i class="ion-ios-compose-outline"></i><span class="invisible">Compose</span></a>
-        <a href="#chats" class="nav-item nav-count-3"><i class="ion-ios-chatboxes-outline"></i><span class="invisible">Chats</span></a>
-        <a href="#alarm" class="nav-item nav-count-4"><i class="ion-ios-alarm-outline"></i><span class="invisible">Alarm</span></a>
-        <a href="#toggle" class="mask"><i class="ion-ios-plus-empty"></i></a>
       </div>
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      flag: 1
+    }
+  },
+  methods: {
+    next() {
+      if (this.flag < 4) {
+        this.flag++;
+        console.log("next flag", this.flag);
+      }
+    },
+    previous() {
+      if (this.flag > 1) {
+        this.flag--;
+        console.log("prev flag", this.flag);
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
-body {
-  background: teal;
-  font: 300 18px/18px Roboto
+* {
+  margin: 0;
+  padding: 0
 }
 
-*,
-:after,
-:before {
-  box-sizing: border-box
+html {
+  height: 100%
 }
 
-.clearfix:after,
-.clearfix:before {
-  content: '';
-  display: table
+p {
+  color: grey
 }
 
-.clearfix:after {
-  clear: both;
-  display: block
+#heading {
+  text-transform: uppercase;
+  color: #673AB7;
+  font-weight: normal
 }
 
-.mobile-wrap {
-  margin: auto;
-  width: 300px;
-  height: 534px;
-  overflow: hidden;
+#msform {
+  text-align: center;
   position: relative;
-  background: url(https://raw.githubusercontent.com/khadkamhn/secret-project/master/img/background.jpg) center no-repeat;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
+  margin-top: 20px
 }
 
-.mobile-wrap:before {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  content: '';
-  position: absolute;
-  background: rgba(90, 93, 165, .8);
-  background: linear-gradient(to bottom, rgba(90, 93, 165, 1), rgba(0, 0, 0, .7))
-}
-
-.mobile {
-  z-index: 99;
-  color: #fff;
-  height: 100%;
-  padding: 15px;
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding-bottom: 20px;
   position: relative
 }
 
-.mobile .header {
-  clear: both;
-  overflow: hidden;
-  padding-top: 15px;
-  position:relative
+.form-card {
+  text-align: left
 }
 
-.mobile .header>span {
-  font-size: 24px;
-  min-width: 24px
+#msform fieldset:not(:first-of-type) {
+  display: none
 }
 
-.mobile .header>.title {
+#msform input,
+#msform textarea {
+  padding: 8px 15px 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  margin-bottom: 25px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  background-color: #ECEFF1;
   font-size: 16px;
-  line-height: 24px;
-  margin-left: 15px
+  letter-spacing: 1px
 }
 
-.mobile .header .pull-left {
-  float: left
+#msform input:focus,
+#msform textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #673AB7;
+  outline-width: 0
 }
 
-.mobile .header .pull-right {
-  float: right
-}
-.mobile .header .ion-ios-search{
-  z-index:999;
-  position:relative;
-}
-
-.mobile .header .ion-ios-arrow-back {
-  min-width: 25px
-}
-
-.mobile .header .ion-ios-navicon>i {
-  height: 1px;
-  width: 20px;
-  margin-top: 5px;
-  background: #fff;
-  position: relative;
-  display: inline-block
-}
-
-.mobile .header .ion-ios-navicon>i:after,
-.mobile .header .ion-ios-navicon>i:before {
-  content: '';
-  width: inherit;
-  height: inherit;
-  position: absolute;
-  background: inherit
-}
-
-.mobile .header .ion-ios-navicon>i:before {
-  bottom: 12px
-}
-
-.mobile .header .ion-ios-navicon>i:after {
-  bottom: 6px
-}
-.mobile .header .search{
-  right:0;
-  bottom:0;
-  position:absolute;
-}
-.mobile .header .search input{
-  width:0;
-  color:#fff;
-  height:24px;
-  border:none;
-  font-size:16px;
-  max-width:150px;
-  font-weight:300;
-  padding-right:30px;
-  font-family:inherit;
-  background:transparent;
-  transition:all .3s ease-in-out 0s;
-  border-bottom:1px solid transparent;
-  -webkit-appearance:textfield;
-}
-.mobile .header .search input:focus{
-  outline:none;
-}
-.mobile .header .search input::-webkit-search-decoration,
-.mobile .header .search input::-webkit-search-cancel-button {
-  -webkit-appearance:none;
-}
-.mobile .header .search .search-visible{
-  width:100%;
-  border-bottom-color:#aaa;
-}
-.nav {
-  right: 15px;
-  z-index: 20;
-  width: 45px;
-  bottom: 15px;
-  height: 45px;
-  display: block;
-  position: absolute;
-  line-height: 45px;
-  border-radius: 50%;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .75)
-}
-
-.mask {
-  z-index: 21;
-  color: #fff;
-  width: inherit;
-  height: inherit;
+#msform .action-button {
+  width: 100px;
+  background: #673AB7;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
   cursor: pointer;
-  font-size: 28px;
-  text-align: center;
-  border-radius: 50%;
-  position: absolute;
-  background: #f23363;
-  transition: all .1s ease-in-out 0s
-}
-
-.nav.active .mask {
-  background: #cf0e3f;
-  transform: rotate(-135deg)
-}
-
-.nav:after {
-  top: 0;
-  left: 0;
-  content: '';
-  width: inherit;
-  height: inherit;
-  border-radius: 50%;
-  position: absolute;
-  background: #f23363;
-  transition: all .1s ease-in-out 0s
-}
-
-.nav.active:after {
-  top: -125px;
-  left: -125px;
-  width: 350px;
-  height: 350px
-}
-
-.nav-item {
-  top: 0;
-  left: 0;
-  z-index: 19;
-  width: 45px;
-  height: 45px;
-  color: #fff;
-  font-size: 24px;
-  transform: none;
-  line-height: 45px;
-  border-radius: 50%;
-  position: absolute;
-  text-align: center;
-  transition: all .3s cubic-bezier(.68, 1.55, .265, 1)
-}
-
-.nav.active .nav-count-1 {
-  transform: translate(10px, -100px)
-}
-
-.nav.active .nav-count-2 {
-  transform: translate(-35px, -80px)
-}
-
-.nav.active .nav-count-3 {
-  transform: translate(-80px, -45px)
-}
-
-.nav.active .nav-count-4 {
-  transform: translate(-100px, 0)
-}
-
-.pull-left {
-  float: left
-}
-
-.pull-right {
+  padding: 10px 5px;
+  margin: 10px 0px 10px 5px;
   float: right
 }
 
-.html,
-.invisible {
-  display: none
+#msform .action-button:hover,
+#msform .action-button:focus {
+  background-color: #311B92
 }
 
-.html.visible,
-.visible {
-  display: block
+#msform .action-button-previous {
+  width: 100px;
+  background: #616161;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 0px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px 10px 0px;
+  float: right
 }
 
-.sidebar .sidebar-content,
-.sidebar .sidebar-overlay {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  transition: all .3s ease-in-out 0s
+#msform .action-button-previous:hover,
+#msform .action-button-previous:focus {
+  background-color: #000000
 }
 
-.sidebar .sidebar-overlay {
-  right: 0;
-  opacity: 0;
-  width: 100%;
-  z-index: 999;
-  transform: scale(0);
-  background: rgba(0, 0, 0, .4)
-}
-
-.sidebar .sidebar-content {
-  width: 80%;
-  color: #333;
-  padding: 15px;
-  z-index: 9999;
-  background: #fff;
-  transform: translateX(-100%)
-}
-
-.sidebar.active .sidebar-content {
-  transform: translateX(0)
-}
-
-.sidebar.active .sidebar-overlay {
-  opacity: 1;
-  transform: scale(1)
-}
-
-.sidebar .sidebar-content .top-head .name {
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 5px
-}
-
-.sidebar .sidebar-content .top-head .email {
-  font-size: 13px;
-  margin-bottom: 50px
-}
-
-.sidebar .sidebar-content .nav-left>a {
-  color: #333;
-  display: block;
-  font-size: 16px;
-  padding: 10px 0;
-  line-height: 24px;
-  vertical-align: top;
-  text-decoration: none
-}
-
-.sidebar .sidebar-content .nav-left>a>span {
-  color: #aaa;
-  font-size: 24px;
-  min-width: 40px;
-  display: inline-block
-}
-
-.html.chats,
-.html.search,
-.html.compose,
-.html.credits,
-.html.settings,
-.html.welcome {
-  margin-top: 50px
-}
-
-.on-off {
-  display: none
-}
-
-.on-off+label {
-  width: 30px;
-  height: 10px;
-  position: relative;
-  border-radius: 5px;
-  background: #dedee0;
-  display: inline-block;
-  transition: all .3s ease-in-out 0s
-}
-
-.on-off+label:after {
-  left: 0;
-  top: -2px;
-  width: 15px;
-  content: '';
-  height: 15px;
-  position: absolute;
-  border-radius: 50%;
-  background: #bebdc2;
-  transition: all .3s ease-in-out 0s
-}
-
-.on-off:checked+label {
-  background: #fd99b3
-}
-
-.on-off:checked+label:after {
-  left: 15px;
-  background: #fb3666
-}
-
-.btn {
-  color: #eee;
-  width: 100%;
+.card {
+  z-index: 0;
   border: none;
-  font-size: 16px;
-  padding: 12px 24px;
-  background: #cf0e3f;
-  border-radius: 30px
-}
-.search .title{
-  font-size:24px;
-}
-.search .title p{
-  margin:0;
-  font-size:16px;
-  line-height:18px;
-}
-.welcome .datetime .date,
-.welcome .datetime .day {
-  margin-bottom: 15px
+  position: relative
 }
 
-.welcome .datetime .day {
-  font-size: 28px;
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s
+.fs-title {
+  font-size: 25px;
+  color: #673AB7;
+  margin-bottom: 15px;
+  font-weight: normal;
+  text-align: left
 }
 
-.welcome .datetime .date {
-  -webkit-animation-duration: .35s;
-  animation-duration: .35s
+.purple-text {
+  color: #673AB7;
+  font-weight: normal
 }
 
-.forecast {
-  margin-top: 30px
-}
-
-.forecast .temperature {
+.steps {
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: normal;
   text-align: right
 }
 
-.forecast .datetime .day,
-.forecast .temperature .unit {
-  font-size: 28px;
-  min-height: 33px
+.fieldlabels {
+  text-align: left
 }
 
-.forecast .datetime .date,
-.forecast .temperature .location {
-  color: #ccc;
-  font-size: 12px
-}
-
-.forecast .temperature .unit>i {
-  top: -2px;
-  font-style: normal;
-  position: relative
-}
-
-.forecast .animated {
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s
-}
-
-.alarm-list {
-  margin-top: 50px
-}
-
-.alarm-list .note {
-  padding: 10px 0
-}
-
-.alarm-list .note:nth-child(1) {
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s
-}
-
-.alarm-list .note:nth-child(2) {
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s
-}
-
-.alarm-list .note:nth-child(3) {
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.alarm-list .note .time {
-  min-width: 35px;
-  margin-right: 30px
-}
-
-.alarm-list .note .time>.shift,
-.alarm-list .note .to-do>.subject {
-  color: #ccc;
-  font-size: 11px
-}
-
-.alarm-list .note .time {
-  text-align: center
-}
-
-.alarm-list .note .to-do>.title {
-  font-size: 14px
-}
-
-.alarm-list .note:not(:last-child) {
-  position: relative
-}
-
-.alarm-list .note:not(:last-child):before {
-  bottom: 0;
-  width: 82%;
-  content: '';
-  right: -15px;
-  position: absolute;
-  border-bottom: 1px solid rgba(170, 170, 170, .5)
-}
-
-.user-list .user {
-  width: 30px;
-  height: 30px;
-  margin: 4px;
+#progressbar {
+  margin-bottom: 30px;
   overflow: hidden;
-  border-radius: 50%;
-  display: inline-block;
-  border: 1px solid #bbb
+  color: lightgrey
 }
 
-.user-list .user>img {
-  width: 100%
+#progressbar .active {
+  color: #673AB7
 }
 
-.compose .forms .group {
-  margin-bottom: 15px
-}
-
-.compose .forms .group>label {
-  padding: 6px 0;
-  min-width: 40px;
-  display: inline-block
-}
-
-.compose .forms .group>label>span {
-  min-width: 20px;
-  display: inline-block
-}
-
-.compose .forms .group input,
-.compose .forms .group textarea {
-  color: #fff;
-  border: none;
-  resize: none;
-  min-width: 185px;
-  background: 0 0;
-  padding: 5px 10px 1px;
-  border-bottom: 1px solid rgba(170, 170, 170, .6)
-}
-
-.compose .forms .visible {
-  width: 100%;
-  display: block!important
-}
-
-.compose .forms .action {
-  margin-top: 50px
-}
-
-.compose .forms .group:nth-child(1) {
-  -webkit-animation-duration: .1s;
-  animation-duration: .1s
-}
-
-.compose .forms .group:nth-child(2) {
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s
-}
-
-.compose .forms .group:nth-child(3) {
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s
-}
-
-.compose .forms .group:nth-child(4) {
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.chats .tabs-list {
-  margin-bottom: 15px
-}
-
-.chats .tabs-list .tab {
+#progressbar li {
+  list-style-type: none;
+  font-size: 15px;
+  width: 25%;
   float: left;
-  color: #aaa;
-  font-size: 12px;
-  font-weight: 400;
-  margin-right: 15px;
-  padding-bottom: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  border-bottom: 2px solid transparent
-}
-
-.chats .tabs-list .tab.active,
-.chats .tabs-list .tab:hover {
-  color: #fff;
-  border-bottom: 2px solid
-}
-
-.chats .active-users .user {
-  padding: 5px 0;
-  cursor: default
-}
-
-.chats .active-users .photo {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 3px 2px rgba(0, 0, 0, .4)
-}
-
-.chats .active-users .photo img {
-  width: 100%
-}
-
-.chats .active-users .desc {
-  margin-left: 15px
-}
-
-.chats .active-users .desc p {
-  margin: 0;
-  font-size: 14px
-}
-
-.chats .active-users .desc .name {
+  position: relative;
   font-weight: 400
 }
 
-.chats .active-users .desc .position {
-  color: #aaa;
-  font-size: 12px
-}
-
-.chats .active-users .user .idle {
-  height: 40px;
-  position: relative
-}
-
-.chats .active-users .user .idle>span {
-  top: 50%;
-  right: 0;
-  width: 15px;
-  height: 15px;
-  margin-top: -7.5px;
-  position: absolute;
-  border-radius: 50%;
-  display: inline-block;
-  border: 1px solid #fff
-}
-
-.chats .active-users .user .idle>.online {
-  background: #2ecc71
-}
-
-.chats .active-users .user .idle>.offline {
-  background: #95a5a6
-}
-
-.chats .active-users .user .idle>.away {
-  background: #f2ca27
-}
-
-.chats .active-users .user:nth-child(1) {
-  -webkit-animation-duration: .18s;
-  animation-duration: .18s
-}
-
-.chats .active-users .user:nth-child(2) {
-  -webkit-animation-duration: .25s;
-  animation-duration: .25s
-}
-
-.chats .active-users .user:nth-child(3) {
-  -webkit-animation-duration: .35s;
-  animation-duration: .35s
-}
-
-.chats .active-users .user:nth-child(4) {
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.chats .active-users .user:nth-child(5) {
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s
-}
-
-.chats .active-users .user:nth-child(6) {
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s
-}
-
-.chats .active-users .user .idle>span:before {
-  right: 20px;
-  bottom: -2px;
-  display: none;
-  padding: 0 5px;
-  font-size: 12px;
-  position: absolute;
-  border-radius: 2px;
-  content: attr(class);
-  background: rgba(0, 0, 0, .4);
-  text-transform: capitalize
-}
-
-.chats .active-users .user:hover .idle>span:before {
+#progressbar li:before {
+  width: 50px;
+  height: 50px;
+  line-height: 45px;
   display: block;
-  -webkit-animation: fadeInRight .4s;
-  animation: fadeInRight .4s
-}
-
-.profile {
-  margin-top: 40px
-}
-
-.profile .photo {
-  margin: auto;
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  position: relative;
+  font-size: 20px;
+  color: #ffffff;
+  background: lightgray;
   border-radius: 50%;
-  border: 6px solid #ccc
+  margin: 0 auto 10px auto;
+  padding: 2px
 }
 
-.profile .photo img {
+.progress {
+  height: 20px
+}
+
+/* 진행 아이콘 부분 */
+#progressbar #account:before {
+  font-family: FontAwesome;
+  content: "\f13e"
+}
+#progressbar #personal:before {
+  font-family: FontAwesome;
+  content: "\f007"
+}
+#progressbar #payment:before {
+  font-family: FontAwesome;
+  content: "\f030"
+}
+#progressbar #confirm:before {
+  font-family: FontAwesome;
+  content: "\f00c"
+}
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #673AB7
+}
+.fit-image {
   width: 100%;
-  border-radius: 50%;
-  transition: all .2s ease-in-out 0s
-}
-
-.profile .photo .social {
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  z-index: 99;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  position: absolute;
-  transform: scale(0);
-  transition: all .4s ease-in-out 0s
-}
-
-.profile .photo .social .soc-item {
-  top: 0;
-  left: 0;
-  z-index: 19;
-  width: 35px;
-  height: 35px;
-  color: #eee;
-  font-size: 24px;
-  transform: none;
-  line-height: 35px;
-  border-radius: 50%;
-  position: absolute;
-  text-align: center;
-  transition: all .3s cubic-bezier(.68, 1.55, .265, 1)
-}
-
-.profile .photo .social .soc-item:hover {
-  color: #fff
-}
-
-.profile .photo:after {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  background: rgba(0, 0, 0, .2);
-  transition: all .3s ease-in-out 0s
-}
-
-.profile .photo:hover img {
-  transform: scale(.5) rotate(10deg)
-}
-
-.profile .photo:hover .social,
-.profile .photo:hover:after {
-  transform: scale(1)
-}
-
-.profile .photo:hover .social .soc-count-1 {
-  transform: translate(0, -50px)
-}
-
-.profile .photo:hover .social .soc-count-2 {
-  transform: translate(-35px, -35px)
-}
-
-.profile .photo:hover .social .soc-count-3 {
-  transform: translate(-50px, 0)
-}
-
-.profile .photo:hover .social .soc-count-4 {
-  transform: translate(-35px, 35px)
-}
-
-.profile .photo:hover .social .soc-count-5 {
-  transform: translate(0, 50px)
-}
-
-.profile .photo:hover .social .soc-count-6 {
-  transform: translate(35px, 35px)
-}
-
-.profile .photo:hover .social .soc-count-7 {
-  transform: translate(50px, 0)
-}
-
-.profile .photo:hover .social .soc-count-8 {
-  transform: translate(35px, -35px)
-}
-
-.profile .details .heading {
-  padding: 5px;
-  margin: 10px 0;
-  text-align: center;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, .4)
-}
-
-.profile .details .heading>.name {
-  font-size: 18px;
-  font-weight: 400;
-  padding-right: 5px
-}
-
-.profile .details .heading>.position {
-  font-size: 12px;
-  padding-left: 5px;
-  vertical-align: 1px;
-  border-left: 1px solid
-}
-
-.profile .details .text {
-  margin: 0;
-  color: #ccc;
-  line-height: 24px;
-  text-align: center;
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.setting-list {
-  margin-left: -15px;
-  margin-right: -15px
-}
-
-.setting-list .gear {
-  padding: 10px 15px;
-  font-size: 14px;
-  font-weight: 400
-}
-
-.setting-list .gear:not(:last-child) {
-  border-bottom: 1px solid rgba(170, 170, 170, .4)
-}
-
-.setting-list .gear>.action {
-  color: #aaa
-}
-
-.setting-list .gear:nth-child(1) {
-  -webkit-animation-duration: .1s;
-  animation-duration: .1s
-}
-
-.setting-list .gear:nth-child(2) {
-  -webkit-animation-duration: .2s;
-  animation-duration: .2s
-}
-
-.setting-list .gear:nth-child(3) {
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s
-}
-
-.setting-list .gear:nth-child(4) {
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.setting-list .gear:nth-child(5) {
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s
-}
-
-.setting-list .gear:nth-child(6) {
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s
-}
-
-.credits .title {
-  line-height: 24px;
-  text-align: center
-}
-
-.credits .credit-ol {
-  margin: 20px 0;
-  counter-reset: credits
-}
-
-.credits .credit-li {
-  line-height: 30px;
-  position: relative;
-  padding-left: 20px
-}
-
-.credits .credit-li:before {
-  top: 0;
-  left: 0;
-  position: absolute;
-  content: counter(credits);
-  counter-increment: credits
-}
-
-.credits .credit-li:nth-child(1) {
-  -webkit-animation-duration: .3s;
-  animation-duration: .3s
-}
-
-.credits .credit-li:nth-child(2) {
-  -webkit-animation-duration: .4s;
-  animation-duration: .4s
-}
-
-.credits .credit-li:nth-child(3) {
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s
-}
-
-.credits .credit-li:nth-child(4) {
-  -webkit-animation-duration: .6s;
-  animation-duration: .6s
-}
-
-.credits .credit-li:nth-child(5) {
-  -webkit-animation-duration: .7s;
-  animation-duration: .7s
-}
-
-.credits .credit-li:nth-child(6) {
-  -webkit-animation-duration: .8s;
-  animation-duration: .8s
-}
-
-.credits .credit-li a {
-  color: inherit;
-  text-decoration: none;
-  padding: 1px 5px;
-  border-radius: 13px;
-  transition: all .6s ease-in-out 0s
-}
-
-.credits .credit-li:hover a {
-  box-shadow: 150px 0 0 0 rgba(0, 0, 0, .4) inset
-}
-
-.credits .credit-li span {
-  font-size: 13px
-}
-
-.credits .text {
-  margin-top: 10px;
-  line-height: 22px;
-  text-align: center
+  object-fit: cover
 }
 </style>

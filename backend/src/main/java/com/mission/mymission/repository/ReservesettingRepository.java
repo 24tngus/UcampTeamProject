@@ -12,6 +12,9 @@ import java.sql.Date;
 import java.util.List;
 
 public interface ReservesettingRepository extends JpaRepository<ReserveSetting, Integer> {
+
+    @Query("SELECT COUNT(r) > 0 FROM ReserveSetting r WHERE r.date = :date AND r.time0810 = :time0810 AND r.time1012 = :time1012 AND r.time1214 = :time1214 AND r.time1416 = :time1416 AND r.time1618 = :time1618 AND r.time1820 = :time1820 AND r.time2022 = :time2022")
+    boolean existsByDetails(@Param("date") Date date, @Param("time0810") int time0810, @Param("time1012") int time1012, @Param("time1214") int time1214, @Param("time1416") int time1416, @Param("time1618") int time1618, @Param("time1820") int time1820, @Param("time2022") int time2022);
     List<ReserveSetting> findByStoreid(String id);
 
     @Transactional

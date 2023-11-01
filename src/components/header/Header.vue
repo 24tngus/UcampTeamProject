@@ -26,22 +26,13 @@
       </div>
       <div>
         <!-- 로그인 아이콘-->
-        <router-link to="/user" class="text-white" v-if="!$store.state.account.id">
+        <router-link to="/user" class="text-white btn" v-if="!$store.state.account.id">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
         </router-link>
         <!-- 로그아웃 아이콘-->
-        <a to="/login" class="text-white" @click="logout()" v-else>
+        <a to="/login" class="text-white btn" @click="logout()" v-else>
           <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
-        &nbsp;
-        <!-- 마이페이지 아이콘-->
-        <router-link to="/mypage" class="cart btn" v-if="$store.state.account.id">
-          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-        </router-link>
-        <!-- 카트 아이콘-->
-        <router-link to="/cart" class="cart btn" v-if="$store.state.account.id">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        </router-link>
       </div>
     </div>
 
@@ -54,7 +45,8 @@
         <router-link to="/reserve_usercheck" class="menu" v-if="$store.state.account.id">Reservation</router-link>
         <router-link to="/reserve" class="menu" v-else>Reservation</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/faq" class="menu">FAQ</router-link>
+        <router-link to="/mypage" class="menu" v-if="$store.state.account.id">MyPage</router-link>
+        <router-link to="/faq" class="menu" v-else>FAQ</router-link>
       </li>
     </ul>
 

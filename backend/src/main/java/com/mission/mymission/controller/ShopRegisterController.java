@@ -49,6 +49,8 @@ public class ShopRegisterController {
         reg.setLocation(params.get("location"));
         reg.setPhonenumber(params.get("phonenumber"));
         reg.setImage(params.get("image"));
+        reg.setImage2(params.get("image2"));
+        reg.setImage3(params.get("image3"));
         reg.setStoreid(stores.getId());
 
         registerRepository.save(reg);
@@ -73,6 +75,14 @@ public class ShopRegisterController {
         Store stores = storeRepository.findBySeq(seq);
 
         List<ShopRegister> reg = registerRepository.findByStoreid(stores.getId());
+
+        return new ResponseEntity<>(reg, HttpStatus.OK);
+    }
+
+    @GetMapping("/shop/register/{storename}")
+    public ResponseEntity getStorename (@PathVariable("storename") String storename) {
+
+        ShopRegister reg = registerRepository.findByStorename(storename);
 
         return new ResponseEntity<>(reg, HttpStatus.OK);
     }

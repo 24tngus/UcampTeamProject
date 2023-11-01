@@ -3,6 +3,7 @@ package com.mission.mymission.controller;
 import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.ReserveRepository;
 import com.mission.mymission.repository.ReservesettingRepository;
+import com.mission.mymission.repository.ShopRegisterRepository;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ import java.util.List;
 public class ReservesettingController {
     private final JwtService jwtService;
     private final StoreRepository storeRepository;
+    private final ShopRegisterRepository shopRegisterRepository;
     private final ReserveRepository reserveRepository;
     private final ReservesettingRepository reservesettingRepository;
 
@@ -47,6 +49,45 @@ public class ReservesettingController {
 
         return new ResponseEntity<>(reserve, HttpStatus.OK);
     }
+    @GetMapping("/reservecheck")
+    public ResponseEntity reserveCheck(@RequestParam("date") Date date,
+                                       @RequestParam("time0810") int time0810,
+                                       @RequestParam("time1012") int time1012,
+                                       @RequestParam("time1214") int time1214,
+                                       @RequestParam("time1416") int time1416,
+                                       @RequestParam("time1618") int time1618,
+                                       @RequestParam("time1820") int time1820,
+                                       @RequestParam("time2022") int time2022,
+                                       @CookieValue(value = "token", required = false) String token) {
+        if (!jwtService.isValid(token)) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        int seq = jwtService.getSeq(token);
+        Store stores = storeRepository.findBySeq(seq);
+        String storeid = stores.getId();
+        ReserveSetting reserveSetting = new ReserveSetting();
+        reserveSetting.setStoreid(storeid);
+
+        if (time0810 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime0810(storeid, date, time0810);
+        } else if (time1012 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime1012(storeid, date, time1012);
+        } else if (time1214 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime1214(storeid, date, time1214);
+        } else if (time1416 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime1416(storeid, date, time1416);
+        } else if (time1618 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime1618(storeid, date, time1618);
+        } else if (time1820 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime1820(storeid, date, time1820);
+        } else if (time2022 == 1) {
+            reserveSetting = reservesettingRepository.findByStoreidAndDateAndTime2022(storeid, date, time2022);
+        }
+
+        return new ResponseEntity<>(reserveSetting, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/reserve/set/delete/{seq}")
     public ResponseEntity removeReserve (@PathVariable("seq") int seq) {
@@ -62,6 +103,7 @@ public class ReservesettingController {
                 updatedReserve.getTime0810(), updatedReserve.getTime1012(), updatedReserve.getTime1214(), updatedReserve.getTime1416(),
                 updatedReserve.getTime1618(), updatedReserve.getTime1820(), updatedReserve.getTime2022());
     }
+
 
     @PostMapping("/reserve/set/insert")
     public ResponseEntity<ReserveSetting> insertReserve(@RequestBody ReserveSetting newReserve, @CookieValue(value = "token", required = false) String token) {
@@ -82,8 +124,10 @@ public class ReservesettingController {
         return ResponseEntity.ok(savedReserve);
     }
 
-    @GetMapping("/reserve/{storeid}/{date}")
-    public List<ReserveSetting> getTime(@PathVariable String storeid, @PathVariable Date date) {
+    @GetMapping("/reservesetting/{date}")
+    public List<ReserveSetting> getTime(@RequestParam String storename, @PathVariable Date date) {
+        ShopRegister shopRegister = shopRegisterRepository.findByStorename(storename);
+        String storeid = shopRegister.getStoreid();
         List<ReserveSetting> result = reservesettingRepository.findByStoreidAndDate(storeid, date);
         System.out.println(storeid);
         System.out.println(date);

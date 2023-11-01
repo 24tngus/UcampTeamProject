@@ -22,7 +22,6 @@ public class ShopController {
 
         return shop;
     }
-
     @GetMapping("/shop/korean")
     public List<Shop> getKorean() {
         List<Shop> shop1 = shopRepository.findByCategory("한식");

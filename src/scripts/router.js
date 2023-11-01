@@ -4,7 +4,7 @@ import Home_Store from "@/pages/HomeStore.vue";
 import Login from "@/components/user/Login.vue";
 import Shop from "@/pages/Shop.vue";
 import Store from "@/pages/HomeStore.vue";
-import Reserve from "@/components/reserve/Reserve.vue";
+import Reserve from "@/components/user/Reserve.vue";
 import Mypage from "@/components/user/Mypage.vue";
 import Cart from "@/components/user/Cart.vue";
 import Menu from "@/components/Menu.vue";
@@ -14,9 +14,9 @@ import Join2 from "@/components/store/Join2.vue";
 import MypageUpdate from "@/components/user/MypageUpdate.vue";
 import Faq from "@/components/Faq.vue";
 import Vegan2 from "@/components/veganInfo/Vegan2.vue";
-import ReserveInsert from "@/components/reserve/ReserveInsert.vue";
-import ReserveUpdate from "@/components/reserve/ReserveUpdate.vue";
-import ReserveUser from "@/components/reserve/ReserveUser.vue";
+import ReserveInsert from "@/components/store/ReserveInsert.vue";
+import ReserveUpdate from "@/components/store/ReserveUpdate.vue";
+import ReserveUser from "@/components/user/ReserveUser.vue";
 import Korean from "@/components/foodCategory/Korean.vue";
 import Fusion from "@/components/foodCategory/Fusion.vue";
 import Western from "@/components/foodCategory/Western.vue";
@@ -28,19 +28,23 @@ import MystoreInfo from "@/components/store/MystoreInfo.vue";
 import MystoreUpdate from "@/components/store/MystoreUpdate.vue";
 import MyshopUpdate from "@/components/shop/MyshopUpdate.vue";
 import MyshopInfo from "@/components/shop/MyshopInfo.vue";
-import ReviewStore from "@/components/review/ReviewStore.vue";
+import ReviewStore from "@/components/store/ReviewStore.vue";
 import ErrorPage from "@/components/ErrorPage.vue";
-import ReviewUpdate from "@/components/review/ReviewUpdate.vue";
-import Review from "@/components/review/Review.vue";
+import ReviewUpdate from "@/components/user/ReviewUpdate.vue";
+import Review from "@/components/shop/Review.vue";
 import test from "@/pages/test.vue"
 import Vegan3 from "@/components/veganInfo/Vegan3.vue";
 import Vegan4 from "@/components/veganInfo/Vegan4.vue";
-import MyReview from "@/components/review/MyReview.vue";
-import ReviewInsert from "@/components/review/ReviewInsert.vue";
-import ReserveUserCheck from "@/components/reserve/ReserveUserCheck.vue";
-import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
-import ReserveStore from "@/components/reserve/ReserveStore.vue";
+import MyReview from "@/components/user/MyReview.vue";
+import ReviewInsert from "@/components/user/ReviewInsert.vue";
+import ReserveUserCheck from "@/components/user/ReserveUserCheck.vue";
+import ReserveStoreDetail from "@/components/store/ReserveStoreDetail.vue";
+import ReserveStore from "@/components/store/ReserveStore.vue";
 import Vegan1 from "@/components/veganInfo/Vegan1.vue";
+import ShopInsert2 from "@/components/shop/ShopInsert2.vue";
+import ReserveSetting from "@/components/store/ReserveSetting.vue";
+import MenuInsert from "@/components/shop/MenuInsert.vue";
+import MenuInsert2 from "@/components/shop/MenuInsert2.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -52,6 +56,7 @@ const routes = [
     {path: '/join2', component: Join2},
     {path: '/shop', component: Shop},
     {path: '/shop_insert', component: ShopInsert},
+    {path: '/shop_insert2', component: ShopInsert2},
     {path: '/store', component: Store},
     {path: '/mystore', component: Mystore},
     {path: '/mystore_info', component: MystoreInfo},
@@ -61,16 +66,18 @@ const routes = [
     {path: '/reserve', component: Reserve},
     {path: '/reserve_insert', component: ReserveInsert},
     {path: '/reserve_update', component: ReserveUpdate},
+    {path: '/reserve_setting', component: ReserveSetting},
     {path: '/reserve_store', component: ReserveStore},
     {path: '/reserve_storedetail/:value', name: "reserve_storedetail", component: ReserveStoreDetail},
-    {path: '/reserve_user', component: ReserveUser},
+    {path: '/reserve_user', name: 'reserve_user',component: ReserveUser},
     {path: '/reserve_usercheck', component: ReserveUserCheck},
     {path: '/mypage', component: Mypage},
     {path: '/mypage_info', component: MypageInfo},
     {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
-    // {path: '/menu', component: Menu},
     {path: '/menu', name:"menu", component: Menu},
+    {path: '/menu_insert',component: MenuInsert},
+    {path: '/menu_insert2/:value',name: "menu_insert", component: MenuInsert2},
     {path: '/vegan1', component: Vegan1},
     {path: '/vegan2', component: Vegan2},
     {path: '/vegan3', component: Vegan3},

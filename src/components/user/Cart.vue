@@ -6,25 +6,40 @@
         <router-link to="/mypage"><h1>마이페이지</h1></router-link>
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
-          <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
+          <router-link to="/cart"><button class="tablink">찜 목록</button></router-link>
           <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
           <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
+
+      <div v-if="state.items.length === 0">
+        <div class="online small" id="online">
+          <br>
+          <h1>{{state.item.name}}님의 찜 목록</h1>
+          <br><br>
+          <div class="member">
+            <div class="field">
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+              <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;찜하신 가게 정보가 없습니다.</b>
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- 본문  -->
-      <div class="online small" id="online">
+      <div class="online small" id="online" v-else>
         <br>
-        <h1>{{state.item.name}}님 회원 정보 수정</h1>
+        <h1>{{state.item.name}}님의 찜 목록</h1>
         <br><br>
       </div>
-
-      <div class="contain">
+      <div class="contain" >
         <figure class="snip1423" v-for="(shop, idx) in state.items" :key="idx">
-          <img :src="shop.image"/>
+<!--          <img :src="shop.image"/>-->
+          <img v-if="imageURL !== 0"  :src="`/api/images/download/${shop.image}`" style="width: 100%"/>
           <figcaption>
             <h3>{{ shop.storename }}</h3>
             <p>{{shop.location}}</p>
-            <img src="../../../public/a_reserve.png"  class="res" @click="$router.push('/reserve')">
+            <img src="../../../public/a_reserve.png"  class="res" @click="goToReserve(shop.seq)">
             <img src="../../../public/a_trash.png"  class="del"  @click="remove(shop.seq)">
           </figcaption>
         </figure>
@@ -52,6 +67,22 @@ import Header from "@/components/header/Header.vue";
 
 export default {
   components: {Header},
+  data() {
+    return {
+      storename: "",
+    }
+  },
+  methods: {
+    goToReserve(seq){
+      axios.get(`/api/shop/register/info/${seq}`).then(({ data }) => {
+        this.storname = data.storname;
+        this.goReserve(this.storename, seq);
+      });
+    },
+    goReserve(storename, seq) {
+      this.$router.push({ name : 'reserve_user', query: {storename, seq}});
+    }
+  },
   setup() {
     const state = reactive({
       items: [],
@@ -59,18 +90,19 @@ export default {
     })
 
     const loadmy = () => {
-      axios.get("/api/user/mypage").then(({data}) => {
+      axios.get("/api/user/mypage").then(({ data }) => {
         state.item = data;
-      })
+        load();
+      });
+    };
+
+    const load = () => {
+      axios.get(`/api/cart/shop`).then(({ data }) => {
+        state.items = data;
+      });
     };
 
     loadmy();
-
-    const load = () => {
-      axios.get("/api/cart/shop").then(({data}) => {
-        state.items = data;
-      })
-    };
 
     const remove = (shopSeq) => {
       axios.delete(`/api/cart/delete/${shopSeq}`).then(() => {

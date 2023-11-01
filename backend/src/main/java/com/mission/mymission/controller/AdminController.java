@@ -1,7 +1,7 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.*;
-import com.mission.mymission.service.EmailSendService;
+// import com.mission.mymission.service.EmailSendService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
-    private final EmailSendService emailSendService;
+    // private final EmailSendService emailSendService;
 
 
     // 관리자 메인페이지
@@ -76,7 +76,7 @@ public class AdminController {
     @GetMapping("/deleteUser/{email}")
     public String deleteUser(@PathVariable String email) {
 //        adminService.deleteUser(email);
-        emailSendService.sendMail(email);
+        // emailSendService.sendMail(email);
         return "redirect:/admin/manageUser";
     }
 
@@ -103,7 +103,7 @@ public class AdminController {
     @GetMapping("/deleteStore/{email}")
     public String deleteStore(@PathVariable String email) {
         adminService.deleteStore(email);
-        emailSendService.sendMail(email);
+        // emailSendService.sendMail(email);
         return "redirect:/admin/manageStore";
     }
 
@@ -140,7 +140,7 @@ public class AdminController {
                 adminService.deleteShopRegister(storename);
 
                 // 단계 3: 이메일을 보냅니다.
-                emailSendService.sendMailShop(storeEmail);
+                // emailSendService.sendMailShop(storeEmail);
             }
         }
 

@@ -1,0 +1,15 @@
+package com.mission.mymission.repository;
+
+import com.mission.mymission.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface PaymentRepository extends JpaRepository<Payment, Integer> {
+//    List<Payment> findBySeqIn(List<Integer> seq);
+//
+//    Payment findBySeq(int seq);
+    Payment findBypaymentid(String paymentid);
+}
+
+

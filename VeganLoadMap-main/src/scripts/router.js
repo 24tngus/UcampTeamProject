@@ -41,6 +41,8 @@ import MyReview from "@/components/review/MyReview.vue";
 import ReserveStore from "@/components/reserve/ReserveStore.vue";
 import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
 import ReserveUserCheck from "@/components/reserve/ReserveUserCheck.vue";
+import Payment from "@/components/payment/Payment.vue";
+import PaymentSuccess from "@/components/payment/PaymentSuccess.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -85,6 +87,8 @@ const routes = [
     {path: '/review_store', component: ReviewStore},
     {path: '/test', component: test},
     {path: '/error',component: ErrorPage},
+    {path: '/payment', component: Payment},
+    {path: '/paymentSuccess/:value', name: "PaymentSuccess", component: PaymentSuccess},
     {path: '/:pathMatch(.*)*',redirect: '/error'},
 ]
 

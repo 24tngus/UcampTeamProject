@@ -137,7 +137,7 @@ export default defineComponent({
 
 
 
-    return { ref, locations, showMarkerInfo, dbInputData, reviewInputData, addReview, markerData, closeInfoWindow }
+    return { ref, locations, showMarkerInfo, dbInputData, reviewInputData, addReview, markerData }
   },  // setup()
   data() {
     return {

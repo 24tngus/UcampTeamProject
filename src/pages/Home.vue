@@ -53,19 +53,6 @@
   </div>
 
 
-  <!-- 구글 애드센스 -->
-  <div class="ad-container">
-    <h3 style="text-align: center">광고 부분</h3>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2477762804367669"
-         data-ad-slot="7828067320"
-         data-ad-format="auto"
-         :data-full-width-responsive="true">
-    </ins>
-  </div>
-
-
   <br><br><br>
   <div class="container marketing">
     <h1 class="category">Categories</h1><br><br>
@@ -103,6 +90,20 @@
     <h1 class="map">View on the map</h1><br><br>
         <Map/>
   </div>
+
+  <!-- 구글 애드센스 -->
+  <div class="ad-container">
+    <h3>Google AdSense 광고 부분</h3>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2477762804367669"
+         data-ad-slot="7828067320"
+         data-ad-format="auto"
+         :data-full-width-responsive="true">
+    </ins>
+  </div>
+
+
 </template>
 
 <script>
@@ -204,4 +205,14 @@ export default {
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+.ad-container {
+  margin: 50px;
+  background-color: #e1e1e1;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>

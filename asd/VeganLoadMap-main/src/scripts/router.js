@@ -41,6 +41,7 @@ import ReserveUserCheck from "@/components/reserve/ReserveUserCheck.vue";
 import ReserveStoreDetail from "@/components/reserve/ReserveStoreDetail.vue";
 import ReserveStore from "@/components/reserve/ReserveStore.vue";
 import Vegan1 from "@/components/veganInfo/Vegan1.vue";
+import Join3 from "@/components/user/Join3.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -50,6 +51,7 @@ const routes = [
     {path: '/login2', component: Login2},
     {path: '/join', component: Join},
     {path: '/join2', component: Join2},
+    {path: '/join3', component: Join3},
     {path: '/shop', component: Shop},
     {path: '/shop_insert', component: ShopInsert},
     {path: '/store', component: Store},

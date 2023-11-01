@@ -4,13 +4,13 @@
   <div class="card shadow-sm">
     <div class="card-body">
       <div class="joinform">
-  <header class="header">
-    <h1>
-      <a href="#" class="logo">
-        VeganRoadMap
-      </a>
-    </h1>
-  </header>
+        <header class="header">
+          <h1>
+            <a href="#" class="logo">
+              VeganRoadMap
+            </a>
+          </h1>
+        </header>
         <legend>회원가입</legend>
 
         <ul class="container">
@@ -44,7 +44,7 @@
           <li class="row tel-area">
             <div class="input-area">
               <select>
-<!--                <option value="" selected disabled>국가번호</option>-->
+                <!--                <option value="" selected disabled>국가번호</option>-->
                 <option value="82">+82</option>
               </select>
             </div>

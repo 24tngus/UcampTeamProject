@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Map;
 
 @RestController
@@ -27,6 +29,15 @@ public class UserController {
     private final UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+    @RequestMapping(value = "/login", method = {RequestMethod.GET})
+    @ResponseBody
+    public String main() {
+        String url = "https://kauth.kakao.com/oauth/authorize?client_id=bed66b12eb12a038a4fbc9aba4c5e7d9&redirect_uri=http://localhost:3000/logintest&response_type=code";
+        System.out.println("login 컨트롤러 접근");
+        return url;
+    }
 
     @PostMapping("/user/login")
     public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
@@ -155,5 +166,33 @@ public class UserController {
         User user = userRepository.findBySeq(seq);
         userRepository.delete(user);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/user/kakaologin")
+    public ResponseEntity kakaoLoginCheck(@RequestBody String email, HttpServletResponse res){
+        System.out.println("이메일" + email);
+        try {
+            email = URLDecoder.decode(email, "UTF-8");
+            User user = null;
+            user = userRepository.findByEmail(email);
+            System.out.println("유저" + user);
+            if (user != null) {
+                int seq = user.getSeq();
+                String token = jwtService.getToken("seq", seq);
+
+                // JWT 토큰을 클라이언트로 전달하도록 쿠키를 설정
+                Cookie cookie = new Cookie("token", token);
+                cookie.setHttpOnly(true);
+                cookie.setPath("/");
+
+                res.addCookie(cookie);
+
+                return new ResponseEntity<>(seq, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(0, HttpStatus.OK);
+            }
+        }catch(UnsupportedEncodingException e){
+            e.printStackTrace();;
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -1,37 +1,35 @@
 <template>
   <Header/>
-  <br><br>
+  <br><br><br><br><br>
   <div class="container" id="container">
     <div class="form-container sign-in-container">
-      <form action="#">
+      <div class="form-floating">
         <h1>Sign In</h1>
         <div class="social-container">
-          <a href="#" className="social">
-            <div id="naver_id_login" @click="naverLogin"></div>
-          </a>
+          <a href="#" class="social"><div id="naver_id_login"></div></a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" className="social"><i className="fa fa-google-plus" aria-hidden="true"
-                                            @click="googleLoginBtn"></i></a>
+          <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true" @click="googleLoginBtn"></i></a>
           &nbsp;&nbsp;&nbsp;
           <a href="#" className="social"><i className="fa fa-comments" aria-hidden="true"
                                             id="custom-login-btn" @click="kakaoLogin"></i></a>
         </div>
         <span>or use your account</span>
-        <input type="email" placeholder="Email" v-model="state.form.email">
-        <input type="password" placeholder="Password" v-model="state.form.password"/><br>
+        <input type="id" placeholder="ID" v-model="state.form.id">
+        <input type="password" placeholder="Password" v-model="state.form.password" /><br>
         <button @click="submit()">로그인</button>
-      </form>
+      </div>
     </div>
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-right">
           <h1>Welcome to VeganRoadMap!</h1>
           <p>로그인 및 회원가입 후에 비건로드맵을 즐겨보세요!</p>
-          <button className="ghost" id="signUp" @click="$router.push('/join')">회원가입</button>
+          <button class="ghost" id="signUp" @click="$router.push('/join')">회원가입</button>
         </div>
       </div>
     </div>
   </div>
+  <br><br><br><br><br>
 </template>
 
 <script>
@@ -43,40 +41,38 @@ import Header from "@/components/header/Header.vue";
 
 export default {
   components: {Header},
-  mounted() {
-    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000/naver_callback");
+  mounted(){
+    const naver_id_login = new window.naver_id_login("a4TEdRYQwTEos4Ljj4RU", "http://localhost:3000");
     const state = naver_id_login.getUniqState();
-    naver_id_login.setButton("white", 2, 40); // 버튼 설정
+    naver_id_login.setButton("white", 2,40); // 버튼 설정
     naver_id_login.setState(state);
     naver_id_login.init_naver_id_login();
   },
   setup() {
     const state = reactive({
-      form: {
-        email: "",
+      form :{
+        id: "",
         password: ""
       }
     })
     const submit = () => {
-      axios.post("/api/user/login", state.form).then((res) => {
+      axios.post("/api/user/login", state.form).then((res)=> {
         store.commit("setAccount", res.data); // store 저장
         if (res.data == 0) {
-          if (state.form.email == "") {
-            window.alert("이메일을 입력해주세요");
+          if (state.form.id == "") {
+            window.alert("아이디를 입력해주세요");
           } else if (state.form.password == "") {
             window.alert("비밀번호를 입력해주세요");
           } else {
-            window.alert("이메일이나 비밀번호가 틀립니다");
+            window.alert("아이디나 비밀번호가 틀립니다");
             router.push({path: "/login"});
           }
-        } else {
-          // console.log(res.data);
+        }else {
           window.alert("로그인 하였습니다");
           router.push({path: "/"});
         }
       })
     }
-
     const kakaoLogin = () => {
       window.Kakao.Auth.login({
         scope: "account_email , name , phone_number",
@@ -110,12 +106,12 @@ export default {
                   router.push({path: "/login"});
                 }
               });
-          //컨트롤러에서 일치하는 이메일이 있는 경우
-          //컨트롤러에서 토큰 부여하고 로그인 처리
+//컨트롤러에서 일치하는 이메일이 있는 경우
+//컨트롤러에서 토큰 부여하고 로그인 처리
 
-          //컨트롤러에서 일치하는 이메일이 없는 경우
-          //회원가입(Join3) 으로 이동
-          // 로그인 처리 구현
+//컨트롤러에서 일치하는 이메일이 없는 경우
+//회원가입(Join3) 으로 이동
+// 로그인 처리 구현
 
 
         },
@@ -127,13 +123,23 @@ export default {
 
     return {state, submit, kakaoLogin, getKakaoAccount}
   },
-
   methods: {
     kakaoLogout() {
       window.Kakao.Auth.logout((res) => {
         console.log(res);
       });
     },
+    // naverLogin() {
+    //   const naverLogin = new naver.LoginWithNaverId({
+    //     clientId: 'a4TEdRYQwTEos4Ljj4RU', // Naver client key
+    //     callbackUrl: `http://localhost:3000/naver_callback`,
+    //     callbackHandle: true
+    //   })
+    //   naverLogin.init()
+    //   naverLogin.reprompt()
+    // },
+
+
   },
 }
 </script>
@@ -211,7 +217,7 @@ button.ghost {
   border-color: #FFFFFF;
 }
 
-form {
+.form-floating {
   background-color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -233,8 +239,8 @@ input {
 .container {
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-  0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+  0 10px 10px rgba(0,0,0,0.22);
   position: relative;
   overflow: hidden;
   width: 768px;
@@ -296,7 +302,7 @@ input {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.container.right-panel-active .overlay-container{
   transform: translateX(-100%);
 }
 

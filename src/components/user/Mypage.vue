@@ -6,7 +6,7 @@
         <router-link to="/mypage"><h1>마이페이지</h1></router-link>
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
-          <router-link to="/cart"><button class="tablink">장바구니</button></router-link>
+          <router-link to="/cart"><button class="tablink">찜 목록</button></router-link>
           <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
           <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
@@ -21,30 +21,34 @@
               <router-link to="/cart">
                 <div class="green number"><img src="../../../public/a_cart2.png" style="width: 40px"/></div><br>
               </router-link>
-              <div class="item_text">장바구니</div>
+              <div class="item_text">찜 목록</div>
             </div>
             <div class="item_icon"> > </div>
           </div>
           <div class="item">
             <div>
+              <router-link to="/reserve_usercheck">
               <div class="number"><img src="../../../public/a_cart3.jpeg" style="width: 55px" /> </div>
-              <div class="item_text">결제완료</div>
-            </div>
-            <div class="item_icon"> > </div>
-          </div>
-          <div class="item">
-            <div>
-              <div class="green number"><img src="../../../public/a_reserve6.png" style="width: 35px" /></div><br>
-              <div class="item_text">이용완료</div>
-            </div>
-            <div class="item_icon"> > </div>
-          </div>
-          <div class="item">
-            <div>
-              <router-link to="/review">
-              <div class="green number"><img src="../../../public/a_review4.png" style="width: 55px" /></div>
-              <div class="item_text">가게후기</div>
               </router-link>
+              <div class="item_text">예약 확인</div>
+            </div>
+            <div class="item_icon"> > </div>
+          </div>
+          <div class="item">
+            <div>
+              <router-link to="/reserve_usercheck">
+              <div class="green number"><img src="../../../public/a_reserve6.png" style="width: 35px" /></div><br>
+              </router-link>
+              <div class="item_text">이용 완료</div>
+            </div>
+            <div class="item_icon"> > </div>
+          </div>
+          <div class="item">
+            <div>
+              <router-link to="/myreview">
+              <div class="green number"><img src="../../../public/a_review4.png" style="width: 55px" /></div>
+              </router-link>
+              <div class="item_text">가게 후기</div>
             </div>
           </div>
         </div>
@@ -65,7 +69,7 @@
               <div class="textbox">
                 <img src="../../../public/a_shop.png" class="image-size" />
                 <br><br>
-                <h3>장바구니</h3>
+                <h3>찜 목록</h3>
                 <p>#예약 대기 #예약 하러가기</p>
               </div>
             </router-link>
@@ -81,7 +85,7 @@
             </router-link>
           </li>
           <li class="thumbox">
-            <router-link to="/review">
+            <router-link to="/myreview">
               <div class="textbox">
                 <img src="../../../public/a_review.png" class="image-size" />
                 <br><br>

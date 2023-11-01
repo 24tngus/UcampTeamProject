@@ -7,6 +7,7 @@
       <div class="buttontab">
         <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
         <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
+        <router-link to="/reserve_setting"><button class="tablink">예약 관리</button></router-link>
         <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
         <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
       </div>
@@ -18,33 +19,38 @@
       <div class="status">
         <div class="item">
           <div>
-            <router-link to="/cart">
-              <div class="green number">1</div>
+            <router-link to="/reserve_insert">
+              <div class="green number"><img src="../../../public/a_reserve6.png" style="width: 35px"/></div><br>
             </router-link>
-            <div class="item_text">예약대기</div>
+            <div class="item_text">예약 등록</div>
           </div>
           <div class="item_icon"> > </div>
         </div>
         <div class="item">
           <div>
-            <div class="number">0</div>
-            <div class="item_text">예약확정</div>
+            <router-link to="/reserve_update">
+            <div class="number"><img src="../../../public/a_reserve9.webp" style="width: 40px" /> </div>
+            </router-link><br>
+            <div class="item_text">에약 수정</div>
           </div>
           <div class="item_icon"> > </div>
         </div>
         <div class="item">
           <div>
-            <div class="green number">1</div>
-            <div class="item_text">이용완료</div>
+            <router-link to="/reserve_store">
+            <div class="green number"><img src="../../../public/a_reserve.png" style="width: 40px" /></div><br>
+            </router-link>
+            <div class="item_text">예약 확인</div>
           </div>
           <div class="item_icon"> > </div>
         </div>
         <div class="item">
           <div>
             <router-link to="/review_store">
-            <div class="green number">3</div>
-            <div class="item_text">가게후기</div>
+              <div class="green number"><img src="../../../public/a_review.png" style="width: 40px" /></div>
             </router-link>
+            <br>
+              <div class="item_text">가게 후기</div>
           </div>
         </div>
       </div>
@@ -270,7 +276,7 @@ ul li{
 }
 
 #wrapper{
-  background: #f1f1f1;
+  background: #f1f1f1
 }
 #wrapper header {
   position: relative !important;
@@ -282,8 +288,8 @@ ul li{
 #container{
   position: relative;
   max-width: 70%;
-  min-width: 60%;
-  margin: 0 0 0 20%;
+  min-width:  880px;
+  margin: 0 0 0 10%;
   background: #fff;
 }
 #container:after{
@@ -293,7 +299,7 @@ ul li{
 }
 #container > div:not(:first-of-type){
   background: #fff;
-  padding: 40px 20px 0 250px;
+  padding: 3% 10% 0 30%;
 
 }
 .tab{
@@ -363,7 +369,6 @@ button.on{
 .online.small h1{
   font-size: 25px;
   margin-bottom: 40px;
-  width: 100%;
 }
 .online .filter{
   width: 100%;
@@ -391,9 +396,10 @@ button.on{
 }
 .online ul{
   text-align: center;
-  padding: 0;
+  padding: 0 5%;
   max-width: 100%;
-  min-width: 70%;
+  min-width: 600px;
+
 }
 .online .thumbox{
   /*    padding-left: 120px;*/
@@ -406,8 +412,7 @@ button.on{
   text-align: center
 }
 .online .thumbox .img{
-  background-size: 90%;
-
+  background-size: contain;
   width: 120px;
   height: 100px;
   display: table-cell;
@@ -444,126 +449,6 @@ button.on{
   margin-bottom: 10px;
 }
 
-
-#num{
-  text-align: center;
-  margin: 30px 0;
-  padding: 40px 0;
-  position: relative;
-  z-index: 2
-}
-#num:before{
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top:0px;
-  left: 0;
-  border-top: 1px solid #d4d4d4;
-  z-index: -1
-}
-#num span{
-  display: inline-block;
-  border: 1px solid #d4d4d4;
-  margin: 0 2px;
-  padding: 5px 10px;
-  vertical-align: middle;
-  cursor: pointer
-}
-#num span a{
-  font-size: 10px;
-}
-.currentNum{
-  background: #32312f!important;
-}
-.currentNum a{
-  color: #fff
-}
-#num span:hover{
-  background: #d4d4d4;
-}
-#num span:hover a,#num span:hover i{
-  color: #fff
-}
-footer{
-  background: #fff;
-  position: relative;
-  z-index: 1
-}
-footer:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -50%;
-  width: 300%;
-  height: 100%;
-  background: #fff;
-  z-index: -1
-}
-@media (max-width:700px){
-  #wrapper header {
-    position: fixed !important;
-    top: 0;
-  }
-  #container{
-    position: relative;
-    min-width: 100%;
-    max-width: 100%;
-    margin-top: 120px;
-  }
-  .tab{
-    width: 100%;
-    height:100px;
-    padding:0  20px 0 0;
-  }
-  .tab > h1{
-    position:static;
-    float: left;
-    height: 100%;
-    width: 30%;
-  }
-  .tab .buttontab{
-    float: left;
-    width: 70%;
-    height:100%;
-    padding-left: 20px;
-  }
-  .tab button{
-    height: 50%;
-  }
-
-  #container > div:not(:first-of-type){
-    padding:120px 0 0 0;
-    width: 100%;
-  }
-  .online ul{
-    min-width: 100%;
-    max-width: 100%
-  }
-  .online ul .thumbox{
-    padding: 0 0 0 120px ;
-  }
-  #online h1{
-    display: none;
-  }
-
-  .online .thumbox{
-    margin-bottom: 25px;
-    width:100%;
-  }
-  .online .thumbox .textbox{
-    text-align: left;
-  }
-
-  .online .thumbox .img{
-    left:0;
-    transform: translate(0);
-  }
-  #num{
-    display: none
-  }
-}
-/*member sign in*/
 .member{
   width: 400px;
   /* border: 1px solid #000; */
@@ -595,23 +480,6 @@ footer:before{
   margin-bottom: 5px;
 }
 
-.member .member select{
-  border: 1px solid #dadada;
-  padding: 15px;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.member input[type=button],
-.member input[type=submit]{
-  background-color:green;
-  color:#fff
-}
-
-.member input:focus, .member select:focus{
-  border: 1px solid #2db400;
-}
-
 .field.birth div{ /*field 이면서 birth*/
   display: flex;
   gap:10px; /*간격 벌려줌*/
@@ -635,54 +503,10 @@ footer:before{
   background-color: #fff;
 }
 
-.placehold-text{
-  display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
-  position:relative;
-  /* border: 1px solid #000; */
-}
-
-.placehold-text:before{
-  position:absolute; /*before은 inline 요소이기 때문에 span으로 감싸줌 */
-  right : 20px;
-  top:13px;
-  pointer-events: none; /*자체가 가지고 있는 pointer event 를 없애준다 */
-}
-
-.member-footer {
-  text-align: center;
-  font-size: 12px;
-  margin-top: 20px;
-}
-
-.member-footer div a:hover{
-  text-decoration: underline;
-  color:#2db400
-}
-
-.member-footer div a:after{
-  content:'|';
-  font-size: 10px;
-  color:#bbb;
-  margin-right: 5px;
-  margin-left: 7px;
-  display: inline-block;
-  transform: translateY(-1px);
-}
-
-.member-footer div a:last-child:after{
-  display: none;
-}
-
 .btn {
   background-color: darkolivegreen;
   color: #ffffff;
   width : 20%;
   height : 90%;
-}
-
-@media (max-width:768px) {
-  .member{
-    width: 100%;
-  }
 }
 </style>

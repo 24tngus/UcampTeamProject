@@ -204,9 +204,6 @@ public class AdminServiceImpl implements AdminService {
         return reviewList;
     }
 
-
-
-
     // 메인 페이지 꾸미기
     // 고객 수
     @Override

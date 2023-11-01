@@ -17,6 +17,8 @@ public interface ShopRegisterRepository extends JpaRepository<ShopRegister, Inte
     ShopRegister findBySeq(int seq);
     ShopRegister findBySeq(Long seq);
 
+    List<ShopRegister> findBySeqIn(List<Integer> seq); // seq list
+
     ShopRegister findByStorename(String storename);
 
     List<ShopRegister> findByPermit(int i);

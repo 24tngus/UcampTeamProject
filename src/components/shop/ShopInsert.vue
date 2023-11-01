@@ -5,39 +5,9 @@
     <div class="showcase-container">
       <div class="main-title" id="home">Vegan Load Map</div><br>
       <p class="p-title">내 가게 등록</p>
-      <a href="/vegan2" class="btn btn-primary">시작하기</a>
+      <a href="/shop_insert2" class="btn btn-primary">시작하기</a>
     </div>
   </section>
-  <div id="wrapper">
-    <div id="container">
-      <div class="card shadow-sm" id="cat">
-        <div class="card-body" >
-          <div><h2 class="cattitle">가게 신규 등록</h2></div>
-          <div>
-            <ul>
-              <hr>
-              <div  class="memberform">
-                <b></b><br>
-                <b>가게 이름</b>
-                <div class="input-button-container">
-                  <input type="text" placeholder="상호명" id="storename" v-model="state.form.storename" required/>
-                  <button class="double" @click="exist(state.form.storename)">중복 확인</button>
-                </div>
-                <br>
-                <b>가게 정보</b><input type="text" placeholder="가게 소개" id="detailinfo" v-model="state.form.detailinfo" /><br>
-                <b>카테고리</b><input type="text" placeholder="한식/중식/양식/퓨전/카페" id="category" v-model="state.form.category" /><br>
-                <b>가게 위치</b><input type="text" placeholder="주소" id="location" v-model="state.form.location" /><br>
-                <b>가게 전화번호</b><input type="text" placeholder="가게 전화번호 (- 없이 입력)" id="phonenumber" v-model="state.form.phonenumber" /><br>
-                <b>가게 이미지 파일 첨부</b><input type="file" ref="fileInput" @change="onFileChange" /><br>
-                <hr><br><br>
-                <button text="button" class="bookbtn" @click="register()">등록</button>
-              </div>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -324,7 +294,7 @@ body {
 }
 
 .showcase-area {
-  height: 50vh;
+  height: 100vh;
   background: linear-gradient(
       rgba(240, 240, 240, 0.144),
       rgba(255, 255, 255, 0.336)
@@ -345,12 +315,13 @@ body {
 }
 
 .main-title {
-
   font-size: 180%;
+  color: #545d32;
 }
 
 .p-title {
   font-size: 80%;
+  color: #6e6a67;
 }
 
 #about {

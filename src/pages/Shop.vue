@@ -7,6 +7,7 @@
       <p>Choose what you want!</p>
     </div>
   </section>
+
   <div class="card shadow-sm" id="cat">
     <div class="card-body" ><br>
       <div><h2 class="cattitle">Restaurant</h2></div>
@@ -18,16 +19,13 @@
               <div class="container">
                 <div class="image-content">
                   <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image2}`)" class="shopimage1">
-                    <!--                    <img :src="'../../public/' + shop.image2" class="shopimage1">-->
+                    <img class="shopimage1" v-if="imageURL2 !== 0"  :src="`/api/images/download/${shop.image2}`" style="width: 100%"/>
                   </div>
                   <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image1}`)" class="shopimage1">
-                    <!--                    <img :src="'../../public/' + shop.image1" class="shopimage1">-->
+                    <img class="shopimage1" v-if="imageURL1 !== 0"  :src="`/api/images/download/${shop.image}`" style="width: 100%"/>
                   </div>
                   <div class="image-column">
-                    <img :src="require(`@/assets/${shop.image3}`)" class="shopimage1">
-                    <!--                    <img :src="'../../public/' + shop.image3" class="shopimage1">-->
+                    <img class="shopimage1" v-if="imageURL2 !== 0"  :src="`/api/images/download/${shop.image2}`" style="width: 100%"/>
                   </div>
                 </div>
               </div>
@@ -48,8 +46,8 @@
               <div class="btn-style" id="mbtn">
                 <!--                하단 코드로 작동도 가능-->
                 <!--                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>-->
-                <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">대표메뉴</button>
-                <button class="mreserve" @click="goToReserve(shop.storename)">예약하기</button>
+                <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">메뉴/리뷰</button>
+                <button class="mreserve" @click="goToReserve(shop.storename, shop.seq)">예약하기</button>
               </div>
             </div> <br>
           </div>
@@ -57,43 +55,43 @@
 
 
         <!-- shop -->
-          <div class="card-body">
-            <div class="col" v-for="(shop, idx) in state.items" :key="idx">
-              <div class="card shadow-sm" id="cardshop">
-                <div class="container">
-                  <div class="image-content">
-                    <div class="image-column">
-                      <img :src="shop.image1" class="shopimage1" v-if="shop.image2 && !shop.image2.startsWith('AcJ')" />
-                      <img :src="setImgUrl(shop.image2)"  class="shopimage1" v-else />
-                    </div>
-                    <div class="image-column">
-                      <img :src="shop.image2" class="shopimage1" v-if="shop.image1 && !shop.image1.startsWith('AcJ')" />
-                      <img :src="setImgUrl(shop.image1)"  class="shopimage1" v-else />
-                    </div>
-                    <div class="image-column">
-                      <img :src="shop.image3" class="shopimage1" v-if="shop.image3 && !shop.image3.startsWith('AcJ')" />
-                      <img :src="setImgUrl(shop.image3)"  class="shopimage1" v-else />
-                    </div>
+        <div class="card-body">
+          <div class="col" v-for="(shop, idx) in state.items" :key="idx">
+            <div class="card shadow-sm" id="cardshop">
+              <div class="container">
+                <div class="image-content">
+                  <div class="image-column">
+                    <img :src="shop.image1" class="shopimage1" v-if="shop.image2 && !shop.image2.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image2)"  class="shopimage1" v-else />
+                  </div>
+                  <div class="image-column">
+                    <img :src="shop.image2" class="shopimage1" v-if="shop.image1 && !shop.image1.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image1)"  class="shopimage1" v-else />
+                  </div>
+                  <div class="image-column">
+                    <img :src="shop.image3" class="shopimage1" v-if="shop.image3 && !shop.image3.startsWith('AcJ')" />
+                    <img :src="setImgUrl(shop.image3)"  class="shopimage1" v-else />
                   </div>
                 </div>
+              </div>
 
-                <div class="text-content">
-                  <div class="title-and-cart">
-                    <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
-                  </div>
-                  <span class="shop1"> {{shop.category}} </span> &nbsp;
-                  <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
-                  <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
-                  <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
+              <div class="text-content">
+                <div class="title-and-cart">
+                  <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
                 </div>
-                <div class="btn-style2" id="mbtn">
-                  <!--                하단 코드로 작동도 가능-->
-                  <!--                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>-->
-                  <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">대표메뉴</button>
-                </div>
-              </div> <br>
-            </div>
+                <span class="shop1"> {{shop.category}} </span> &nbsp;
+                <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{shop.rating}} </span><br>
+                <span><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{shop.phonenumber}}</span><br>
+                <span class="shop2"> <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;{{shop.location}} </span>
+              </div>
+              <div class="btn-style2" id="mbtn">
+                <!--                하단 코드로 작동도 가능-->
+                <!--                <button class="mreserve" @click="$router.push({ path: '/menu', query: { storename: shop.storename, seq:shop.seq} })">대표메뉴</button>-->
+                <button class="mreserve" @click="goToMenu(shop.storename, shop.seq)">리뷰보기</button>
+              </div>
+            </div> <br>
           </div>
+        </div>
 
       </div>
     </div>
@@ -121,16 +119,10 @@ export default {
     };
 
     axios.get("/api/shop").then(({data}) => {
-      // data.forEach(shop => {
-      //   shop.flag = false;
-      // });
       state.items = data;
     })
 
     axios.get("/api/shop/register").then(({data}) => {
-      // data.forEach(shop => {
-      //   shop.flag = false;
-      // });
       state.items2 = data;
     })
 
@@ -152,8 +144,8 @@ export default {
     goToMenu(storename, seq) {
       this.$router.push({ name: 'menu', query: { storename, seq } });
     },
-    goToReserve(storename){
-      this.$router.push({ name : 'reserve_user', query: {storename}});
+    goToReserve(storename, seq){
+      this.$router.push({ name : 'reserve_user', query: {storename, seq}});
     }
   },
 
@@ -227,34 +219,24 @@ export default {
   margin: 0 20px;
 }
 
-.btn-style {
-  margin-left: 70%;
-}
-
-.btn-style2 {
-  margin-left: 75%;
-}
-
 #mbtn {
-  text-align: center;
-  width: 200px;
-  padding-bottom: 10px;
+  width: 100%;
 }
+
 .mreserve{
-  margin: 10% 0 0 7%;
   border : 2px solid darkolivegreen;
-  padding : 5% 10% 5% 10%;
   background: darkolivegreen;
-  border-radius: 7px;
+  border-radius: 4px;
   color : white;
   font-weight: 600;
   font-size: 12px;
+  width : 47%;
+  padding : 10px 0;
+  margin :  0 2px 5px 2px;
 }
 .mreserve:hover{
   background: olive;
   border : 2px solid olive;
-  padding : 8px 20px;
-  border-radius: 7px;
   color : #f3f0d6;
   font-size: 12px;
 }

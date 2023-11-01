@@ -8,7 +8,6 @@ import java.util.List;
 
 
 public interface ShopRepository extends JpaRepository<Shop, Integer> {
-    List<Shop> findBySeqIn(List<Integer> seq); // seq list
     List<Shop> findByCategory(String category);
     Shop findBySeq(Long seq);
     List<Shop> findByPermit(int i);

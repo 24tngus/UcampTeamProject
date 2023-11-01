@@ -1,10 +1,7 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.*;
-import com.mission.mymission.repository.ReserveRepository;
-import com.mission.mymission.repository.ReservesettingRepository;
-import com.mission.mymission.repository.StoreRepository;
-import com.mission.mymission.repository.UserRepository;
+import com.mission.mymission.repository.*;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,7 @@ public class ReserveController {
     private final JwtService jwtService;
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
+    private final ShopRegisterRepository shopRegisterRepository;
     private final ReserveRepository reserveRepository;
     private final ReservesettingRepository reservesettingRepository;
 
@@ -42,6 +40,7 @@ public class ReserveController {
 
         return reserve;
     }
+
     @GetMapping("/myreserve")
     public List<Reserve> getMyReserve(
             @CookieValue(value = "token", required = false) String token
@@ -56,11 +55,18 @@ public class ReserveController {
     }
     //유저가 예약할 때 사용하는 메소드
     @PostMapping("/reserve/insert")
-    public ResponseEntity<Reserve> insertReserve(@RequestBody Reserve newReserve) {
+    public ResponseEntity<Reserve> insertReserve(@RequestParam String storename, @CookieValue(value = "token", required = false) String token, @RequestBody Reserve newReserve) {
         newReserve.setStatus(1);
         //세팅한 max팀, max 인원 수와 예약된 테이블의 팀, 인원 수 비교해서
         // 0 보다 작으면 false , 0보다 크면 true
-
+        int seq = jwtService.getSeq(token);
+        User users = userRepository.findBySeq(seq);
+        String nickname = users.getNickname();
+        newReserve.setReserver(nickname);
+        newReserve.setStorename(storename);
+        ShopRegister shopRegister = shopRegisterRepository.findByStorename(storename);
+        String storeid = shopRegister.getStoreid();
+        newReserve.setStoreid(storeid);
 
         String reservesettingstoreid = newReserve.getStoreid(); // vue에서 가져온 식당고유번호
         Date reservesettingDate = newReserve.getDate(); // vue에서 가져온 날짜
@@ -249,6 +255,11 @@ public class ReserveController {
         }
         return ResponseEntity.badRequest().build();
     }
+    @DeleteMapping("/reserve/delete/{seq}")
+    public ResponseEntity removeReserve(@PathVariable("seq") int seq){
+        Reserve reserve = reserveRepository.findBySeq(seq);
 
-
+        reserveRepository.delete(reserve);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

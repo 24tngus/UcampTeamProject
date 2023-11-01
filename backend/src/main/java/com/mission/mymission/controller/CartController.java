@@ -2,7 +2,9 @@ package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.Cart;
 import com.mission.mymission.entity.Shop;
+import com.mission.mymission.entity.ShopRegister;
 import com.mission.mymission.repository.CartRepository;
+import com.mission.mymission.repository.ShopRegisterRepository;
 import com.mission.mymission.repository.ShopRepository;
 import com.mission.mymission.service.JwtService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class CartController {
     private final JwtService jwtService;
     private final CartRepository cartRepository;
     private final ShopRepository shopRepository;
+    private final ShopRegisterRepository registerRepository;
 
     @GetMapping("/cart/shop")
     public ResponseEntity getCartShop(@CookieValue(value = "token", required = false) String token) {
@@ -27,13 +30,13 @@ public class CartController {
         if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
-
         int userSeq = jwtService.getSeq(token);
+
         List<Cart> carts = cartRepository.findByUserSeq(userSeq);
         List<Integer> shopIds = carts.stream().map(Cart::getShopSeq).toList();
-        List<Shop> shops = shopRepository.findBySeqIn(shopIds);
+        List<ShopRegister> regs = registerRepository.findBySeqIn(shopIds);
 
-        return new ResponseEntity<>(shops, HttpStatus.OK);
+        return new ResponseEntity<>(regs, HttpStatus.OK);
     }
 
     @PostMapping("/cart/insert/{shopSeq}")

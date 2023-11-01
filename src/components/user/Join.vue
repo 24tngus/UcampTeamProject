@@ -49,7 +49,7 @@
               </select>
             </div>
             <div class="input-area">
-              <input type="tel" placeholder="휴대전화번호 (- 없이 입력)" id="tel-number" v-model="state.form.tel" required/>
+              <input type="tel" placeholder="휴대전화번호" id="tel-number" v-model="state.form.tel" required/>
             </div>
           </li>
         </ul>

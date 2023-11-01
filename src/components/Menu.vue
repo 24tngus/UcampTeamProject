@@ -1,61 +1,52 @@
 <template>
   <Header />
+  <div v-if="this.menus.length !== 0">
+    <section class="showcase-area" id="showcase" v-if="this.menus.length !== 0">
+      <div class="background-image" :style="'background-image: url(/aaa1.png)'"></div>
+      <div class="showcase-container">
+        <h1 style="font-size: 80px; color: darkolivegreen" class="main-title" id="home">Menu</h1><br>
+        <p style="font-size: 30px; color: darkgrey" class="p-title">Enjoy a variety of menu!</p>
+      </div>
+    </section>
+    <div class="store">
+      <div class="album py-5 bg-body-tertiary">
 
-  <div class="store">
-
-    <div class="album py-5 bg-body-tertiary">
-
-      <!-- * * * Food-Menu Section * * * -->
-      <section id="food-menu">
-        <div style="margin-left: 18%; font-size: 2em;"><i id="up_back" class="fa fa-chevron-left fa-3x" aria-hidden="true" @click="goBack"></i></div>
-        <div><h2 class="cattitle">Fusion Food</h2></div>
-
-        <div class="food-menu-container container">
-          <div class="food-menu-item" v-for="(menu, idx) in this.menus" :key="idx">
-            <div class="food-img">
-              <img :src="setImgUrl(menu.image)" class="cardImg"/>
-            </div>
-            <div class="food-description">
-              <h2 class="food-titile">{{ menu.menu }}</h2>
-              <p> {{ menu.info }} </p>
-              <p class="food-price">Price: {{ menu.price}}</p>
+        <!-- * * * Food-Menu Section * * * -->
+        <section id="food-menu">
+          <div class="food-menu-container container">
+            <div class="food-menu-item" v-for="(menu, idx) in this.menus" :key="idx">
+              <div class="food-img">
+                <img :src="setImgUrl(menu.image)" class="cardImg"/>
+              </div>
+              <div class="food-description">
+                <h2 class="food-titile">{{ menu.menu }}</h2>
+                <p> {{ menu.info }} </p>
+                <p class="food-price">Price: {{ menu.price}}</p>
+              </div>
             </div>
           </div>
+          <div style="margin-left: 18%; font-size: 10em;">
+            <img src="../../public/a_icon.png" @click="goBack" id="up_back" style="width: 10%">
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <div class="store">
+      <!-- * * * Review Section * * *-->
+      <section class="showcase-area2">
+        <div class="background-image2" :style="'background-image: url(/aaa1.png)'"></div>
+        <div class="showcase-container2">
+          <h1 style="font-size: 80px; color: black" class="main-title2" id="home">Review</h1><br>
+          <p style="font-size: 30px; color: darkslategrey" class="p-title2">You can see the reviews of the restaurant</p>
         </div>
       </section>
-
-      <!-- * * * Review Section * * *-->
-      <section id="reviews">
-        <h2 class="review-title">What Our Customers Say</h2>
-        <!--        <div class="review-container container">-->
-        <!--          <div class="review-box">-->
-        <!--            <div class="customer-detail">-->
-        <!--              <div class="customer-photo">-->
-        <!--                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />-->
-        <!--                <p class="customer-name">Ross Lee</p>-->
-        <!--              </div>-->
-        <!--              &lt;!&ndash;              <div class="customer-photo">&ndash;&gt;-->
-        <!--              &lt;!&ndash;                <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />&ndash;&gt;-->
-        <!--              &lt;!&ndash;                <p class="customer-name">Ross Lee</p>&ndash;&gt;-->
-        <!--              &lt;!&ndash;              </div>&ndash;&gt;-->
-        <!--            </div>-->
-        <!--            <div class="star-rating">-->
-        <!--              <span class="fa fa-star checked"></span>-->
-        <!--              <span class="fa fa-star checked"></span>-->
-        <!--              <span class="fa fa-star checked"></span>-->
-        <!--              <span class="fa fa-star checked"></span>-->
-        <!--              <span class="fa fa-star checked"></span>-->
-        <!--            </div>-->
-        <!--            <p class="review-text">-->
-        <!--              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit-->
-        <!--              voluptas cupiditate aspernatur odit doloribus non.-->
-        <!--            </p>-->
-        <!--          </div>-->
-        <!--        </div>-->
-      </section>
+      <Review />
+      <img src="../../public/a_icon.png" @click="goBack" id="up_back" style="width: 10%">
     </div>
-    <hr style="border: solid 5px #2ecc71;">
-    <Review />
   </div>
 
   <div style="font-size: 2em; margin-right: 5%; float:right;">
@@ -68,7 +59,7 @@ import axios from "axios";
 // import router from "@/scripts/router";
 import lib from "@/scripts/lib";
 import Header from "@/components/header/Header.vue";
-import Review from "@/components/review/Review.vue";
+import Review from "@/components/shop/Review.vue";
 import {reactive} from "vue";
 
 export default {
@@ -84,18 +75,14 @@ export default {
   },
   created() {
     // this.seq = router.currentRoute.value.params.value1;
-    console.log("router seq 확인", this.seq);
     this.getMenu();
   },
   methods: {
     getMenu() {
       const seq = this.$route.query.seq;
 
-      console.log("seq " + seq);
       axios.get(`/api/menu/${seq}`, {params: { seq: seq } }).then(({data}) => {
         this.menus = data;
-        console.log("getMenu 호출");
-        console.log("data 확인", data);
       });
     },
 
@@ -125,6 +112,101 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+*,html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 13px;
+  font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+.showcase-area {
+  height: 50vh;
+  background: linear-gradient(
+      rgba(240, 240, 240, 0.144),
+      rgba(255, 255, 255, 0.336)
+  ),
+  url("https://i.postimg.cc/qvvztbtX/7.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 왼쪽 정렬로 변경 */
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
+}
+.main-title {
+  font-size: 180%;
+  color: #545d32;
+  text-align: left;
+  margin-left: 20%;
+}
+.p-title {
+  font-size: 80%;
+  color: #6e6a67;
+  text-align: left; /* 왼쪽 정렬로 변경 */
+  margin-left: 15%;
+}
+.showcase-area2 {
+  height: 40vh;
+  background: linear-gradient(
+      rgba(240, 240, 240, 0.144),
+      rgba(255, 255, 255, 0.336)
+  ),
+  url("https://i.postimg.cc/MpH2cTRH/8.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}
+.showcase-container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
+}
+.main-title2 {
+  font-size: 180%;
+  color: #545d32;
+}
+.p-title2 {
+  font-size: 80%;
+  color: #6e6a67;
+}
+btn {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 1em;
+  text-transform: uppercase;
+}
+.btn-primary {
+  color: #fff;
+  background: darkolivegreen;
+  width: 15%;
+  opacity: 0.7; /* 투명도를 조정합니다. 0.0에서 1.0까지 가능합니다. */
+  transition: opacity 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background: darkolivegreen;
+  transition: background 0.3s ease-in-out;
+  opacity: 1.0;
+}
 
 .cattitle{
   padding : 20px;
@@ -142,7 +224,7 @@ export default {
 
 #up_back{
   cursor: pointer;
-  font-size: 3em;
+  font-size: 10em;
   color: #556B2F;
   opacity: 0.3;
 }

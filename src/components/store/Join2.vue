@@ -45,7 +45,7 @@
               </select>
             </div>
             <div class="input-area">
-              <input type="tel" placeholder="휴대전화번호 (- 없이 입력)" id="tel-number" v-model="state.form.tel" required/>
+              <input type="tel" placeholder="휴대전화번호" id="tel-number" v-model="state.form.tel" required/>
             </div>
           </li>
         </ul>
@@ -55,7 +55,7 @@
           </li>
           <li class="row email-area">
             <label for="file" class="blind">사업자 등록증 파일 업로드</label>
-            <input type="file" ref="fileInput" @change="onFileChange" />
+            <input type="file" ref="fileInput" accept="image/*" @change="onFileChange" />
           </li>
         </ul>
         <img v-if="imageURL !== 0"  :src="imageURL" style="width: 100%"/>

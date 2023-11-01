@@ -8,6 +8,7 @@
         <div class="buttontab">
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
+          <router-link to="/reserve_setting"><button class="tablink">예약 관리</button></router-link>
           <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
           <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
@@ -18,6 +19,7 @@
 <!--        this.seq = router.currentRoute.value.params.value;-->
 <!--        <p>Received Value: {{$route.params.value}}</p>-->
         <h1>{{state.items.name}}님 가게 정보 수정</h1>
+        <br><br><br>
         <div class="member">
           <div class="field">
             <b>가게 이름</b>
@@ -700,4 +702,233 @@ footer:before{
     width: 100%;
   }
 }
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400);
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700,800&subset=korean');
+
+.online.small h1{
+  font-size: 25px;
+  margin-bottom: 40px;
+  margin-left: 40px;
+}
+.online ul{
+  min-width: 100%;
+  max-width: 100%
+}
+.online .thumbox .textbox h3{
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.online .thumbox .textbox p{
+  color: #6e6a67;
+  font-size: 11px;
+}
+.online .thumbox .textbox p:first-of-type{
+  margin-bottom: 10px;
+}
+.online .filter{
+  width: 100%;
+  background: #f1f1f1;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+.online .filter button{
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  width: 100px;
+  padding: 5px;
+  margin-right: 10px;
+  color: #6e6a67
+}
+.online .filter span{
+  float: right;
+  font-size: 11px;
+  color: #6e6a67
+}
+.online .filter span b{
+  color: #fa2424;
+}
+.online ul{
+  text-align: center;
+  padding: 0 5%;
+  max-width: 100%;
+  min-width: 600px;
+}
+.online .thumbox .img a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.online .thumbox .textbox{
+  /*    float: left;*/
+  height: 100px;
+  width: 100%;
+  padding:15px 25px;
+
+}
+.online .thumbox .textbox h3{
+  font-weight: 900;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.online .thumbox .textbox p{
+  color: #6e6a67;
+  font-size: 11px;
+}
+.online .thumbox .textbox p:first-of-type{
+  margin-bottom: 10px;
+}
+.contain {
+  display: flex;
+  flex-wrap: wrap; /* 자동 줄 바꿈을 위해 설정 */
+  justify-content: space-between; /* figure 요소들을 가로로 균등하게 배치 */
+
+}
+*,html,body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-size: 13px;
+  font-family: 'Nanum Gothic', sans-serif, '굴림', 'gulim'
+}
+
+#wrapper{
+  width: 100%;
+}
+
+#num{
+  text-align: center;
+  margin: 30px 0;
+  padding: 40px 0;
+  position: relative;
+  z-index: 2
+}
+#num:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left: 0;
+  border-top: 1px solid #d4d4d4;
+  z-index: -1
+}
+#num span{
+  display: inline-block;
+  border: 1px solid #d4d4d4;
+  margin: 0 2px;
+  padding: 5px 10px;
+  vertical-align: middle;
+  cursor: pointer
+}
+#num span a{
+  font-size: 10px;
+}
+.currentNum{
+  background: #32312f!important;
+}
+.currentNum a{
+  color: #fff
+}
+#num span:hover{
+  background: #d4d4d4;
+}
+#num span:hover a,#num span:hover i{
+  color: #fff
+}
+#wrapper{
+  background: #f1f1f1
+}
+#wrapper header {
+  position: relative !important;
+  background: #fff!important
+}
+#wrapper .headerwrap a, #wrapper .user i{
+  color: #333
+}
+#container{
+  position: relative;
+  max-width: 70%;
+  min-width:  880px;
+  margin: 0 0 0 10%;
+  background: #fff;
+}
+#container:after{
+  content:'';
+  display: block;
+  clear: both
+}
+#container > div:not(:first-of-type){
+  background: #fff;
+  padding: 3% 10% 0 25%;
+
+}
+.tab{
+  position: absolute;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  /*    float: left;*/
+  /*    background: pink;*/
+  height: 100%;
+  /*    position: relative;*/
+  padding: 200px 20px 0 20px;
+}
+.tab:after{
+  content: '';
+  display: block;
+  clear:both
+}
+button{
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  width: 100px;
+  height: 70px;
+}
+button.on{
+  color: #fa2828;
+  font-weight: 900
+}
+.tab h1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  /*    float: left;*/
+  height: 150px;
+  width: 100%;
+  background: darkolivegreen;
+  color: #fff;
+  font-size: 18px;
+  text-align: left;
+  padding: 25px
+}
+.tab button{
+  width: 100%;
+  text-align: left;
+  height: 80px;
+  font-size: 14px;
+  font-weight: 800;
+  position: relative;
+  cursor: pointer;
+  padding-left: 10px
+}
+.tab button:hover{
+  color: #fa2828;
+}
+.tab button:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #d4d4d4;
+}
+
 </style>

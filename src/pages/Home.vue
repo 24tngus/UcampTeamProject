@@ -53,6 +53,19 @@
   </div>
 
 
+  <!-- 구글 애드센스 -->
+  <div class="ad-container">
+    <h3 style="text-align: center">광고 부분</h3>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2477762804367669"
+         data-ad-slot="7828067320"
+         data-ad-format="auto"
+         :data-full-width-responsive="true">
+    </ins>
+  </div>
+
+
   <br><br><br>
   <div class="container marketing">
     <h1 class="category">Categories</h1><br><br>

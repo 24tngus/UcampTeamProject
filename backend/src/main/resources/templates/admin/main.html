@@ -31,7 +31,7 @@
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageUser">고객 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageStore">판매자 관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShop">식당 관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageShopRegister">식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageNewShopReq">신규 식당 요청 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageRefusalShop">요청 거부 식당 관리</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/admin/manageReview">식당 후기 관리</a>
@@ -93,7 +93,7 @@
             </div>
 
 
-            <div class="card" style="margin-top: 20px">
+            <div class="card" style="margin: 30px 0; max-width: 1200px;">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3 style="margin: 10px">최근 작성된 후기</h3>
                     <a href="/admin/manageReview" class="btn btn-outline-primary">후기 관리 페이지</a>
@@ -109,8 +109,9 @@
                     <tbody>
                     <tr th:each="review : ${Review}">
                         <td th:text="${review.writer}"></td>
-                        <td th:text="${review.storeid}"></td>
-                        <td th:text="${review.content}"></td>
+                        <td th:text="${review.storename}"></td>
+                        <td th:text="${review.content}" style="max-width: 500px"></td>
+                        <td th:text="${review.star}"></td>
                     </tr>
                     </tbody>
                 </table>

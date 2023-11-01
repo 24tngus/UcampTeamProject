@@ -14,6 +14,7 @@
       </div>
     </div>
 
+
     <!-- 본문 작성 -->
     <div class="online small" id="online">
       <h1>{{state.items.name}}님 회원 정보</h1>

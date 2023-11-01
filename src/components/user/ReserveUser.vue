@@ -1,5 +1,11 @@
 <template>
   <Header />
+  <section class="showcase-area" id="showcase">
+    <div class="background-image" :style="'background-image: url(/aaa1.png)'"></div>
+    <div class="showcase-container"><br><br><br><br>
+      <h1 class="main-title" id="home">Recommendation</h1><br>
+    </div>
+  </section>
   <br><br>
   <div class="card shadow-sm" id="cat">
     <div class="card-body" >
@@ -9,78 +15,122 @@
           <hr>
           <div class="memberform">
             <div class="member">
-              <div class="field">
-                <b>{{ storename }}</b>
-              </div>
+              <div class="userbookinfo">
+                <div class="field1">
+                  <b class="rname">가게명 : {{ storename }}</b><br><br>
+                  <b class="rname">예약자 닉네임 : {{ this.nickname }}</b>
+                </div>
+              </div><hr>
               <div class="fieldbook">
-                <div>
-                  <b>예약 인원 수</b>
-                  <input type="number" v-model="people" class="ruser" >{{ people }}<br>
+                <div class="field">
+                  <b>예약 인원</b>
+                  <input type="number" v-model="people" class="ruser" style="width: 200%">
+                  <br>
                 </div>
               </div>
-              <div class="field">
-                <b>예약 날짜</b>
-                <input type="date" v-model="date" class="ruser" >{{ date }}<br>
-              </div>
-            </div>
-            <div v-if="isDataLoaded">
-              <template v-if="reserveData">
-                08:00 ~ 10:00
-                <button @click="toggleTime(reserveData, 'time0810')" :disabled="reserveGetData.time0810 !== 1">
-                  {{ reserveData.time0810 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time0810 }}
-                <br>
-                10:00 ~ 12:00
-                <button @click="toggleTime(reserveData, 'time1012')" :disabled="reserveGetData.time1012 !== 1">
-                  {{ reserveData.time1012 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time1012 }}
-                <br>
-                12:00 ~ 14:00
-                <button @click="toggleTime(reserveData, 'time1214')" :disabled="reserveGetData.time1214 !== 1">
-                  {{ reserveData.time1214 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time1214 }}
-                <br>
-                14:00 ~ 16:00
-                <button @click="toggleTime(reserveData, 'time1416')" :disabled="reserveGetData.time1416 !== 1">
-                  {{ reserveData.time1416 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time1416 }}
-                <br>
-                16:00 ~ 18:00
-                <button @click="toggleTime(reserveData, 'time1618')" :disabled="reserveGetData.time1618 !== 1">
-                  {{ reserveData.time1618 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time1618 }}
-                <br>
-                18:00 ~ 20:00
-                <button @click="toggleTime(reserveData, 'time1820')" :disabled="reserveGetData.time1820 !== 1">
-                  {{ reserveData.time1820 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time1820 }}
-                <br>
-                20:00 ~ 22:00
-                <button @click="toggleTime(reserveData, 'time2022')" :disabled="reserveGetData.time2022 !== 1">
-                  {{ reserveData.time2022 === 1 ? '선택' : '해제' }}
-                </button>
-                {{ reserveData.time2022 }}
-                <br>
+              <div class="fieldbook">
+                <div class="field">
+                  <b>예약 시간</b>
+                  <span v-if="reserveData && reserveData.time0810 === 1">
+                    <input type="text" class="ruser" value="08:00 ~ 10:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time1012 === 1">
+                    <input type="text" class="ruser" value="10:00 ~ 12:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time1214 === 1">
+                    <input type="text" class="ruser" value="12:00 ~ 14:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time1416 === 1">
+                    <input type="text" class="ruser" value="14:00 ~ 16:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time1618 === 1">
+                    <input type="text" class="ruser" value="16:00 ~ 18:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time1820 === 1">
+                    <input type="text" class="ruser" value="18:00 ~ 20:00">
+                  </span>
+                  <span v-else-if="reserveData && reserveData.time2022 === 1">
+                    <input type="text" class="ruser" value="20:00 ~ 22:00">
+                  </span>
+                  <span v-else>
+                    <input type="text" class="ruser" value="">
+                  </span>
+
+                  <br>
+                </div>
+
+                <div class="field">
+                  <b>예약 날짜</b>
+                  <input type="date" v-model="date" class="ruser" >
+                  <!--                {{ date }}-->
+                  <br>
+                  <div class="time-section">
+                    <div class="timebtn" v-if="isDataLoaded">
+                      <template v-if="reserveData">
+                        08:00 - 10:00
+                        <button @click="toggleTime(reserveData, 'time0810')" :disabled="reserveGetData.time0810 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!-- {{ reserveData.time0810 }}-->
+                        &nbsp;&nbsp;
+                        10:00 - 12:00
+                        <button @click="toggleTime(reserveData, 'time1012')" :disabled="reserveGetData.time1012 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>                </button>
+                        <!-- {{ reserveData.time1012 }}-->
+                        <br>
+                        12:00 - 14:00
+                        <button @click="toggleTime(reserveData, 'time1214')" :disabled="reserveGetData.time1214 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!-- {{ reserveData.time1214 }}-->
+                        &nbsp;&nbsp;
+                        14:00 - 16:00
+                        <button @click="toggleTime(reserveData, 'time1416')" :disabled="reserveGetData.time1416 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!-- {{ reserveData.time1416 }}-->
+                        <br>
+                        16:00 - 18:00
+                        <button @click="toggleTime(reserveData, 'time1618')" :disabled="reserveGetData.time1618 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!--{{ reserveData.time1618 }}-->
+                        &nbsp;&nbsp;
+                        18:00 - 20:00
+                        <button @click="toggleTime(reserveData, 'time1820')" :disabled="reserveGetData.time1820 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!--{{ reserveData.time1820 }}-->
+                        <br>
+                        20:00 - 22:00
+                        <button @click="toggleTime(reserveData, 'time2022')" :disabled="reserveGetData.time2022 !== 1">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <!--{{ reserveData.time2022 }}-->
+                        <br>
 
 
-              </template>
-              <template v-else>
-                해당 날짜에 대한 정보가 없습니다. 다른 날짜를 선택해주세요.<br>
-              </template>
-            </div>
-            <b>요청사항</b> <input type="text" v-model="comment" class="com">{{ comment }}<hr>
+                      </template>
+                      <template v-else>
+                        해당 날짜에 대한 정보가 없습니다. 다른 날짜를 선택해주세요.<br>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div></div><hr>
+            <div class="request-section">
+              <div><b>요청사항</b> <input type="text" placeholder="알레르기 정보나 가게에 전달하고 싶은 사항을 작성해주세요." v-model="comment" class="com" style="height:200px"></div>
+              <!--  {{ comment }} -->
+            </div><br><br>
             <button @click="insertReserve" class="bookbtn">예약하기</button>
           </div>
         </ul>
       </div>
     </div>
   </div>
+  <br><br><br><br><br><br><br><br>
 </template>
 
 <script>
@@ -92,6 +142,7 @@ export default {
   components: {Header},
   data() {
     return {
+      nickname: "",
       reserveGetData: {
         time0810: 0,
         time1012: 0,
@@ -103,7 +154,7 @@ export default {
       },
       storename: '',
       shopseq: 0,
-      reserver: "",
+      reserver: '',
       team: 0,
       people: 0,
       date: "",
@@ -122,8 +173,14 @@ export default {
   },
   mounted() {
     this.storename = this.$route.query.storename;
+    this.load();
   },
   methods: {
+    load () {
+      axios.get("/api/user/mypage").then(({data}) => {
+        this.nickname = data.nickname;
+      })
+    },
     toggleTime(reserve, time) {
       if (this.isDataLoaded) { // Check if data is loaded
         if (reserve[time] === 1) {
@@ -230,12 +287,126 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+.showcase-area {
+  height: 50vh;
+  background: linear-gradient(
+      rgba(240, 240, 240, 0.144),
+      rgba(255, 255, 255, 0.336)
+  ),
+  url("https://i.postimg.cc/C5dkH0H6/BUCA-HEADERS-IMAGES-2-Reservations.png");
+  background-size: cover;
+  background-position: 30% 30%;
+  background-repeat: no-repeat;
+}
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
+}
+.main-title {
+  font-size: 180%;
+  color: #545d32;
+}
+
+btn {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 1em;
+  text-transform: uppercase;
+}
+.btn-primary {
+  color: #fff;
+  background: darkolivegreen;
+  width: 15%;
+  opacity: 0.7; /* 투명도를 조정합니다. 0.0에서 1.0까지 가능합니다. */
+  transition: opacity 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background: darkolivegreen;
+  transition: background 0.3s ease-in-out;
+  opacity: 1.0;
+}
+
+/* 클릭된 버튼 스타일 */
+button:active {
+  background-color: darkolivegreen; /* 클릭 시 배경색 변경 */
+  color: #fff; /* 클릭 시 텍스트 색상 변경 */
+}
+.timebtn{
+  float : right;
+  margin-right : 20px;
+}
+.timebtn button input[type="checkbox"]:checked {
+  background-color: #4CAF50; /* Change the background color when checked */
+  color: #fff; /* Change the text color when checked */
+}
+button i {
+  margin-right: 5px; /* 아이콘과 텍스트 사이의 간격 조절 */
+  font-size: 20px; /* 아이콘 크기 조절 */
+}
+
+/* 다른 버튼 스타일은 이전 답변의 CSS를 그대로 사용 */
+button {
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #283827;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  color: #beefbe;
+}
+.field b {
+  display: block; /* 제목을 블록 요소로 변경하여 제목 아래 공백 제거 */
+}
+.ruser{
+  width : 60%;
+}
+.field{
+  width : 50%;
+  text-align: center;
+  display: inline-block; /* div 요소를 가로로 정렬 */
+}
+.field1{
+  margin-left : 20px;
+  margin-top : 20px;
+}
+.rname{
+  color : #4f4e4e;
+}
+.userbookinfo{
+  border-radius: 7px;
+  background : #eeeeee;
+  padding : 20px 10px;
+}
+
 .memberform{
   padding : 0 30px 30px 30px;
 }
-.fieldbook div{
-  display: flex;
-  gap:10px;
+.fieldbook{
+  white-space: nowrap;
 }
 .member input:not(input[type=radio]), .com{
   border: 1px solid #dadada;

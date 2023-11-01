@@ -26,6 +26,7 @@
           </div>
         </div>
       </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <!-- 본문 작성 -->
     <div class="online small" id="online" v-else>
@@ -33,7 +34,9 @@
       <div class="member" v-for="(shop, idx) in state.shops" :key="idx">
         <div v-if="this.flag === idx + 1">
           <div class="field">
-            <br><b style="font-size: 20px; color: grey; opacity: 0.2">{{this.flag}}</b>
+            <span style="font-size: 20px; color: grey; opacity: 0.5">{{this.flag}}
+            <button @click="this.$router.push({name:'menu_insert', params: {value: shop.seq}})" class="double previous action-button-previous" style="width: 40%; height: 100%; margin-left: 60%">메뉴 등록</button>
+          </span>
           </div><br>
             <div class="field">
               <b>가게 이름</b>
@@ -595,12 +598,12 @@ footer:before{
 
 .member input[type=button],
 .member input[type=submit]{
-  background-color:green;
+  background-color:darkolivegreen;
   color:#fff
 }
 
 .member input:focus, .member select:focus{
-  border: 1px solid #2db400;
+  border: 1px solid darkolivegreen;
 }
 
 .field.birth div{ /*field 이면서 birth*/
@@ -647,7 +650,7 @@ footer:before{
 
 .member-footer div a:hover{
   text-decoration: underline;
-  color: #9db698
+  color:darkolivegreen;
 }
 
 .member-footer div a:after{

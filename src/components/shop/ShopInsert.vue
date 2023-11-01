@@ -12,95 +12,11 @@
 
 <script>
 
-import {reactive} from "vue";
-import axios from "axios";
-import router from "@/scripts/router";
 import Header2 from "@/components/header/Header2.vue";
 
 export default {
   name: "ShopInsert",
   components: {Header2},
-  methods: {
-    onFileChange() {
-      this.selectedFile = this.$refs.fileInput.files[0];
-      // const name = this.selectedFile.name;
-      const formData = new FormData();
-      formData.append("file", this.selectedFile);
-      axios.post("/api/images/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      // window.open(`/api/images/download/${name}`);
-      this.state.form.image = this.selectedFile.name;
-    }
-  },
-  data() {
-    return {
-      selectedFile: null,
-    };
-  },
-  setup() {
-    const state = reactive({
-      flag: 0,
-      form :{
-        storename: "",
-        detailinfo: "",
-        category: "",
-        location: "",
-        phonenumber: "",
-        image: ""
-      }
-    })
-
-    const exist = (exist) => {
-      if (state.form.storename == "") {
-        window.alert("가게 이름을 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else {
-        axios.get(`/api/shop/register/join/${exist}`, ).then((res)=> {
-          if (res.data == 0) {
-            window.alert("중복된 가게 이름입니다. 지점명을 붙여서 다시 입력해주세요");
-          } else {
-            window.alert("등록 가능한 가게 입니다");
-            state.flag = 1;
-          }
-          router.push({path: "/shop_insert"});
-        })
-      }
-    }
-
-    const register = () => {
-      if (state.form.storename == "") {
-        window.alert("가게 이름을 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.flag == 0) {
-        window.alert("가게 이름을 중복 검사 해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.form.detailinfo == "") {
-        window.alert("가게 상세정보를 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.form.category== "") {
-        window.alert("가게 카테고리를 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.form.location == "") {
-        window.alert("가게 위치를 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.form.phonenumber == "") {
-        window.alert("가게 전화번호를 입력해주세요");
-        router.push({path: "/shop_insert"});
-      } else if (state.form.image == "") {
-        window.alert("가게 이미지 1장 이상은 첨부해주세요");
-        router.push({path: "/shop_insert"});
-      } else {
-        axios.post("/api/shop/register/join", state.form).then(()=> {
-          window.alert("가게가 등록 되었습니다");
-          router.push({path: "/home_store"});
-        })
-      }
-    }
-    return {state, register, exist}
-  }
 }
 </script>
 

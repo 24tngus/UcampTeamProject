@@ -22,11 +22,12 @@
         <div class="member">
           <div class="field">
             <br><br><br><br><br><br><br><br><br><br><br><br>
-            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성하신 리뷰가 없습니다.</b>
+            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가게에 작성된 리뷰가 없습니다.</b>
             <br><br><br><br><br><br><br><br><br><br><br><br>
           </div>
         </div>
       </div>
+      <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <div class="online small" id="online" v-else>
       <br>

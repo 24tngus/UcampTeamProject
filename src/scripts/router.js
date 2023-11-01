@@ -43,6 +43,8 @@ import ReserveStore from "@/components/store/ReserveStore.vue";
 import Vegan1 from "@/components/veganInfo/Vegan1.vue";
 import ShopInsert2 from "@/components/shop/ShopInsert2.vue";
 import ReserveSetting from "@/components/store/ReserveSetting.vue";
+import MenuInsert from "@/components/shop/MenuInsert.vue";
+import MenuInsert2 from "@/components/shop/MenuInsert2.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -74,6 +76,8 @@ const routes = [
     {path: '/mypage_update', component: MypageUpdate},
     {path: '/cart', component: Cart},
     {path: '/menu', name:"menu", component: Menu},
+    {path: '/menu_insert',component: MenuInsert},
+    {path: '/menu_insert2/:value',name: "menu_insert", component: MenuInsert2},
     {path: '/vegan1', component: Vegan1},
     {path: '/vegan2', component: Vegan2},
     {path: '/vegan3', component: Vegan3},

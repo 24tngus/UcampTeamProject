@@ -11,7 +11,8 @@
       <input type="hidden" v-model="review.storeid"/>
 
       <div class="review-photo">
-        <img v-bind:src="review.image">
+        <img v-if="review.image && review.image > 0"  :src="`/api/images/download/${review.image}`" style="width: 100%"/>
+        <img src="../../../public/a_review8.png" style="width: 90%" v-else>
       </div>
 
       <div class="review-box">

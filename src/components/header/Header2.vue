@@ -30,7 +30,7 @@
         <div class="btnbanner"></div>
         <router-link to="/shop_insert" class="menu">입점신청</router-link>
         <div class="btnbanner"></div>
-        <router-link to="/reserve_update" class="menu">예약 관리</router-link>
+        <router-link to="/menu_insert" class="menu">메뉴관리</router-link>
         <div class="btnbanner"></div>
         <router-link to="/vegan4" class="menu">이용가이드</router-link>
       </li>

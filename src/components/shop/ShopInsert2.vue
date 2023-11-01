@@ -115,8 +115,8 @@
                   </div>
                 </div> <br><br>
                 <h2 class="purple-text text-center"><strong>입점 신청 완료</strong></h2> <br>
-                <div class="row justify-content-center">
-                  <div class="col-3"> <img src="https://i.postimg.cc/sD5yZMJk/a-vegan2.png" style="width: 400%"> </div>
+                <div class="row justify-content-left">
+                  <div class="col-3"> <img src="https://i.postimg.cc/sD5yZMJk/a-vegan2.png" style="width: 200%; margin-left: 120%"> </div>
                 </div> <br><br>
                 <div class="row justify-content-center">
                   <div class="col-7 text-center">

@@ -13,8 +13,22 @@
         </div>
       </div>
 
+      <div v-if="state.items.length === 0">
+        <div class="online small" id="online">
+          <h1>{{state.store.name}}님 예약 관리</h1>
+          <br><br><br>
+          <div class="member">
+            <div class="field">
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+              <b>등록하신 예약 정보가 없습니다.</b>
+              <br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+          </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+      </div>
       <!-- 본문 작성 -->
-      <div class="online small" id="online">
+      <div class="online small" id="online" v-else>
         <h1>{{state.store.name}}님 예약 관리</h1>
         <br><br>
         <div class='app'>

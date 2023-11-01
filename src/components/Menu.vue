@@ -16,7 +16,8 @@
           <div class="food-menu-container container">
             <div class="food-menu-item" v-for="(menu, idx) in this.menus" :key="idx">
               <div class="food-img">
-                <img :src="setImgUrl(menu.image)" class="cardImg"/>
+                <img v-if="menu.image && menu.image > 0"  :src="`/api/images/download/${menu.image}`" menu.image/>
+<!--                <img :src="setImgUrl(menu.image)" class="cardImg"/>-->
               </div>
               <div class="food-description">
                 <h2 class="food-titile">{{ menu.menu }}</h2>

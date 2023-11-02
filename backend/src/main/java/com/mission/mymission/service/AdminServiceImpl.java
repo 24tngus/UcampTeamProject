@@ -5,6 +5,7 @@ import com.mission.mymission.repository.*;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -219,7 +220,7 @@ public class AdminServiceImpl implements AdminService {
     // 후기 전체 목록 조회
     @Override
     public List<Review> getReviewList() {
-        List<Review> reviewList = reviewRepository.findAll();
+        List<Review> reviewList = reviewRepository.findByStoreidIsNotNull();
         Collections.reverse(reviewList);
         return reviewList;
     }
@@ -280,7 +281,9 @@ public class AdminServiceImpl implements AdminService {
     // 최근 댓글 5개까지 보여주기
     @Override
     public List<Review> getRecentReviews() {
-        return reviewRepository.findTop5ByOrderBySeqDesc();
+        List<Review> recentReviews
+                = reviewRepository.findTop5ByStoreidIsNotNullOrderBySeqDesc(PageRequest.of(0, 5));
+        return recentReviews;
     }
 
 }

@@ -156,7 +156,7 @@ public class AdminController {
     @GetMapping("/deleteShop/{storename}/")
     public String deleteShop(@PathVariable String storename) {
         adminService.deleteShop(storename);
-        return "redirect:/admin/manageShop";
+        return "redirect:/admin/manageShopRegister";
     }
 
     // 식당 상세정보 페이지
@@ -229,7 +229,7 @@ public class AdminController {
     @GetMapping("/permitNewShopReq/{seq}")
     public String permitNewShopReq(@PathVariable Long seq) {
         adminService.permitNewShopReq(seq);
-        return "redirect:/admin/manageShop";
+        return "redirect:/admin/manageShopRegister";
     }
 
     // 신규 식당 요청 거부 메서드

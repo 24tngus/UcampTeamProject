@@ -1,10 +1,8 @@
 package com.mission.mymission.controller;
 
-import com.mission.mymission.entity.Reserve;
-import com.mission.mymission.entity.Review;
-import com.mission.mymission.entity.Store;
-import com.mission.mymission.entity.User;
+import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.ReviewRepository;
+import com.mission.mymission.repository.ShopRegisterRepository;
 import com.mission.mymission.repository.StoreRepository;
 import com.mission.mymission.repository.UserRepository;
 import com.mission.mymission.service.JwtService;
@@ -27,6 +25,7 @@ public class ReviewController {
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
     private final JwtService jwtService;
+    private final ShopRegisterRepository shopRegisterRepository;
 
     @GetMapping("/review")
     public List<Review> getReview(@CookieValue(value = "token", required = false) String token){
@@ -54,7 +53,7 @@ public class ReviewController {
         int seq = jwtService.getSeq(token);
         User users = userRepository.findBySeq(seq);
         String nickname = users.getNickname();
-        List<Review> reviewList = reviewRepository.findAll();
+        List<Review> reviewList = reviewRepository.findByStorename(storename);
         Collections.reverse(reviewList);
 
         Map<String, Object> resultMap = new HashMap<>();
@@ -82,12 +81,18 @@ public class ReviewController {
         }
         int seq = jwtService.getSeq(token);
         User users = userRepository.findBySeq(seq);
+        System.out.println("스토어네임" + storename);
+//        Review storeid = reviewRepository.findBystorename(storename);
+        ShopRegister shopRegister = shopRegisterRepository.findByStorename(storename);
+        String storeid = shopRegister.getStoreid();
+
+        System.out.println("스토어아이디" + storeid);
 
 //        String storeid = newReview.getStoreid();
         String writer = users.getNickname();
         Review review = new Review();
         review.setStorename(storename);
-//        review.setStoreid(storeid);
+        review.setStoreid(storeid);
         review.setWriter(writer);
         review.setContent(newReview.getContent());
         review.setImage(newReview.getImage());
@@ -96,6 +101,7 @@ public class ReviewController {
         review = reviewRepository.save(review);
         return ResponseEntity.ok(review);
     }
+
     @DeleteMapping("/review/delete/{seq}")
     public ResponseEntity<String> deleteReview( @PathVariable("seq") int seq) {
         Review review = reviewRepository.findBySeq(seq);

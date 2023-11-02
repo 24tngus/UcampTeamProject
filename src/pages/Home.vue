@@ -88,7 +88,7 @@
   <div class="container">
     <br>
     <h1 class="map">View on the map</h1><br><br>
-        <Map/>
+        <Map/><br><br><br><br><br><br>
   </div>
 </template>
 

@@ -48,7 +48,7 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>마이페이지 > 예약 확인 > 수정</strong>을 선택해주세요. <br><br>
+                <strong>마이페이지 > 예약 목록 > 수정</strong>을 선택해주세요. <br><br>
                 방문 예정 예약의<strong> 예약 상세 내역 페이지</strong>에서 예약을 변경하거나 취소할 수 있습니다.
               </div>
             </div>
@@ -61,7 +61,7 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <strong>마이페이지 > 예약 확인 > 수정</strong>을 선택해주세요.<br><br>
+                <strong>마이페이지 > 예약 목록 > 수정</strong>을 선택해주세요.<br><br>
                 예약 예정 시간 하루 전까지 취소할 경우, 별다른 수수료 없이 전액 환불 가능합니다.
               </div>
             </div>

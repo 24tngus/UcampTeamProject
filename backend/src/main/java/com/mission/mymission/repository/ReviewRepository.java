@@ -1,6 +1,7 @@
 package com.mission.mymission.repository;
 
 import com.mission.mymission.entity.Review;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +25,9 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     List<Review> searchByStorename(String storename);
 
+    List<Review> findByStoreidIsNotNull();
+
+    List<Review> findTop5ByStoreidIsNotNullOrderBySeqDesc(PageRequest of);
     @Transactional
     @Modifying
     @Query("update Review r set r.content= :content, r.image= :image where r.seq=:seq")

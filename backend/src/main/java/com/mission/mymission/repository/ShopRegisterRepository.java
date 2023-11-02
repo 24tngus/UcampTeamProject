@@ -14,7 +14,9 @@ public interface ShopRegisterRepository extends JpaRepository<ShopRegister, Inte
 
     @Query("SELECT s FROM ShopRegister s WHERE s.storeid = :storeid")
     ShopRegister findSingleByStoreid(@Param("storeid") String storeid);
+
     ShopRegister findBySeq(int seq);
+
     ShopRegister findBySeq(Long seq);
 
     List<ShopRegister> findBySeqIn(List<Integer> seq); // seq list
@@ -25,3 +27,4 @@ public interface ShopRegisterRepository extends JpaRepository<ShopRegister, Inte
 
     Long countByPermit(int i);
 }
+

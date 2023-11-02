@@ -8,5 +8,7 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
     Payment findBySeq(int seq);
+
+    Payment findBypaymentid(String paymentid);
 }
 

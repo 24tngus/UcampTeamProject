@@ -48,7 +48,7 @@
             <fieldset v-if="this.flag === 2">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Name</strong></li>
-                <li id="personal"><strong>Information</strong></li>
+                <li class="active" id="personal"><strong>Information</strong></li>
                 <li id="payment"><strong>Image</strong></li>
                 <li id="confirm"><strong>Menu</strong></li>
               </ul><br>
@@ -74,8 +74,8 @@
             <fieldset v-if="this.flag === 3">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Name</strong></li>
-                <li id="personal"><strong>Information</strong></li>
-                <li id="payment"><strong>Image</strong></li>
+                <li class="active" id="personal"><strong>Information</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
                 <li id="confirm"><strong>Menu</strong></li>
               </ul><br>
               <div class="form-card">
@@ -101,9 +101,9 @@
             <fieldset v-if="this.flag === 4">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Name</strong></li>
-                <li id="personal"><strong>Information</strong></li>
-                <li id="payment"><strong>Image</strong></li>
-                <li id="confirm"><strong>Menu</strong></li>
+                <li class="active" id="personal"><strong>Information</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
+                <li class="active" id="confirm"><strong>Menu</strong></li>
               </ul><br>
               <div class="form-card">
                 <div class="row">

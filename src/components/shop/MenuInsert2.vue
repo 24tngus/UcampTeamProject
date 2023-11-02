@@ -47,7 +47,7 @@
             <fieldset v-if="this.flag === 2">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Menu</strong></li>
-                <li id="personal"><strong>Price</strong></li>
+                <li class="active" id="personal"><strong>Price</strong></li>
                 <li id="payment"><strong>Image</strong></li>
                 <li id="confirm"><strong>Seccess</strong></li>
               </ul><br>
@@ -71,8 +71,8 @@
             <fieldset v-if="this.flag === 3">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Menu</strong></li>
-                <li id="personal"><strong>Price</strong></li>
-                <li id="payment"><strong>Image</strong></li>
+                <li class="active" id="personal"><strong>Price</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
                 <li id="confirm"><strong>Seccess</strong></li>
               </ul><br>
               <div class="form-card">
@@ -94,9 +94,9 @@
             <fieldset v-if="this.flag === 4">
               <ul id="progressbar">
                 <li class="active" id="account"><strong>Menu</strong></li>
-                <li id="personal"><strong>Price</strong></li>
-                <li id="payment"><strong>Image</strong></li>
-                <li id="confirm"><strong>Seccess</strong></li>
+                <li class="active" id="personal"><strong>Price</strong></li>
+                <li class="active" id="payment"><strong>Image</strong></li>
+                <li class="active" id="confirm"><strong>Seccess</strong></li>
               </ul><br>
               <div class="form-card">
                 <div class="row">
@@ -508,4 +508,5 @@ btn {
   transition: background 0.3s ease-in-out;
   opacity: 1.0;
 }
+
 </style>

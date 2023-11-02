@@ -8,14 +8,14 @@
           <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
           <router-link to="/reserve_update"><button class="tablink">예약 관리</button></router-link>
-          <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/reserve_store"><button class="tablink">예약 목록</button></router-link>
           <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
 
       <!-- 본문 작성 -->
       <div class="online small" id="online">
-        <h1>{{state.store.name}}님 가게 예약 확인</h1>
+        <h1>{{state.store.name}}님 가게 예약 목록</h1>
 
         <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalTour" style="width: 550px">
           <div class="modal-dialog" role="document">

@@ -33,8 +33,8 @@
                 <div class="title-and-cart">
                   <span><h3 class="shopTitle"> {{shop.storename}}</h3></span>
                   <span class="cartbtn">
-                    <i @click="addToCart(shop.seq)" class="fa fa-heart fa-2x" aria-hidden="true"></i>
-                    <!--                    <i v-else @click="cartFlag(shop)" class="fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
+                    <i @click="addToCart(shop.seq)" class="heart1-icon fa fa-heart fa-2x" aria-hidden="true"></i>
+<!--                    <i v-else @click="cartFlag(shop)" class="heart2 fa fa-heart-o fa-2x" aria-hidden="true"></i>-->
                             </span>
                 </div>
                 <span class="shop1"> {{shop.category}} </span> &nbsp;
@@ -171,7 +171,16 @@ export default {
 .fa-2x {
   font-size: 2em;
 }
+.heart-icon {
+  font-size: 2rem; /* 초기 아이콘 크기 */
+  color: #ccc; /* 초기 색상 */
+  cursor: pointer;
+  transition: all 0.2s; /* 애니메이션 효과 적용 */
+}
 
+.heart-icon.active {
+  font-size: 300rem; /* 호버 시 크기 증가 */
+}
 .shopimage1:hover{
   transform: scale(3);
   transition: transform 0.3s; /* 변환 효과에 0.3초 동안의 트랜지션 적용 */

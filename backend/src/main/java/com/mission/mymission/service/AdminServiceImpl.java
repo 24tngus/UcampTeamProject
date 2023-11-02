@@ -2,11 +2,10 @@ package com.mission.mymission.service;
 
 import com.mission.mymission.entity.*;
 import com.mission.mymission.repository.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,7 @@ import java.util.*;
 public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
     private final StoreRepository storeRepository;
+    private final ShopRepository shopRepository;
     private final ShopRegisterRepository ShopRegisterRepository;
     private final ReviewRepository reviewRepository;
 //    private final ShopRegisterDeletionService scheduleShopRegisterDeletion;
@@ -39,12 +39,12 @@ public class AdminServiceImpl implements AdminService {
         return userList;
     }
 
-//    // 고객 삭제
-//    @Override
-//    public void deleteUser(String email) {
-//        User user = userRepository.findByEmailAndPassword(email);
-//        userRepository.delete(user);
-//    }
+    // 고객 삭제
+    @Override
+    public void deleteUser(String email) {
+        User user = userRepository.findByEmail(email);
+        userRepository.delete(user);
+    }
 
     // 고객 개별 조회
     @Override
@@ -67,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
     // 판매자 삭제
     @Override
     public void deleteStore(String email) {
-        Store store = storeRepository.findById(email);
+        Store store = storeRepository.findByEmail(email);
         storeRepository.delete(store);
     }
 
@@ -81,6 +81,50 @@ public class AdminServiceImpl implements AdminService {
 
 
     // shop service
+    @Override
+    public List<Shop> getShopList() {
+        List<Shop> shopList = shopRepository.findAll();
+        Collections.reverse(shopList);
+        return shopList;
+    }
+
+    @Override
+    public void deleteShop(String storename) {
+        Shop shop = shopRepository.findByStorename(storename);
+        shopRepository.delete(shop);
+    }
+
+    @Override
+    public Shop getShop(String storename) {
+        Shop shop = shopRepository.findByStorename(storename);
+        return shop;
+    }
+
+    @Override
+    public List<Shop> getDuplicateShop() {
+        String jpql = "SELECT s FROM Shop s WHERE s.storename IN " +
+                "(SELECT s2.storename FROM Shop s2 GROUP BY s2.storename HAVING COUNT(s2.storename) > 1)";
+        TypedQuery<Shop> query = entityManager.createQuery(jpql, Shop.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public void deleteDuplicateShop(long seq) {
+        Shop shop = shopRepository.findBySeq(seq);
+        shopRepository.delete(shop);
+    }
+
+    @Override
+    public List<Shop> searchShopByStorename(String storename) {
+        List<Shop> shopList = shopRepository.searchByStorename(storename);
+        Collections.reverse(shopList);
+        return shopList;
+    }
+
+
+
+
+    // shop_register service
     // 식당 전체 목록 조회
     @Override
     public List<ShopRegister> getShopRegisterList() {
@@ -176,7 +220,7 @@ public class AdminServiceImpl implements AdminService {
     // 후기 전체 목록 조회
     @Override
     public List<Review> getReviewList() {
-        List<Review> reviewList = reviewRepository.findAll();
+        List<Review> reviewList = reviewRepository.findByStoreidIsNotNull();
         Collections.reverse(reviewList);
         return reviewList;
     }
@@ -203,6 +247,9 @@ public class AdminServiceImpl implements AdminService {
         Collections.reverse(reviewList);
         return reviewList;
     }
+
+
+
 
     // 메인 페이지 꾸미기
     // 고객 수
@@ -234,7 +281,9 @@ public class AdminServiceImpl implements AdminService {
     // 최근 댓글 5개까지 보여주기
     @Override
     public List<Review> getRecentReviews() {
-        return reviewRepository.findTop5ByOrderBySeqDesc();
+        List<Review> recentReviews
+                = reviewRepository.findTop5ByStoreidIsNotNullOrderBySeqDesc(PageRequest.of(0, 5));
+        return recentReviews;
     }
 
 }

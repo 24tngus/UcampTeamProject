@@ -45,6 +45,13 @@ public class ShopController {
     public Shop postMap(@RequestBody Shop shop) {
         return shopRepository.save(shop);
     }
+
+    @GetMapping("/map")
+    public Shop getBylatlng(@RequestParam String lat, @RequestParam String lng) {
+        Shop shop = shopRepository.findByLatAndLng(lat, lng);
+        System.out.println("getBylatlng => " + shop.toString());
+        return shop;
+    }
 //
 //    @GetMapping("/shop/storeInfo")
 //    public Shop storeInfo(int seq){

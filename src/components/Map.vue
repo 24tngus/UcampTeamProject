@@ -15,18 +15,15 @@
             <div id="siteNotice"></div> <!--  -->
             <h1 id="firstHeading" class="firstHeading" v-if="this.markerData" href="/">{{ this.markerData.storename }}</h1> <!-- 가게 이름 -->
             <div id="bodyContent">
-              <div v-if="this.markerData.lotation">  <!-- 도로명 주소 formatted_address -->
-                {{ this.markerData.lotation }}
+              <div v-if="this.markerData.location">  <!-- 도로명 주소 formatted_address -->
+                {{ this.markerData.location }}
               </div>
               <div v-if="this.markerData.phonenumber">
                 {{ this.markerData.phonenumber }}
               </div>
               <div v-if="this.markerData.rating">  <!-- 별점 rating -->
-                {{ this.markerData.rating }}
+                <i class="fa fa-star" aria-hidden="true" style="color: green"> </i> {{ this.markerData.rating }}
               </div>
-              <!--              <div>-->
-              <!--                <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=AcJnMuEOKrWrFJWjgJ0hP9z6YEAW_sFK_EjE8YGfW4OpXVjrKGOFylnNfvubR_pNu19Gpob7ftOzYggMoq2wWtToKc0LQkhMRBll8X5HDuBpME1W9VYH8JmSYj_VeQL2vny-bKmEP-tSFfFAcpdf1AMwpdF6VrLEaXUzsRoj4qemUB_ekuhk&key=AIzaSyB21eMRg-uMRk-i7r27DPDkntXbR5_kvnk">-->
-              <!--              </div>-->
             </div>
           </div>
         </InfoWindow>

@@ -7,7 +7,7 @@
         <div class="buttontab">
           <router-link to="/mypage_info"><button class="tablink">회원 정보</button></router-link>
           <router-link to="/cart"><button class="tablink">찜 목록</button></router-link>
-          <router-link to="/reserve_usercheck"><button class="tablink">예약 확인</button></router-link>
+          <router-link to="/reserve_usercheck"><button class="tablink">예약 목록</button></router-link>
           <router-link to="/myreview"><button class="tablink">리뷰 확인</button></router-link>
         </div>
       </div>
@@ -223,7 +223,9 @@ export default {
           .then((response) => {
             this.reserves = response.data.map((reserve) => {
               const timestamp = reserve.date;
-              const formattedDate = new Date(timestamp).toISOString().split('T')[0];
+              const date = new Date(timestamp);
+              date.setDate(date.getDate() + 1);
+              const formattedDate = new Date(date).toISOString().split('T')[0];
               return {
                 ...reserve,
                 newdate: formattedDate,

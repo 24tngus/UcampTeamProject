@@ -422,7 +422,7 @@
                         </td>
                       </tr>
                       <br><br><br>
-                      <button @click="$router.push('/reserve_usercheck')" style=" background-color: darkolivegreen; opacity: 0.5; width: 100%; border-style: solid; color: white;border-radius: 10%; border-color: white;">예약 확인</button>
+                      <button @click="$router.push('/reserve_usercheck')" style=" background-color: darkolivegreen; opacity: 0.5; width: 100%; border-style: solid; color: white;border-radius: 10%; border-color: white;">예약 목록</button>
                       <br><br><br>
                     </table>
                   </td>
@@ -458,7 +458,7 @@ export default {
     this.paymentid = router.currentRoute.value.params.value;
 
     try {
-      const response = await axios.get(`/api/payment/seq/${this.paymentid}`, this.paymentid);
+      const response = await axios.get(`/api/paymentSuccess/${this.paymentid}`, this.paymentid);
 
       this.paymentData = response.data;
 

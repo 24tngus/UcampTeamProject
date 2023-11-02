@@ -11,8 +11,8 @@
       <input type="hidden" v-model="review.storeid"/>
 
       <div class="review-photo">
-        <img v-if="review.image && review.image > 0"  :src="`/api/images/download/${review.image}`" style="width: 100%"/>
-        <img src="../../../public/a_review8.png" style="width: 90%" v-else>
+        <img v-if="!review.image" src="../../../public/a_review8.png" style="width: 90%">
+        <img v-else :src="`/api/images/download/${review.image}`" style="width: 100%"/>
       </div>
 
       <div class="review-box">
@@ -51,9 +51,11 @@
           <p>{{ review.content }}</p>
         </div>
       </div>
-      <router-link :to="{ name: 'review_update', params: { value: review.seq } }"><button v-if="review.writer === nickname" type="button">수정</button></router-link>
+      <router-link :to="{ name: 'review_update', params: { value: review.seq } }">
+        <button style="background-color: darkolivegreen; opacity: 0.5; margin-top: 2%; margin-left: 3%; border-radius: 10%;" v-if="review.writer === nickname" type="button">수정</button>
+      </router-link>
 
-      <button v-if="review.writer === nickname" type="button" @click="deleteReview(review)">삭제</button>
+      <button style="background-color: darkolivegreen; opacity: 0.5; margin-top: 2%; margin-left: 5%; border-radius: 10%;" v-if="review.writer === nickname" type="button" @click="deleteReview(review)">삭제</button>
     </div>
 
   </div>

@@ -1,7 +1,7 @@
 package com.mission.mymission.controller;
 
 import com.mission.mymission.entity.*;
-// import com.mission.mymission.service.EmailSendService;
+import com.mission.mymission.service.EmailSendService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
-    // private final EmailSendService emailSendService;
+    private final EmailSendService emailSendService;
 
 
     // 관리자 메인페이지
@@ -63,6 +63,7 @@ public class AdminController {
 
 
 
+
     // User Controller
     // 고객 관리 페이지
     @GetMapping("/manageUser")
@@ -75,8 +76,8 @@ public class AdminController {
     // 고객 삭제 메서드
     @GetMapping("/deleteUser/{email}")
     public String deleteUser(@PathVariable String email) {
-//        adminService.deleteUser(email);
-        // emailSendService.sendMail(email);
+        adminService.deleteUser(email);
+        emailSendService.sendMail(email);
         return "redirect:/admin/manageUser";
     }
 
@@ -87,6 +88,7 @@ public class AdminController {
         model.addAttribute("user", user);
         return "/admin/manageUserInfo";
     }
+
 
 
 
@@ -103,7 +105,7 @@ public class AdminController {
     @GetMapping("/deleteStore/{email}")
     public String deleteStore(@PathVariable String email) {
         adminService.deleteStore(email);
-        // emailSendService.sendMail(email);
+        emailSendService.sendMail(email);
         return "redirect:/admin/manageStore";
     }
 
@@ -117,18 +119,21 @@ public class AdminController {
 
 
 
-    // Shop Controller
+
+    // Shop_register Controller
     // 식당 관리 페이지
-    @GetMapping("/manageShop")
-    public String manageShop(Model model) {
+    @GetMapping("/manageShopRegister")
+    public String manageShopRegister(Model model) {
         adminService.getShopRegisterList();
+        adminService.getShopList();
         model.addAttribute("shopRegisters", adminService.getShopRegisterList());
-        return "/admin/manageShop";
+        model.addAttribute("shops", adminService.getShopList());
+        return "/admin/manageShopRegister";
     }
 
-    // 식당 삭제 메서드
-    @GetMapping("/deleteShop/{storename}")
-    public String deleteShop(@PathVariable String storename) {
+    // shop_register 삭제 메서드
+    @GetMapping("/deleteShopRegister/{storename}")
+    public String deleteShopRegister(@PathVariable String storename) {
         // 단계 1: 'storename'을 사용하여 'shop_register'에서 'storeid'를 가져옵니다.
         String storeid = adminService.getStoreIdByStoreName(storename);
 
@@ -140,20 +145,69 @@ public class AdminController {
                 adminService.deleteShopRegister(storename);
 
                 // 단계 3: 이메일을 보냅니다.
-                // emailSendService.sendMailShop(storeEmail);
+                emailSendService.sendMailShop(storeEmail);
             }
         }
 
-        return "redirect:/admin/manageShop";
+        return "redirect:/admin/manageShopRegister";
+    }
+
+    // shop 삭제 메서드
+    @GetMapping("/deleteShop/{storename}/")
+    public String deleteShop(@PathVariable String storename) {
+        adminService.deleteShop(storename);
+        return "redirect:/admin/manageShopRegister";
     }
 
     // 식당 상세정보 페이지
-    @GetMapping("/manageShopInfo/{storename}")
-    public String manageShopInfo(@PathVariable String storename, Model model) {
+    @GetMapping("/manageShopRegisterInfo/{storename}")
+    public String manageShopRegisterInfo(@PathVariable String storename, Model model) {
         ShopRegister shopRegister = adminService.getShopRegister(storename);
+        Shop shop = adminService.getShop(storename);
         model.addAttribute("shopRegister", shopRegister);
-        return "/admin/manageShopInfo";
+        model.addAttribute("shop", shop);
+        return "/admin/manageShopRegisterInfo";
     }
+
+
+
+
+    // 중복되는 shop 관리 페이지
+    @GetMapping("/manageDuplicateShop")
+    public String manageDuplicateShop(Model model) {
+        adminService.getDuplicateShop();
+        model.addAttribute("DuplicateShop", adminService.getDuplicateShop());
+        return "/admin/manageDuplicateShop";
+    }
+
+    // 중복되는 shop 삭제 메서드
+    @GetMapping("/deleteDuplicateShop/{seq}")
+    public String deleteDuplicateShop(@PathVariable long seq) {
+        adminService.deleteDuplicateShop(seq);
+        return "redirect:/admin/manageDuplicateShop";
+    }
+
+    // 검색 필터
+    @GetMapping("/searchShop")
+    public String searchShop(@RequestParam String keyword, @RequestParam int filter, Model model) {
+        List<Shop> searchList = new ArrayList<>();
+
+        if (filter == 1) {
+            // 식당 이름(storename)으로 검색
+            try {
+                String storename = String.valueOf(keyword);
+                searchList = adminService.searchShopByStorename(storename);
+            } catch (NumberFormatException e) {
+
+            }
+        }
+
+        model.addAttribute("searchList", searchList);
+        return "admin/manageDuplicateShop";
+    }
+
+
+
 
     // 신규 식당 요청 관리 페이지
     @GetMapping("/manageNewShopReq")
@@ -175,7 +229,7 @@ public class AdminController {
     @GetMapping("/permitNewShopReq/{seq}")
     public String permitNewShopReq(@PathVariable Long seq) {
         adminService.permitNewShopReq(seq);
-        return "redirect:/admin/manageShop";
+        return "redirect:/admin/manageShopRegister";
     }
 
     // 신규 식당 요청 거부 메서드
@@ -184,6 +238,9 @@ public class AdminController {
         adminService.refusalNewShopReq(seq);
         return "redirect:/admin/manageRefusalShop";
     }
+
+
+
 
     // 요청 거부된 식당 관리 페이지
     @GetMapping("/manageRefusalShop")
@@ -196,7 +253,20 @@ public class AdminController {
     // 요청 거부된 식당 삭제 메서드
     @GetMapping("/deleteRefusalShop/{storename}")
     public String deleteNewShopReq(@PathVariable String storename) {
-        adminService.deleteShopRegister(storename);
+        // 단계 1: 'storename'을 사용하여 'shop_register'에서 'storeid'를 가져옵니다.
+        String storeid = adminService.getStoreIdByStoreName(storename);
+
+        if (storeid != null) {
+            // 단계 2: 'storeid'를 사용하여 store 테이블에서 이메일을 가져옵니다.
+            String storeEmail = adminService.getStoreEmailById(storeid);
+
+            if (storeEmail != null) {
+                adminService.deleteShopRegister(storename);
+
+                // 단계 3: 이메일을 보냅니다.
+                emailSendService.sendMailShop(storeEmail);
+            }
+        }
         return "redirect:/admin/manageRefusalShop";
     }
 
@@ -207,6 +277,7 @@ public class AdminController {
         model.addAttribute("shopRegister", shopRegister);
         return "/admin/manageRefusalShopInfo";
     }
+
 
 
 

@@ -8,7 +8,7 @@
         <router-link to="/mystore_info"><button class="tablink">회원 정보</button></router-link>
         <router-link to="/myshop_info"><button class="tablink">가게 정보</button></router-link>
         <router-link to="/reserve_update"><button class="tablink">예약 관리</button></router-link>
-        <router-link to="/reserve_store"><button class="tablink">예약 확인</button></router-link>
+        <router-link to="/reserve_store"><button class="tablink">예약 목록</button></router-link>
         <router-link to="/review_store"><button class="tablink">리뷰 확인</button></router-link>
       </div>
     </div>
@@ -40,7 +40,7 @@
             <router-link to="/reserve_store">
             <div class="green number"><img src="../../../public/a_reserve.png" style="width: 40px" /></div><br>
             </router-link>
-            <div class="item_text">예약 확인</div>
+            <div class="item_text">예약 목록</div>
           </div>
           <div class="item_icon"> > </div>
         </div>
@@ -81,7 +81,7 @@
             <div class="textbox">
               <img src="../../../public/a_reserve.png" class="image-size" />
               <br><br>
-              <h3>예약 확인</h3>
+              <h3>예약 목록</h3>
               <p>#예약 일정 관리 #예약 취소</p>
             </div>
           </router-link>

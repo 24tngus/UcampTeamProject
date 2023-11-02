@@ -6,12 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="15d6d299-95ba-4305-8106-b8d4ed80c0df" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/repository/ReviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/mission/mymission/service/AdminServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/etc.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/etc.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageDuplicateShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageDuplicateShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReq.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReqInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageNewShopReqInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShop.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShopInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageRefusalShopInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageReview.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageReview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopRegister.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopRegisterInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageShopRegisterInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStore.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStore.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStoreInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageStoreInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageUserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/templates/admin/manageUserInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/templates/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/TeamProject/VeganLoadMap/backend",
+    "last_opened_file_path": "C:/TeamProject/VeganLoadMap/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -62,9 +71,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\TeamProject\VeganLoadMap\public" />
       <recent name="C:\TeamProject\VeganLoadMap\backend\src\main\resources\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\TeamProject\VeganLoadMap\src\assets" />
       <recent name="C:\Ucamp\VeganProject\VeganLoadMap\src\components" />
     </key>
   </component>
@@ -80,7 +91,7 @@
       <workItem from="1698645810165" duration="281000" />
       <workItem from="1698646108837" duration="44000" />
       <workItem from="1698646164905" duration="1000" />
-      <workItem from="1698798541984" duration="10478000" />
+      <workItem from="1698798541984" duration="16780000" />
     </task>
     <servers />
   </component>

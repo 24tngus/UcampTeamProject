@@ -46,8 +46,6 @@
               <div class="text-and-image-container">
                 <div class="text-content">
                   <span><h3 class="shopTitle"> {{korean.storename}}
-                  <i v-if="flag" @click="cartFlag" class="fa fa-star-o" aria-hidden="true"></i>
-                           <i v-else @click="cartFlag" class="fa fa-bath" aria-hidden="true"></i>
                   </h3></span>
                   <span class="shop1"> {{korean.category}} </span> &nbsp;
                   <span><i class="fa fa-star" aria-hidden="true" style="color: green"></i>{{korean.rating}} </span><br>

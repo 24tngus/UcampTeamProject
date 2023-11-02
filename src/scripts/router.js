@@ -42,9 +42,11 @@ import ReserveStoreDetail from "@/components/store/ReserveStoreDetail.vue";
 import ReserveStore from "@/components/store/ReserveStore.vue";
 import Vegan1 from "@/components/veganInfo/Vegan1.vue";
 import ShopInsert2 from "@/components/shop/ShopInsert2.vue";
-import ReserveSetting from "@/components/store/ReserveSetting.vue";
 import MenuInsert from "@/components/shop/MenuInsert.vue";
 import MenuInsert2 from "@/components/shop/MenuInsert2.vue";
+import Join3 from "@/components/user/Join3.vue";
+import Payment from "@/components/payment/Payment.vue";
+import PaymentSuccess from "@/components/payment/PaymentSuccess.vue";
 
 const routes = [
     {path:'/', component: Home},
@@ -54,6 +56,7 @@ const routes = [
     {path: '/login2', component: Login2},
     {path: '/join', component: Join},
     {path: '/join2', component: Join2},
+    {path: '/join3', component: Join3},
     {path: '/shop', component: Shop},
     {path: '/shop_insert', component: ShopInsert},
     {path: '/shop_insert2', component: ShopInsert2},
@@ -66,7 +69,6 @@ const routes = [
     {path: '/reserve', component: Reserve},
     {path: '/reserve_insert', component: ReserveInsert},
     {path: '/reserve_update', component: ReserveUpdate},
-    {path: '/reserve_setting', component: ReserveSetting},
     {path: '/reserve_store', component: ReserveStore},
     {path: '/reserve_storedetail/:value', name: "reserve_storedetail", component: ReserveStoreDetail},
     {path: '/reserve_user', name: 'reserve_user',component: ReserveUser},
@@ -93,6 +95,8 @@ const routes = [
     {path: '/review_store', component: ReviewStore},
     {path: '/test', component: test},
     {path: '/error',component: ErrorPage},
+    {path: '/payment', component: Payment},
+    {path: '/paymentSuccess/:value', name: "PaymentSuccess", component: PaymentSuccess},
     {path: '/:pathMatch(.*)*',redirect: '/error'},
 ]
 

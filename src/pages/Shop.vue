@@ -25,7 +25,7 @@
                     <img class="shopimage1" v-if="imageURL1 !== 0"  :src="`/api/images/download/${shop.image}`" style="width: 100%"/>
                   </div>
                   <div class="image-column">
-                    <img class="shopimage1" v-if="imageURL2 !== 0"  :src="`/api/images/download/${shop.image2}`" style="width: 100%"/>
+                    <img class="shopimage1" v-if="imageURL3 !== 0"  :src="`/api/images/download/${shop.image3}`" style="width: 100%"/>
                   </div>
                 </div>
               </div>

@@ -10,7 +10,8 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="#" class="social"><i class="fa fa-google-plus" aria-hidden="true" @click="googleLoginBtn"></i></a>
           &nbsp;&nbsp;&nbsp;
-          <a href="#" class="social"><i class="fa fa-comments" aria-hidden="true"></i></a>
+          <a href="#" className="social"><i className="fa fa-comments" aria-hidden="true"
+                                            id="custom-login-btn" @click="kakaoLogin"></i></a>
         </div>
         <span>or use your account</span>
         <input type="id" placeholder="ID" v-model="state.form.id">
@@ -55,25 +56,91 @@ export default {
       }
     })
     const submit = () => {
-        axios.post("/api/user/login", state.form).then((res)=> {
-          store.commit("setAccount", res.data); // store 저장
-          if (res.data == 0) {
-            if (state.form.id == "") {
-              window.alert("아이디를 입력해주세요");
-            } else if (state.form.password == "") {
-              window.alert("비밀번호를 입력해주세요");
-            } else {
-              window.alert("아이디나 비밀번호가 틀립니다");
-              router.push({path: "/login"});
-            }
-          }else {
-            window.alert("로그인 하였습니다");
-            router.push({path: "/"});
+      axios.post("/api/user/login", state.form).then((res)=> {
+        store.commit("setAccount", res.data); // store 저장
+        if (res.data == 0) {
+          if (state.form.id == "") {
+            window.alert("아이디를 입력해주세요");
+          } else if (state.form.password == "") {
+            window.alert("비밀번호를 입력해주세요");
+          } else {
+            window.alert("아이디나 비밀번호가 틀립니다");
+            router.push({path: "/login"});
           }
-        })
+        }else {
+          window.alert("로그인 하였습니다");
+          router.push({path: "/"});
+        }
+      })
     }
-    return {state, submit}
-  }
+    const kakaoLogin = () => {
+      window.Kakao.Auth.login({
+        scope: "account_email , name , phone_number",
+        success: getKakaoAccount,
+      });
+    }
+
+    const getKakaoAccount = () => {
+      window.Kakao.API.request({
+        url: "/v2/user/me",
+        success: (res) => {
+          const kakao_account = res.kakao_account;
+          const email = kakao_account.email;
+          const name = kakao_account.name;
+          const phone_number = kakao_account.phone_number;
+          console.log("email", email);
+          console.log("name", name);
+          console.log("phone_number", phone_number);
+
+          axios.post("api/user/kakaologin", encodeURIComponent(email))
+              .then((response) => {
+                console.log("리스폰스데이터" , response.data);
+                if (response.data > 0) {
+                  alert("로그인 성공");
+                  router.push({path: "/"});
+                } else if (response.data === 0) {
+                  alert("가입된 정보가 없습니다.");
+                  router.push({ path: "/join3", query: { email, name, phone_number } });
+                } else{
+                  alert("로그인에 실패하였습니다.");
+                  router.push({path: "/login"});
+                }
+              });
+//컨트롤러에서 일치하는 이메일이 있는 경우
+//컨트롤러에서 토큰 부여하고 로그인 처리
+
+//컨트롤러에서 일치하는 이메일이 없는 경우
+//회원가입(Join3) 으로 이동
+// 로그인 처리 구현
+
+
+        },
+        fail: (error) => {
+          console.log(error);
+        },
+      });
+    }
+
+    return {state, submit, kakaoLogin, getKakaoAccount}
+  },
+  methods: {
+    kakaoLogout() {
+      window.Kakao.Auth.logout((res) => {
+        console.log(res);
+      });
+    },
+    // naverLogin() {
+    //   const naverLogin = new naver.LoginWithNaverId({
+    //     clientId: 'a4TEdRYQwTEos4Ljj4RU', // Naver client key
+    //     callbackUrl: `http://localhost:3000/naver_callback`,
+    //     callbackHandle: true
+    //   })
+    //   naverLogin.init()
+    //   naverLogin.reprompt()
+    // },
+
+
+  },
 }
 </script>
 

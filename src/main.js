@@ -21,3 +21,5 @@ function handleWindowError(msg, url, line, col, error) {
 window.onerror = handleWindowError;
 
 createApp(App).use(store).use(router).mount('#app')
+
+window.Kakao.init("e414a6a9edeb28b6fd8271889f51e77c");

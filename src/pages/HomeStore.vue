@@ -10,26 +10,26 @@
 
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="veganMain1.jpg" alt="Slide 1" width="100%" height="700px">
+          <img src="../../public/20.png" style="opacity: 0.7" alt="Slide 1" width="100%" height="700px">
           <div class="carousel-caption">
             <h3>Excellent Vegan Restaurant</h3>
-            <p>VeganRoadMap이 선정한 우수 비건 식당을 만나보세요!</p>
+            <p>VeganRoadMap에서 우선 노출 서비스를 이용하세요!</p>
           </div>
         </div>
 
         <div class="carousel-item">
-          <img src="veganMain2.jpg" alt="Slide 2" width="100%" height="700px">
+          <img src="../../public/21.png" style="opacity: 0.7" alt="Slide 2" width="100%" height="700px">
           <div class="carousel-caption">
             <h3>vegan & non-vegan</h3>
-            <p>비건인들과 논비건인들이 함께할 수 있는 식사</p>
+            <p>비건인들과 논비건인들에게 비건 식당을 소개해주세요</p>
           </div>
         </div>
 
         <div class="carousel-item">
-          <img src="veganMain3.jpg" alt="Slide 3" width="100%" height="700px">
+          <img src="../../public/22.png" style="opacity: 0.7" alt="Slide 3" width="100%" height="700px">
           <div class="carousel-caption">
             <h3>비건 식당 예약하기</h3>
-            <p>비건 식당을 예약하고 대기 없이 간편하게 이용해보세요.</p>
+            <p>VeganRoadMap이 번거로운 예약 관리를 편리하게!</p>
           </div>
         </div>
       </div>
@@ -115,7 +115,15 @@ export default {
 </script>
 
 <style scoped>
+.carousel-caption h3{
+  color: #575445;
+  font-size: 40px;
+}
 
+.carousel-caption p{
+  color: #606958;
+  font-size: 20px;
+}
 .row {
   text-align: center;
 }

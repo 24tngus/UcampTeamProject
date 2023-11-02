@@ -74,6 +74,7 @@ export default {
   setup() {
     const state = reactive({
       form :{
+        seq: 0,
         id: "",
         password: "*************",
         name: "",
@@ -85,6 +86,7 @@ export default {
 
     const load = () => {
       axios.get("/api/user/mypage").then(({data}) => {
+        state.form.seq = data.seq;
         state.form.id=data.id;
         // state.form.password=data.password;
         state.form.name=data.name;

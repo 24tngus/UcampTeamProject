@@ -5,7 +5,7 @@
     <div class="showcase-container">
       <div class="main-title" id="home">Vegan Load Map</div><br>
       <p class="p-title">가게 메뉴 등록</p>
-      <button @click="move" class="btn btn-primary">등록하기</button>
+      <button @click="move" style="font-size: 70%" class="btn btn-primary">등록하기</button>
     </div>
   </section>
 </template>
@@ -238,13 +238,13 @@ body {
 }
 
 .main-title {
-  font-size: 180%;
+  font-size: 250%;
   color: antiquewhite;
   opacity: 0.7;
 }
 
 .p-title {
-  font-size: 80%;
+  font-size: 150%;
   color: white;
 }
 

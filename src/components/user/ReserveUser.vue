@@ -124,7 +124,7 @@
               <div><b>요청사항</b> <input type="text" placeholder="알레르기 정보나 가게에 전달하고 싶은 사항을 작성해주세요." v-model="comment" class="com" style="height:200px"></div>
               <!--  {{ comment }} -->
             </div><br><br>
-            <button @click="insertReserve" class="bookbtn">예약하기</button>
+            <button @click="insertReserve" class="bookbtn">예약금 결제</button>
           </div>
         </ul>
       </div>
@@ -142,6 +142,7 @@ export default {
   components: {Header},
   data() {
     return {
+      userid: "",
       nickname: "",
       reserveGetData: {
         time0810: 0,
@@ -169,6 +170,8 @@ export default {
       reverse: [],
       isDataLoaded: true,
       reserveData: null,
+      currentTime : new Date(),
+      mUidDate : '',
     };
   },
   mounted() {
@@ -178,6 +181,7 @@ export default {
   methods: {
     load () {
       axios.get("/api/user/mypage").then(({data}) => {
+        this.userid = data.id;
         this.nickname = data.nickname;
       })
     },
@@ -226,8 +230,6 @@ export default {
             }})
           .then((response) => {
             console.log("Data inserted successfully", response.data);
-            alert("예약이 완료되었습니다.")
-            router.push({path: "/reserve_usercheck"});
           })
           .catch((error) => {
             console.error("Error inserting data", error);
@@ -235,6 +237,75 @@ export default {
             alert("현재 예약 인원이 가득찼습니다.");
             window.location.reload();
           });
+      this.requestPay();
+    },
+    // 결제
+    requestPay() {
+      const { IMP } = window;
+
+      IMP.init('imp70364071');
+      // https://developers.portone.io/docs/ko/sdk/javascript-sdk/payrq >> 파라미터 정리 되어있음.
+      IMP.request_pay({ // param
+        pg: "kcp.INIBillTst_inicis",  // pg사 구분코드
+        pay_method: "card", // 결제수단 구분코드
+        merchant_uid: "vrm_wando_" + this.mUidDate,  // 가맹점 주문번호. 40bytes 이하. 매 거래시 다 달라야함. 거래고유코드라고 생각해도 될듯?
+        name: this.storename,  // 결제대상 제품명 (상품명) > 상점명(storename + 예약)
+        amount: 50, // 결제 금액@@@@
+        buyer_email: '', // 주문자 이메일  > default로 저게 박힘
+        buyer_name: this.nickname
+      }, rsp => { // callback
+        if (rsp.success) {  // 결제 성공
+          console.log("rsp.success => " + rsp)
+
+          const paymentData = {
+            paymentid: rsp.merchant_uid,  // 포트원 고유 결제번호. success가 false이고 사전 validation에 실패한 경우, imp_uid는 null일 수 있음
+            storename: this.storename,
+            userid: this.userid,
+            price: rsp.paid_amount,
+            status: rsp.status, // 결제 성공 시에는 status
+            /* 결제상태
+                ready(브라우저 창 이탈, 가상계좌 발급 완료 등 미결제 상태)
+                paid(결제완료)
+                failed(신용카드 한도 초과, 체크카드 잔액 부족, 브라우저 창 종료 또는 취소 버튼 클릭 등 결제실패 상태) */
+          };
+
+          axios.post("/api/payment", paymentData)
+              .then((data) => {
+                // 서버 결제 API 성공시 로직
+                console.log(data)
+                alert("예약금 결제 및 예약이 완료되었습니다!");
+
+                router.push({ name: "PaymentSuccess", params: { value : paymentData.paymentid } })
+              })
+              .catch((error) => {
+                // 서버 결제 API 실패 시 로직
+                console.log(error)
+                alert("예약금 결제에 실패하였습니다.");
+              });
+
+        } else {  // 결제 실패
+          const paymentData = {
+            paymentid: "wando_" + rsp.imp_uid,  // 포트원 고유 결제번호. success가 false이고 사전 validation에 실패한 경우, imp_uid는 null일 수 있음
+            storename: rsp.merchant_uid,
+            userid: this.userid,
+            price: "1",
+            status: rsp.success,  // 결제 실패 시에는 status가 할당되지 않아서 success.
+          };
+
+          axios.post("/api/payment", paymentData)
+              .then((data) => {
+                // 서버 결제 API 실패 시 로직
+                console.log(data);
+                alert("결제에 실패했습니다. 에러 내용 : " + rsp.error_msg)
+              })
+              .catch((error) => {
+                // 서버 결제 API 실패시 로직
+                console.log(error)
+                alert("예약금 결제에 실패하였습니다.");
+              });
+
+        }
+      });
     },
     fetchData() {
       axios
@@ -275,8 +346,23 @@ export default {
           });
     },
   },
+  computed: {
+    // yyMMdd_HHmmss 변환 후 merchant_uid에 붙임 ex)231031_224258
+    formattedCurrentTime() {
+      const date = this.currentTime;
+      const year = String(date.getFullYear()).slice(-2);
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+
+      return `${year}${month}${day}_${hours}${minutes}${seconds}`;
+    },
+  },
   created() {
     this.fetchData();
+    this.mUidDate = this.formattedCurrentTime
   },
   watch: {
     date: function () {
@@ -430,6 +516,7 @@ button:hover {
   margin :10px 0; /*상하로 좀 띄워주기*/
   gap:10px;
 }
+
 .member b{
   /* border: 1px solid #000; */
   display: block; /*수직 정렬하기 */

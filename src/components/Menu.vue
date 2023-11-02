@@ -20,8 +20,8 @@
 <!--                <img :src="setImgUrl(menu.image)" class="cardImg"/>-->
               </div>
               <div class="food-description">
-                <h2 class="food-titile">{{ menu.menu }}</h2>
-                <p> {{ menu.info }} </p>
+                <h2 class="food-titile">{{ menu.info }}</h2>
+                <p> {{ menu.menu }} </p>
                 <p class="food-price">Price: {{ menu.price}}</p>
               </div>
             </div>
